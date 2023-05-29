@@ -1,0 +1,99 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Numerics;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using Vector3 = UnityEngine.Vector3;
+
+namespace Managers
+{
+    public class SwipeManager : MonoBehaviour, IDragHandler, IEndDragHandler
+    {
+        private Vector3 panelPosition;
+        public float percentThreshold = 20f;
+        public float easing = 0.25f;
+
+        private void Start()
+        {
+            panelPosition = transform.position;
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            Vector3 correctedPosition = Camera.main.ScreenToWorldPoint(eventData.position);
+            Vector3 correctedPressPosition = Camera.main.ScreenToWorldPoint(eventData.pressPosition);
+            float difference = correctedPressPosition.x - correctedPosition.x;
+            float newPosition = panelPosition.x - difference;
+
+            if (!IsOutOfScreen(newPosition))
+            {
+                transform.position = panelPosition - new Vector3(difference, 0, 0);
+            }
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            Vector3 correctedPosition = Correct(eventData.position);
+            Vector3 correctedPressPosition = Correct(eventData.pressPosition);
+            float correctedScreenWidth = GetCorrectedScreenWidth();
+            float percentage = (correctedPressPosition.x - correctedPosition.x) / correctedScreenWidth;
+
+            if (Math.Abs(percentage) >= percentThreshold)
+            {
+                Vector3 newLocation = panelPosition;
+                if (percentage > 0)
+                {
+                    newLocation += new Vector3(-correctedScreenWidth, 0, 0);
+                }
+                else if (percentage < 0)
+                {
+                    newLocation += new Vector3(correctedScreenWidth, 0, 0);
+                }
+
+                if (!IsOutOfScreen(newLocation.x))
+                {
+                    panelPosition = newLocation;
+                    StartCoroutine(SmoothMove(transform.position, panelPosition, easing));
+                }
+            }
+            else
+            {
+                StartCoroutine(SmoothMove(transform.position, panelPosition, easing));
+            }
+        }
+
+        private Vector3 Correct(Vector3 vector)
+        {
+            return Camera.main.ScreenToWorldPoint(vector);
+        }
+
+        private bool IsOutOfScreen(float position)
+        {
+            position = RoundNumber(position);
+            return position > GetCorrectedScreenWidth() || position < -GetCorrectedScreenWidth();
+        }
+
+        private float GetCorrectedScreenWidth()
+        {
+            Vector3 correctedScreen = Correct(new Vector3(Screen.width, 0, 0));
+            return RoundNumber(correctedScreen.x * 2);
+        }
+
+        private float RoundNumber(float number)
+        {
+            return (float)Math.Round(number, 2);
+        }
+
+        IEnumerator SmoothMove(Vector3 startpos, Vector3 endpos, float seconds)
+        {
+            float t = 0f;
+            while (t <= 1.0)
+            {
+                t += Time.deltaTime / seconds;
+                transform.position = Vector3.Lerp(startpos, endpos, Mathf.SmoothStep(0f, 1f, t));
+                yield return null;
+            }
+        }
+    }
+}
