@@ -2,40 +2,39 @@ using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine;
 
-namespace Managers
+public class GoogleLoginManager : MonoBehaviour
 {
-    public class GoogleLogin : MonoBehaviour
+    public string Token;
+    public string Error;
+
+    void Awake()
     {
-        public string Token;
-        public string Error;
+        Debug.Log("Attempting to log in");
+        PlayGamesPlatform.Activate();
+        LoginGooglePlayGames();
+    }
 
-        void Awake()
+    public void LoginGooglePlayGames()
+    {
+        PlayGamesPlatform.Instance.Authenticate((success) =>
         {
-            //Initialize PlayGamesPlatform
-            PlayGamesPlatform.Activate();
-            LoginGooglePlayGames();
-        }
-
-        public void LoginGooglePlayGames()
-        {
-            PlayGamesPlatform.Instance.Authenticate((success) =>
+            if (success == SignInStatus.Success)
             {
-                if (success == SignInStatus.Success)
-                {
-                    Debug.Log("Login with Google Play games successful.");
+                Debug.Log("Login with Google Play games successful.");
 
-                    PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
-                    {
-                        Debug.Log("Authorization code: " + code);
-                        Token = code;
-                    });
-                }
-                else
+                PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
                 {
-                    Error = "Failed to retrieve Google play games authorization code";
-                    Debug.Log("Login Unsuccessful");
-                }
-            });
-        }
+                    Debug.Log("Authorization code: " + code);
+                    Token = code;
+                });
+            }
+            else
+            {
+                Error = "Failed to retrieve Google play games authorization code";
+                Debug.Log("Login Unsuccessful");
+            }
+        });
     }
 }
+
+

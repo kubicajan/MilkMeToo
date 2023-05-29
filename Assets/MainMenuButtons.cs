@@ -7,4 +7,14 @@ public class MainMenuButtons : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+
+    public void ShowLeaderboard()
+    {
+        Social.ShowLeaderboardUI();
+    }
+
+    public void ShowAchievements()
+    {
+        Social.ShowAchievementsUI();
+    }
 }
