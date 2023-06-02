@@ -4,7 +4,7 @@ namespace Objects
     {
         public Capy()
         {
-            objectName = "cat";
+            objectName = "capy";
         }
     }
 }
