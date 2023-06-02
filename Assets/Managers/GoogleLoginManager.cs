@@ -2,38 +2,41 @@ using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine;
 
-public class GoogleLoginManager : MonoBehaviour
+namespace Managers
 {
-    public string Token;
-    public string Error;
-
-    void Awake()
+    public class GoogleLoginManager : MonoBehaviour
     {
-        Debug.Log("Attempting to log in");
-        PlayGamesPlatform.Activate();
-        LoginGooglePlayGames();
-    }
+        public string Token;
+        public string Error;
 
-    public void LoginGooglePlayGames()
-    {
-        PlayGamesPlatform.Instance.Authenticate((success) =>
+        void Awake()
         {
-            if (success == SignInStatus.Success)
-            {
-                Debug.Log("Login with Google Play games successful.");
+            Debug.Log("Attempting to log in");
+            PlayGamesPlatform.Activate();
+            LoginGooglePlayGames();
+        }
 
-                PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
-                {
-                    Debug.Log("Authorization code: " + code);
-                    Token = code;
-                });
-            }
-            else
+        public void LoginGooglePlayGames()
+        {
+            PlayGamesPlatform.Instance.Authenticate((success) =>
             {
-                Error = "Failed to retrieve Google play games authorization code";
-                Debug.Log("Login Unsuccessful");
-            }
-        });
+                if (success == SignInStatus.Success)
+                {
+                    Debug.Log("Login with Google Play games successful.");
+
+                    PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
+                    {
+                        Debug.Log("Authorization code: " + code);
+                        Token = code;
+                    });
+                }
+                else
+                {
+                    Error = "Failed to retrieve Google play games authorization code";
+                    Debug.Log("Login Unsuccessful" + success);
+                }
+            });
+        }
     }
 }
 
