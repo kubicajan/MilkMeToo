@@ -5,6 +5,7 @@ namespace Objects
         public Cat()
         {
             objectName = "cat";
+            price = 5;
         }
     }
 }

@@ -1,3 +1,4 @@
+using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ namespace Objects
         private bool unlocked;
         private int count;
         protected string objectName = "";
+        protected int price = 0;
 
         private void Start()
         {
@@ -31,8 +33,6 @@ namespace Objects
             shopButton.GetComponentInChildren<TextMeshProUGUI>().text = "unavailable";
             shopButton.image.color = Color.gray;
         }
-
-        //TODO: potreba dodelat logiku co unlockuje postupne picky
 
         public bool IsUnlocked()
         {
@@ -50,11 +50,17 @@ namespace Objects
 
         public void BuyAmount(int addAmount)
         {
-            count += addAmount;
-            if (count > 0)
+            int totalPrice = -(price * addAmount);
+            if (MoneyManager.instance.IsCanBuyFor(totalPrice))
             {
-                sprite.SetActive(true);
-                counter.text = count.ToString();
+                count += addAmount;
+                MoneyManager.instance.ModifyMoneyValue(totalPrice);
+
+                if (count > 0)
+                {
+                    sprite.SetActive(true);
+                    counter.text = count.ToString();
+                }
             }
         }
 

@@ -25,8 +25,16 @@ namespace Managers
 
         public void ModifyMoneyValue(int amount)
         {
-            money += amount;
-            ChangeDisplayedMoney();
+            if (IsCanBuyFor(amount))
+            {
+                money += amount;
+                ChangeDisplayedMoney();
+            }
+        }
+
+        public bool IsCanBuyFor(int amount)
+        {
+            return (money + amount) >= 0;
         }
 
         public int GetMoney()
