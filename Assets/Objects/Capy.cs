@@ -1,3 +1,5 @@
+using Objects.UnlockableObjectClasses;
+
 namespace Objects
 {
     public class Capy : UnlockableObject
@@ -5,7 +7,8 @@ namespace Objects
         public Capy()
         {
             objectName = "capy";
-            price = 10;
+            shopButtonBuyPrice = 15;
+            kokButtonUnlockPrice = 5;
         }
     }
 }

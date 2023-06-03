@@ -22,19 +22,27 @@ namespace Managers
             }
         }
 
-
-        public void ModifyMoneyValue(int amount)
+        public void AddMoney(int amount)
         {
-            if (IsCanBuyFor(amount))
-            {
-                money += amount;
-                ChangeDisplayedMoney();
-            }
+            money += amount;
+            ChangeDisplayedMoney();
         }
 
-        public bool IsCanBuyFor(int amount)
+        public bool SpendMoney(int amount)
         {
-            return (money + amount) >= 0;
+            if (IsEnoughFunds(amount))
+            {
+                money -= amount;
+                ChangeDisplayedMoney();
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool IsEnoughFunds(int price)
+        {
+            return money >= price;
         }
 
         public int GetMoney()

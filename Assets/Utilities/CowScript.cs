@@ -7,7 +7,7 @@ namespace Utilities
     {
         private void OnMouseDown()
         {
-            MoneyManager.instance.ModifyMoneyValue(1);
+            MoneyManager.instance.AddMoney(1);
         }
     }
 }
