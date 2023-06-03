@@ -32,7 +32,7 @@ namespace Objects.UnlockableObjectClasses
                     break;
             }
         }
-
+        
         private void LockButton()
         {
             kokButtonStatus = ButtonStatus.LOCKED;
@@ -52,6 +52,7 @@ namespace Objects.UnlockableObjectClasses
             {
                 kokButtonStatus = ButtonStatus.BOUGHT;
                 kokButton.image.sprite = unlockedKokButtonSprite;
+                kokButton.enabled = false;
                 UnlockShopButton();
             }
         }
