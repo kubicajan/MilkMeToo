@@ -1,21 +1,42 @@
 using System;
-using Unity.VisualScripting;
+using TMPro;
+using UnityEngine;
 
 namespace Managers
 {
-    public sealed class MoneyManager
+    public class MoneyManager : MonoBehaviour
     {
-        private static readonly Lazy<MoneyManager> Lazy = new(() => new MoneyManager());
+        [SerializeField] public TextMeshProUGUI moneyScore;
+        public static MoneyManager instance;
+        private int money;
 
-        public static MoneyManager Instance => Lazy.Value;
-
-        private int money = 0;
-
-
-        public int AddMoney(int amountToAdd)
+        private void Awake()
         {
-            money += amountToAdd;
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                instance = this;
+            }
+        }
+
+
+        public void ModifyMoneyValue(int amount)
+        {
+            money += amount;
+            ChangeDisplayedMoney();
+        }
+
+        public int GetMoney()
+        {
             return money;
+        }
+
+        private void ChangeDisplayedMoney()
+        {
+            moneyScore.text = money.ToString();
         }
     }
 }
