@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Objects.UnlockableObjectClasses
 {
-    public partial class UnlockableObject
+    public abstract partial class UnlockableObject
     {
         [SerializeField] public Button shopButton;
 
@@ -44,7 +44,7 @@ namespace Objects.UnlockableObjectClasses
         private void UnlockShopButton()
         {
             shopButton.enabled = true;
-            shopButton.GetComponentInChildren<TextMeshProUGUI>().text = "buy " + objectName;
+            shopButton.GetComponentInChildren<TextMeshProUGUI>().text = "buy " + objectName + " " + shopButtonBuyPrice + "$";
             shopButton.image.color = Color.cyan;
         }
 

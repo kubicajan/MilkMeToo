@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Objects.UnlockableObjectClasses
 {
-    public partial class UnlockableObject : MonoBehaviour
+    public abstract partial class UnlockableObject : MonoBehaviour
     {
         [SerializeField] public GameObject sprite;
         [SerializeField] public TextMeshProUGUI counter;
