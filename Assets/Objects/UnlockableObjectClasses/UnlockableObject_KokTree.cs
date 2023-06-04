@@ -16,7 +16,7 @@ namespace Objects.UnlockableObjectClasses
         [SerializeField] private Sprite boughtKokButtonSprite;
         [SerializeField] private Sprite unknownKokButtonSprite;
 
-        [SerializeField] public TextMeshProUGUI upgradePrice;
+        [SerializeField] public TextMeshProUGUI upgradePriceDisplay;
 
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
         protected int kokButtonUnlockPrice = 10;
@@ -46,7 +46,7 @@ namespace Objects.UnlockableObjectClasses
             kokButtonStatus = ButtonStatus.UNKNOWN;
             kokButton.image.sprite = unknownKokButtonSprite;
             kokButton.enabled = false;
-            upgradePrice.text = "??????";
+            upgradePriceDisplay.text = "??????";
         }
 
         public void LockButton()
@@ -54,14 +54,14 @@ namespace Objects.UnlockableObjectClasses
             kokButtonStatus = ButtonStatus.LOCKED;
             kokButton.image.sprite = lockedKokButtonSprite;
             kokButton.enabled = false;
-            upgradePrice.text = kokButtonUnlockPrice + "$";
+            upgradePriceDisplay.text = kokButtonUnlockPrice + "$";
         }
 
         private void MakeButtonAvailable()
         {
             kokButtonStatus = ButtonStatus.AVAILABLE;
             kokButton.image.sprite = availableKokButtonSprite;
-            upgradePrice.text = kokButtonUnlockPrice + "$";
+            upgradePriceDisplay.text = kokButtonUnlockPrice + "$";
         }
 
         public void BuyUpgrade()
@@ -71,7 +71,7 @@ namespace Objects.UnlockableObjectClasses
                 kokButtonStatus = ButtonStatus.BOUGHT;
                 kokButton.image.sprite = boughtKokButtonSprite;
                 kokButton.enabled = false;
-                upgradePrice.text = "";
+                upgradePriceDisplay.text = "";
                 UnlockShopButton();
                 UnlockAnotherButton();
             }

@@ -44,7 +44,8 @@ namespace Objects.UnlockableObjectClasses
         private void UnlockShopButton()
         {
             shopButton.enabled = true;
-            shopButton.GetComponentInChildren<TextMeshProUGUI>().text = "buy " + objectName + " " + shopButtonBuyPrice + "$";
+            shopButton.GetComponentInChildren<TextMeshProUGUI>().text =
+                "<sprite=0>" + "           buy " + objectName + " " + shopButtonBuyPrice + "$";
             shopButton.image.color = Color.cyan;
         }
 
