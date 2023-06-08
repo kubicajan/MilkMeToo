@@ -7,7 +7,9 @@ namespace Managers
     public class MoneyManager : MonoBehaviour
     {
         [SerializeField] public TextMeshProUGUI moneyScore;
+        [SerializeField] public TextMeshProUGUI totalScore;
         public static MoneyManager instance;
+        private long totalMoney = 0;
         private int money;
 
         private void Awake()
@@ -25,6 +27,7 @@ namespace Managers
         public void AddMoney(int amount)
         {
             money += amount;
+            totalMoney += amount;
             ChangeDisplayedMoney();
         }
 
@@ -50,9 +53,15 @@ namespace Managers
             return money;
         }
 
+        public long GetTotalMoney()
+        {
+            return totalMoney;
+        }
+
         private void ChangeDisplayedMoney()
         {
-            moneyScore.text = money.ToString();
+            moneyScore.text = "money = " + money;
+            totalScore.text = "score = " + totalMoney;
         }
     }
 }
