@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +11,13 @@ namespace Objects.UnlockableObjectClasses
         [SerializeField] public TextMeshProUGUI counter;
 
         protected string objectName = "";
+
+        private void Update()
+        {
+            int money = MoneyManager.instance.GetMoney();
+            UpdateKokTree(money);
+            UpdateShop(money);
+        }
 
         private void Start()
         {

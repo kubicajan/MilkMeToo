@@ -14,6 +14,21 @@ namespace Objects.UnlockableObjectClasses
 
         private int _count = 0;
 
+        private void UpdateShop(int money)
+        {
+            if (kokButtonStatus == ButtonStatus.BOUGHT)
+            {
+                if (money >= shopButtonBuyPrice)
+                {
+                    UnlockShopButton();
+                }
+                else
+                {
+                    NoMoneyShopButton(money);
+                }
+            }
+        }
+
         private int ObjectCount
         {
             get => _count;
@@ -45,8 +60,18 @@ namespace Objects.UnlockableObjectClasses
         {
             shopButton.enabled = true;
             shopButton.GetComponentInChildren<TextMeshProUGUI>().text =
-                "<sprite=0>" + "           buy " + objectName + " " + shopButtonBuyPrice + "$";
+                "<sprite=0>" + "                         buy " + objectName + " " + shopButtonBuyPrice + "$";
             shopButton.image.color = Color.cyan;
+        }
+
+
+        private void NoMoneyShopButton(int money)
+        {
+            shopButton.enabled = false;
+            shopButton.GetComponentInChildren<TextMeshProUGUI>().text =
+                "<sprite=0>" + "                         MAKE "
+                             + (shopButtonBuyPrice - money) + "$ MORE TO BUY " + objectName;
+            shopButton.image.color = Color.green;
         }
 
         public void BuyObject()

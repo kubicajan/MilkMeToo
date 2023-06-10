@@ -21,6 +21,21 @@ namespace Objects.UnlockableObjectClasses
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
         protected int kokButtonUnlockPrice = 10;
 
+        private void UpdateKokTree(int money)
+        {
+            if (kokButtonStatus == ButtonStatus.LOCKED &&
+                money >= kokButtonUnlockPrice)
+            {
+                MakeButtonAvailable();
+            }
+
+            if (kokButtonStatus == ButtonStatus.AVAILABLE && 
+                money < kokButtonUnlockPrice)
+            {
+                LockButton();
+            }
+        }
+
         private void KokTreeButtonStart()
         {
             switch (kokButtonStatus)
@@ -59,6 +74,7 @@ namespace Objects.UnlockableObjectClasses
 
         private void MakeButtonAvailable()
         {
+            kokButton.enabled = true;
             kokButtonStatus = ButtonStatus.AVAILABLE;
             kokButton.image.sprite = availableKokButtonSprite;
             upgradePriceDisplay.text = kokButtonUnlockPrice + "$";
