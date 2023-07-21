@@ -1,5 +1,4 @@
 using Objects.UnlockableObjectClasses;
-using Unity.VisualScripting;
 
 namespace Objects
 {
@@ -11,6 +10,8 @@ namespace Objects
             shopButtonBuyPrice = 2;
             kokButtonUnlockPrice = 3;
             objectName = "cat";
+            productionPower = 0.5f;
+            interval = 0.5f;
         }
 
         protected override void UnlockAnotherButton()

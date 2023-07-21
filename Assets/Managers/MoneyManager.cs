@@ -9,8 +9,8 @@ namespace Managers
         [SerializeField] public TextMeshProUGUI moneyScore;
         [SerializeField] public TextMeshProUGUI totalScore;
         public static MoneyManager instance;
-        private long totalMoney = 0;
-        private int money;
+        private float totalMoney = 0;
+        private float money;
 
         private void Awake()
         {
@@ -24,7 +24,7 @@ namespace Managers
             }
         }
 
-        public void AddMoney(int amount)
+        public void AddMoney(float amount)
         {
             money += amount;
             totalMoney += amount;
@@ -48,12 +48,12 @@ namespace Managers
             return money >= price;
         }
 
-        public int GetMoney()
+        public float GetMoney()
         {
             return money;
         }
 
-        public long GetTotalMoney()
+        public float GetTotalMoney()
         {
             return totalMoney;
         }

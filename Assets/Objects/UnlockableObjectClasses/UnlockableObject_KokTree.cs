@@ -21,7 +21,7 @@ namespace Objects.UnlockableObjectClasses
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
         protected int kokButtonUnlockPrice = 10;
 
-        private void UpdateKokTree(int money)
+        private void UpdateKokTree(float money)
         {
             if (kokButtonStatus == ButtonStatus.LOCKED &&
                 money >= kokButtonUnlockPrice)

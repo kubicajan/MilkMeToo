@@ -1,6 +1,7 @@
-using System;
+using System.Collections;
 using Managers;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Objects.UnlockableObjectClasses
@@ -9,14 +10,21 @@ namespace Objects.UnlockableObjectClasses
     {
         [SerializeField] public GameObject sprite;
         [SerializeField] public TextMeshProUGUI counter;
-
+        private float timer = 0f;
+        protected float interval = 1f;
         protected string objectName = "";
+        protected float productionPower = 0;
 
         private void Update()
         {
-            int money = MoneyManager.instance.GetMoney();
+            float money = MoneyManager.instance.GetMoney();
             UpdateKokTree(money);
             UpdateShop(money);
+
+            if (sprite.activeSelf && IsItTime())
+            {
+                ProduceMilk();
+            }
         }
 
         private void Start()
@@ -25,6 +33,18 @@ namespace Objects.UnlockableObjectClasses
             counter.text = "";
             ShopButtonStart();
             KokTreeButtonStart();
+        }
+
+        private bool IsItTime()
+        {
+            timer += Time.deltaTime;
+            return timer >= interval;
+        }
+
+        private void ProduceMilk()
+        {
+            MoneyManager.instance.AddMoney(_count * productionPower);
+            timer = 0f;
         }
     }
 }

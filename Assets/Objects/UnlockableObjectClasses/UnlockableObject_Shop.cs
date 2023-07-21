@@ -14,7 +14,7 @@ namespace Objects.UnlockableObjectClasses
 
         private int _count = 0;
 
-        private void UpdateShop(int money)
+        private void UpdateShop(float money)
         {
             if (kokButtonStatus == ButtonStatus.BOUGHT)
             {
@@ -65,7 +65,7 @@ namespace Objects.UnlockableObjectClasses
         }
 
 
-        private void NoMoneyShopButton(int money)
+        private void NoMoneyShopButton(float money)
         {
             shopButton.enabled = false;
             shopButton.GetComponentInChildren<TextMeshProUGUI>().text =
