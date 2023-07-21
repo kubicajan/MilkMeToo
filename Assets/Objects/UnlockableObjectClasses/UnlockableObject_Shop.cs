@@ -76,7 +76,7 @@ namespace Objects.UnlockableObjectClasses
 
         public void BuyObject()
         {
-            if (MoneyManager.instance.SpendMoney(shopButtonBuyPrice))
+            if (MoneyManagerSingleton.instance.SpendMoney(shopButtonBuyPrice))
             {
                 ObjectCount++;
             }

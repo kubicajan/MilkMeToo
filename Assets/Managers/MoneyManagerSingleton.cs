@@ -1,14 +1,13 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 namespace Managers
 {
-    public class MoneyManager : MonoBehaviour
+    public class MoneyManagerSingleton : MonoBehaviour
     {
         [SerializeField] public TextMeshProUGUI moneyScore;
         [SerializeField] public TextMeshProUGUI totalScore;
-        public static MoneyManager instance;
+        public static MoneyManagerSingleton instance;
         private float totalMoney = 0;
         private float money;
 

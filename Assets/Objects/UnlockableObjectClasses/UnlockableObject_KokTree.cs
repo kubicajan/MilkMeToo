@@ -82,7 +82,7 @@ namespace Objects.UnlockableObjectClasses
 
         public void BuyUpgrade()
         {
-            if (MoneyManager.instance.SpendMoney(kokButtonUnlockPrice))
+            if (MoneyManagerSingleton.instance.SpendMoney(kokButtonUnlockPrice))
             {
                 kokButtonStatus = ButtonStatus.BOUGHT;
                 kokButton.image.sprite = boughtKokButtonSprite;

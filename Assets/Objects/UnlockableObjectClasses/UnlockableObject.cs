@@ -1,8 +1,7 @@
-using System.Collections;
 using Managers;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using Utilities;
 
 namespace Objects.UnlockableObjectClasses
 {
@@ -10,14 +9,28 @@ namespace Objects.UnlockableObjectClasses
     {
         [SerializeField] public GameObject sprite;
         [SerializeField] public TextMeshProUGUI counter;
+
+        private Vector2 spriteCanvasPosition;
         private float timer = 0f;
+
         protected float interval = 1f;
         protected string objectName = "";
         protected float productionPower = 0;
 
+        private void Start()
+        {
+            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(sprite);
+            //TODO: DYNAMIC SETTING OF POSITION
+            counter.rectTransform.anchoredPosition = new Vector2(spriteCanvasPosition.x + 300, spriteCanvasPosition.y - 150);
+            sprite.SetActive(false);
+            counter.text = "";
+            ShopButtonStart();
+            KokTreeButtonStart();
+        }
+
         private void Update()
         {
-            float money = MoneyManager.instance.GetMoney();
+            float money = MoneyManagerSingleton.instance.GetMoney();
             UpdateKokTree(money);
             UpdateShop(money);
 
@@ -25,14 +38,6 @@ namespace Objects.UnlockableObjectClasses
             {
                 ProduceMilk();
             }
-        }
-
-        private void Start()
-        {
-            sprite.SetActive(false);
-            counter.text = "";
-            ShopButtonStart();
-            KokTreeButtonStart();
         }
 
         private bool IsItTime()
@@ -43,7 +48,9 @@ namespace Objects.UnlockableObjectClasses
 
         private void ProduceMilk()
         {
-            MoneyManager.instance.AddMoney(_count * productionPower);
+            float points = _count * productionPower;
+            MoneyManagerSingleton.instance.AddMoney(points);
+            MilkMoneySingleton.instance.HandleMilkMoneyShow(points, spriteCanvasPosition);
             timer = 0f;
         }
     }
