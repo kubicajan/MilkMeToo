@@ -54,8 +54,6 @@ namespace Objects.UnlockableObjectClasses
             }
         }
 
-        protected abstract void UnlockAnotherButton();
-
         private void MakeButtonUnknown()
         {
             kokButtonStatus = ButtonStatus.UNKNOWN;
@@ -92,5 +90,7 @@ namespace Objects.UnlockableObjectClasses
                 UnlockAnotherButton();
             }
         }
+        
+        protected abstract void UnlockAnotherButton();
     }
 }

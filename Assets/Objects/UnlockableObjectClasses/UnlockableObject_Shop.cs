@@ -37,13 +37,13 @@ namespace Objects.UnlockableObjectClasses
                 if (value > 0)
                 {
                     _count = value;
-                    sprite.SetActive(true);
+                    primalSprite.gameObject.SetActive(true);
                     counter.text = _count.ToString();
                 }
                 else
                 {
                     _count = 0;
-                    sprite.SetActive(false);
+                    primalSprite.gameObject.SetActive(false);
                     counter.text = "";
                 }
             }

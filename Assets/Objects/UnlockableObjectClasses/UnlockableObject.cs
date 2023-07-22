@@ -1,28 +1,33 @@
+using System.Globalization;
 using Managers;
+using PopUps;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utilities;
 
 namespace Objects.UnlockableObjectClasses
 {
     public abstract partial class UnlockableObject : MonoBehaviour
     {
-        [SerializeField] public GameObject sprite;
+        [SerializeField] public Button primalSprite;
         [SerializeField] public TextMeshProUGUI counter;
 
         private Vector2 spriteCanvasPosition;
         private float timer = 0f;
+        private string allTimeMilked = "0.0";
 
         protected float interval = 1f;
         protected string objectName = "";
         protected float productionPower = 0;
+        protected string description = "";
 
         private void Start()
         {
-            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(sprite);
-            //TODO: DYNAMIC SETTING OF POSITION
-            counter.rectTransform.anchoredPosition = new Vector2(spriteCanvasPosition.x + 300, spriteCanvasPosition.y - 150);
-            sprite.SetActive(false);
+            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSprite.gameObject);
+            counter.rectTransform.anchoredPosition =
+                new Vector2(spriteCanvasPosition.x + 300, spriteCanvasPosition.y - 150);
+            primalSprite.gameObject.SetActive(false);
             counter.text = "";
             ShopButtonStart();
             KokTreeButtonStart();
@@ -34,7 +39,7 @@ namespace Objects.UnlockableObjectClasses
             UpdateKokTree(money);
             UpdateShop(money);
 
-            if (sprite.activeSelf && IsItTime())
+            if (primalSprite.gameObject.activeSelf && IsItTime())
             {
                 ProduceMilk();
             }
@@ -49,9 +54,20 @@ namespace Objects.UnlockableObjectClasses
         private void ProduceMilk()
         {
             float points = _count * productionPower;
+            AddToAllTimeMilked(points);
             MoneyManagerSingleton.instance.AddMoney(points);
             MilkMoneySingleton.instance.HandleMilkMoneyShow(points, spriteCanvasPosition);
             timer = 0f;
+        }
+
+        private void AddToAllTimeMilked(float points)
+        {
+            allTimeMilked = (float.Parse(allTimeMilked) + points).ToString();
+        }
+
+        public void Clicked()
+        {
+            InformationPopUp.instance.ShowPopUp(objectName, description, allTimeMilked);
         }
     }
 }

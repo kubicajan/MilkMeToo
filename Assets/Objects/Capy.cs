@@ -7,7 +7,8 @@ namespace Objects
     {
         public Capy()
         {
-            objectName = "capy";
+            objectName = "Capy";
+            description = "The chillest animal on the block";
             shopButtonBuyPrice = 15;
             kokButtonUnlockPrice = 5;
             productionPower = 1f;
