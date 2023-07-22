@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -6,10 +5,18 @@ namespace PopUps
 {
     public abstract class PopUp : MonoBehaviour
     {
+        //todo: figure this out dynamically
         public static PopUp instance;
+        public delegate void OnSetInactiveTriggeredDelegate();
+        public static event OnSetInactiveTriggeredDelegate OnSetInactiveTriggered;
+        public delegate void OnShowPopUpTriggeredDelegate();
+        public static event OnShowPopUpTriggeredDelegate OnShowPopUpTriggered;
+
         protected TextMeshProUGUI nameText;
         protected TextMeshProUGUI descriptionText;
         protected TextMeshProUGUI amountMilkedText;
+        protected CanvasGroup canvasGroup;
+
 
         private void Awake()
         {
@@ -17,6 +24,9 @@ namespace PopUps
             descriptionText = transform.Find("Description").GetComponent<TextMeshProUGUI>();
             amountMilkedText = transform.Find("AmountMilked").GetComponent<TextMeshProUGUI>();
             gameObject.transform.position = new Vector2(0, 0);
+
+            Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            canvasGroup = canvas.GetComponent<CanvasGroup>();
 
             if (instance != null && instance != this)
             {
@@ -30,8 +40,20 @@ namespace PopUps
             gameObject.SetActive(false);
         }
 
-        public abstract void SetInactive();
+        private void SetInactive()
+        {
+            OnSetInactiveTriggered?.Invoke();
+            gameObject.SetActive(false);
+            canvasGroup.interactable = true;
+        }
 
-        public abstract void ShowPopUp(string name, string description, string amountMilked);
+        protected void SetActive()
+        {
+            OnShowPopUpTriggered?.Invoke();
+            gameObject.SetActive(true);
+            canvasGroup.interactable = false;
+        }
+
+        public abstract void ShowPopUp(string spriteName, string description, string amountMilked);
     }
 }

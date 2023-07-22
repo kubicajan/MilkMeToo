@@ -5,7 +5,7 @@ namespace Utilities
 {
     public class CowScript : MonoBehaviour
     {
-        private void OnMouseDown()
+        public void MilkMe()
         {
             MoneyManagerSingleton.instance.AddMoney(1);
         }

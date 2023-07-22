@@ -16,6 +16,7 @@ namespace Objects.UnlockableObjectClasses
         private Vector2 spriteCanvasPosition;
         private float timer = 0f;
         private string allTimeMilked = "0.0";
+        private bool clickedInfo;
 
         protected float interval = 1f;
         protected string objectName = "";
@@ -24,6 +25,7 @@ namespace Objects.UnlockableObjectClasses
 
         private void Start()
         {
+            InformationPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSprite.gameObject);
             counter.rectTransform.anchoredPosition =
                 new Vector2(spriteCanvasPosition.x + 300, spriteCanvasPosition.y - 150);
@@ -31,6 +33,7 @@ namespace Objects.UnlockableObjectClasses
             counter.text = "";
             ShopButtonStart();
             KokTreeButtonStart();
+            clickedInfo = false;
         }
 
         private void Update()
@@ -42,6 +45,16 @@ namespace Objects.UnlockableObjectClasses
             if (primalSprite.gameObject.activeSelf && IsItTime())
             {
                 ProduceMilk();
+            }
+
+            //todo: HOW to distinguish which object called it??? 
+            if (InformationPopUp.instance.isActiveAndEnabled && clickedInfo)
+            {
+                this.Clicked();
+            }
+            else
+            {
+                clickedInfo = false;
             }
         }
 
@@ -67,7 +80,13 @@ namespace Objects.UnlockableObjectClasses
 
         public void Clicked()
         {
+            clickedInfo = true;
             InformationPopUp.instance.ShowPopUp(objectName, description, allTimeMilked);
+        }
+
+        private void OnSetInactiveTriggeredHandler()
+        {
+            clickedInfo = false;
         }
     }
 }

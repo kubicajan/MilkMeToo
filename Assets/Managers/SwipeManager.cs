@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
+using PopUps;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Vector3 = UnityEngine.Vector3;
@@ -16,6 +15,8 @@ namespace Managers
 
         private void Start()
         {
+            InformationPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
+            InformationPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
             panelPosition = transform.position;
         }
 
@@ -94,6 +95,16 @@ namespace Managers
                 transform.position = Vector3.Lerp(startpos, endpos, Mathf.SmoothStep(0f, 1f, t));
                 yield return null;
             }
+        }
+
+        private void OnShowPopUpTriggeredHandler()
+        {
+            enabled = false;
+        }
+
+        private void OnSetInactiveTriggeredHandler()
+        {
+            enabled = true;
         }
     }
 }
