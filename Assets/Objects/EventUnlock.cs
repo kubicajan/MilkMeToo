@@ -1,8 +1,8 @@
-using Objects.UnlockableObjectClasses;
+using Objects.Abstract.UnlockableObjectClasses;
 
 namespace Objects
 {
-    public class EventUnlock : UnlockableObject
+    public class EventUnlock : ActiveKokTreeObject
     {
         public EventUnlock()
         {

@@ -1,9 +1,8 @@
-using Objects.UnlockableObjectClasses;
-using UnityEngine;
+using Objects.Abstract.UnlockableObjectClasses;
 
 namespace Objects
 {
-    public class Cows : UnlockableObject
+    public class Cows : ActiveKokTreeObject
     {
         public Cows()
         {

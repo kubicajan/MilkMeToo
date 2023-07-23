@@ -1,8 +1,8 @@
-using Objects.UnlockableObjectClasses;
+using Objects.Abstract.UnlockableObjectClasses;
 
 namespace Objects
 {
-    public class Vemeno : UnlockableObject
+    public class Vemeno : ActiveKokTreeObject
     {
         public Vemeno()
         {

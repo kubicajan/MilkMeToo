@@ -1,9 +1,8 @@
-using Objects.UnlockableObjectClasses;
-using UnityEngine;
+using Objects.Abstract.UnlockableObjectClasses;
 
 namespace Objects
 {
-    public class Gingers : UnlockableObject
+    public class Gingers : ActiveKokTreeObject
     {
         public Gingers()
         {

@@ -1,9 +1,9 @@
-using Objects.UnlockableObjectClasses;
-using UnityEngine;
+
+using Objects.Abstract.UnlockableObjectClasses;
 
 namespace Objects
 {
-    public class Capy : UnlockableObject
+    public class Capy : ActiveKokTreeObject
     {
         public Capy()
         {

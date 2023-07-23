@@ -1,9 +1,8 @@
-using Objects.UnlockableObjectClasses;
-using UnityEngine;
+using Objects.Abstract.UnlockableObjectClasses;
 
 namespace Objects
 {
-    public class Drugs : UnlockableObject
+    public class Drugs : ActiveKokTreeObject
     {
         public Drugs()
         {

@@ -1,14 +1,14 @@
 using System;
 using Managers;
+using Objects.Abstract.UnlockableObjectClasses;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Objects.UnlockableObjectClasses
+namespace Objects.Abstract
 {
-    public abstract partial class UnlockableObject
+    public abstract class PassiveKokTreeObject : MonoBehaviour
     {
-        [SerializeField] public Button kokButton;
         [SerializeField] public GameObject toUnlockNext;
 
         [SerializeField] private Sprite availableKokButtonSprite;
@@ -16,11 +16,26 @@ namespace Objects.UnlockableObjectClasses
         [SerializeField] private Sprite boughtKokButtonSprite;
         [SerializeField] private Sprite unknownKokButtonSprite;
 
-        [SerializeField] public TextMeshProUGUI upgradePriceDisplay;
+        private Button kokButton;
+        private TextMeshProUGUI upgradePriceDisplay;
 
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
         protected string kokButtonDescription = "it is depressed";
         protected int kokButtonUnlockPrice = 10;
+        protected string objectName = "";
+
+
+        protected virtual void Start()
+        {
+            upgradePriceDisplay = transform.Find("Price").GetComponent<TextMeshProUGUI>();
+            kokButton = transform.GetComponent<Button>();
+            KokTreeButtonStart();
+        }
+
+        protected virtual void Update()
+        {
+            UpdateKokTree(MoneyManagerSingleton.instance.GetMoney());
+        }
 
         private void UpdateKokTree(float money)
         {
@@ -37,7 +52,7 @@ namespace Objects.UnlockableObjectClasses
             }
         }
 
-        private void KokTreeButtonStart()
+        protected void KokTreeButtonStart()
         {
             switch (kokButtonStatus)
             {
@@ -79,7 +94,7 @@ namespace Objects.UnlockableObjectClasses
             upgradePriceDisplay.text = kokButtonUnlockPrice + "$";
         }
 
-        public void BuyUpgrade()
+        public virtual void BuyUpgrade()
         {
             if (MoneyManagerSingleton.instance.SpendMoney(kokButtonUnlockPrice))
             {
@@ -87,14 +102,14 @@ namespace Objects.UnlockableObjectClasses
                 kokButton.image.sprite = boughtKokButtonSprite;
                 kokButton.enabled = false;
                 upgradePriceDisplay.text = "";
-                UnlockShopButton();
+                //   UnlockShopButton();
                 UnlockAnotherButton();
             }
         }
 
         private void UnlockAnotherButton()
         {
-            toUnlockNext.GetComponent<UnlockableObject>().LockButton();
+            toUnlockNext.GetComponent<PassiveKokTreeObject>().LockButton();
         }
     }
 }

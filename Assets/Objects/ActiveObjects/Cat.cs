@@ -1,8 +1,9 @@
-using Objects.UnlockableObjectClasses;
+
+using Objects.Abstract.UnlockableObjectClasses;
 
 namespace Objects
 {
-    public class Cat : UnlockableObject
+    public class Cat : ActiveKokTreeObject
     {
         public Cat()
         {

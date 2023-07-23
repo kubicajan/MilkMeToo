@@ -1,4 +1,3 @@
-using System.Globalization;
 using Managers;
 using PopUps;
 using TMPro;
@@ -6,12 +5,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
 
-namespace Objects.UnlockableObjectClasses
+namespace Objects.Abstract.UnlockableObjectClasses
 {
-    public abstract partial class UnlockableObject : MonoBehaviour
+    public abstract partial class ActiveKokTreeObject : PassiveKokTreeObject
     {
         [SerializeField] public Button primalSpriteButton;
-        [SerializeField] public TextMeshProUGUI counter;
+        private TextMeshProUGUI counter;
 
         private Vector2 spriteCanvasPosition;
         private float timer = 0f;
@@ -19,27 +18,32 @@ namespace Objects.UnlockableObjectClasses
         private bool clickedInfo;
 
         protected float interval = 1f;
-        protected string objectName = "";
         protected float productionPower = 0;
         protected string description = "";
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             InformationPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
-            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject);
+            InitiateFields();
             counter.rectTransform.anchoredPosition =
                 new Vector2(spriteCanvasPosition.x + 300, spriteCanvasPosition.y - 150);
             primalSpriteButton.gameObject.SetActive(false);
             counter.text = "";
             ShopButtonStart();
-            KokTreeButtonStart();
             clickedInfo = false;
         }
 
-        private void Update()
+        private void InitiateFields()
         {
+            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject);
+            counter = primalSpriteButton.transform.Find("Counter").GetComponent<TextMeshProUGUI>();
+        }
+
+        protected override void Update()
+        {
+            base.Update();
             float money = MoneyManagerSingleton.instance.GetMoney();
-            UpdateKokTree(money);
             UpdateShop(money);
 
             if (primalSpriteButton.gameObject.activeSelf && IsItTime())
@@ -80,7 +84,8 @@ namespace Objects.UnlockableObjectClasses
         public void Clicked()
         {
             clickedInfo = true;
-            InformationPopUp.instance.ShowPopUp(objectName, description, allTimeMilked, primalSpriteButton.image.sprite);
+            InformationPopUp.instance.ShowPopUp(objectName, description, allTimeMilked,
+                primalSpriteButton.image.sprite);
         }
 
         private void OnSetInactiveTriggeredHandler()
