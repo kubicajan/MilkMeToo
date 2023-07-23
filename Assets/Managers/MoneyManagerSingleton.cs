@@ -42,7 +42,7 @@ namespace Managers
             return false;
         }
 
-        public bool IsEnoughFunds(int price)
+        public bool IsEnoughFunds(float price)
         {
             return money >= price;
         }

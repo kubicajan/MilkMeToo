@@ -1,6 +1,7 @@
 using System;
 using Managers;
 using Objects.Abstract.UnlockableObjectClasses;
+using PopUps;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,15 +19,18 @@ namespace Objects.Abstract
 
         private Button kokButton;
         private TextMeshProUGUI upgradePriceDisplay;
+        private bool clickedKokInfo;
 
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
         protected string kokButtonDescription = "it is depressed";
         protected int kokButtonUnlockPrice = 10;
         protected string objectName = "";
 
-
         protected virtual void Start()
         {
+            KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
+            KokTreePopUp.OnBuyUpgradeTriggered += OnBuyUpgradeTriggeredHandler;
+
             upgradePriceDisplay = transform.Find("Price").GetComponent<TextMeshProUGUI>();
             kokButton = transform.GetComponent<Button>();
             KokTreeButtonStart();
@@ -34,19 +38,25 @@ namespace Objects.Abstract
 
         protected virtual void Update()
         {
-            UpdateKokTree(MoneyManagerSingleton.instance.GetMoney());
+            bool enoughMoney = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
+
+            if (KokTreePopUp.instance.isActiveAndEnabled && clickedKokInfo)
+            {
+                this.ClickKokButton();
+            }
+
+            UpdatePopUpButton(enoughMoney);
+            UpdateKokTree(enoughMoney);
         }
 
-        private void UpdateKokTree(float money)
+        private void UpdateKokTree(bool enoughMoney)
         {
-            if (kokButtonStatus == ButtonStatus.LOCKED &&
-                money >= kokButtonUnlockPrice)
+            if (kokButtonStatus == ButtonStatus.LOCKED && enoughMoney)
             {
                 MakeButtonAvailable();
             }
 
-            if (kokButtonStatus == ButtonStatus.AVAILABLE &&
-                money < kokButtonUnlockPrice)
+            if (kokButtonStatus == ButtonStatus.AVAILABLE && !enoughMoney)
             {
                 LockButton();
             }
@@ -70,6 +80,18 @@ namespace Objects.Abstract
             }
         }
 
+        public void ClickKokButton()
+        {
+            clickedKokInfo = true;
+            KokTreePopUp.instance.ShowPopUp(objectName, kokButtonDescription, kokButtonUnlockPrice.ToString(),
+                kokButton.image.sprite, GetType());
+        }
+
+        private void UpdatePopUpButton(bool enoughMoney)
+        {
+            KokTreePopUp.instance.EnableButton(enoughMoney, GetType());
+        }
+
         private void MakeButtonUnknown()
         {
             kokButtonStatus = ButtonStatus.UNKNOWN;
@@ -82,7 +104,7 @@ namespace Objects.Abstract
         {
             kokButtonStatus = ButtonStatus.LOCKED;
             kokButton.image.sprite = lockedKokButtonSprite;
-            kokButton.enabled = false;
+            kokButton.enabled = true;
             upgradePriceDisplay.text = kokButtonUnlockPrice + "$";
         }
 
@@ -110,6 +132,19 @@ namespace Objects.Abstract
         private void UnlockAnotherButton()
         {
             toUnlockNext.GetComponent<PassiveKokTreeObject>().LockButton();
+        }
+
+        private void OnSetInactiveTriggeredHandler()
+        {
+            clickedKokInfo = false;
+        }
+
+        private void OnBuyUpgradeTriggeredHandler()
+        {
+            if (KokTreePopUp.instance.GetCallingType() == GetType())
+            {
+                BuyUpgrade();
+            }
         }
     }
 }

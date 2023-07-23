@@ -16,19 +16,16 @@ namespace PopUps
 
         protected TextMeshProUGUI nameText;
         protected TextMeshProUGUI descriptionText;
-        protected TextMeshProUGUI amountMilkedText;
         protected Image animatedImage;
         private CanvasGroup canvasGroup;
 
         public static T instance;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
             descriptionText = transform.Find("Description").GetComponent<TextMeshProUGUI>();
-            amountMilkedText = transform.Find("AmountMilked").GetComponent<TextMeshProUGUI>();
             animatedImage = transform.Find("AnimatedImage").GetComponent<Image>();
-            gameObject.transform.position = new Vector2(0, 0);
 
             Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             canvasGroup = canvas.GetComponent<CanvasGroup>();
@@ -48,20 +45,18 @@ namespace PopUps
             }
         }
 
-        private void SetInactive()
+        public void SetInactive()
         {
             OnSetInactiveTriggered?.Invoke();
             gameObject.SetActive(false);
             canvasGroup.interactable = true;
         }
 
-        protected void SetActive()
+        public void SetActive()
         {
             OnShowPopUpTriggered?.Invoke();
             gameObject.SetActive(true);
             canvasGroup.interactable = false;
         }
-
-        public abstract void ShowPopUp(string spriteName, string description, string amountMilked, Sprite primalSprite);
     }
 }
