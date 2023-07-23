@@ -1577,7 +1577,7 @@ GameObject:
   - component: {fileID: 345085006}
   - component: {fileID: 345085005}
   - component: {fileID: 345085004}
-  - component: {fileID: 345085003}
+  - component: {fileID: 345085007}
   m_Layer: 5
   m_Name: TheLover
   m_TagString: Untagged
@@ -1606,28 +1606,6 @@ RectTransform:
   m_AnchoredPosition: {x: 173.00534, y: -40.56429}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &345085003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345085001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 345085004}
-  toUnlockNext: {fileID: 1914056068}
-  availableKokButtonSprite: {fileID: 21300000, guid: 57dcf077b13ae104cba23a7984728e94, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: 741712d2e1b0b6443bf584feb33c0788, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: 57dcf077b13ae104cba23a7984728e94, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 608192168}
-  shopButton: {fileID: 588254793}
 --- !u!114 &345085004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1672,7 +1650,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 345085003}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -1705,7 +1683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 57dcf077b13ae104cba23a7984728e94, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f525546c4f8fa524d88cf6f353e28f32, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1723,6 +1701,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345085001}
   m_CullTransparentMesh: 1
+--- !u!114 &345085007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345085001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9cd981c7134a77b60f1edb4ef4f72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 1914056068}
+  availableKokButtonSprite: {fileID: 21300000, guid: f525546c4f8fa524d88cf6f353e28f32, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: 741712d2e1b0b6443bf584feb33c0788, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: 57dcf077b13ae104cba23a7984728e94, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &412760060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,7 +2064,7 @@ GameObject:
   - component: {fileID: 538455743}
   - component: {fileID: 538455742}
   - component: {fileID: 538455741}
-  - component: {fileID: 538455740}
+  - component: {fileID: 538455744}
   m_Layer: 5
   m_Name: VR_Headset
   m_TagString: Untagged
@@ -2093,28 +2093,6 @@ RectTransform:
   m_AnchoredPosition: {x: 229.00725, y: -334.01062}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &538455740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538455738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 538455741}
-  toUnlockNext: {fileID: 345085001}
-  availableKokButtonSprite: {fileID: 21300000, guid: cafd462fc5976754e9750b194bcba0b7, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: f66f229ff19a3ec43b57140866da04a2, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: cafd462fc5976754e9750b194bcba0b7, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 1947953139}
-  shopButton: {fileID: 588254793}
 --- !u!114 &538455741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2159,7 +2137,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 538455740}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -2192,7 +2170,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cafd462fc5976754e9750b194bcba0b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: edf6dbc6a5cc58d45a4c1f6cd9e779c2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2210,6 +2188,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538455738}
   m_CullTransparentMesh: 1
+--- !u!114 &538455744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538455738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1eefdeeb02f40aabea683b54a6da4b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 345085001}
+  availableKokButtonSprite: {fileID: 21300000, guid: edf6dbc6a5cc58d45a4c1f6cd9e779c2, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: f66f229ff19a3ec43b57140866da04a2, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: cafd462fc5976754e9750b194bcba0b7, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &588254790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,7 +2360,7 @@ MonoBehaviour:
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -3379,7 +3379,7 @@ GameObject:
   - component: {fileID: 859781650}
   - component: {fileID: 859781649}
   - component: {fileID: 859781648}
-  - component: {fileID: 859781647}
+  - component: {fileID: 859781651}
   m_Layer: 5
   m_Name: Bedding
   m_TagString: Untagged
@@ -3408,28 +3408,6 @@ RectTransform:
   m_AnchoredPosition: {x: 420.01324, y: -563.01794}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &859781647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859781645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 859781648}
-  toUnlockNext: {fileID: 538455738}
-  availableKokButtonSprite: {fileID: 21300000, guid: 60fef9e48a4d30e42bb4c66058db0a09, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: 60fef9e48a4d30e42bb4c66058db0a09, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: 60fef9e48a4d30e42bb4c66058db0a09, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 1913623872}
-  shopButton: {fileID: 588254793}
 --- !u!114 &859781648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3474,7 +3452,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 859781647}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -3507,7 +3485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 60fef9e48a4d30e42bb4c66058db0a09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d1fb0e4eb52a584197476ac9a1b40b5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3525,6 +3503,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859781645}
   m_CullTransparentMesh: 1
+--- !u!114 &859781651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859781645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9233e723c63a48e89177665aab4b4789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 538455738}
+  availableKokButtonSprite: {fileID: 21300000, guid: 7d1fb0e4eb52a584197476ac9a1b40b5, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: e0b93aea8e591d44791147d45293b3f3, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: 60fef9e48a4d30e42bb4c66058db0a09, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &860958977
 GameObject:
   m_ObjectHideFlags: 0
@@ -4241,7 +4241,7 @@ GameObject:
   - component: {fileID: 944563602}
   - component: {fileID: 944563601}
   - component: {fileID: 944563600}
-  - component: {fileID: 944563599}
+  - component: {fileID: 944563603}
   m_Layer: 5
   m_Name: Jetel
   m_TagString: Untagged
@@ -4270,28 +4270,6 @@ RectTransform:
   m_AnchoredPosition: {x: 217.0068, y: -823.0261}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &944563599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944563597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 944563600}
-  toUnlockNext: {fileID: 859781645}
-  availableKokButtonSprite: {fileID: 21300000, guid: e4d15a583d12bcd4683a7cb716fa525b, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: eb8e2ddd6876ae349a331c6134344ff1, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: e4d15a583d12bcd4683a7cb716fa525b, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 920924172}
-  shopButton: {fileID: 588254793}
 --- !u!114 &944563600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4336,7 +4314,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 944563599}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -4369,7 +4347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e4d15a583d12bcd4683a7cb716fa525b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2bc13aeabc2c914f91f6535e8459625, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4387,6 +4365,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944563597}
   m_CullTransparentMesh: 1
+--- !u!114 &944563603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944563597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4dccfc380e438e8f3a2cd3b25e6a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 859781645}
+  availableKokButtonSprite: {fileID: 21300000, guid: d2bc13aeabc2c914f91f6535e8459625, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: eb8e2ddd6876ae349a331c6134344ff1, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: e4d15a583d12bcd4683a7cb716fa525b, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &1000396772
 GameObject:
   m_ObjectHideFlags: 0
@@ -5424,7 +5424,7 @@ GameObject:
   - component: {fileID: 1224677207}
   - component: {fileID: 1224677206}
   - component: {fileID: 1224677205}
-  - component: {fileID: 1224677204}
+  - component: {fileID: 1224677208}
   m_Layer: 5
   m_Name: Drugs
   m_TagString: Untagged
@@ -5453,28 +5453,6 @@ RectTransform:
   m_AnchoredPosition: {x: -247.0079, y: -334.01062}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1224677204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224677202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 1224677205}
-  toUnlockNext: {fileID: 2080557138}
-  availableKokButtonSprite: {fileID: 21300000, guid: 00dbc943fdb94654c9e4d1bb06a07316, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: 289d867093e971c42b0f2efdb1b63d8a, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: 00dbc943fdb94654c9e4d1bb06a07316, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 1735704740}
-  shopButton: {fileID: 588254793}
 --- !u!114 &1224677205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5519,7 +5497,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1224677204}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -5552,7 +5530,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 00dbc943fdb94654c9e4d1bb06a07316, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 650e3ca20c424cd4d9a009e9371f3928, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5570,6 +5548,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224677202}
   m_CullTransparentMesh: 1
+--- !u!114 &1224677208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224677202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330ea099ddf3471ab2d82798188111e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 2080557138}
+  availableKokButtonSprite: {fileID: 21300000, guid: 650e3ca20c424cd4d9a009e9371f3928, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: 289d867093e971c42b0f2efdb1b63d8a, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: 00dbc943fdb94654c9e4d1bb06a07316, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &1244721374
 GameObject:
   m_ObjectHideFlags: 0
@@ -5582,7 +5582,7 @@ GameObject:
   - component: {fileID: 1244721379}
   - component: {fileID: 1244721378}
   - component: {fileID: 1244721377}
-  - component: {fileID: 1244721376}
+  - component: {fileID: 1244721380}
   m_Layer: 5
   m_Name: Mommy
   m_TagString: Untagged
@@ -5611,28 +5611,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.00016174337, y: 842.02686}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1244721376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244721374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 1244721377}
-  toUnlockNext: {fileID: 0}
-  availableKokButtonSprite: {fileID: 21300000, guid: c888f54d8acb56f4bbd65c3174fcf9d3, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: b97f4ed5a003bc748a14b63b104d38b1, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: c888f54d8acb56f4bbd65c3174fcf9d3, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 1016433051}
-  shopButton: {fileID: 588254793}
 --- !u!114 &1244721377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5677,7 +5655,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1244721376}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -5710,7 +5688,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c888f54d8acb56f4bbd65c3174fcf9d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 38926fdad270aa04083e2d0c716482bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5728,6 +5706,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244721374}
   m_CullTransparentMesh: 1
+--- !u!114 &1244721380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244721374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331a2f7f874a46b2becd6e974fda7cc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 1244721374}
+  availableKokButtonSprite: {fileID: 21300000, guid: 38926fdad270aa04083e2d0c716482bf, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: b97f4ed5a003bc748a14b63b104d38b1, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: c888f54d8acb56f4bbd65c3174fcf9d3, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &1298114496
 GameObject:
   m_ObjectHideFlags: 0
@@ -6041,6 +6041,7 @@ RectTransform:
   - {fileID: 1584038255}
   - {fileID: 1776167485}
   - {fileID: 1244721375}
+  - {fileID: 1986733270}
   m_Father: {fileID: 1629431439}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6086,6 +6087,141 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358638266}
+  m_CullTransparentMesh: 1
+--- !u!1 &1398209879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1398209880}
+  - component: {fileID: 1398209882}
+  - component: {fileID: 1398209881}
+  m_Layer: 5
+  m_Name: CatPrice
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1398209880
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398209879}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1986733270}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 6.5565, y: -117}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1398209881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398209879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1398209882
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398209879}
   m_CullTransparentMesh: 1
 --- !u!1 &1425880387
 GameObject:
@@ -6808,7 +6944,7 @@ GameObject:
   - component: {fileID: 1584038259}
   - component: {fileID: 1584038258}
   - component: {fileID: 1584038257}
-  - component: {fileID: 1584038256}
+  - component: {fileID: 1584038260}
   m_Layer: 5
   m_Name: Buckets
   m_TagString: Untagged
@@ -6837,28 +6973,6 @@ RectTransform:
   m_AnchoredPosition: {x: 127.00395, y: 580.01843}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1584038256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584038254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 1584038257}
-  toUnlockNext: {fileID: 0}
-  availableKokButtonSprite: {fileID: 21300000, guid: 44581c7ed95ecf247b785e9d8c80f088, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: fa193aba3cf584844a275d8042ec090b, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: 44581c7ed95ecf247b785e9d8c80f088, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 441939585}
-  shopButton: {fileID: 588254793}
 --- !u!114 &1584038257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6903,7 +7017,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1584038256}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -6936,7 +7050,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 44581c7ed95ecf247b785e9d8c80f088, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70c03d670328d5446a6b9e1e083650fe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6954,6 +7068,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584038254}
   m_CullTransparentMesh: 1
+--- !u!114 &1584038260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584038254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ec1e050e92468f82713e4539ff1a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 1244721374}
+  availableKokButtonSprite: {fileID: 21300000, guid: 70c03d670328d5446a6b9e1e083650fe, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: fa193aba3cf584844a275d8042ec090b, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: 44581c7ed95ecf247b785e9d8c80f088, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &1629431438
 GameObject:
   m_ObjectHideFlags: 0
@@ -7355,7 +7491,7 @@ GameObject:
   - component: {fileID: 1776167489}
   - component: {fileID: 1776167488}
   - component: {fileID: 1776167487}
-  - component: {fileID: 1776167486}
+  - component: {fileID: 1776167490}
   m_Layer: 5
   m_Name: Vemeno
   m_TagString: Untagged
@@ -7384,28 +7520,6 @@ RectTransform:
   m_AnchoredPosition: {x: -152.00497, y: 580.01843}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1776167486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1776167484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 1776167487}
-  toUnlockNext: {fileID: 1244721374}
-  availableKokButtonSprite: {fileID: 21300000, guid: c054ece2e92ad834cbe4d116ebdec131, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: 6e08f51d6b3f5cf45a0368e316fbd55f, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: c054ece2e92ad834cbe4d116ebdec131, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 2031594952}
-  shopButton: {fileID: 588254793}
 --- !u!114 &1776167487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7450,7 +7564,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1776167486}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -7483,7 +7597,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c054ece2e92ad834cbe4d116ebdec131, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 275872de811166b45b281bfe9821e422, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7501,6 +7615,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776167484}
   m_CullTransparentMesh: 1
+--- !u!114 &1776167490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776167484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5afdc99df104646937d4cf44251e199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 1244721374}
+  availableKokButtonSprite: {fileID: 21300000, guid: 275872de811166b45b281bfe9821e422, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: 6e08f51d6b3f5cf45a0368e316fbd55f, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: c054ece2e92ad834cbe4d116ebdec131, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &1810126353
 GameObject:
   m_ObjectHideFlags: 0
@@ -7648,7 +7784,7 @@ GameObject:
   - component: {fileID: 1872451109}
   - component: {fileID: 1872451108}
   - component: {fileID: 1872451107}
-  - component: {fileID: 1872451106}
+  - component: {fileID: 1872451110}
   m_Layer: 5
   m_Name: Gingers
   m_TagString: Untagged
@@ -7677,28 +7813,6 @@ RectTransform:
   m_AnchoredPosition: {x: -169.00557, y: 247.00786}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1872451106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872451104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 1872451107}
-  toUnlockNext: {fileID: 1776167484}
-  availableKokButtonSprite: {fileID: 21300000, guid: f051ee61083752e4f97c80ab2d15b138, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: 53c849d32d4eb3143b803486a58d8cdb, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: 9ce90202883fa834ebf173e8fdd15f4a, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 1314792732}
-  shopButton: {fileID: 588254793}
 --- !u!114 &1872451107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7743,7 +7857,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1872451106}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -7776,7 +7890,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f051ee61083752e4f97c80ab2d15b138, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3b714a04dba4084429642c4cffdca686, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7794,6 +7908,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872451104}
   m_CullTransparentMesh: 1
+--- !u!114 &1872451110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872451104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326711d81fa6436ebd9699f0c4a809a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 1776167484}
+  availableKokButtonSprite: {fileID: 21300000, guid: 3b714a04dba4084429642c4cffdca686, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: e9322325a92ded941814d70f1fdc88c3, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: 12d69a120c3da134d9584ddf5d9a8d71, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &1898541502
 GameObject:
   m_ObjectHideFlags: 0
@@ -8211,7 +8347,7 @@ GameObject:
   - component: {fileID: 1914056073}
   - component: {fileID: 1914056072}
   - component: {fileID: 1914056071}
-  - component: {fileID: 1914056070}
+  - component: {fileID: 1914056074}
   m_Layer: 5
   m_Name: ChildLabour
   m_TagString: Untagged
@@ -8240,28 +8376,6 @@ RectTransform:
   m_AnchoredPosition: {x: 169.00528, y: 251.008}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1914056070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914056068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 1914056071}
-  toUnlockNext: {fileID: 1584038254}
-  availableKokButtonSprite: {fileID: 21300000, guid: f051ee61083752e4f97c80ab2d15b138, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: 53c849d32d4eb3143b803486a58d8cdb, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: 9ce90202883fa834ebf173e8fdd15f4a, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 1298114498}
-  shopButton: {fileID: 588254793}
 --- !u!114 &1914056071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8306,7 +8420,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1914056070}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -8339,7 +8453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f051ee61083752e4f97c80ab2d15b138, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 16cc5abe201ea5f4885a398d7f6f6967, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8357,6 +8471,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914056068}
   m_CullTransparentMesh: 1
+--- !u!114 &1914056074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914056068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf62f6d1f5224761957c08cba31f5ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 1584038254}
+  availableKokButtonSprite: {fileID: 21300000, guid: 16cc5abe201ea5f4885a398d7f6f6967, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: 26a52fc45f82b4a4fa78f341e5d91e37, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: e017d55fa0016394c995a13b957058d0, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &1947953137
 GameObject:
   m_ObjectHideFlags: 0
@@ -8782,6 +8918,141 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984036387}
+  m_CullTransparentMesh: 1
+--- !u!1 &1986733269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1986733270}
+  - component: {fileID: 1986733274}
+  - component: {fileID: 1986733273}
+  - component: {fileID: 1986733272}
+  m_Layer: 5
+  m_Name: EventUnlock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1986733270
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986733269}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1398209880}
+  m_Father: {fileID: 1358638267}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -14.887, y: -563.02}
+  m_SizeDelta: {x: 213.113, y: 181.127}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1986733272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986733269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1986733273}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
+          Assembly-CSharp
+        m_MethodName: BuyUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1986733273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986733269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 590a450ef8944c94daf3da784813f247, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1986733274
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986733269}
   m_CullTransparentMesh: 1
 --- !u!1 &2031594950
 GameObject:
@@ -9419,7 +9690,7 @@ GameObject:
   - component: {fileID: 2080557143}
   - component: {fileID: 2080557142}
   - component: {fileID: 2080557141}
-  - component: {fileID: 2080557140}
+  - component: {fileID: 2080557144}
   m_Layer: 5
   m_Name: Cows
   m_TagString: Untagged
@@ -9448,28 +9719,6 @@ RectTransform:
   m_AnchoredPosition: {x: -192.00615, y: -40.56429}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2080557140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080557138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b737b11660f4492adc71346f1af073c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primalSpriteButton: {fileID: 2063717393}
-  counter: {fileID: 1899624776}
-  kokButton: {fileID: 2080557141}
-  toUnlockNext: {fileID: 1872451104}
-  availableKokButtonSprite: {fileID: 21300000, guid: fa7c5fc6672c7554faea4c94e7f4223c, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: e5d47eeb7e85fb34c93f4827a34251a0, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: fa7c5fc6672c7554faea4c94e7f4223c, type: 3}
-  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  upgradePriceDisplay: {fileID: 1523699930}
-  shopButton: {fileID: 588254793}
 --- !u!114 &2080557141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9514,7 +9763,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2080557140}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Objects.UnlockableObjectClasses.UnlockableObject,
           Assembly-CSharp
         m_MethodName: BuyUpgrade
@@ -9547,7 +9796,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fa7c5fc6672c7554faea4c94e7f4223c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5803490064de8934896af7c14174805e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9565,6 +9814,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080557138}
   m_CullTransparentMesh: 1
+--- !u!114 &2080557144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080557138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee90a0350dcc4882afd2826727720497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primalSpriteButton: {fileID: 0}
+  counter: {fileID: 0}
+  kokButton: {fileID: 0}
+  toUnlockNext: {fileID: 1872451104}
+  availableKokButtonSprite: {fileID: 21300000, guid: 5803490064de8934896af7c14174805e, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: e5d47eeb7e85fb34c93f4827a34251a0, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: fa7c5fc6672c7554faea4c94e7f4223c, type: 3}
+  unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
+  upgradePriceDisplay: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &2107764638
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,15 +1,14 @@
 using Objects.UnlockableObjectClasses;
-using UnityEngine;
 
 namespace Objects
 {
-    public class Capy : UnlockableObject
+    public class TheLover : UnlockableObject
     {
-        public Capy()
+        public TheLover()
         {
-            objectName = "Capy";
-            description = "The chillest animal on the block";
-            kokButtonDescription = "not meow?";
+            objectName = "The Lover";
+            description = "He looks like a gentleman";
+            kokButtonDescription = "THAT is what I call a MALE";
             shopButtonBuyPrice = 15;
             kokButtonUnlockPrice = 5;
             productionPower = 1f;

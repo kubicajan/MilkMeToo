@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Objects
 {
-    public class Capy : UnlockableObject
+    public class VRHeadset : UnlockableObject
     {
-        public Capy()
+        public VRHeadset()
         {
-            objectName = "Capy";
-            description = "The chillest animal on the block";
-            kokButtonDescription = "not meow?";
+            objectName = "VRHeadset";
+            description = "Eyo sus";
+            kokButtonDescription = "Put them into the matrix to make them feel better";
             shopButtonBuyPrice = 15;
             kokButtonUnlockPrice = 5;
             productionPower = 1f;

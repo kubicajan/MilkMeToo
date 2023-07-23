@@ -19,6 +19,7 @@ namespace Objects.UnlockableObjectClasses
         [SerializeField] public TextMeshProUGUI upgradePriceDisplay;
 
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
+        protected string kokButtonDescription = "it is depressed";
         protected int kokButtonUnlockPrice = 10;
 
         private void UpdateKokTree(float money)
@@ -29,7 +30,7 @@ namespace Objects.UnlockableObjectClasses
                 MakeButtonAvailable();
             }
 
-            if (kokButtonStatus == ButtonStatus.AVAILABLE && 
+            if (kokButtonStatus == ButtonStatus.AVAILABLE &&
                 money < kokButtonUnlockPrice)
             {
                 LockButton();
@@ -90,7 +91,10 @@ namespace Objects.UnlockableObjectClasses
                 UnlockAnotherButton();
             }
         }
-        
-        protected abstract void UnlockAnotherButton();
+
+        private void UnlockAnotherButton()
+        {
+            toUnlockNext.GetComponent<UnlockableObject>().LockButton();
+        }
     }
 }

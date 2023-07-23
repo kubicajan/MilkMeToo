@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Objects
 {
-    public class Capy : UnlockableObject
+    public class Gingers : UnlockableObject
     {
-        public Capy()
+        public Gingers()
         {
-            objectName = "Capy";
-            description = "The chillest animal on the block";
-            kokButtonDescription = "not meow?";
+            objectName = "Gingers";
+            description = "Pact with the devil";
+            kokButtonDescription = "They do not have souls anyway";
             shopButtonBuyPrice = 15;
             kokButtonUnlockPrice = 5;
             productionPower = 1f;

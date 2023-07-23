@@ -51,27 +51,25 @@ namespace Objects.UnlockableObjectClasses
 
         private void ShopButtonStart()
         {
-            shopButton.enabled = false;
-            shopButton.GetComponentInChildren<TextMeshProUGUI>().text = "unavailable";
-            shopButton.image.color = Color.gray;
+            UpdateShopButton(false, "unavailable", "", Color.gray);
         }
 
         private void UnlockShopButton()
         {
-            shopButton.enabled = true;
-            shopButton.GetComponentInChildren<TextMeshProUGUI>().text =
-                "<sprite=0>" + "                         buy " + objectName + " " + shopButtonBuyPrice + "$";
-            shopButton.image.color = Color.cyan;
+            UpdateShopButton(true, objectName, shopButtonBuyPrice.ToString(), Color.cyan);
         }
-
-
+        
         private void NoMoneyShopButton(float money)
         {
-            shopButton.enabled = false;
-            shopButton.GetComponentInChildren<TextMeshProUGUI>().text =
-                "<sprite=0>" + "                         MAKE "
-                             + (shopButtonBuyPrice - money) + "$ MORE TO BUY " + objectName;
-            shopButton.image.color = Color.green;
+            UpdateShopButton(false, "NOT enough funds", shopButtonBuyPrice.ToString(), Color.magenta);
+        }
+
+        private void UpdateShopButton(bool enabled, string buttonNameText, string buttonPriceText, Color colour)
+        {
+            shopButton.enabled = enabled;
+            shopButton.transform.Find("ButtonName").GetComponent<TextMeshProUGUI>().text = buttonNameText;
+            shopButton.transform.Find("ButtonPrice").GetComponent<TextMeshProUGUI>().text = buttonPriceText;
+            shopButton.image.color = colour;
         }
 
         public void BuyObject()
