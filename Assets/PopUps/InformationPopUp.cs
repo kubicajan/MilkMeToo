@@ -1,6 +1,6 @@
 namespace PopUps
 {
-    public class InformationPopUp : PopUp
+    public class InformationPopUp : PopUp<InformationPopUp>
     {
         public override void ShowPopUp(string spriteName, string description, string amountMilked)
         {

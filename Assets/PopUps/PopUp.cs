@@ -3,22 +3,25 @@ using UnityEngine;
 
 namespace PopUps
 {
-    public abstract class PopUp : MonoBehaviour
+    public abstract class PopUp<T> : MonoBehaviour where T : PopUp<T>
     {
         //todo: figure this out dynamically
-        public static PopUp instance;
         public delegate void OnSetInactiveTriggeredDelegate();
+
         public static event OnSetInactiveTriggeredDelegate OnSetInactiveTriggered;
+
         public delegate void OnShowPopUpTriggeredDelegate();
+
         public static event OnShowPopUpTriggeredDelegate OnShowPopUpTriggered;
 
         protected TextMeshProUGUI nameText;
         protected TextMeshProUGUI descriptionText;
         protected TextMeshProUGUI amountMilkedText;
-        protected CanvasGroup canvasGroup;
+        private CanvasGroup canvasGroup;
 
+        public static T instance;
 
-        private void Awake()
+        protected void Awake()
         {
             nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
             descriptionText = transform.Find("Description").GetComponent<TextMeshProUGUI>();
@@ -27,17 +30,20 @@ namespace PopUps
 
             Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             canvasGroup = canvas.GetComponent<CanvasGroup>();
+            CreateSingleton();
+            gameObject.SetActive(false);
+        }
 
+        private void CreateSingleton()
+        {
             if (instance != null && instance != this)
             {
                 Destroy(this.gameObject);
             }
             else
             {
-                instance = this;
+                instance = this as T;
             }
-
-            gameObject.SetActive(false);
         }
 
         private void SetInactive()
