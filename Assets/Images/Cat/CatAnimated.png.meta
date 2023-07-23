@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f3e6010eacf5a8e4889a01d03322c7b5
+guid: f0015ba29d0617a41a0956e1340c6a8b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cow_calm_0
+      name: CatAnimated_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 792
-        height: 1200
+        width: 165
+        height: 330
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ba7099b8b65e124bbae408c6ed535e0
-      internalID: 1738033940
+      spriteID: 33cf71b74992c7546aa9dfb2d65c6266
+      internalID: 788532832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cow_calm_1
+      name: CatAnimated_1
       rect:
         serializedVersion: 2
-        x: 792
+        x: 165
         y: 0
-        width: 792
-        height: 1200
+        width: 165
+        height: 330
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54e1e388f287c9c44a9dab52faa2602a
-      internalID: 1378497253
+      spriteID: 10505e741f3758647ab0d18a1ce604ad
+      internalID: 341984430
       vertices: []
       indices: 
       edges: []
@@ -169,8 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cow_calm_1: 1378497253
-      cow_calm_0: 1738033940
+      CatAnimated_0: 788532832
+      CatAnimated_1: 341984430
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

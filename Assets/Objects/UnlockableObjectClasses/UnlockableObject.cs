@@ -10,7 +10,7 @@ namespace Objects.UnlockableObjectClasses
 {
     public abstract partial class UnlockableObject : MonoBehaviour
     {
-        [SerializeField] public Button primalSprite;
+        [SerializeField] public Button primalSpriteButton;
         [SerializeField] public TextMeshProUGUI counter;
 
         private Vector2 spriteCanvasPosition;
@@ -26,10 +26,10 @@ namespace Objects.UnlockableObjectClasses
         private void Start()
         {
             InformationPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
-            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSprite.gameObject);
+            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject);
             counter.rectTransform.anchoredPosition =
                 new Vector2(spriteCanvasPosition.x + 300, spriteCanvasPosition.y - 150);
-            primalSprite.gameObject.SetActive(false);
+            primalSpriteButton.gameObject.SetActive(false);
             counter.text = "";
             ShopButtonStart();
             KokTreeButtonStart();
@@ -42,12 +42,11 @@ namespace Objects.UnlockableObjectClasses
             UpdateKokTree(money);
             UpdateShop(money);
 
-            if (primalSprite.gameObject.activeSelf && IsItTime())
+            if (primalSpriteButton.gameObject.activeSelf && IsItTime())
             {
                 ProduceMilk();
             }
 
-            //todo: HOW to distinguish which object called it??? 
             if (InformationPopUp.instance.isActiveAndEnabled && clickedInfo)
             {
                 this.Clicked();
@@ -81,7 +80,7 @@ namespace Objects.UnlockableObjectClasses
         public void Clicked()
         {
             clickedInfo = true;
-            InformationPopUp.instance.ShowPopUp(objectName, description, allTimeMilked);
+            InformationPopUp.instance.ShowPopUp(objectName, description, allTimeMilked, primalSpriteButton.image.sprite);
         }
 
         private void OnSetInactiveTriggeredHandler()

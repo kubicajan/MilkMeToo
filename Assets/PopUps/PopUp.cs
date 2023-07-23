@@ -1,11 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PopUps
 {
     public abstract class PopUp<T> : MonoBehaviour where T : PopUp<T>
     {
-        //todo: figure this out dynamically
         public delegate void OnSetInactiveTriggeredDelegate();
 
         public static event OnSetInactiveTriggeredDelegate OnSetInactiveTriggered;
@@ -17,6 +17,7 @@ namespace PopUps
         protected TextMeshProUGUI nameText;
         protected TextMeshProUGUI descriptionText;
         protected TextMeshProUGUI amountMilkedText;
+        protected Image animatedImage;
         private CanvasGroup canvasGroup;
 
         public static T instance;
@@ -26,6 +27,7 @@ namespace PopUps
             nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
             descriptionText = transform.Find("Description").GetComponent<TextMeshProUGUI>();
             amountMilkedText = transform.Find("AmountMilked").GetComponent<TextMeshProUGUI>();
+            animatedImage = transform.Find("AnimatedImage").GetComponent<Image>();
             gameObject.transform.position = new Vector2(0, 0);
 
             Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -60,6 +62,6 @@ namespace PopUps
             canvasGroup.interactable = false;
         }
 
-        public abstract void ShowPopUp(string spriteName, string description, string amountMilked);
+        public abstract void ShowPopUp(string spriteName, string description, string amountMilked, Sprite primalSprite);
     }
 }
