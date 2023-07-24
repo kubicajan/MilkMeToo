@@ -6,7 +6,7 @@ namespace Objects.PassiveObjects
     {
         public Buckets()
         {
-            objectName = "Capy";
+            objectName = "Buckets";
             kokButtonDescription = "You do not need to keep the milk in the mouth anymore.";
             kokButtonUnlockPrice = 5;
         }

@@ -1,6 +1,6 @@
 using Objects.Abstract.UnlockableObjectClasses;
 
-namespace Objects
+namespace Objects.ActiveObjects
 {
     public class Vemeno : ActiveKokTreeObject
     {
