@@ -2,7 +2,7 @@ using Objects.Abstract;
 
 namespace Objects.PassiveObjects
 {
-    public class Jetel : PassiveKokTreeObject
+    public class Jetel : PassiveKokTreeObjects
     {
         public Jetel()
         {

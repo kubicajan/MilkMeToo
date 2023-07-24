@@ -3,7 +3,7 @@ using Objects.Abstract;
 
 namespace Objects.PassiveObjects
 {
-    public class VRHeadset : PassiveKokTreeObject
+    public class VRHeadset : PassiveKokTreeObjects
     {
         public VRHeadset()
         {

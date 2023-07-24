@@ -2,7 +2,7 @@ using Objects.Abstract;
 
 namespace Objects.PassiveObjects
 {
-    public class Bedding : PassiveKokTreeObject
+    public class Bedding : PassiveKokTreeObjects
     {
         public Bedding()
         {

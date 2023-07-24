@@ -2,7 +2,7 @@ using Objects.Abstract;
 
 namespace Objects
 {
-    public class Mommy : PassiveKokTreeObject
+    public class Mommy : PassiveKokTreeObjects
     {
         public Mommy()
         {

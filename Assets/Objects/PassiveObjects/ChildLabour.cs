@@ -2,7 +2,7 @@ using Objects.Abstract;
 
 namespace Objects.PassiveObjects
 {
-    public class ChildLabour : PassiveKokTreeObject
+    public class ChildLabour : PassiveKokTreeObjects
     {
         public ChildLabour()
         {

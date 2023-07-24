@@ -7,7 +7,7 @@ using Utilities;
 
 namespace Objects.Abstract.UnlockableObjectClasses
 {
-    public abstract partial class ActiveKokTreeObject : PassiveKokTreeObject
+    public abstract partial class ActiveKokTreeObject : KokTreeObject
     {
         [SerializeField] public Button primalSpriteButton;
         private TextMeshProUGUI counter;
@@ -30,6 +30,7 @@ namespace Objects.Abstract.UnlockableObjectClasses
                 new Vector2(spriteCanvasPosition.x + 300, spriteCanvasPosition.y - 150);
             primalSpriteButton.gameObject.SetActive(false);
             counter.text = "";
+            effectInfo = "SHOP UPGRADE";
             ShopButtonStart();
             clickedInfo = false;
         }
@@ -69,10 +70,9 @@ namespace Objects.Abstract.UnlockableObjectClasses
 
         private void ProduceMilk()
         {
-            float points = _count * productionPower;
-            AddToAllTimeMilked(points);
-            MoneyManagerSingleton.instance.AddMoney(points);
-            MilkMoneySingleton.instance.HandleMilkMoneyShow(points, spriteCanvasPosition);
+            float finalPoints = MoneyManagerSingleton.instance.AddMoney(_count * productionPower);
+            AddToAllTimeMilked(finalPoints);
+            MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
             timer = 0f;
         }
 

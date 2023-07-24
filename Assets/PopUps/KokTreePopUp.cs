@@ -7,6 +7,7 @@ namespace PopUps
 {
     public class KokTreePopUp : PopUp<KokTreePopUp>
     {
+        private TextMeshProUGUI effectInfoText;
         private TextMeshProUGUI priceText;
         private Button buyButton;
         private Type currentType;
@@ -18,9 +19,11 @@ namespace PopUps
         protected override void Awake()
         {
             base.Awake();
-            priceText = transform.Find("Price").GetComponent<TextMeshProUGUI>();
-            buyButton = gameObject.transform.Find("BuyButton").GetComponent<Button>();
-            gameObject.transform.position = new Vector2(0, 0);
+            priceText = holdingImageTransform.Find("PriceBackground").Find("Price").GetComponent<TextMeshProUGUI>();
+            effectInfoText = holdingImageTransform.Find("DescriptionBackground").Find("EffectInfo")
+                .GetComponent<TextMeshProUGUI>();
+            buyButton = holdingImageTransform.Find("BuyButton").GetComponent<Button>();
+            transform.position = new Vector2(0, 0);
         }
 
         public Type GetCallingType()
@@ -38,23 +41,26 @@ namespace PopUps
         {
             if (incomingType == currentType)
             {
-                buyButton.enabled = enable;
+                buyButton.interactable = enable;
             }
         }
 
         public void ShowPopUp(string spriteName, string description, string price, Sprite primalSprite,
-            Type incomingType)
+            Type incomingType, bool buttonEnable, string effectInfo)
         {
-            SetActive();
+            effectInfoText.text = effectInfo;
             currentType = incomingType;
             nameText.text = spriteName;
             descriptionText.text = description;
             priceText.text = price;
+            EnableButton(buttonEnable, incomingType);
 
             if (animatedImage.overrideSprite != primalSprite)
             {
                 animatedImage.overrideSprite = primalSprite;
             }
+
+            SetActive();
         }
     }
 }

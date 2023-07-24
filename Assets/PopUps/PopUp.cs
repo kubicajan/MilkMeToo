@@ -16,6 +16,8 @@ namespace PopUps
 
         protected TextMeshProUGUI nameText;
         protected TextMeshProUGUI descriptionText;
+        protected Transform holdingImageTransform;
+
         protected Image animatedImage;
         private CanvasGroup canvasGroup;
 
@@ -23,9 +25,10 @@ namespace PopUps
 
         protected virtual void Awake()
         {
-            nameText = transform.Find("Name").GetComponent<TextMeshProUGUI>();
-            descriptionText = transform.Find("Description").GetComponent<TextMeshProUGUI>();
-            animatedImage = transform.Find("AnimatedImage").GetComponent<Image>();
+            holdingImageTransform = transform.Find("HoldingImage");
+            nameText = holdingImageTransform.Find("NameBackground").Find("Name").GetComponent<TextMeshProUGUI>();
+            descriptionText = holdingImageTransform.Find("DescriptionBackground").Find("Description").GetComponent<TextMeshProUGUI>();
+            animatedImage = holdingImageTransform.Find("NameBackground").Find("AnimatedImage").GetComponent<Image>();
 
             Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             canvasGroup = canvas.GetComponent<CanvasGroup>();
