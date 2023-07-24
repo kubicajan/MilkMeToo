@@ -10,7 +10,7 @@ namespace Objects.Abstract.UnlockableObjectClasses
     public abstract partial class ActiveKokTreeObject : KokTreeObject
     {
         [SerializeField] public Button primalSpriteButton;
-        private TextMeshProUGUI counter;
+        [SerializeField] public Sprite shopButtonSprite;
 
         private Vector2 spriteCanvasPosition;
         private float timer = 0f;
@@ -26,10 +26,7 @@ namespace Objects.Abstract.UnlockableObjectClasses
             base.Start();
             InformationPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             InitiateFields();
-            counter.rectTransform.anchoredPosition =
-                new Vector2(spriteCanvasPosition.x + 300, spriteCanvasPosition.y - 150);
             primalSpriteButton.gameObject.SetActive(false);
-            counter.text = "";
             effectInfo = "SHOP UPGRADE";
             ShopButtonStart();
             clickedInfo = false;
@@ -38,7 +35,6 @@ namespace Objects.Abstract.UnlockableObjectClasses
         private void InitiateFields()
         {
             spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject);
-            counter = primalSpriteButton.transform.Find("Counter").GetComponent<TextMeshProUGUI>();
         }
 
         protected override void Update()
@@ -70,7 +66,7 @@ namespace Objects.Abstract.UnlockableObjectClasses
 
         private void ProduceMilk()
         {
-            float finalPoints = MoneyManagerSingleton.instance.AddMoney(_count * productionPower);
+            float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
             AddToAllTimeMilked(finalPoints);
             MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
             timer = 0f;
@@ -85,7 +81,7 @@ namespace Objects.Abstract.UnlockableObjectClasses
         {
             clickedInfo = true;
             InformationPopUp.instance.ShowPopUp(objectName, description, allTimeMilked,
-                primalSpriteButton.image.sprite);
+                primalSpriteButton.image.sprite, objectCounter.ToString());
         }
 
         private void OnSetInactiveTriggeredHandler()

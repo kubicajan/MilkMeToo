@@ -6,24 +6,30 @@ namespace PopUps
     public class InformationPopUp : PopUp<InformationPopUp>
     {
         private TextMeshProUGUI amountMilkedText;
+        private TextMeshProUGUI counter;
 
         protected override void Awake()
         {
             base.Awake();
-            amountMilkedText = holdingImageTransform.Find("AmountMilkedBackground").Find("AmountMilked").GetComponent<TextMeshProUGUI>();
+            counter = transform.Find("PlateBackground").Find("Plate").Find("Counter").GetComponent<TextMeshProUGUI>();
+            amountMilkedText = holdingImageTransform.Find("AmountMilkedBackground").Find("AmountMilked")
+                .GetComponent<TextMeshProUGUI>();
             gameObject.transform.position = new Vector2(0, 0);
         }
 
-        public void ShowPopUp(string spriteName, string description, string amountMilked, Sprite primalSprite)
+        public void ShowPopUp(string spriteName, string description, string amountMilked, Sprite primalSprite,
+            string objectCounter)
         {
+            counter.text = $"{objectCounter}x";
             nameText.text = spriteName;
             descriptionText.text = description;
-            amountMilkedText.text = "Amount milked: " + amountMilked;
+            amountMilkedText.text = "Amount milked:\n" + amountMilked;
 
             if (animatedImage.overrideSprite != primalSprite)
             {
                 animatedImage.overrideSprite = primalSprite;
             }
+
             SetActive();
         }
     }

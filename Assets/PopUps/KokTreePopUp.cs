@@ -20,7 +20,7 @@ namespace PopUps
         {
             base.Awake();
             priceText = holdingImageTransform.Find("PriceBackground").Find("Price").GetComponent<TextMeshProUGUI>();
-            effectInfoText = holdingImageTransform.Find("DescriptionBackground").Find("EffectInfo")
+            effectInfoText = transform.Find("PlateBackground").Find("Plate").Find("EffectInfo")
                 .GetComponent<TextMeshProUGUI>();
             buyButton = holdingImageTransform.Find("BuyButton").GetComponent<Button>();
             transform.position = new Vector2(0, 0);

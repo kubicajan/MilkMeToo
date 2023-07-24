@@ -11,64 +11,62 @@ namespace Objects.Abstract.UnlockableObjectClasses
 
         protected int shopButtonBuyPrice = 10;
 
-        private int _count = 0;
+        protected int objectCounter = 0;
 
         private void UpdateShop(float money)
         {
             if (kokButtonStatus == ButtonStatus.BOUGHT)
             {
+                shopButton.transform.Find("Image").GetComponent<Image>().sprite = shopButtonSprite;
                 if (money >= shopButtonBuyPrice)
                 {
                     UnlockShopButton();
                 }
                 else
                 {
-                    NoMoneyShopButton(money);
+                    NoMoneyShopButton();
                 }
             }
         }
 
         private int ObjectCount
         {
-            get => _count;
+            get => objectCounter;
             set
             {
                 if (value > 0)
                 {
-                    _count = value;
+                    objectCounter = value;
                     primalSpriteButton.gameObject.SetActive(true);
-                    counter.text = _count.ToString();
                 }
                 else
                 {
-                    _count = 0;
+                    objectCounter = 0;
                     primalSpriteButton.gameObject.SetActive(false);
-                    counter.text = "";
                 }
             }
         }
 
         private void ShopButtonStart()
         {
-            UpdateShopButton(false, "unavailable", "", Color.gray);
+            UpdateShopButton(false, "???", "");
         }
 
         private void UnlockShopButton()
         {
-            UpdateShopButton(true, objectName, shopButtonBuyPrice.ToString(), Color.cyan);
-        }
-        
-        private void NoMoneyShopButton(float money)
-        {
-            UpdateShopButton(false, "NOT enough funds", shopButtonBuyPrice.ToString(), Color.magenta);
+            UpdateShopButton(true, objectName, shopButtonBuyPrice.ToString());
         }
 
-        private void UpdateShopButton(bool enabled, string buttonNameText, string buttonPriceText, Color colour)
+        private void NoMoneyShopButton()
         {
-            shopButton.enabled = enabled;
+            UpdateShopButton(false, objectName, shopButtonBuyPrice.ToString());
+        }
+
+        private void UpdateShopButton(bool interactable, string buttonNameText, string buttonPriceText)
+        {
+            shopButton.interactable = interactable;
             shopButton.transform.Find("ButtonName").GetComponent<TextMeshProUGUI>().text = buttonNameText;
             shopButton.transform.Find("ButtonPrice").GetComponent<TextMeshProUGUI>().text = buttonPriceText;
-            shopButton.image.color = colour;
         }
 
         public void BuyObject()
