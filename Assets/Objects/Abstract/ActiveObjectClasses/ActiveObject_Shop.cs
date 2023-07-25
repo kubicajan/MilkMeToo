@@ -3,31 +3,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Objects.Abstract.UnlockableObjectClasses
+namespace Objects.Abstract.ActiveObjectClasses
 {
     public abstract partial class ActiveKokTreeObject
     {
         [SerializeField] public Button shopButton;
 
-        protected int shopButtonBuyPrice = 10;
+        private int objectCounter = 0;
+        private string shopDefaultName;
 
-        protected int objectCounter = 0;
-
-        private void UpdateShop(float money)
-        {
-            if (kokButtonStatus == ButtonStatus.BOUGHT)
-            {
-                shopButton.transform.Find("Image").GetComponent<Image>().sprite = shopButtonSprite;
-                if (money >= shopButtonBuyPrice)
-                {
-                    UnlockShopButton();
-                }
-                else
-                {
-                    NoMoneyShopButton();
-                }
-            }
-        }
+        protected float shopButtonBuyPrice = 0;
 
         private int ObjectCount
         {
@@ -47,26 +32,49 @@ namespace Objects.Abstract.UnlockableObjectClasses
             }
         }
 
+        private void UpdateShop(float money)
+        {
+            if (kokButtonStatus == ButtonStatus.BOUGHT)
+            {
+                shopButton.transform.Find("Image").GetComponent<Image>().sprite = shopButtonSprite;
+
+                if (money >= shopButtonBuyPrice)
+                {
+                    UnlockShopButton();
+                }
+                else
+                {
+                    NoMoneyShopButton();
+                }
+            }
+        }
+
+        private float CalculatePrice()
+        {
+            return shopButtonBuyPrice * (objectCounter + 1);
+        }
+
         private void ShopButtonStart()
         {
+            shopDefaultName = shopButton.transform.Find("ButtonName").GetComponent<TextMeshProUGUI>().text;
             UpdateShopButton(false, "???", "");
         }
 
         private void UnlockShopButton()
         {
-            UpdateShopButton(true, objectName, shopButtonBuyPrice.ToString());
+            UpdateShopButton(true, shopDefaultName, shopButtonBuyPrice.ToString());
         }
 
         private void NoMoneyShopButton()
         {
-            UpdateShopButton(false, objectName, shopButtonBuyPrice.ToString());
+            UpdateShopButton(false, shopDefaultName, shopButtonBuyPrice.ToString());
         }
 
         private void UpdateShopButton(bool interactable, string buttonNameText, string buttonPriceText)
         {
             shopButton.interactable = interactable;
             shopButton.transform.Find("ButtonName").GetComponent<TextMeshProUGUI>().text = buttonNameText;
-            shopButton.transform.Find("ButtonPrice").GetComponent<TextMeshProUGUI>().text = buttonPriceText;
+            shopButton.transform.Find("ButtonPrice").GetComponent<TextMeshProUGUI>().text = $"{buttonPriceText}$";
         }
 
         public void BuyObject()
@@ -74,6 +82,7 @@ namespace Objects.Abstract.UnlockableObjectClasses
             if (MoneyManagerSingleton.instance.SpendMoney(shopButtonBuyPrice))
             {
                 ObjectCount++;
+                shopButtonBuyPrice = CalculatePrice();
             }
         }
 

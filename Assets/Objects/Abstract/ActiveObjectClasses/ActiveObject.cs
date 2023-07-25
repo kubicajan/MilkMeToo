@@ -1,11 +1,9 @@
 using Managers;
 using PopUps;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Utilities;
 
-namespace Objects.Abstract.UnlockableObjectClasses
+namespace Objects.Abstract.ActiveObjectClasses
 {
     public abstract partial class ActiveKokTreeObject : KokTreeObject
     {

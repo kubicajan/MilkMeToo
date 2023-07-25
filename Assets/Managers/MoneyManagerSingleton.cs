@@ -45,7 +45,7 @@ namespace Managers
             return amount;
         }
 
-        public bool SpendMoney(int amount)
+        public bool SpendMoney(float amount)
         {
             if (IsEnoughFunds(amount))
             {
