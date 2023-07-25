@@ -1,4 +1,5 @@
 using Managers;
+using PopUps;
 
 namespace Objects.Abstract
 {
@@ -16,6 +17,18 @@ namespace Objects.Abstract
         {
             toUnlockNext.GetComponent<KokTreeObject>().LockButton();
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(multiplicationBonus);
+        }
+
+        // public override void Clicked()
+        // {
+        //     //todo: DO THIS ONLY FOR THOSE WHO ARE CLOSE TO COW
+        //     MoneyManagerSingleton.instance.AddMoney(1);
+        // }
+
+        public override void BuyUpgrade()
+        {
+            base.BuyUpgrade();
+            primalSpriteButton.gameObject.SetActive(true);
         }
     }
 }

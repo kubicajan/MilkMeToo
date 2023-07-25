@@ -9,13 +9,10 @@ namespace Objects.Abstract.UnlockableObjectClasses
 {
     public abstract partial class ActiveKokTreeObject : KokTreeObject
     {
-        [SerializeField] public Button primalSpriteButton;
         [SerializeField] public Sprite shopButtonSprite;
 
-        private Vector2 spriteCanvasPosition;
         private float timer = 0f;
         private string allTimeMilked = "0.0";
-        private bool clickedInfo;
 
         protected float interval = 1f;
         protected float productionPower = 0;
@@ -24,18 +21,10 @@ namespace Objects.Abstract.UnlockableObjectClasses
         protected override void Start()
         {
             base.Start();
-            InformationPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
-            InitiateFields();
-            primalSpriteButton.gameObject.SetActive(false);
             effectInfo = "SHOP UPGRADE";
             ShopButtonStart();
-            clickedInfo = false;
         }
 
-        private void InitiateFields()
-        {
-            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject);
-        }
 
         protected override void Update()
         {
@@ -47,7 +36,7 @@ namespace Objects.Abstract.UnlockableObjectClasses
             {
                 ProduceMilk();
             }
-
+            
             if (InformationPopUp.instance.isActiveAndEnabled && clickedInfo)
             {
                 this.Clicked();
@@ -64,6 +53,13 @@ namespace Objects.Abstract.UnlockableObjectClasses
             return timer >= interval;
         }
 
+        public override void Clicked()
+        {
+            base.Clicked();
+            InformationPopUp.instance.ShowPopUp(objectName, description, $"Amount milked:\n{allTimeMilked}",
+                primalSpriteButton.image.sprite, $"{objectCounter}x");
+        }
+
         private void ProduceMilk()
         {
             float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
@@ -75,18 +71,6 @@ namespace Objects.Abstract.UnlockableObjectClasses
         private void AddToAllTimeMilked(float points)
         {
             allTimeMilked = (float.Parse(allTimeMilked) + points).ToString();
-        }
-
-        public void Clicked()
-        {
-            clickedInfo = true;
-            InformationPopUp.instance.ShowPopUp(objectName, description, allTimeMilked,
-                primalSpriteButton.image.sprite, objectCounter.ToString());
-        }
-
-        private void OnSetInactiveTriggeredHandler()
-        {
-            clickedInfo = false;
         }
     }
 }

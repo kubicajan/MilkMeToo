@@ -3,6 +3,7 @@ using PopUps;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 namespace Objects.Abstract
 {
@@ -14,6 +15,8 @@ namespace Objects.Abstract
         [SerializeField] private Sprite lockedKokButtonSprite;
         [SerializeField] private Sprite boughtKokButtonSprite;
         [SerializeField] private Sprite unknownKokButtonSprite;
+        [SerializeField] public Button primalSpriteButton;
+
 
         private Button kokButton;
         private TextMeshProUGUI upgradePriceDisplay;
@@ -24,11 +27,16 @@ namespace Objects.Abstract
         protected int kokButtonUnlockPrice = 10;
         protected string objectName = "";
         protected string effectInfo = "You become depressed";
+        protected Vector2 spriteCanvasPosition;
+        protected bool clickedInfo;
 
         protected virtual void Start()
         {
+            primalSpriteButton.gameObject.SetActive(false);
+            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject);
             KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             KokTreePopUp.OnBuyUpgradeTriggered += OnBuyUpgradeTriggeredHandler;
+            clickedInfo = false;
 
             upgradePriceDisplay = transform.Find("Price").GetComponent<TextMeshProUGUI>();
             kokButton = transform.GetComponent<Button>();
@@ -43,6 +51,7 @@ namespace Objects.Abstract
             {
                 this.ClickKokButton();
             }
+            
 
             // UpdatePopUpButton(enoughMoney);
             UpdateKokTree(enoughMoney);
@@ -59,6 +68,11 @@ namespace Objects.Abstract
             {
                 LockButton();
             }
+        }
+        
+        public virtual void Clicked()
+        {
+            clickedInfo = true;
         }
 
         protected void KokTreeButtonStart()

@@ -20,10 +20,10 @@ namespace PopUps
         public void ShowPopUp(string spriteName, string description, string amountMilked, Sprite primalSprite,
             string objectCounter)
         {
-            counter.text = $"{objectCounter}x";
+            counter.text = objectCounter;
             nameText.text = spriteName;
             descriptionText.text = description;
-            amountMilkedText.text = "Amount milked:\n" + amountMilked;
+            amountMilkedText.text = amountMilked;
 
             if (animatedImage.overrideSprite != primalSprite)
             {
