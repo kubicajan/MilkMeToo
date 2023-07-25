@@ -1,22 +1,31 @@
 using Objects.Abstract;
 using PopUps;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Objects.SpecialObjects
 {
     public class TheLover : KokTreeObject
     {
+        [SerializeField] public Button cowsButton;
+        private Cows cows;
         private float currentTime = 5;
-        private int fatherToKids = 0;
-        private string description = "";
+        private int fatherToKids;
+        private string description;
 
         public TheLover()
         {
             objectName = "The Lover";
             kokButtonDescription = "THAT is what I call a MALE";
             kokButtonUnlockPrice = 5;
-            effectInfo = "COW BABIES???";
+            effectInfo = "COW BABIES ???";
             description = "He has found the promised land. He intends to stay";
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            cows = cowsButton.transform.GetComponent<Cows>();
         }
 
         protected override void Update()
@@ -62,6 +71,7 @@ namespace Objects.SpecialObjects
                 {
                     currentTime = 5f;
                     fatherToKids += 1;
+                    cows.BirthACow(1);
                     UpdatePopUpCount();
                 }
             }

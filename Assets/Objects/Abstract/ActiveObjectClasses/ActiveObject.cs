@@ -23,18 +23,13 @@ namespace Objects.Abstract.ActiveObjectClasses
             ShopButtonStart();
         }
 
-
         protected override void Update()
         {
             base.Update();
             float money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
+            ProduceMilk();
 
-            if (primalSpriteButton.gameObject.activeSelf && IsItTime())
-            {
-                ProduceMilk();
-            }
-            
             if (InformationPopUp.instance.isActiveAndEnabled && clickedInfo)
             {
                 this.Clicked();
@@ -53,20 +48,23 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         public override void Clicked()
         {
-            base.Clicked();
+            clickedInfo = true;
             InformationPopUp.instance.ShowPopUp(objectName, description, $"Amount milked:\n{allTimeMilked}",
                 primalSpriteButton.image.sprite, $"{objectCounter}x");
         }
 
-        private void ProduceMilk()
+        protected virtual void ProduceMilk()
         {
-            float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
-            AddToAllTimeMilked(finalPoints);
-            MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
-            timer = 0f;
+            if (primalSpriteButton.gameObject.activeSelf && IsItTime())
+            {
+                float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
+                AddToAllTimeMilked(finalPoints);
+                MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
+                timer = 0f;
+            }
         }
 
-        private void AddToAllTimeMilked(float points)
+        protected void AddToAllTimeMilked(float points)
         {
             allTimeMilked = (float.Parse(allTimeMilked) + points).ToString();
         }

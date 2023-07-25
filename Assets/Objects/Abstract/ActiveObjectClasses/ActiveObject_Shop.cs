@@ -9,12 +9,12 @@ namespace Objects.Abstract.ActiveObjectClasses
     {
         [SerializeField] public Button shopButton;
 
-        private int objectCounter = 0;
+        protected int objectCounter = 0;
         private string shopDefaultName;
 
         protected float shopButtonBuyPrice = 0;
 
-        private int ObjectCount
+        protected virtual int ObjectCount
         {
             get => objectCounter;
             set
