@@ -43,7 +43,7 @@ namespace Objects.Abstract
             KokTreeButtonStart();
         }
 
-        protected virtual void Update()
+        protected virtual void FixedUpdate()
         {
             bool enoughMoney = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
 

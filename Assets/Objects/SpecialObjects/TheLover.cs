@@ -28,9 +28,9 @@ namespace Objects.SpecialObjects
             cows = cowsButton.transform.GetComponent<Cows>();
         }
 
-        protected override void Update()
+        protected override void FixedUpdate()
         {
-            base.Update();
+            base.FixedUpdate();
             CreateNewCow();
         }
 

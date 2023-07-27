@@ -23,9 +23,9 @@ namespace Objects.Abstract.ActiveObjectClasses
             ShopButtonStart();
         }
 
-        protected override void Update()
+        protected override void FixedUpdate()
         {
-            base.Update();
+            base.FixedUpdate();
             float money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
             ProduceMilk();
@@ -43,7 +43,12 @@ namespace Objects.Abstract.ActiveObjectClasses
         private bool IsItTime()
         {
             timer += Time.deltaTime;
-            return timer >= interval;
+            if (timer > interval)
+            {
+                timer = 0;
+                return true;
+            }
+            return false;
         }
 
         public override void Clicked()
@@ -55,12 +60,15 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected virtual void ProduceMilk()
         {
-            if (primalSpriteButton.gameObject.activeSelf && IsItTime())
+            if (primalSpriteButton.gameObject.activeSelf)
             {
-                float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
-                AddToAllTimeMilked(finalPoints);
-                MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
-                timer = 0f;
+                if (IsItTime())
+                {
+                        float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
+                        AddToAllTimeMilked(finalPoints);
+                        MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
+                        timer = 0f;
+                }
             }
         }
 
