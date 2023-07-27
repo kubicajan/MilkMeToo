@@ -24,7 +24,7 @@ namespace Utilities
         {
             ShowMilkedMoney(points, spriteCanvasPosition, out TextMeshProUGUI textMeshPro, out GameObject textObject);
             StartCoroutine(MoveTextSlowlyUpCoroutine(textMeshPro));
-            textMeshPro.CrossFadeAlpha(0.0f, 1.25f, false);
+            textMeshPro.CrossFadeAlpha(0.0f, 1.25f, true);
             Destroy(textObject, 1.25f);
         }
 

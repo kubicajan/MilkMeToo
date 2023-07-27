@@ -10,7 +10,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         [SerializeField] public Sprite shopButtonSprite;
 
         private float timer = 0f;
-        private string allTimeMilked = "0.0";
+        private double allTimeMilked = 0;
 
         protected float interval = 1f;
         protected float productionPower = 0;
@@ -48,13 +48,14 @@ namespace Objects.Abstract.ActiveObjectClasses
                 timer = 0;
                 return true;
             }
+
             return false;
         }
 
         public override void Clicked()
         {
             clickedInfo = true;
-            InformationPopUp.instance.ShowPopUp(objectName, description, $"Amount milked:\n{allTimeMilked}",
+            InformationPopUp.instance.ShowPopUp(objectName, description, "Amount milked:\n" + allTimeMilked,
                 primalSpriteButton.image.sprite, $"{objectCounter}x");
         }
 
@@ -64,17 +65,17 @@ namespace Objects.Abstract.ActiveObjectClasses
             {
                 if (IsItTime())
                 {
-                        float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
-                        AddToAllTimeMilked(finalPoints);
-                        MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
-                        timer = 0f;
+                    float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
+                    AddToAllTimeMilked(finalPoints);
+                    MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
+                    timer = 0f;
                 }
             }
         }
 
         protected void AddToAllTimeMilked(float points)
         {
-            allTimeMilked = (float.Parse(allTimeMilked) + points).ToString();
+            allTimeMilked += points; //(float.Parse(allTimeMilked) + points).ToString();
         }
     }
 }
