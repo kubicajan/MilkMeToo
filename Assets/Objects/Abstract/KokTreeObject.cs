@@ -172,7 +172,10 @@ namespace Objects.Abstract
 
         private void SwitchParticleSystem(ParticleSystem newParticles)
         {
-            Destroy(particleSystem);
+            if (particleSystem != null)
+            {
+                Destroy(particleSystem);
+            }
             particleSystem = Instantiate(newParticles, gameObject.transform, false);
             particleSystem.transform.position = gameObject.transform.position;
             particleSystem.Play();
