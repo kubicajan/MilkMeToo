@@ -4,9 +4,9 @@ namespace Utilities
 {
     public class Helpers
     {
-        public static Vector2 GetObjectPositionRelativeToCanvas(GameObject gameObject)
+        public static Vector2 GetObjectPositionRelativeToCanvas(Vector3 position)
         {
-            Vector3 screenPosition = RectTransformUtility.WorldToScreenPoint(null, gameObject.transform.position);
+            Vector3 screenPosition = RectTransformUtility.WorldToScreenPoint(null, position);
             RectTransform canvasRectTransform = GameObject.Find("Canvas").GetComponent<RectTransform>();
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, screenPosition, null,

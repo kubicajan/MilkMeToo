@@ -1,3 +1,4 @@
+using Managers;
 using Objects.Abstract;
 using UnityEngine;
 
@@ -14,22 +15,36 @@ namespace Objects.SpecialObjects.Event
             kokButtonUnlockPrice = 5;
             effectInfo = "SPECIAL EVENTS";
             kokButtonStatus = ButtonStatus.AVAILABLE;
-            availableParticleName = "VoidParticle";
+            availableParticleName = "SuckParticle";
+            boughtParticleName = "VoidParticle";
         }
 
         protected override void Start()
         {
             base.Start();
-            CreateSuckParticle();
+            // CreateSuckParticle();
             gameObject.SetActive(false);
         }
 
-        private void CreateSuckParticle()
+        public override void BuyUpgrade()
         {
-            ParticleSystem particleSystemToCopy = GameObject.Find("SuckParticle").GetComponent<ParticleSystem>();
-            suckParticleSystem = Instantiate(particleSystemToCopy, gameObject.transform, false);
-            suckParticleSystem.transform.position = gameObject.transform.position;
-            suckParticleSystem.Play();
+            base.BuyUpgrade();
+            EventManager.instance.LevelUp();
         }
+
+        protected override void MakeButtonAvailable()
+        {
+            base.MakeButtonAvailable();
+            //   CreateSuckParticle();
+        }
+
+        // private void CreateSuckParticle()
+        // {
+        //     Destroy(suckParticleSystem);
+        //     ParticleSystem particleSystemToCopy = GameObject.Find("SuckParticle").GetComponent<ParticleSystem>();
+        //     suckParticleSystem = Instantiate(particleSystemToCopy, gameObject.transform, false);
+        //     suckParticleSystem.transform.position = gameObject.transform.position;
+        //     suckParticleSystem.Play();
+        // }
     }
 }

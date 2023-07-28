@@ -35,7 +35,7 @@ namespace Objects.Abstract
         protected virtual void Start()
         {
             primalSpriteButton.gameObject.SetActive(false);
-            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject);
+            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position);
             KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             KokTreePopUp.OnBuyUpgradeTriggered += OnBuyUpgradeTriggeredHandler;
             clickedInfo = false;
@@ -53,8 +53,7 @@ namespace Objects.Abstract
             {
                 this.ClickKokButton();
             }
-
-
+            
             // UpdatePopUpButton(enoughMoney);
             UpdateKokTree(enoughMoney);
         }
@@ -140,7 +139,7 @@ namespace Objects.Abstract
             Destroy(particleSystem);
         }
 
-        private void MakeButtonAvailable()
+        protected virtual void MakeButtonAvailable()
         {
             kokButton.enabled = true;
             kokButtonStatus = ButtonStatus.AVAILABLE;
@@ -180,7 +179,6 @@ namespace Objects.Abstract
             particleSystem.transform.position = gameObject.transform.position;
             particleSystem.Play();
         }
-
 
         protected virtual void UnlockAnotherButton()
         {

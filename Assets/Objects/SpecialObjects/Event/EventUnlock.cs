@@ -1,13 +1,10 @@
+using Managers;
 using Objects.Abstract;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace Objects.SpecialObjects.Event
 {
     public class EventUnlock : KokTreeObject
     {
-        [SerializeField] public Button secondLevel;
-
         public EventUnlock()
         {
             objectName = "NASTENKA";
@@ -19,10 +16,11 @@ namespace Objects.SpecialObjects.Event
 
         public override void BuyUpgrade()
         {
+            toUnlockNext.transform.position = gameObject.transform.position;
+            toUnlockNext.gameObject.SetActive(true);
             base.BuyUpgrade();
+            EventManager.instance.LevelUp();
             gameObject.SetActive(false);
-            secondLevel.transform.position = gameObject.transform.position;
-            secondLevel.gameObject.SetActive(true);
         }
     }
 }
