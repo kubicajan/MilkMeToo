@@ -17,10 +17,10 @@ namespace Objects.Abstract
         [SerializeField] private Sprite unknownKokButtonSprite;
         [SerializeField] public Button primalSpriteButton;
 
-
         private Button kokButton;
         private TextMeshProUGUI upgradePriceDisplay;
         private bool clickedKokInfo;
+        private ParticleSystem particleSystem;
 
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
         protected string kokButtonDescription = "it is depressed";
@@ -51,11 +51,12 @@ namespace Objects.Abstract
             {
                 this.ClickKokButton();
             }
-            
+
 
             // UpdatePopUpButton(enoughMoney);
             UpdateKokTree(enoughMoney);
         }
+
 
         private void UpdateKokTree(bool enoughMoney)
         {
@@ -69,7 +70,7 @@ namespace Objects.Abstract
                 LockButton();
             }
         }
-        
+
         public virtual void Clicked()
         {
             clickedInfo = true;
@@ -134,6 +135,7 @@ namespace Objects.Abstract
             kokButton.image.sprite = lockedKokButtonSprite;
             kokButton.enabled = true;
             upgradePriceDisplay.text = kokButtonUnlockPrice + "$";
+            Destroy(particleSystem);
         }
 
         private void MakeButtonAvailable()
@@ -142,6 +144,7 @@ namespace Objects.Abstract
             kokButtonStatus = ButtonStatus.AVAILABLE;
             kokButton.image.sprite = availableKokButtonSprite;
             upgradePriceDisplay.text = kokButtonUnlockPrice + "$";
+            SwitchToAvailableParticle();
         }
 
         public virtual void BuyUpgrade()
@@ -154,8 +157,28 @@ namespace Objects.Abstract
                 upgradePriceDisplay.text = "";
                 //   UnlockShopButton();
                 UnlockAnotherButton();
+                SwitchToBoughtParticle();
             }
         }
+
+        private void SwitchToAvailableParticle()
+        {
+            SwitchParticleSystem(GameObject.Find("AvailableParticle").GetComponent<ParticleSystem>());
+        }
+
+        private void SwitchToBoughtParticle()
+        {
+            SwitchParticleSystem(GameObject.Find("BoughtParticle").GetComponent<ParticleSystem>());
+        }
+
+        private void SwitchParticleSystem(ParticleSystem newParticles)
+        {
+            Destroy(particleSystem);
+            particleSystem = Instantiate(newParticles, gameObject.transform, false);
+            particleSystem.transform.position = gameObject.transform.position;
+            particleSystem.Play();
+        }
+
 
         protected virtual void UnlockAnotherButton()
         {
