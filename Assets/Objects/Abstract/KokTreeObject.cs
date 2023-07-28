@@ -29,6 +29,8 @@ namespace Objects.Abstract
         protected string effectInfo = "You become depressed";
         protected Vector2 spriteCanvasPosition;
         protected bool clickedInfo;
+        protected string availableParticleName = "AvailableParticle";
+        protected string boughtParticleName = "BoughtParticle";
 
         protected virtual void Start()
         {
@@ -76,7 +78,7 @@ namespace Objects.Abstract
             clickedInfo = true;
         }
 
-        protected void KokTreeButtonStart()
+        private void KokTreeButtonStart()
         {
             switch (kokButtonStatus)
             {
@@ -149,26 +151,23 @@ namespace Objects.Abstract
 
         public virtual void BuyUpgrade()
         {
-            if (MoneyManagerSingleton.instance.SpendMoney(kokButtonUnlockPrice))
-            {
-                kokButtonStatus = ButtonStatus.BOUGHT;
-                kokButton.image.sprite = boughtKokButtonSprite;
-                kokButton.enabled = true;
-                upgradePriceDisplay.text = "";
-                //   UnlockShopButton();
-                UnlockAnotherButton();
-                SwitchToBoughtParticle();
-            }
+            kokButtonStatus = ButtonStatus.BOUGHT;
+            kokButton.image.sprite = boughtKokButtonSprite;
+            kokButton.enabled = true;
+            upgradePriceDisplay.text = "";
+            //   UnlockShopButton();
+            UnlockAnotherButton();
+            SwitchToBoughtParticle();
         }
 
-        private void SwitchToAvailableParticle()
+        protected void SwitchToAvailableParticle()
         {
-            SwitchParticleSystem(GameObject.Find("AvailableParticle").GetComponent<ParticleSystem>());
+            SwitchParticleSystem(GameObject.Find(availableParticleName).GetComponent<ParticleSystem>());
         }
 
         private void SwitchToBoughtParticle()
         {
-            SwitchParticleSystem(GameObject.Find("BoughtParticle").GetComponent<ParticleSystem>());
+            SwitchParticleSystem(GameObject.Find(boughtParticleName).GetComponent<ParticleSystem>());
         }
 
         private void SwitchParticleSystem(ParticleSystem newParticles)
@@ -194,7 +193,10 @@ namespace Objects.Abstract
         {
             if (KokTreePopUp.instance.GetCallingType() == GetType())
             {
-                BuyUpgrade();
+                if (MoneyManagerSingleton.instance.SpendMoney(kokButtonUnlockPrice))
+                {
+                    BuyUpgrade();
+                }
             }
         }
     }
