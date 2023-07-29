@@ -26,7 +26,7 @@ namespace Objects.SpecialObjects.Event
             toUnlockNext.transform.position = gameObject.transform.position;
             toUnlockNext.gameObject.SetActive(true);
             base.BuyUpgrade();
-            EventManager.instance.LevelUp();
+            StartCoroutine(EventManager.instance.LevelUpCoroutine());
             gameObject.SetActive(false);
         }
     }

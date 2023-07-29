@@ -1,6 +1,9 @@
+using System;
+using System.Collections;
 using PopUps;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Managers
 {
@@ -79,15 +82,15 @@ namespace Managers
             }
         }
 
-        public void LevelUp()
+        public IEnumerator LevelUpCoroutine()
         {
             while (eventIsShown)
             {
-                //here just to force the program to wait so stuff does not change when it is shown
+                // done to wait until there is no more event, so it would not override.
+                yield return null;
             }
 
             level += 1;
-
             switch (level)
             {
                 case Level.First:
@@ -111,7 +114,6 @@ namespace Managers
 
             pushParticleSystem.gameObject.SetActive(true);
             grassParticleSystem.gameObject.SetActive(true);
-            SpawnEvent();
         }
 
         private void SetUpSecondLevel()
@@ -123,7 +125,6 @@ namespace Managers
 
             pushParticleSystem.gameObject.SetActive(false);
             grassParticleSystem.gameObject.SetActive(false);
-            SpawnEvent();
         }
 
         private void SpawnEvent()
@@ -157,13 +158,13 @@ namespace Managers
 
         private void OnSetInactiveTriggeredHandler()
         {
+            eventIsShown = false;
             popUpOpen = false;
         }
 
         private void OnShowPopUpTriggeredHandler()
         {
             popUpOpen = true;
-            eventIsShown = false;
             eventHolder.gameObject.SetActive(false);
         }
     }

@@ -29,8 +29,9 @@ namespace Objects.SpecialObjects.Event
         public override void BuyUpgrade()
         {
             base.BuyUpgrade();
-            EventManager.instance.LevelUp();
+            StartCoroutine(EventManager.instance.LevelUpCoroutine());
         }
+
 
         protected override void MakeButtonAvailable()
         {
