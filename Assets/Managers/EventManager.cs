@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using PopUps;
 using UnityEngine;
@@ -9,26 +8,26 @@ namespace Managers
 {
     public class EventManager : MonoBehaviour
     {
-        [SerializeField] public GameObject eventHolder;
-
+        [SerializeField] private GameObject eventHolder;
         [SerializeField] private Sprite levelOneSprite;
         [SerializeField] private Sprite levelTwoSprite;
 
         public static EventManager instance;
+        private RectTransform canvasRect;
+        private Button eventButton;
         private float timer = 0f;
         private float interval = 3f;
         private float canvasHeight;
         private float canvasWidth;
-        private RectTransform canvasRect;
         private bool popUpOpen;
         private bool eventIsShown;
-        private Button eventButton;
 
-        private ParticleSystem suckParticleSystem;
-        private ParticleSystem voidParticleSystem;
-        private ParticleSystem pushParticleSystem;
-        private ParticleSystem grassParticleSystem;
+        private GameObject suckParticleSystem;
+        private GameObject voidParticleSystem;
+        private GameObject pushParticleSystem;
+        private GameObject grassParticleSystem;
 
+        private Level level;
 
         private enum Level
         {
@@ -37,29 +36,18 @@ namespace Managers
             Second
         }
 
-        private Level level;
-
         private void Start()
         {
+            level = Level.Zero;
+            popUpOpen = false;
             eventIsShown = false;
             EventPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             EventPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
-            popUpOpen = false;
-            level = Level.Zero;
             canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
             eventButton = GameObject.Find("EventButton").GetComponent<Button>();
             canvasHeight = canvasRect.rect.height;
             canvasWidth = canvasRect.rect.width;
-
-            suckParticleSystem = GameObject.Find("EventSuckParticle").GetComponent<ParticleSystem>();
-            voidParticleSystem = GameObject.Find("EventVoidParticle").GetComponent<ParticleSystem>();
-            pushParticleSystem = GameObject.Find("EventPushParticle").GetComponent<ParticleSystem>();
-            grassParticleSystem = GameObject.Find("EventGrassParticle").GetComponent<ParticleSystem>();
-
-            suckParticleSystem.transform.position = eventHolder.transform.position;
-            voidParticleSystem.transform.position = eventHolder.transform.position;
-            pushParticleSystem.transform.position = eventHolder.transform.position;
-            grassParticleSystem.transform.position = eventHolder.transform.position;
+            FirstSetupParticleSystems();
         }
 
         private void Awake()
@@ -82,6 +70,20 @@ namespace Managers
             }
         }
 
+        private void FirstSetupParticleSystems()
+        {
+            suckParticleSystem = GameObject.Find("EventSuckParticle");
+            voidParticleSystem = GameObject.Find("EventVoidParticle");
+            pushParticleSystem = GameObject.Find("EventPushParticle");
+            grassParticleSystem = GameObject.Find("EventGrassParticle");
+
+            Vector3 holderPosition = eventHolder.transform.position;
+            suckParticleSystem.gameObject.transform.position = holderPosition;
+            voidParticleSystem.transform.position = holderPosition;
+            pushParticleSystem.transform.position = holderPosition;
+            grassParticleSystem.transform.position = holderPosition;
+        }
+
         public IEnumerator LevelUpCoroutine()
         {
             while (eventIsShown)
@@ -91,6 +93,7 @@ namespace Managers
             }
 
             level += 1;
+
             switch (level)
             {
                 case Level.First:
@@ -104,38 +107,43 @@ namespace Managers
             }
         }
 
+        private void SpawnEvent()
+        {
+            float randomX = Random.Range(-canvasHeight / 2, canvasHeight / 2);
+            float randomY = Random.Range(-canvasWidth / 2, canvasWidth / 2);
+            var weirdPosition = Camera.main.WorldToViewportPoint(new Vector2(randomX, randomY));
+            eventHolder.transform.position = weirdPosition;
+            eventHolder.gameObject.SetActive(true);
+            popUpOpen = true;
+            eventIsShown = true;
+        }
+
         private void SetUpFirstLevel()
         {
             ConfigurePopUp("FIRST_LEVEL", "YO MOMMA");
-
             eventButton.image.sprite = levelOneSprite;
-            suckParticleSystem.gameObject.SetActive(false);
-            voidParticleSystem.gameObject.SetActive(false);
-
-            pushParticleSystem.gameObject.SetActive(true);
-            grassParticleSystem.gameObject.SetActive(true);
+            TurnOnLevelTwoParticles(false);
+            TurnOnLevelOneParticles(true);
         }
 
         private void SetUpSecondLevel()
         {
             ConfigurePopUp("SECOND LEVEL", "SMASH OR PASS");
             eventButton.image.sprite = levelTwoSprite;
-            suckParticleSystem.gameObject.SetActive(true);
-            voidParticleSystem.gameObject.SetActive(true);
-
-            pushParticleSystem.gameObject.SetActive(false);
-            grassParticleSystem.gameObject.SetActive(false);
+            TurnOnLevelOneParticles(false);
+            TurnOnLevelTwoParticles(true);
         }
 
-        private void SpawnEvent()
+        private void TurnOnLevelOneParticles(bool switchTo)
         {
-            popUpOpen = true;
-            float randomX = Random.Range(-canvasHeight / 2, canvasHeight / 2);
-            float randomY = Random.Range(-canvasWidth / 2, canvasWidth / 2);
-            var weirdPosition = Camera.main.WorldToViewportPoint(new Vector2(randomX, randomY));
-            eventHolder.transform.position = weirdPosition;
-            eventHolder.gameObject.SetActive(true);
-            eventIsShown = true;
+            pushParticleSystem.SetActive(switchTo);
+            grassParticleSystem.SetActive(switchTo);
+        }
+
+        private void TurnOnLevelTwoParticles(bool switchTo)
+        {
+            suckParticleSystem.SetActive(switchTo);
+            voidParticleSystem.SetActive(switchTo);
         }
 
         private bool IsItTime()

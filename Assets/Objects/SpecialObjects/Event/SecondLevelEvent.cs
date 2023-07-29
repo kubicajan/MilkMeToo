@@ -11,8 +11,8 @@ namespace Objects.SpecialObjects.Event
         public SecondLevelEvent()
         {
             objectName = "God among men";
-            kokButtonDescription = "The fabric of reality shatters, what is he doing here?";
-            kokButtonUnlockPrice = 5;
+            kokButtonDescription = "The fabric of reality shatters, what is HE doing here?";
+            kokButtonUnlockPrice = 500;
             effectInfo = "SPECIAL EVENTS";
             kokButtonStatus = ButtonStatus.AVAILABLE;
             availableParticleName = "SuckParticle";
@@ -22,7 +22,6 @@ namespace Objects.SpecialObjects.Event
         protected override void Start()
         {
             base.Start();
-            // CreateSuckParticle();
             gameObject.SetActive(false);
         }
 
@@ -31,21 +30,5 @@ namespace Objects.SpecialObjects.Event
             base.BuyUpgrade();
             StartCoroutine(EventManager.instance.LevelUpCoroutine());
         }
-
-
-        protected override void MakeButtonAvailable()
-        {
-            base.MakeButtonAvailable();
-            //   CreateSuckParticle();
-        }
-
-        // private void CreateSuckParticle()
-        // {
-        //     Destroy(suckParticleSystem);
-        //     ParticleSystem particleSystemToCopy = GameObject.Find("SuckParticle").GetComponent<ParticleSystem>();
-        //     suckParticleSystem = Instantiate(particleSystemToCopy, gameObject.transform, false);
-        //     suckParticleSystem.transform.position = gameObject.transform.position;
-        //     suckParticleSystem.Play();
-        // }
     }
 }

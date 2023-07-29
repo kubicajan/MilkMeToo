@@ -1,8 +1,5 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 namespace PopUps
 {
@@ -18,7 +15,8 @@ namespace PopUps
             description = "";
             question = "";
             gameObject.transform.position = new Vector2(0, 0);
-            questionText = holdingImageTransform.Find("QuestionBackground")
+            questionText = holdingImageTransform
+                .Find("QuestionBackground")
                 .Find("Question").GetComponent<TextMeshProUGUI>();
         }
 
