@@ -1,5 +1,6 @@
 using Managers;
 using Objects.Abstract;
+using PopUps;
 
 namespace Objects.SpecialObjects.Event
 {
@@ -12,6 +13,12 @@ namespace Objects.SpecialObjects.Event
             kokButtonUnlockPrice = 5;
             effectInfo = "UNLOCKS EVENTS";
             kokButtonStatus = ButtonStatus.AVAILABLE;
+        }
+    
+        public override void Clicked()
+        {
+            base.Clicked();
+            gameObject.SetActive(false);
         }
 
         public override void BuyUpgrade()

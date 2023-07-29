@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 namespace PopUps
 {
     public class InformationPopUp : PopUp<InformationPopUp>

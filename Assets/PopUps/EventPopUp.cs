@@ -8,27 +8,31 @@ namespace PopUps
 {
     public class EventPopUp : PopUp<EventPopUp>
     {
+        private TextMeshProUGUI questionText;
+        private string description;
+        private string question;
+
         protected override void Awake()
         {
             base.Awake();
+            description = "";
+            question = "";
             gameObject.transform.position = new Vector2(0, 0);
+            questionText = holdingImageTransform.Find("QuestionBackground")
+                .Find("Question").GetComponent<TextMeshProUGUI>();
         }
 
         public void ShowPopUp()
         {
-            // effectInfoText.text = effectInfo;
-            // currentType = incomingType;
-            // nameText.text = spriteName;
-            // descriptionText.text = description;
-            // priceText.text = price;
-            // EnableButton(buttonEnable, incomingType);
-
-            // if (animatedImage.overrideSprite != primalSprite)
-            // {
-            //     animatedImage.overrideSprite = primalSprite;
-            // }
-
+            questionText.text = question;
+            descriptionText.text = description;
             SetActive();
+        }
+
+        public void ConfigureFields(string newDescription, string newQuestion)
+        {
+            description = newDescription;
+            question = newQuestion;
         }
     }
 }

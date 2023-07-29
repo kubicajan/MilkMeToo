@@ -17,8 +17,10 @@ namespace Managers
         {
             InformationPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
+            EventPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             InformationPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
             KokTreePopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
+            EventPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
             panelPosition = transform.position;
         }
 

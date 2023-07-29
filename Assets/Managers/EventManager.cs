@@ -1,22 +1,19 @@
 using PopUps;
 using UnityEngine;
-using UnityEngine.UI;
-using Utilities;
 
 namespace Managers
 {
     public class EventManager : MonoBehaviour
     {
-        [SerializeField] public Button eventButton;
+        [SerializeField] public GameObject eventHolder;
 
         public static EventManager instance;
         private float timer = 0f;
         private float interval = 3f;
         private float canvasHeight;
         private float canvasWidth;
-        private ParticleSystem suckParticles;
-        private ParticleSystem voidParticles;
         private RectTransform canvasRect;
+        private bool popUpOpen;
 
         private enum Level
         {
@@ -29,12 +26,13 @@ namespace Managers
 
         private void Start()
         {
+            EventPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
+            EventPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
+            popUpOpen = false;
             level = Level.Zero;
             canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
             canvasHeight = canvasRect.rect.height;
             canvasWidth = canvasRect.rect.width;
-            suckParticles = GameObject.Find("EventSuckParticle").GetComponent<ParticleSystem>();
-            voidParticles = GameObject.Find("EventVoidParticle").GetComponent<ParticleSystem>();
         }
 
         private void Awake()
@@ -51,7 +49,7 @@ namespace Managers
 
         private void FixedUpdate()
         {
-            if (IsItTime())
+            if (!popUpOpen && IsItTime())
             {
                 switch (level)
                 {
@@ -74,37 +72,30 @@ namespace Managers
 
         private void HandleFirstLevel()
         {
+            ConfigurePopUp("FIRST_LEVEL", "YO MOMMA");
+            popUpOpen = true;
             float randomX = Random.Range(-canvasHeight / 2, canvasHeight / 2);
             float randomY = Random.Range(-canvasWidth / 2, canvasWidth / 2);
-            eventButton.gameObject.SetActive(true);
-            eventButton.interactable = true;
-
-            //todo: this is not ideal
             var gg = Camera.main.WorldToViewportPoint(new Vector2(randomX, randomY));
-
-            eventButton.transform.position = gg;
-
-            suckParticles.transform.SetParent(eventButton.gameObject.transform);
-            suckParticles.transform.position = gg;
-            voidParticles.transform.SetParent(eventButton.gameObject.transform);
-            voidParticles.transform.position = gg;
-
-            suckParticles.gameObject.SetActive(true);
-            voidParticles.gameObject.SetActive(true);
-            suckParticles.Play();
-            voidParticles.Play();
-
-            Debug.Log("FIRST");
+            eventHolder.transform.position = gg;
+            eventHolder.gameObject.SetActive(true);
         }
 
         private void HandleSecondLevel()
         {
-            Debug.Log("SECOND");
+            ConfigurePopUp("SECOND LEVEL", "SMASH OR PASS");
+            popUpOpen = true;
+            float randomX = Random.Range(-canvasHeight / 2, canvasHeight / 2);
+            float randomY = Random.Range(-canvasWidth / 2, canvasWidth / 2);
+            var gg = Camera.main.WorldToViewportPoint(new Vector2(randomX, randomY));
+            eventHolder.transform.position = gg;
+            eventHolder.gameObject.SetActive(true);
+            
         }
 
-        public void ClickedOnEvent()
+        public void ClosePopUp()
         {
-            EventPopUp.instance.ShowPopUp();
+            popUpOpen = false;
         }
 
         private bool IsItTime()
@@ -118,6 +109,22 @@ namespace Managers
             }
 
             return false;
+        }
+
+        public void ConfigurePopUp(string description, string question)
+        {
+            EventPopUp.instance.ConfigureFields(description, question);
+        }
+        
+        private void OnSetInactiveTriggeredHandler()
+        {
+            popUpOpen = false;
+        }
+        
+        private void OnShowPopUpTriggeredHandler()
+        {
+            popUpOpen = true;
+            eventHolder.gameObject.SetActive(false);
         }
     }
 }
