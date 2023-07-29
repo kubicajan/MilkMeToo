@@ -1,3 +1,4 @@
+using PopUps;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
@@ -77,7 +78,7 @@ namespace Managers
             float randomY = Random.Range(-canvasWidth / 2, canvasWidth / 2);
             eventButton.gameObject.SetActive(true);
             eventButton.interactable = true;
-            
+
             //todo: this is not ideal
             var gg = Camera.main.WorldToViewportPoint(new Vector2(randomX, randomY));
 
@@ -99,6 +100,11 @@ namespace Managers
         private void HandleSecondLevel()
         {
             Debug.Log("SECOND");
+        }
+
+        public void ClickedOnEvent()
+        {
+            EventPopUp.instance.ShowPopUp();
         }
 
         private bool IsItTime()

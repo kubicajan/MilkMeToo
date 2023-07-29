@@ -19,6 +19,8 @@ namespace PopUps
         protected override void Awake()
         {
             base.Awake();
+            animatedImage = holdingImageTransform.Find("NameBackground").Find("AnimatedImage").GetComponent<Image>();
+            nameText = holdingImageTransform.Find("NameBackground").Find("Name").GetComponent<TextMeshProUGUI>();
             priceText = holdingImageTransform.Find("PriceBackground").Find("Price").GetComponent<TextMeshProUGUI>();
             effectInfoText = transform.Find("PlateBackground").Find("Plate").Find("EffectInfo")
                 .GetComponent<TextMeshProUGUI>();

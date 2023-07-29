@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 namespace PopUps
 {
@@ -11,6 +13,8 @@ namespace PopUps
         protected override void Awake()
         {
             base.Awake();
+            nameText = holdingImageTransform.Find("NameBackground").Find("Name").GetComponent<TextMeshProUGUI>();
+            animatedImage = holdingImageTransform.Find("NameBackground").Find("AnimatedImage").GetComponent<Image>();
             counter = transform.Find("PlateBackground").Find("Plate").Find("Counter").GetComponent<TextMeshProUGUI>();
             amountMilkedText = holdingImageTransform.Find("AmountMilkedBackground").Find("AmountMilked")
                 .GetComponent<TextMeshProUGUI>();
