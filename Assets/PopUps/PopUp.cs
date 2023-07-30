@@ -26,7 +26,8 @@ namespace PopUps
         protected virtual void Awake()
         {
             holdingImageTransform = transform.Find("HoldingImage");
-            descriptionText = holdingImageTransform.Find("DescriptionBackground").Find("Description").GetComponent<TextMeshProUGUI>();
+            descriptionText = holdingImageTransform.Find("DescriptionBackground")
+                .Find("Description").GetComponent<TextMeshProUGUI>();
             Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             canvasGroup = canvas.GetComponent<CanvasGroup>();
             CreateSingleton();
@@ -45,7 +46,7 @@ namespace PopUps
             }
         }
 
-        public void SetInactive()
+        public virtual void SetInactive()
         {
             OnSetInactiveTriggered?.Invoke();
             gameObject.SetActive(false);
