@@ -9,7 +9,6 @@ namespace PopUps
         private TextMeshProUGUI summaryDescription;
         private TextMeshProUGUI summaryEffectInfo;
 
-
         private TextMeshProUGUI questionText;
         private string description;
         private string question;
@@ -22,7 +21,7 @@ namespace PopUps
             gameObject.transform.position = new Vector2(0, 0);
             summaryHolder.transform.position = new Vector2(0, 0);
             summaryDescription = GameObject.Find("SummaryDescription").GetComponent<TextMeshProUGUI>();
-            summaryEffectInfo = GameObject.Find("SummaryQuestion").GetComponent<TextMeshProUGUI>();
+            summaryEffectInfo = GameObject.Find("SummaryEffect").GetComponent<TextMeshProUGUI>();
             summaryHolder.SetActive(false);
             questionText = holdingImageTransform
                 .Find("QuestionBackground")
