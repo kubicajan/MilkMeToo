@@ -65548,6 +65548,7 @@ GameObject:
   - component: {fileID: 1629431444}
   - component: {fileID: 1629431445}
   - component: {fileID: 1629431446}
+  - component: {fileID: 1629431447}
   m_Layer: 5
   m_Name: Holder
   m_TagString: Untagged
@@ -65634,6 +65635,18 @@ MonoBehaviour:
   eventHolder: {fileID: 568504754}
   levelOneSprite: {fileID: 21300000, guid: 5407fdaa6dcc439449d4da26e31fd4bd, type: 3}
   levelTwoSprite: {fileID: 21300000, guid: 97f8fb516104f0d4da107b575ecd2766, type: 3}
+--- !u!114 &1629431447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629431438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49029345a6e44c4e8aea3fab0fdd5955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1660762549
 GameObject:
   m_ObjectHideFlags: 0
