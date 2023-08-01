@@ -1,3 +1,5 @@
+using System.Linq;
+using PopUps.Event;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +14,8 @@ namespace PopUps
         private TextMeshProUGUI questionText;
         private string description;
         private string question;
+        private string result;
+        private string effect;
 
         protected override void Awake()
         {
@@ -30,22 +34,29 @@ namespace PopUps
 
         public void ShowPopUp()
         {
-            questionText.text = question;
-            descriptionText.text = description;
+            ConfigureNewValues();
             SetActive();
         }
 
-        public void ConfigureFields(string newDescription, string newQuestion)
+        public void ConfigureNewValues()
         {
-            description = newDescription;
-            question = newQuestion;
+            Scenario scenario = JsonParser.instance.GetRandomScenario();
+            int random = Random.Range(0, scenario.Descriptions.Length);
+            string randomDescription = scenario.Descriptions.ToArray()[random];
+            Result basedResult = JsonParser.instance.GetResultBasedOnScenario(scenario);
+
+            //set popup fields
+            descriptionText.text = randomDescription;
+            questionText.text = scenario.Question;
+
+            //set summary/accept fields
+            summaryDescription.text = basedResult.text;
+            summaryEffectInfo.text = basedResult.effect;
         }
 
         public void AcceptEvent()
         {
             gameObject.SetActive(false);
-            summaryDescription.text = "deprese";
-            summaryEffectInfo.text = "jeste vetsi deprese";
             summaryHolder.SetActive(true);
         }
 

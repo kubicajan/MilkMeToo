@@ -1,45 +1,52 @@
 {
-  "People": {
-    "Question": "Invite them over?",
-    "Descriptions": [
-      "A shadowy figure appears in the distance.",
-      "You hear strange sounds from beneath the floor. Somebody is in your basement.",
-      "Somebody knocks on your window at midnight.",
-      "There is someone touching your cows in the field.",
-      "There are voices coming from the trash bin. Is there a person in there?"
-    ]
-  },
-  "Thoughts": {
-    "Question": "What is it?",
-    "Descriptions": [
-      "You have a thought about something.",
-      "You get a strong urge to do something.",
-      "You remembered something."
-    ]
-  },
-  "Fifty": {
-    "Question": "Find out?",
-    "Descriptions": [
-      "It might be Friday today, but you are not sure.",
-      "At the end of the day you sit down and realise you are satisfied with yourself. Or are you?",
-      "You queue up a ranked game - it will work out this time. Or will it?",
-      "You got your exam results. You have a good feeling about this."
-    ]
-  },
-  "Investments": {
-    "Question": "Go meet them?",
-    "Descriptions": [
-      "You get a letter saying you won in lottery, asking you to pick up the prize! But.. you do not remember playing.",
-      "You get an email from strangers saying you inherit a fortune after an aunt you never even knew existed."
-    ]
-  },
-  "Things": {
-    "Question": "Open it up?",
-    "Descriptions": [
-      "A deliveryman brought you a package! What can be inside?",
-      "While digging a cow pool, you find a wooden box six feet under the surface.",
-      "At the end of the day, your cows gather around a mysterious glowing objects.",
-      "You find a hidden compartment in your pocket."
-    ]
-  }
+  "Objects": [
+    {
+      "Name": "People",
+      "Question": "Invite them over?",
+      "Descriptions": [
+        "A shadowy figure appears in the distance.",
+        "You hear strange sounds from beneath the floor. Somebody is in your basement.",
+        "Somebody knocks on your window at midnight.",
+        "There is someone touching your cows in the field.",
+        "There are voices coming from the trash bin. Is there a person in there?"
+      ]
+    },
+    {
+      "Name": "Thoughts",
+      "Question": "What is it?",
+      "Descriptions": [
+        "You have a thought about something.",
+        "You get a strong urge to do something.",
+        "You remembered something."
+      ]
+    },
+    {
+      "Name": "Fifty",
+      "Question": "Find out?",
+      "Descriptions": [
+        "It might be Friday today, but you are not sure.",
+        "At the end of the day you sit down and realise you are satisfied with yourself. Or are you?",
+        "You queue up a ranked game - it will work out this time. Or will it?",
+        "You got your exam results. You have a good feeling about this."
+      ]
+    },
+    {
+      "Name": "Investments",
+      "Question": "Go meet them?",
+      "Descriptions": [
+        "You get a letter saying you won in lottery, asking you to pick up the prize! But.. you do not remember playing.",
+        "You get an email from strangers saying you inherit a fortune after an aunt you never even knew existed."
+      ]
+    },
+    {
+      "Name": "Things",
+      "Question": "Open it up?",
+      "Descriptions": [
+        "A deliveryman brought you a package! What can be inside?",
+        "While digging a cow pool, you find a wooden box six feet under the surface.",
+        "At the end of the day, your cows gather around a mysterious glowing objects.",
+        "You find a hidden compartment in your pocket."
+      ]
+    }
+  ]
 }

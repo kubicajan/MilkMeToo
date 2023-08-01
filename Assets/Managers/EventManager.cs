@@ -120,7 +120,6 @@ namespace Managers
 
         private void SetUpFirstLevel()
         {
-            ConfigurePopUp("FIRST_LEVEL", "YO MOMMA");
             eventButton.image.sprite = levelOneSprite;
             TurnOnLevelTwoParticles(false);
             TurnOnLevelOneParticles(true);
@@ -128,7 +127,6 @@ namespace Managers
 
         private void SetUpSecondLevel()
         {
-            ConfigurePopUp("SECOND LEVEL", "SMASH OR PASS");
             eventButton.image.sprite = levelTwoSprite;
             TurnOnLevelOneParticles(false);
             TurnOnLevelTwoParticles(true);
@@ -157,11 +155,6 @@ namespace Managers
             }
 
             return false;
-        }
-
-        private void ConfigurePopUp(string description, string question)
-        {
-            EventPopUp.instance.ConfigureFields(description, question);
         }
 
         private void OnSetInactiveTriggeredHandler()
