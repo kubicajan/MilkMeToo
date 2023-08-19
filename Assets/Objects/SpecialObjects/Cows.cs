@@ -1,26 +1,45 @@
 using Managers;
 using Objects.Abstract.ActiveObjectClasses;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Objects.SpecialObjects
 {
     public class Cows : ActiveKokTreeObject
     {
-        protected override int ObjectCount
+        [SerializeField] private Button anotherCow;
+        [SerializeField] private Button anotherAnotherCow;
+
+        protected override void ActivateThings(int value)
         {
-            get => objectCounter;
-            set
+            if (value > 1)
             {
-                if (value > 1)
+                objectCounter = value;
+                primalSpriteButton.gameObject.SetActive(true);
+                
+                if (value > 2)
                 {
-                    objectCounter = value;
-                    primalSpriteButton.gameObject.SetActive(true);
-                }
-                else
-                {
-                    objectCounter = 1;
-                    primalSpriteButton.gameObject.SetActive(false);
+                    anotherCow.gameObject.SetActive(true);
+                    if (value > 3)
+                    {
+                        anotherAnotherCow.gameObject.SetActive(true);
+                    }
                 }
             }
+            else
+            {
+                objectCounter = 1;
+                primalSpriteButton.gameObject.SetActive(false);
+                anotherCow.gameObject.SetActive(false);
+                anotherAnotherCow.gameObject.SetActive(false);
+            }
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            anotherCow.gameObject.SetActive(false);
+            anotherAnotherCow.gameObject.SetActive(false);
         }
 
         public Cows()

@@ -14,21 +14,23 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected float shopButtonBuyPrice = 0;
 
-        protected virtual int ObjectCount
+        protected int ObjectCount
         {
             get => objectCounter;
-            set
+            set => ActivateThings(value);
+        }
+
+        protected virtual void ActivateThings(int value)
+        {
+            if (value > 0)
             {
-                if (value > 0)
-                {
-                    objectCounter = value;
-                    primalSpriteButton.gameObject.SetActive(true);
-                }
-                else
-                {
-                    objectCounter = 0;
-                    primalSpriteButton.gameObject.SetActive(false);
-                }
+                objectCounter = value;
+                primalSpriteButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                objectCounter = 0;
+                primalSpriteButton.gameObject.SetActive(false);
             }
         }
 
