@@ -88,9 +88,10 @@ namespace Objects.Abstract.ActiveObjectClasses
             }
         }
 
-        private void RemoveBoughtObject(int amount)
+        public void AddBoughtObject(int amount)
         {
-            ObjectCount -= amount;
+            ObjectCount += amount;
+            shopButtonBuyPrice = CalculatePrice();
         }
     }
 }

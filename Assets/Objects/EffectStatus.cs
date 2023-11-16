@@ -1,10 +1,11 @@
 namespace Objects
 {
-    public enum ButtonStatus
+    [System.Serializable]
+    public enum EffectStatus
     {
-        UNKNOWN,
-        LOCKED,
-        AVAILABLE,
-        BOUGHT
+        NOTHING = 0,
+        HELPER = 1,
+        PRODUCTION = 2,
+        MONEY = 3
     }
 }

@@ -8,6 +8,7 @@ namespace Objects.Abstract.ActiveObjectClasses
     public abstract partial class ActiveKokTreeObject : KokTreeObject
     {
         [SerializeField] public Sprite shopButtonSprite;
+        [SerializeField] public ParticleSystem system;
 
         private float timer = 0f;
         private double allTimeMilked = 0;
@@ -15,10 +16,13 @@ namespace Objects.Abstract.ActiveObjectClasses
         protected float interval = 1f;
         protected float productionPower = 0;
         protected string description = "";
+        private ParticleSystem milkExplosion;
 
         protected override void Start()
         {
             base.Start();
+            milkExplosion = Instantiate(system, primalSpriteButton.transform);
+            milkExplosion.transform.position = primalSpriteButton.transform.position;
             effectInfo = "SHOP UPGRADE";
             ShopButtonStart();
         }
@@ -69,6 +73,7 @@ namespace Objects.Abstract.ActiveObjectClasses
                     AddToAllTimeMilked(finalPoints);
                     MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
                     timer = 0f;
+                    milkExplosion.Play();
                 }
             }
         }

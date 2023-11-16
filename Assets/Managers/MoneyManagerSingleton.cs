@@ -6,6 +6,7 @@ namespace Managers
     public class MoneyManagerSingleton : MonoBehaviour
     {
         [SerializeField] public TextMeshProUGUI moneyScore;
+
         //[SerializeField] public TextMeshProUGUI totalScore;
         [SerializeField] public TextMeshProUGUI multiplier;
 
@@ -45,6 +46,14 @@ namespace Managers
             return amount;
         }
 
+        public float AddRewardMoney(float amount)
+        {
+            money += amount;
+            totalMoney += amount;
+            ChangeDisplayedMoney();
+            return amount;
+        }
+
         public bool SpendMoney(float amount)
         {
             if (IsEnoughFunds(amount))
@@ -74,7 +83,11 @@ namespace Managers
 
         public void RaiseMultiplicationBy(int raiseBy)
         {
-            multiplication += raiseBy;
+            int tmpMultiplication = multiplication + raiseBy;
+
+            multiplication = tmpMultiplication > 0
+                ? tmpMultiplication
+                : 0;
             multiplier.enabled = true;
             ChangeDisplayStreak();
         }
@@ -82,7 +95,7 @@ namespace Managers
         private void ChangeDisplayedMoney()
         {
             moneyScore.text = $"{money}$";
-      //      totalScore.text = $"ALL TIME: {totalMoney}$";
+            //      totalScore.text = $"ALL TIME: {totalMoney}$";
         }
 
         private void ChangeDisplayStreak()

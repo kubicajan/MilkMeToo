@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Objects;
 
 namespace PopUps.Event
 {
@@ -8,6 +9,7 @@ namespace PopUps.Event
         public string type;
         public string text;
         public string effect;
+        public EffectStatus effectType;
     }
 
     [System.Serializable]
@@ -30,7 +32,6 @@ namespace PopUps.Event
         public string Question;
         public string[] Descriptions;
     }
-
 
     [System.Serializable]
     public class ScenarioHolder

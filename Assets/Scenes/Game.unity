@@ -28673,7 +28673,7 @@ GameObject:
   - component: {fileID: 670668654}
   - component: {fileID: 670668656}
   - component: {fileID: 670668655}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: tmp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28697,7 +28697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 355, y: -1894}
+  m_AnchoredPosition: {x: 987, y: -1627}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!199 &670668655
@@ -28787,7 +28787,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -28962,7 +28962,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.09019608, g: 0.5058824, b: 0.6509804, a: 1}
+      maxColor: {r: 0.22075468, g: 1, b: 0.9999998, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -29400,7 +29400,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 10
+    type: 2
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -45484,7 +45484,7 @@ GameObject:
   - component: {fileID: 874271080}
   - component: {fileID: 874271081}
   m_Layer: 5
-  m_Name: CatUnlock
+  m_Name: Cat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45624,6 +45624,7 @@ MonoBehaviour:
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
   primalSpriteButton: {fileID: 2063717393}
   shopButtonSprite: {fileID: 21300000, guid: 14c584f075e2f6b43bd1fc52558a2644, type: 3}
+  system: {fileID: 670668656}
   shopButton: {fileID: 588254793}
 --- !u!210 &874271081
 SortingGroup:
@@ -45632,7 +45633,7 @@ SortingGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874271075}
-  m_Enabled: 1
+  m_Enabled: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 32767
@@ -50796,7 +50797,7 @@ GameObject:
   - component: {fileID: 931240953}
   - component: {fileID: 931240956}
   m_Layer: 5
-  m_Name: CapyUnlock
+  m_Name: Capy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50820,7 +50821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.11022223, y: 0.5}
   m_AnchorMax: {x: 0.263, y: 0.5}
-  m_AnchoredPosition: {x: -1127.37, y: -608.8205}
+  m_AnchoredPosition: {x: -1127.3699, y: -608.8205}
   m_SizeDelta: {x: 58.740005, y: 197.306}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &931240953
@@ -50936,6 +50937,7 @@ MonoBehaviour:
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
   primalSpriteButton: {fileID: 1977478231}
   shopButtonSprite: {fileID: 21300000, guid: 5cfea2956a3202248afc39e278b464ce, type: 3}
+  system: {fileID: 670668656}
   shopButton: {fileID: 29810112}
   anotherCapy: {fileID: 811135186}
 --- !u!1 &944563597
@@ -62887,6 +62889,7 @@ MonoBehaviour:
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
   primalSpriteButton: {fileID: 1927341896}
   shopButtonSprite: {fileID: 21300000, guid: 7925e3882507ada4fbece292e2a0fe81, type: 3}
+  system: {fileID: 670668656}
   shopButton: {fileID: 67073531}
 --- !u!1 &1241744688
 GameObject:
@@ -82138,6 +82141,7 @@ MonoBehaviour:
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
   primalSpriteButton: {fileID: 778499335}
   shopButtonSprite: {fileID: 21300000, guid: 314c6eaad17bde44aaf1ed36cf4f198f, type: 3}
+  system: {fileID: 670668656}
   shopButton: {fileID: 691310796}
 --- !u!1 &1785462441
 GameObject:
@@ -82807,6 +82811,7 @@ MonoBehaviour:
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
   primalSpriteButton: {fileID: 2052962544}
   shopButtonSprite: {fileID: 21300000, guid: a829187e1588c29498fe57882e7263dd, type: 3}
+  system: {fileID: 670668656}
   shopButton: {fileID: 1459150456}
   anotherGinger: {fileID: 1959839609}
 --- !u!1 &1891392035
@@ -85700,6 +85705,7 @@ MonoBehaviour:
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
   primalSpriteButton: {fileID: 1708730789}
   shopButtonSprite: {fileID: 21300000, guid: 50ad111a762b5db44af4215f6054bf4d, type: 3}
+  system: {fileID: 670668656}
   shopButton: {fileID: 8613819}
   anotherCow: {fileID: 597666147}
   anotherAnotherCow: {fileID: 450570422}
