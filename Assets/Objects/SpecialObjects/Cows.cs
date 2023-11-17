@@ -7,6 +7,8 @@ namespace Objects.SpecialObjects
 {
     public class Cows : ActiveKokTreeObject
     {
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip click;
         [SerializeField] private Button anotherCow;
         [SerializeField] private Button anotherAnotherCow;
 
@@ -16,7 +18,7 @@ namespace Objects.SpecialObjects
             {
                 objectCounter = value;
                 primalSpriteButton.gameObject.SetActive(true);
-                
+
                 if (value > 2)
                 {
                     anotherCow.gameObject.SetActive(true);
@@ -38,6 +40,7 @@ namespace Objects.SpecialObjects
         protected override void Start()
         {
             base.Start();
+            audioSource.clip = click;
             anotherCow.gameObject.SetActive(false);
             anotherAnotherCow.gameObject.SetActive(false);
         }
@@ -61,6 +64,7 @@ namespace Objects.SpecialObjects
 
         public void MilkMe()
         {
+            audioSource.PlayOneShot(click);
             float money = (productionPower * ObjectCount);
             MoneyManagerSingleton.instance.AddMoney(money);
             AddToAllTimeMilked(money);

@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +36,7 @@ namespace PopUps
 
         public void BuyUpgrade()
         {
+            SongManager.instance.PlayPurchase();
             OnBuyUpgradeTriggered?.Invoke();
             SetInactive();
         }
@@ -61,7 +63,6 @@ namespace PopUps
             {
                 animatedImage.overrideSprite = primalSprite;
             }
-
             SetActive();
         }
     }

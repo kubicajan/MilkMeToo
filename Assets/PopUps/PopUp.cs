@@ -1,3 +1,4 @@
+using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,6 +45,12 @@ namespace PopUps
             {
                 instance = this as T;
             }
+        }
+
+        public virtual void SetInactiveByClick()
+        {
+            SongManager.instance.PlayClick();
+            SetInactive();
         }
 
         public virtual void SetInactive()

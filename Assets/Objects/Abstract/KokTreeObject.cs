@@ -35,7 +35,8 @@ namespace Objects.Abstract
         protected virtual void Start()
         {
             primalSpriteButton.gameObject.SetActive(false);
-            spriteCanvasPosition = Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position);
+            spriteCanvasPosition =
+                Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position);
             KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             KokTreePopUp.OnBuyUpgradeTriggered += OnBuyUpgradeTriggeredHandler;
             clickedInfo = false;
@@ -48,13 +49,6 @@ namespace Objects.Abstract
         protected virtual void FixedUpdate()
         {
             bool enoughMoney = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
-
-            if (KokTreePopUp.instance.isActiveAndEnabled && clickedKokInfo)
-            {
-                this.ClickKokButton();
-            }
-            
-            // UpdatePopUpButton(enoughMoney);
             UpdateKokTree(enoughMoney);
         }
 
@@ -94,13 +88,13 @@ namespace Objects.Abstract
                     break;
             }
         }
-
+        
         public void ClickKokButton()
         {
             bool unlock = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
             string money = $"Price \n {kokButtonUnlockPrice.ToString()}$";
             string name = objectName;
-            clickedKokInfo = true;
+            SongManager.instance.PlayClick();
 
             if (kokButtonStatus == ButtonStatus.BOUGHT)
             {
@@ -156,7 +150,7 @@ namespace Objects.Abstract
             upgradePriceDisplay.text = "";
             //   UnlockShopButton();
             UnlockAnotherButton();
-            SwitchToBoughtParticle();
+            SwitchToBoughtParticle(); 
         }
 
         protected void SwitchToAvailableParticle()
@@ -175,6 +169,7 @@ namespace Objects.Abstract
             {
                 Destroy(particleSystem);
             }
+
             particleSystem = Instantiate(newParticles, gameObject.transform, false);
             particleSystem.transform.position = gameObject.transform.position;
             particleSystem.Play();
@@ -197,6 +192,7 @@ namespace Objects.Abstract
                 if (MoneyManagerSingleton.instance.SpendMoney(kokButtonUnlockPrice))
                 {
                     BuyUpgrade();
+                    SongManager.instance.PlayPurchase();
                 }
             }
         }

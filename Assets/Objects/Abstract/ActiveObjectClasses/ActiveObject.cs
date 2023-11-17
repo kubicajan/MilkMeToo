@@ -64,6 +64,7 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         public override void Clicked()
         {
+            SongManager.instance.PlayClick();
             clickedInfo = true;
             InformationPopUp.instance.ShowPopUp(objectName, description, "Amount milked:\n" + allTimeMilked,
                 primalSpriteButton.image.sprite, $"{objectCounter}x");

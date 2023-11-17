@@ -85,6 +85,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             {
                 ObjectCount++;
                 shopButtonBuyPrice = CalculatePrice();
+                SongManager.instance.PlayPurchase();
             }
         }
 

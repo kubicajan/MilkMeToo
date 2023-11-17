@@ -114,12 +114,14 @@ namespace PopUps
 
         public void AcceptEvent()
         {
+            SongManager.instance.PlayClick();
             gameObject.SetActive(false);
             summaryHolder.SetActive(true);
         }
 
         public override void SetInactive()
         {
+            SongManager.instance.PlayClick();
             base.SetInactive();
             summaryHolder.SetActive(false);
         }
