@@ -34,7 +34,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             }
         }
 
-        private void UpdateShop(float money)
+        protected void UpdateShop(float money)
         {
             if (kokButtonStatus == ButtonStatus.BOUGHT)
             {

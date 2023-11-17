@@ -16,7 +16,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         protected float interval = 1f;
         protected float productionPower = 0;
         protected string description = "";
-        private ParticleSystem milkExplosion;
+        protected ParticleSystem milkExplosion;
 
         protected override void Start()
         {
@@ -24,16 +24,16 @@ namespace Objects.Abstract.ActiveObjectClasses
             milkExplosion = Instantiate(system, primalSpriteButton.transform);
             milkExplosion.transform.position = primalSpriteButton.transform.position;
             effectInfo = "SHOP UPGRADE";
+            milkExplosion.Play();
+
             ShopButtonStart();
         }
 
-        protected override void FixedUpdate()
+        protected void NabijeciSystemTepleVody()
         {
             base.FixedUpdate();
             float money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
-            ProduceMilk();
-
             if (InformationPopUp.instance.isActiveAndEnabled && clickedInfo)
             {
                 this.Clicked();
@@ -42,6 +42,12 @@ namespace Objects.Abstract.ActiveObjectClasses
             {
                 clickedInfo = false;
             }
+        }
+
+        protected override void FixedUpdate()
+        {
+            NabijeciSystemTepleVody();
+            ProduceMilk();
         }
 
         private bool IsItTime()
