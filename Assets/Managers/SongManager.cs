@@ -38,14 +38,12 @@ namespace Managers
 
         public void PlayClick()
         {
-            audioSource.clip = click;
-            audioSource.Play();
+            audioSource.PlayOneShot(click);
         }
 
         public void PlayPurchase()
         {
-            audioSource.clip = purchase;
-            audioSource.Play();
+            audioSource.PlayOneShot(purchase);
         }
     }
 }

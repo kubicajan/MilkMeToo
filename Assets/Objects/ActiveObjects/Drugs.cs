@@ -44,6 +44,18 @@ namespace Objects.ActiveObjects
             }
         }
 
+        protected override void UpdateShop(float money)
+        {
+            if (objectCounter > 0)
+            {
+                UpdateShopButton(false, shopDefaultName, "ACTIVATED");
+            }
+            else
+            {
+                base.UpdateShop(money);
+            }
+        }
+
         IEnumerator StartBonusProduction()
         {
             bonusIsOn = true;

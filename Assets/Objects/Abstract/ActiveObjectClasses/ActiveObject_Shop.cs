@@ -10,7 +10,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         [SerializeField] public Button shopButton;
 
         protected int objectCounter = 0;
-        private string shopDefaultName;
+        protected string shopDefaultName;
 
         protected float shopButtonBuyPrice = 0;
 
@@ -34,7 +34,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             }
         }
 
-        protected void UpdateShop(float money)
+        protected virtual void UpdateShop(float money)
         {
             if (kokButtonStatus == ButtonStatus.BOUGHT)
             {
@@ -72,11 +72,12 @@ namespace Objects.Abstract.ActiveObjectClasses
             UpdateShopButton(false, shopDefaultName, shopButtonBuyPrice.ToString());
         }
 
-        private void UpdateShopButton(bool interactable, string buttonNameText, string buttonPriceText)
+        protected void UpdateShopButton(bool interactable, string buttonNameText, string buttonPriceText)
         {
+            buttonPriceText = buttonPriceText == "ACTIVATED" ? buttonPriceText : buttonPriceText + "$";
             shopButton.interactable = interactable;
             shopButton.transform.Find("ButtonName").GetComponent<TextMeshProUGUI>().text = buttonNameText;
-            shopButton.transform.Find("ButtonPrice").GetComponent<TextMeshProUGUI>().text = $"{buttonPriceText}$";
+            shopButton.transform.Find("ButtonPrice").GetComponent<TextMeshProUGUI>().text = buttonPriceText;
         }
 
         public void BuyObject()
