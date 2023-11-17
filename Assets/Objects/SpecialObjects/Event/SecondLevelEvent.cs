@@ -30,5 +30,10 @@ namespace Objects.SpecialObjects.Event
             base.BuyUpgrade();
             StartCoroutine(EventManager.instance.LevelUpCoroutine());
         }
+
+        protected override void UnlockAnotherButton()
+        {
+            return;
+        }
     }
 }
