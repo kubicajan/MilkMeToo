@@ -1,8 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using PopUps;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Managers
 {
@@ -11,14 +14,14 @@ namespace Managers
         [SerializeField] private GameObject eventHolder;
         [SerializeField] private Sprite levelOneSprite;
         [SerializeField] private Sprite levelTwoSprite;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip clip;
 
         public static EventManager instance;
         private RectTransform canvasRect;
         private Button eventButton;
         private float timer = 0f;
         private float interval = 3f;
-        private float canvasHeight;
-        private float canvasWidth;
         private bool popUpOpen;
         private bool eventIsShown;
 
@@ -28,6 +31,7 @@ namespace Managers
         private GameObject grassParticleSystem;
 
         private Level level;
+        private List<string> panels = new List<string>() { "CowPanel", "KokTreePanel", "ShopPanel" };
 
         private enum Level
         {
@@ -45,8 +49,6 @@ namespace Managers
             EventPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
             canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
             eventButton = GameObject.Find("EventButton").GetComponent<Button>();
-            canvasHeight = canvasRect.rect.height;
-            canvasWidth = canvasRect.rect.width;
             FirstSetupParticleSystems();
         }
 
@@ -109,9 +111,14 @@ namespace Managers
 
         private void SpawnEvent()
         {
-            float randomX = Random.Range(-canvasHeight / 2, canvasHeight / 2);
-            float randomY = Random.Range(-canvasWidth / 2, canvasWidth / 2);
-            var weirdPosition = Camera.main.WorldToViewportPoint(new Vector2(randomX, randomY));
+            audioSource.PlayOneShot(clip);
+            int randomNumber = Random.Range(0, 3);
+            string panelRandom = panels[randomNumber];
+            RectTransform panel = GameObject.Find(panelRandom).GetComponent<RectTransform>();
+            Vector2 minCoordinates = panel.position; // Bottom left corner
+            float randomX = Random.Range(minCoordinates.x - 20, minCoordinates.x - 20);
+            float randomY = Random.Range(-80, 80);
+            var weirdPosition = new Vector2(randomX, randomY);
             eventHolder.transform.position = weirdPosition;
             eventHolder.gameObject.SetActive(true);
             popUpOpen = true;

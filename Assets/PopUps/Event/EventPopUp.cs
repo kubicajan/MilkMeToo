@@ -1,11 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Managers;
 using Objects;
-using Objects.Abstract;
 using Objects.Abstract.ActiveObjectClasses;
-using Objects.ActiveObjects;
 using PopUps.Event;
 using TMPro;
 using UnityEngine;
@@ -102,7 +101,8 @@ namespace PopUps
             string objectName = match.Groups[2].Value;
             string objectNameWithCapitalLetter = char.ToUpper(objectName[0]) + objectName.Substring(1);
             Type type = Type.GetType("Objects.ActiveObjects." + objectNameWithCapitalLetter);
-            ActiveKokTreeObject activeKokTreeObject = (ActiveKokTreeObject)GameObject.Find(objectNameWithCapitalLetter).GetComponent(type);
+            ActiveKokTreeObject activeKokTreeObject =
+                (ActiveKokTreeObject)GameObject.Find(objectNameWithCapitalLetter).GetComponent(type);
             activeKokTreeObject.AddBoughtObject(int.Parse(match.Groups[1].Value));
         }
 
