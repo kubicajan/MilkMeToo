@@ -6,7 +6,6 @@ namespace PopUps.Event
     [System.Serializable]
     public class Result
     {
-        public string type;
         public string text;
         public string effect;
         public EffectStatus effectType;
