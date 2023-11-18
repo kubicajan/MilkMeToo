@@ -22,6 +22,7 @@ namespace PopUps
         [SerializeField] private AudioClip splash;
 
         private TextMeshProUGUI questionText;
+        private Result basedResult;
         private string description;
         private string question;
         private string result;
@@ -54,7 +55,7 @@ namespace PopUps
             Scenario scenario = JsonParser.instance.GetRandomScenario();
             int random = Random.Range(0, scenario.Descriptions.Length);
             string randomDescription = scenario.Descriptions.ToArray()[random];
-            Result basedResult = JsonParser.instance.GetResultBasedOnScenario(scenario);
+            basedResult = JsonParser.instance.GetResultBasedOnScenario(scenario);
 
             //set popup fields
             descriptionText.text = randomDescription;
@@ -63,7 +64,6 @@ namespace PopUps
             //set summary/accept fields
             summaryDescription.text = basedResult.text;
             summaryEffectInfo.text = basedResult.effect;
-            DoThing(basedResult);
         }
 
         private void DoThing(Result basedResult)
@@ -71,48 +71,49 @@ namespace PopUps
             switch (basedResult.effectType)
             {
                 case EffectStatus.MONEY:
-                    HandleMoneyCase(basedResult);
+                    HandleMoneyCase(basedResult.effect);
                     break;
                 case EffectStatus.HELPER:
-                    HandleHelperCase(basedResult);
+                    HandleHelperCase(basedResult.effect);
                     break;
                 case EffectStatus.PRODUCTION:
-                    HandleProductionCase(basedResult);
+                    HandleProductionCase(basedResult.effect);
                     break;
                 default:
                     break;
             }
         }
 
-        private void HandleProductionCase(Result basedResult)
+        private void HandleProductionCase(string gEffect)
         {
             const string PATTERN = @"^([-+]?\d+)";
-            Match match = Helpers.ParseRegex(basedResult.effect, PATTERN);
+            Match match = Helpers.ParseRegex(gEffect, PATTERN);
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(int.Parse(match.Groups[1].Value));
         }
 
-        private void HandleMoneyCase(Result basedResult)
+        private void HandleMoneyCase(string gEffect)
         {
             const string PATTERN = @"^([-+]?\d+)";
-            Match match = Helpers.ParseRegex(basedResult.effect, PATTERN);
+            Match match = Helpers.ParseRegex(gEffect, PATTERN);
             MoneyManagerSingleton.instance.AddRewardMoney(float.Parse(match.Groups[1].Value));
         }
 
-        private void HandleHelperCase(Result basedResult)
+        private void HandleHelperCase(string gEffect)
         {
             const string PATTERN = @"^([-+]?\d+)\s(\w+)$";
-            Match match = Helpers.ParseRegex(basedResult.effect, PATTERN);
+            Match match = Helpers.ParseRegex(gEffect, PATTERN);
             string objectName = match.Groups[2].Value;
             ActiveKokTreeObject activeKokTreeObject = Helpers.GetActiveKokTreeObject(objectName);
             activeKokTreeObject.AddBoughtObject(int.Parse(match.Groups[1].Value));
         }
-        
+
 
         public void AcceptEvent()
         {
             SongManager.instance.PlayClick();
             gameObject.SetActive(false);
             summaryHolder.SetActive(true);
+            DoThing(basedResult);
         }
 
         public override void SetInactive()

@@ -15,12 +15,14 @@ namespace Managers
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip woosh;
 
-        private void Start()
+        private void Awake()
         {
             InformationPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
+            InitialPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             EventPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             InformationPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
+            InitialPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
             KokTreePopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
             EventPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
             panelPosition = transform.position;
