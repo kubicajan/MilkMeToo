@@ -1,7 +1,5 @@
-using System;
-using TMPro;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace PopUps
 {
@@ -10,8 +8,15 @@ namespace PopUps
         protected override void Awake()
         {
             base.Awake();
+            gameObject.SetActive(true);
+            StartCoroutine(Workaround());
+        }
+
+        private IEnumerator Workaround()
+        {
+            yield return new WaitForSeconds(0.1f);
             gameObject.transform.position = new Vector2(0, 0);
-             SetActive();
+            SetActive();
         }
     }
 }
