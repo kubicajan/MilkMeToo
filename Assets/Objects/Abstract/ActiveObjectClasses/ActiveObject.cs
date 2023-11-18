@@ -1,3 +1,4 @@
+using System.Collections;
 using Managers;
 using PopUps;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Objects.Abstract.ActiveObjectClasses
     {
         [SerializeField] public Sprite shopButtonSprite;
         [SerializeField] public ParticleSystem system;
+        [SerializeField] private AudioClip animalNoise;
+        [SerializeField] private AudioSource animalNoiseAudioSource;
 
         private float timer = 0f;
         private double allTimeMilked = 0;
@@ -24,8 +27,6 @@ namespace Objects.Abstract.ActiveObjectClasses
             milkExplosion = Instantiate(system, primalSpriteButton.transform);
             milkExplosion.transform.position = primalSpriteButton.transform.position;
             effectInfo = "SHOP UPGRADE";
-            milkExplosion.Play();
-
             ShopButtonStart();
         }
 
@@ -64,7 +65,6 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         public override void Clicked()
         {
-            SongManager.instance.PlayClick();
             clickedInfo = true;
             InformationPopUp.instance.ShowPopUp(objectName, description, "Amount milked:\n" + allTimeMilked,
                 primalSpriteButton.image.sprite, $"{objectCounter}x");
@@ -76,13 +76,27 @@ namespace Objects.Abstract.ActiveObjectClasses
             {
                 if (IsItTime())
                 {
-                    float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
-                    AddToAllTimeMilked(finalPoints);
-                    MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
-                    timer = 0f;
-                    milkExplosion.Play();
+                    // float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
+                    // AddToAllTimeMilked(finalPoints);
+                    // MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
+                    // timer = 0f;
                 }
             }
+        }
+
+        public virtual void PlayMilked(int? number)
+        {
+            StartCoroutine(PlayMilkedCoroutine(milkExplosion, spriteCanvasPosition));
+        }
+
+        protected IEnumerator PlayMilkedCoroutine(ParticleSystem pSystem, Vector2 showMilkPosition)
+        {
+            yield return new WaitForSeconds(0.25f);
+            float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
+            AddToAllTimeMilked(finalPoints);
+            MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, showMilkPosition);
+            pSystem.Play();
+            animalNoiseAudioSource.PlayOneShot(animalNoise);
         }
 
         protected void AddToAllTimeMilked(float points)

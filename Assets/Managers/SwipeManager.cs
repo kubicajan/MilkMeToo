@@ -12,6 +12,8 @@ namespace Managers
         private Vector3 panelPosition;
         public float percentThreshold = 20f;
         public float easing = 0.25f;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip woosh;
 
         private void Start()
         {
@@ -92,6 +94,7 @@ namespace Managers
 
         IEnumerator SmoothMove(Vector3 startpos, Vector3 endpos, float seconds)
         {
+            audioSource.PlayOneShot(woosh);
             float t = 0f;
             while (t <= 1.0)
             {

@@ -36,7 +36,7 @@ namespace Utilities
 
             textObject.transform.SetParent(GameObject.Find("CowPanel").transform, false);
             RectTransform textRectTransform = textObject.GetComponent<RectTransform>();
-            textRectTransform.anchoredPosition = new Vector2(spriteCanvasPosition.x + 300, spriteCanvasPosition.y);
+            textRectTransform.anchoredPosition = new Vector2(spriteCanvasPosition.x +20, spriteCanvasPosition.y);
 
             textMeshPro.fontSize = 50;
             textMeshPro.text = "+" + points;

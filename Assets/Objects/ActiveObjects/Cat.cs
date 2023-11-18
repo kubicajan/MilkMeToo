@@ -1,4 +1,3 @@
-
 using Objects.Abstract.ActiveObjectClasses;
 
 namespace Objects.ActiveObjects

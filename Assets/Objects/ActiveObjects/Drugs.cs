@@ -9,6 +9,8 @@ namespace Objects.ActiveObjects
     public class Drugs : ActiveKokTreeObject
     {
         [SerializeField] public Slider slider;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip jingle;
 
         private int bonus = 100;
         private bool bonusIsOn;
@@ -28,6 +30,7 @@ namespace Objects.ActiveObjects
 
         protected override void Start()
         {
+            audioSource.clip = jingle;
             base.Start();
             milkExplosion.Play();
             slider.maxValue = MAX_SLIDER_VALUE;
@@ -58,6 +61,7 @@ namespace Objects.ActiveObjects
 
         IEnumerator StartBonusProduction()
         {
+            audioSource.Play();
             bonusIsOn = true;
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(bonus);
 
@@ -72,6 +76,7 @@ namespace Objects.ActiveObjects
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(-bonus);
             ObjectCount = 0;
             bonusIsOn = false;
+            audioSource.Stop();
         }
     }
 }

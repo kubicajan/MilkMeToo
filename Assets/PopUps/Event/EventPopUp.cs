@@ -8,6 +8,7 @@ using Objects.Abstract.ActiveObjectClasses;
 using PopUps.Event;
 using TMPro;
 using UnityEngine;
+using Utilities;
 using Random = UnityEngine.Random;
 
 namespace PopUps
@@ -17,6 +18,8 @@ namespace PopUps
         [SerializeField] private GameObject summaryHolder;
         private TextMeshProUGUI summaryDescription;
         private TextMeshProUGUI summaryEffectInfo;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip splash;
 
         private TextMeshProUGUI questionText;
         private string description;
@@ -41,6 +44,7 @@ namespace PopUps
 
         public void ShowPopUp()
         {
+            audioSource.PlayOneShot(splash);
             ConfigureNewValues();
             SetActive();
         }
@@ -83,34 +87,26 @@ namespace PopUps
         private void HandleProductionCase(Result basedResult)
         {
             const string PATTERN = @"^([-+]?\d+)";
-            Match match = ParseRegex(basedResult.effect, PATTERN);
+            Match match = Helpers.ParseRegex(basedResult.effect, PATTERN);
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(int.Parse(match.Groups[1].Value));
         }
 
         private void HandleMoneyCase(Result basedResult)
         {
             const string PATTERN = @"^([-+]?\d+)";
-            Match match = ParseRegex(basedResult.effect, PATTERN);
+            Match match = Helpers.ParseRegex(basedResult.effect, PATTERN);
             MoneyManagerSingleton.instance.AddRewardMoney(float.Parse(match.Groups[1].Value));
         }
 
         private void HandleHelperCase(Result basedResult)
         {
             const string PATTERN = @"^([-+]?\d+)\s(\w+)$";
-            Match match = ParseRegex(basedResult.effect, PATTERN);
+            Match match = Helpers.ParseRegex(basedResult.effect, PATTERN);
             string objectName = match.Groups[2].Value;
-            string objectNameWithCapitalLetter = char.ToUpper(objectName[0]) + objectName.Substring(1);
-            Type type = Type.GetType("Objects.ActiveObjects." + objectNameWithCapitalLetter);
-            ActiveKokTreeObject activeKokTreeObject =
-                (ActiveKokTreeObject)GameObject.Find(objectNameWithCapitalLetter).GetComponent(type);
+            ActiveKokTreeObject activeKokTreeObject = Helpers.GetActiveKokTreeObject(objectName);
             activeKokTreeObject.AddBoughtObject(int.Parse(match.Groups[1].Value));
         }
-
-        private Match ParseRegex(string input, string pattern)
-        {
-            Regex regex = new Regex(pattern);
-            return regex.Match(input);
-        }
+        
 
         public void AcceptEvent()
         {
