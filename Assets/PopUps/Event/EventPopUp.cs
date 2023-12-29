@@ -113,7 +113,7 @@ namespace PopUps
             SongManager.instance.PlayClick();
             gameObject.SetActive(false);
             summaryHolder.SetActive(true);
-            DoThing(basedResult);
+        //    DoThing(basedResult);
         }
 
         public override void SetInactive()
@@ -121,6 +121,12 @@ namespace PopUps
             SongManager.instance.PlayClick();
             base.SetInactive();
             summaryHolder.SetActive(false);
+        }
+        
+        public override void SetInactiveByClick()
+        {
+            DoThing(basedResult);
+            base.SetInactiveByClick();
         }
     }
 }
