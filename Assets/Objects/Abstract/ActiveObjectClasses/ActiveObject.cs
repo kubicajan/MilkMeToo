@@ -86,10 +86,16 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         public virtual void PlayMilked(int? number)
         {
-            StartCoroutine(PlayMilkedCoroutine(milkExplosion, spriteCanvasPosition));
+            PlayMilkedNew(primalSpriteButton.gameObject.transform);
         }
 
-        protected IEnumerator PlayMilkedCoroutine(ParticleSystem pSystem, Vector2 showMilkPosition)
+        protected void PlayMilkedNew(Transform transformMe)
+        {
+            ParticleSystem milkExplosion2 = Instantiate(system, transformMe);
+            StartCoroutine(PlayMilkedCoroutine(milkExplosion2,  Helpers.GetObjectPositionRelativeToCanvas(transformMe.position)));
+        }
+
+        private IEnumerator PlayMilkedCoroutine(ParticleSystem pSystem, Vector2 showMilkPosition)
         {
             yield return new WaitForSeconds(0.25f);
             float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
@@ -97,7 +103,15 @@ namespace Objects.Abstract.ActiveObjectClasses
             MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, showMilkPosition);
             pSystem.Play();
             animalNoiseAudioSource.PlayOneShot(animalNoise);
+            // StartCoroutine(PlayNoiseDelayed());
+            Destroy(pSystem);
         }
+
+        // protected IEnumerator PlayNoiseDelayed()
+        // {
+        //     yield return new WaitForSeconds(0.5f);
+        //     animalNoiseAudioSource.PlayOneShot(animalNoise);
+        // }
 
         protected void AddToAllTimeMilked(float points)
         {

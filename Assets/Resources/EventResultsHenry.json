@@ -1,0 +1,114 @@
+{
+  "Objects": [
+    {
+      "Name": "NEUTRAL",
+      "Results": [
+        {
+          "text": "It was just a wind",
+          "effect": "Nothing happened",
+          "effectType": 0
+        },
+        {
+          "text": "You think of the muscular body of Henry Cavill",
+          "effect": "You got distracted.",
+          "effectType": 0
+        },
+        {
+          "text": "It was just in your head.",
+          "effect": "Nothing happened",
+          "effectType": 0
+        },
+        {
+          "text": "Gods are playing tricks on you.",
+          "effect": "Nothing happened",
+          "effectType": 0
+        },
+        {
+          "text": "The time continuum shattered, erasing your memories.",
+          "effect": "Nothing happened",
+          "effectType": 0
+        }
+      ]
+    },
+    {
+      "Name": "People",
+      "Results": [
+        {
+          "text": "Henry Cavill came to say hi ",
+          "effect": "+20% production",
+          "effectType": 2
+        },
+        {
+          "text": "Henry Cavill came to say hi ",
+          "effect": "+20% production",
+          "effectType": 2
+        }
+      ]
+    },
+    {
+      "Name": "Thoughts",
+      "Results": [
+        {
+          "text": "It was drugs.",
+          "effect": "+1 drugs",
+          "effectType": 1
+        },
+        {
+          "text": "It was catboys",
+          "effect": "-5% production",
+          "effectType": 2
+        }
+      ]
+    },
+    {
+      "Name": "Fifty",
+      "Results": [
+        {
+          "text": "YES! YOU WON A GAZILLION",
+          "effect": "+1000000$",
+          "effectType": 3
+        },
+        {
+          "text": "NO! YOU LOST A GAZILLION",
+          "effect": "-1000000$",
+          "effectType": 3
+        }
+      ]
+    },
+    {
+      "Name": "Investments",
+      "Results": [
+        {
+          "text": "It is paying off!",
+          "effect": "+15000$",
+          "effectType": 3
+        },
+        {
+          "text": "How is this possible",
+          "effect": "-15000$",
+          "effectType": 3
+        }
+      ]
+    },
+    {
+      "Name": "Things",
+      "Results": [
+        {
+          "text": "Henry Cavill's naked calendar is inside! The cows love it.",
+          "effect": "+20% production",
+          "effectType": 2
+        },
+        {
+          "text": "Newspapers that say that Henry Cavill's new show got cancelled. It hits your cows like a truck.",
+          "effect": "-40% production",
+          "effectType": 2
+        },
+        {
+          "text": "Full collection of Henry Cavill's movies. This Should keep the cows entertained.",
+          "effect": "+20% production",
+          "effectType": 2
+        }
+      ]
+    }
+  ]
+}

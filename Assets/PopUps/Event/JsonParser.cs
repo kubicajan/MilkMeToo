@@ -9,17 +9,12 @@ namespace PopUps
     {
         public static JsonParser instance;
 
-        private List<Scenario> scenarios;
-        private ResultsHolder results;
+        private static List<Scenario> scenarios;
+        private static ResultsHolder results;
 
         private void Awake()
         {
-            TextAsset resultFile = Resources.Load<TextAsset>("EventResults");
-            TextAsset scenarioFile = Resources.Load<TextAsset>("EventScenarios");
-            results = JsonUtility.FromJson<ResultsHolder>(resultFile.text);
-            ScenarioHolder scenarioHolder = JsonUtility.FromJson<ScenarioHolder>(scenarioFile.text);
-            scenarios = scenarioHolder.Objects;
-
+            ConfigureLevelOne();
             if (instance != null && instance != this)
             {
                 Destroy(this.gameObject);
@@ -28,6 +23,26 @@ namespace PopUps
             {
                 instance = this;
             }
+        }
+
+        private void ConfigureLevelOne()
+        {
+            ConfigureLevel("EventResults", "EventScenarios");
+        }
+
+        private static void ConfigureLevel(string resultsName, string scenarioName)
+        {
+            Debug.Log($"CONFIGURED + {resultsName}");
+            TextAsset resultFile = Resources.Load<TextAsset>(resultsName);
+            TextAsset scenarioFile = Resources.Load<TextAsset>(scenarioName);
+            results = JsonUtility.FromJson<ResultsHolder>(resultFile.text);
+            ScenarioHolder scenarioHolder = JsonUtility.FromJson<ScenarioHolder>(scenarioFile.text);
+            scenarios = scenarioHolder.Objects;
+        }
+
+        public static void ConfigureLevelTwo()
+        {
+            ConfigureLevel("EventResultsHenry", "EventScenariosHenry");
         }
 
         public Scenario GetRandomScenario()

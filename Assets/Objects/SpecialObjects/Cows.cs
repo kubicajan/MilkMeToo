@@ -68,6 +68,8 @@ namespace Objects.SpecialObjects
             float money = (productionPower * ObjectCount);
             MoneyManagerSingleton.instance.AddMoney(money);
             AddToAllTimeMilked(money);
+
+            // PlayMilkedCoroutine(money ,this.transform.position);
         }
 
         protected override void ProduceMilk()

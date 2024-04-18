@@ -12,6 +12,21 @@
           "text": "Oh look, a butterfly!",
           "effect": "You got distracted.",
           "effectType": 0
+        },
+        {
+          "text": "It was just in your head.",
+          "effect": "Nothing happened",
+          "effectType": 0
+        },
+        {
+          "text": "Gods are playing tricks on you.",
+          "effect": "Nothing happened",
+          "effectType": 0
+        },
+        {
+          "text": "The time continuum shattered, erasing your memories.",
+          "effect": "Nothing happened",
+          "effectType": 0
         }
       ]
     },
@@ -24,8 +39,23 @@
           "effectType": 1
         },
         {
+          "text": "The neighbour came over and stole one of your cats",
+          "effect": "-1 cat",
+          "effectType": 1
+        },
+        {
+          "text": "A CAPYBARA?",
+          "effect": "+1 capy",
+          "effectType": 1
+        },
+        {
+          "text": "Your mother's math teacher came to take a look at you. Why is her eye twitching?",
+          "effect": "-1% production",
+          "effectType": 2
+        },
+        {
           "text": "Your mother in law came to visit",
-          "effect": "-10% production",
+          "effect": "-1% production",
           "effectType": 2
         },
         {
@@ -35,12 +65,12 @@
         },
         {
           "text": "Your step mother's husband came to say hi, asking questions.",
-          "effect": "-5% production",
+          "effect": "-2% production",
           "effectType": 2
         },
         {
           "text": "Your step mother came to say hi. Her husband is never home.",
-          "effect": "+5% production",
+          "effect": "+2% production",
           "effectType": 2
         }
       ]
@@ -54,9 +84,29 @@
           "effectType": 1
         },
         {
+          "text": "Gas leak",
+          "effect": "-1% production",
+          "effectType": 2
+        },
+        {
+          "text": "It is your cousin",
+          "effect": "+1% production",
+          "effectType": 2
+        },
+        {
+          "text": "BEEEEEEEEEEEESSSSSSSSSSS",
+          "effect": "-1% production",
+          "effectType": 2
+        },
+        {
           "text": "You forgor",
-          "effect": "-500$",
-          "effectType": 3
+          "effect": "+0% production",
+          "effectType": 2
+        },
+        {
+          "text": "It is a good warm dinner",
+          "effect": "+2% production",
+          "effectType": 2
         }
       ]
     },
@@ -70,7 +120,7 @@
         },
         {
           "text": "NO :( you have to pay a fee for being a silly goose.",
-          "effect": "-15000$",
+          "effect": "-3000$",
           "effectType": 3
         }
       ]
@@ -79,13 +129,13 @@
       "Name": "Investments",
       "Results": [
         {
-          "text": "It was a scam and they stole your pants. You weep but your wallet weeps more.",
-          "effect": "-5000$",
+          "text": "Your kid's college savings are no more.",
+          "effect": "-3000$",
           "effectType": 3
         },
         {
           "text": "It worked out! Somehow..",
-          "effect": "+500$",
+          "effect": "+5000$",
           "effectType": 3
         }
       ]
@@ -110,6 +160,36 @@
         },
         {
           "text": "UHHHH",
+          "effect": "-500$",
+          "effectType": 3
+        },
+        {
+          "text": "A KITTEN",
+          "effect": "+1 cat",
+          "effectType": 1
+        },
+        {
+          "text": "That does not smell good.",
+          "effect": "-1% production",
+          "effectType": 2
+        },
+        {
+          "text": "Is that your foreskin?",
+          "effect": "-1% production",
+          "effectType": 2
+        },
+        {
+          "text": "Your forgotten luggage!",
+          "effect": "+500$",
+          "effectType": 3
+        },
+        {
+          "text": "A christmas present!",
+          "effect": "+500$",
+          "effectType": 3
+        },
+        {
+          "text": "Your grandma's ashes",
           "effect": "-500$",
           "effectType": 3
         }

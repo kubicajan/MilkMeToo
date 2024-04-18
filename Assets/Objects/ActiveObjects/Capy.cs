@@ -11,10 +11,6 @@ namespace Objects.ActiveObjects
         [SerializeField] private Button yetAnotherCapy;
         [SerializeField] private Button yetAnotherAnotherCapy;
 
-        private ParticleSystem milkExplosion2;
-        private ParticleSystem milkExplosion3;
-        private ParticleSystem milkExplosion4;
-
         public Capy()
         {
             objectName = "Just a little boy";
@@ -32,15 +28,6 @@ namespace Objects.ActiveObjects
         protected override void Start()
         {
             base.Start();
-            milkExplosion2 = Instantiate(system, anotherCapy.transform);
-            milkExplosion2.transform.position = anotherCapy.transform.position;
-
-            milkExplosion3 = Instantiate(system, yetAnotherCapy.transform);
-            milkExplosion3.transform.position = yetAnotherCapy.transform.position;
-
-            milkExplosion4 = Instantiate(system, yetAnotherAnotherCapy.transform);
-            milkExplosion4.transform.position = yetAnotherAnotherCapy.transform.position;
-
             anotherCapy.gameObject.SetActive(false);
             yetAnotherCapy.gameObject.SetActive(false);
             yetAnotherAnotherCapy.gameObject.SetActive(false);
@@ -62,22 +49,19 @@ namespace Objects.ActiveObjects
                 switch (number)
                 {
                     case 1:
-                        StartCoroutine(PlayMilkedCoroutine(milkExplosion2,
-                            Helpers.GetObjectPositionRelativeToCanvas(anotherCapy.transform.position)));
+                        PlayMilkedNew(anotherCapy.transform);
                         break;
                     case 2:
-                        StartCoroutine(PlayMilkedCoroutine(milkExplosion3,
-                            Helpers.GetObjectPositionRelativeToCanvas(yetAnotherCapy.transform.position)));
+                        PlayMilkedNew(yetAnotherCapy.transform);
                         break;
                     case 3:
-                        StartCoroutine(PlayMilkedCoroutine(milkExplosion4,
-                            Helpers.GetObjectPositionRelativeToCanvas(yetAnotherAnotherCapy.transform.position)));
+                        PlayMilkedNew(yetAnotherAnotherCapy.transform);
                         break;
                 }
             }
             else
             {
-                base.PlayMilked(null);
+                 PlayMilkedNew(primalSpriteButton.gameObject.transform);
             }
         }
     }

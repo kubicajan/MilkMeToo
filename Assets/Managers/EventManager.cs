@@ -134,6 +134,7 @@ namespace Managers
 
         private void SetUpSecondLevel()
         {
+            JsonParser.ConfigureLevelTwo();
             eventButton.image.sprite = levelTwoSprite;
             TurnOnLevelOneParticles(false);
             TurnOnLevelTwoParticles(true);

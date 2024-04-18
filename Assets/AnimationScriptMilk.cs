@@ -8,8 +8,7 @@ public class AnimationScriptMilk : StateMachineBehaviour
     private ActiveKokTreeObject activeKokTreeObject;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        string pattern = @"^(\w+)(?:\s(\d+))?$";;
-        Debug.Log(animator.gameObject.name);
+        string pattern = @"^(\w+)(?:\s(\d+))?$";
         Match decoded = Helpers.ParseRegex(animator.gameObject.name, pattern);
         string className = decoded.Groups[1].Value;
         int? number = int.TryParse(decoded.Groups[2].Value, out int result) ? result : null;
