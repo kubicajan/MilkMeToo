@@ -22,7 +22,6 @@ namespace Utilities
 
         public void HandleMilkMoneyShow(float points, Vector2 spriteCanvasPosition)
         {
-            Debug.Log(TransformVectorByABitUp(spriteCanvasPosition));
             ShowMilkedMoney(points, TransformVectorByABitUp(spriteCanvasPosition), out TextMeshProUGUI textMeshPro,
                 out GameObject textObject);
             StartCoroutine(MoveTextSlowlyUpCoroutine(textMeshPro));
@@ -41,7 +40,7 @@ namespace Utilities
             textObject = new GameObject("MyText");
             textMeshPro = textObject.AddComponent<TextMeshProUGUI>();
 
-            textObject.transform.SetParent(GameObject.Find("CowPanel").transform, false);
+            textObject.transform.SetParent(GameObject.Find("tmpTextHolder").transform, false);
             RectTransform textRectTransform = textObject.GetComponent<RectTransform>();
             textRectTransform.anchoredPosition = new Vector2(spriteCanvasPosition.x + 20, spriteCanvasPosition.y);
 
