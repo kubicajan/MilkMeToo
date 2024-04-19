@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace Utilities
     public class MilkMoneySingleton : MonoBehaviour
     {
         public static MilkMoneySingleton instance;
+        private GameObject tmpTextHolder;
 
         private void Awake()
         {
@@ -20,51 +22,52 @@ namespace Utilities
             }
         }
 
+        private void Start()
+        {
+            tmpTextHolder = GameObject.Find("tmpTextHolder");
+        }
+
         public void HandleMilkMoneyShow(float points, Vector2 spriteCanvasPosition)
         {
-            ShowMilkedMoney(points, TransformVectorByABitUp(spriteCanvasPosition), out TextMeshProUGUI textMeshPro,
-                out GameObject textObject);
-            StartCoroutine(MoveTextSlowlyUpCoroutine(textMeshPro));
-            textMeshPro.CrossFadeAlpha(0.0f, 1.25f, true);
-            Destroy(textObject, 1.25f);
+            ShowMilkedMoney(points, TransformVectorByABitUp(spriteCanvasPosition));
         }
 
         private Vector2 TransformVectorByABitUp(Vector2 position)
         {
-            return position - new Vector2(0f, -120f);
+            return position - new Vector2(100f, -120f);
         }
 
-        private void ShowMilkedMoney(float points, Vector2 spriteCanvasPosition, out TextMeshProUGUI textMeshPro,
-            out GameObject textObject)
+        private void ShowMilkedMoney(float points, Vector2 spriteCanvasPosition)
         {
-            textObject = new GameObject("MyText");
-            textMeshPro = textObject.AddComponent<TextMeshProUGUI>();
-
-            textObject.transform.SetParent(GameObject.Find("tmpTextHolder").transform, false);
-            RectTransform textRectTransform = textObject.GetComponent<RectTransform>();
-            textRectTransform.anchoredPosition = new Vector2(spriteCanvasPosition.x + 20, spriteCanvasPosition.y);
-
+            GameObject textObjectWrapper = Instantiate(tmpTextHolder, spriteCanvasPosition, Quaternion.identity);
+            TextMeshProUGUI textMeshPro = textObjectWrapper.GetComponentInChildren<TextMeshProUGUI>();
+            textObjectWrapper.transform.SetParent(GameObject.Find("EvenGreaterHolder").transform, false);
             textMeshPro.fontSize = 50;
             textMeshPro.text = "+" + points;
+            textMeshPro.CrossFadeAlpha(0.0f, 0.8f, true);
+            textMeshPro.raycastTarget = false;
+            Destroy(textObjectWrapper,0.8f );
         }
 
-        private IEnumerator MoveTextSlowlyUpCoroutine(TextMeshProUGUI textMeshPro)
-        {
-            float moveDuration = 1.0f;
-            float moveDistance = 50.0f;
+        //this works but is not necessary
 
-            Vector2 initialPosition = textMeshPro.rectTransform.anchoredPosition;
-
-            float elapsedTime = 0f;
-            while (elapsedTime < moveDuration)
-            {
-                float progress = elapsedTime / moveDuration;
-                Vector2 targetPosition = initialPosition + Vector2.up * moveDistance * progress;
-                textMeshPro.rectTransform.anchoredPosition = targetPosition;
-
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-        }
+        // private IEnumerator MoveTextSlowlyUpCoroutine(TextMeshProUGUI textMeshPro)
+        // {
+        //     float moveDuration = 1.0f;
+        //     float moveDistance = 50.0f;
+        //
+        //     Vector2 initialPosition = textMeshPro.rectTransform.anchoredPosition;
+        //
+        //     float elapsedTime = 0f;
+        //     while (elapsedTime < moveDuration)
+        //     {
+        //         float progress = elapsedTime / moveDuration;
+        //         Vector2 targetPosition = initialPosition + Vector2.up * moveDistance * progress;
+        //         textMeshPro.rectTransform.anchoredPosition = targetPosition;
+        //
+        //         elapsedTime += Time.deltaTime;
+        //         yield return null;
+        //     }
+        // }
     }
 }
