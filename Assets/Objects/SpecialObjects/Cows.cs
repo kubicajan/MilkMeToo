@@ -71,7 +71,15 @@ namespace Objects.SpecialObjects
 
         private Vector2 MoveItABit(Vector2 position)
         {
-            return position - new Vector2(-50f, +240f);
+            float randomY = Random.Range(5f, 25f);
+            float randomX = Random.Range(10f, 100f);
+            float makeNegativeOrNotY = Random.Range(0f, 1f) < 0.5 ? -1 : 1;
+            float makeNegativeOrNotX = Random.Range(0f, 1f) < 0.5 ? -1 : 1;
+
+            float moveY = randomY * makeNegativeOrNotY;
+            float  moveX = randomX * makeNegativeOrNotX;
+
+            return position - new Vector2(-70f + (moveX), +240f + (moveY));
         }
 
         protected override void ProduceMilk()
