@@ -1,16 +1,15 @@
-using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 namespace Objects.SpecialObjects
 {
     public class Cows : ActiveKokTreeObject
     {
-        [SerializeField] private AudioSource audioSource;
-        [SerializeField] private AudioClip click;
         [SerializeField] private Button anotherCow;
         [SerializeField] private Button anotherAnotherCow;
+        private Transform vemenButtonTransform;
 
         protected override void ActivateThings(int value)
         {
@@ -40,7 +39,7 @@ namespace Objects.SpecialObjects
         protected override void Start()
         {
             base.Start();
-            audioSource.clip = click;
+            vemenButtonTransform = GameObject.Find("vemenButton").transform;
             anotherCow.gameObject.SetActive(false);
             anotherAnotherCow.gameObject.SetActive(false);
         }
@@ -64,12 +63,15 @@ namespace Objects.SpecialObjects
 
         public void MilkMe()
         {
-            audioSource.PlayOneShot(click);
-            float money = (productionPower * ObjectCount);
-            MoneyManagerSingleton.instance.AddMoney(money);
-            AddToAllTimeMilked(money);
+            float money = productionPower * ObjectCount;
 
-            // PlayMilkedCoroutine(money ,this.transform.position);
+            StartCoroutine(PlayMilkedCoroutine(vemenButtonTransform,
+                MoveItABit(Helpers.GetObjectPositionRelativeToCanvas(vemenButtonTransform.position)), money));
+        }
+
+        private Vector2 MoveItABit(Vector2 position)
+        {
+            return position - new Vector2(-50f, +240f);
         }
 
         protected override void ProduceMilk()

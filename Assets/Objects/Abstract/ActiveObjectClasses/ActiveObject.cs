@@ -19,13 +19,11 @@ namespace Objects.Abstract.ActiveObjectClasses
         protected float interval = 1f;
         protected float productionPower = 0;
         protected string description = "";
-        protected ParticleSystem milkExplosion;
 
         protected override void Start()
         {
             base.Start();
-            milkExplosion = Instantiate(system, primalSpriteButton.transform);
-            milkExplosion.transform.position = primalSpriteButton.transform.position;
+
             effectInfo = "SHOP UPGRADE";
             ShopButtonStart();
         }
@@ -86,34 +84,33 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         public virtual void PlayMilked(int? number)
         {
-            PlayMilkedNew(primalSpriteButton.gameObject.transform);
+            ConfigureAndPlayMilked(primalSpriteButton.gameObject.transform);
         }
 
-        protected void PlayMilkedNew(Transform transformMe)
+        protected void ConfigureAndPlayMilked(Transform transformMe)
         {
-            ParticleSystem milkExplosion2 = Instantiate(system, transformMe);
-            StartCoroutine(PlayMilkedCoroutine(milkExplosion2,  Helpers.GetObjectPositionRelativeToCanvas(transformMe.position)));
+            float moneyMoney = objectCounter * productionPower;
+            StartCoroutine(PlayMilkedCoroutine(transformMe,
+                Helpers.GetObjectPositionRelativeToCanvas(transformMe.position), moneyMoney));
         }
 
-        private IEnumerator PlayMilkedCoroutine(ParticleSystem pSystem, Vector2 showMilkPosition)
+        protected IEnumerator PlayMilkedCoroutine(Transform transformMe, Vector2 showMilkPosition, float moneyMoney)
         {
             yield return new WaitForSeconds(0.25f);
-            float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
+            animalNoiseAudioSource.PlayOneShot(animalNoise);
+            float finalPoints = MoneyManagerSingleton.instance.AddMoney(moneyMoney);
             AddToAllTimeMilked(finalPoints);
             MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, showMilkPosition);
+            
+            ParticleSystem pSystem = Instantiate(system, transformMe);
+            
+            //this needs to be not converted whereas the other positions need to be converted
+            pSystem.transform.position = transformMe.position;
             pSystem.Play();
-            animalNoiseAudioSource.PlayOneShot(animalNoise);
-            // StartCoroutine(PlayNoiseDelayed());
-            Destroy(pSystem);
+            Destroy(pSystem.gameObject, 1.25f);
         }
 
-        // protected IEnumerator PlayNoiseDelayed()
-        // {
-        //     yield return new WaitForSeconds(0.5f);
-        //     animalNoiseAudioSource.PlayOneShot(animalNoise);
-        // }
-
-        protected void AddToAllTimeMilked(float points)
+        private void AddToAllTimeMilked(float points)
         {
             allTimeMilked += points; //(float.Parse(allTimeMilked) + points).ToString();
         }

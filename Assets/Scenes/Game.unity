@@ -11131,7 +11131,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 0
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18371,7 +18371,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20674,7 +20674,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15477777, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.89645845}
@@ -36172,7 +36172,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -41148,7 +41148,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -41476,7 +41476,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -46973,7 +46973,7 @@ RectTransform:
   - {fileID: 179674894}
   - {fileID: 845465605}
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.039, y: 0.5}
   m_AnchorMax: {x: 0.9675556, y: 0.5}
@@ -59502,7 +59502,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -60492,7 +60492,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 157041294}
   - {fileID: 1970448510}
   - {fileID: 750757671}
   - {fileID: 837153334}
@@ -60509,6 +60508,7 @@ RectTransform:
   - {fileID: 994151573}
   - {fileID: 739636165}
   - {fileID: 356436134}
+  - {fileID: 157041294}
   m_Father: {fileID: 1000396773}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79213,7 +79213,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -85276,7 +85276,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -91601,7 +91601,7 @@ RectTransform:
   - {fileID: 597666146}
   - {fileID: 450570421}
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -92368,7 +92368,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.587, y: 0.34783334}
   m_AnchorMax: {x: 0.9795927, y: 0.5}
@@ -93516,7 +93516,7 @@ RectTransform:
   m_Children:
   - {fileID: 1119901422}
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -94086,7 +94086,7 @@ RectTransform:
   - {fileID: 2052962548}
   - {fileID: 1959839608}
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.039, y: 0.5}
   m_AnchorMax: {x: 0.8557778, y: 0.5}
@@ -94227,7 +94227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.34066674, y: 0.12041667}
   m_AnchorMax: {x: 0.8557778, y: 0.5}
-  m_AnchoredPosition: {x: -156.9, y: -142}
+  m_AnchoredPosition: {x: 277, y: -843.56}
   m_SizeDelta: {x: -346.092, y: 90.158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1977478229
@@ -94857,7 +94857,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -95390,7 +95390,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.056592595, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -95564,7 +95564,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1098616789}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -96329,11 +96329,9 @@ MonoBehaviour:
   primalSpriteButton: {fileID: 1708730789}
   shopButtonSprite: {fileID: 21300000, guid: 50ad111a762b5db44af4215f6054bf4d, type: 3}
   system: {fileID: 670668656}
-  animalNoise: {fileID: 8300000, guid: 90700577c45e7df459445d024e099f4d, type: 3}
-  animalNoiseAudioSource: {fileID: 1914600796}
+  animalNoise: {fileID: 8300000, guid: ff80a0397a1f55e439475ddb5d27c451, type: 3}
+  animalNoiseAudioSource: {fileID: 305120010}
   shopButton: {fileID: 8613819}
-  audioSource: {fileID: 305120010}
-  click: {fileID: 8300000, guid: ff80a0397a1f55e439475ddb5d27c451, type: 3}
   anotherCow: {fileID: 597666147}
   anotherAnotherCow: {fileID: 450570422}
 --- !u!1 &2087262999

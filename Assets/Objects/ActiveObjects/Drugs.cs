@@ -15,6 +15,7 @@ namespace Objects.ActiveObjects
         private int bonus = 100;
         private bool bonusIsOn;
         private int MAX_SLIDER_VALUE = 15;
+        protected ParticleSystem milkExplosion;
 
         public Drugs()
         {
@@ -32,6 +33,8 @@ namespace Objects.ActiveObjects
         {
             audioSource.clip = jingle;
             base.Start();
+            milkExplosion = Instantiate(system, primalSpriteButton.transform);
+            milkExplosion.transform.position = primalSpriteButton.transform.position;
             milkExplosion.Play();
             slider.maxValue = MAX_SLIDER_VALUE;
         }

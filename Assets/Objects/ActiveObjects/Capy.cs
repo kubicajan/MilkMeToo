@@ -49,19 +49,19 @@ namespace Objects.ActiveObjects
                 switch (number)
                 {
                     case 1:
-                        PlayMilkedNew(anotherCapy.transform);
+                        ConfigureAndPlayMilked(anotherCapy.transform);
                         break;
                     case 2:
-                        PlayMilkedNew(yetAnotherCapy.transform);
+                        ConfigureAndPlayMilked(yetAnotherCapy.transform);
                         break;
                     case 3:
-                        PlayMilkedNew(yetAnotherAnotherCapy.transform);
+                        ConfigureAndPlayMilked(yetAnotherAnotherCapy.transform);
                         break;
                 }
             }
             else
             {
-                 PlayMilkedNew(primalSpriteButton.gameObject.transform);
+                 ConfigureAndPlayMilked(primalSpriteButton.gameObject.transform);
             }
         }
     }
