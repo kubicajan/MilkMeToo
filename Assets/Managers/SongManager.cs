@@ -1,15 +1,25 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Managers
 {
     public class SongManager : MonoBehaviour
     {
         [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioSource kokPanelAudioSourceForSong;
+        [SerializeField] private AudioSource cowPanelAudioSourceForSong;
+        [SerializeField] private AudioSource shopPanelAudioSourceForSong;
+        [SerializeField] private AudioSource eventAudioSource;
+        [SerializeField] private AudioClip kokPanelSong;
+        [SerializeField] private AudioClip cowPanelSong;
+        [SerializeField] private AudioClip shopPanelSong;
+        [SerializeField] private AudioClip eventSong;
         [SerializeField] private AudioClip click;
         [SerializeField] private AudioClip purchase;
+        private List<AudioSource> shopAudios = new();
+        private List<AudioSource> cowPanelAudios = new();
+        private List<AudioSource> koktreeAudios = new();
+        private int rememberLastPanel;
 
         public static SongManager instance;
 
@@ -27,39 +37,71 @@ namespace Managers
             }
         }
 
-        private List<AudioSource> shopAudios = new List<AudioSource>();
-        private List<AudioSource> cowPanelAudios = new List<AudioSource>();
-        private List<AudioSource> koktreeAudios = new List<AudioSource>();
-
         private void Start()
         {
             cowPanelAudios.Add(GameObject.Find("audioSourceDrugsAnimation").GetComponent<AudioSource>());
             cowPanelAudios.Add(GameObject.Find("audioSourceCapyAnimation").GetComponent<AudioSource>());
             cowPanelAudios.Add(GameObject.Find("audioSourceCatAnimation").GetComponent<AudioSource>());
+            kokPanelAudioSourceForSong.clip = kokPanelSong;
+            kokPanelAudioSourceForSong.loop = true;
+            cowPanelAudioSourceForSong.clip = cowPanelSong;
+            cowPanelAudioSourceForSong.loop = true;
+            shopPanelAudioSourceForSong.clip = shopPanelSong;
+            shopPanelAudioSourceForSong.loop = true;
+            eventAudioSource.clip = eventSong;
+            eventAudioSource.loop = true;
             UpdateAudioMutes(1);
         }
 
-        public void UpdateAudioMutes(int counter)
+        public void UpdateAudioMutes(int panelNumber)
         {
-            Debug.Log(counter);
-            switch (counter)
+            switch (panelNumber)
             {
                 case 0:
                     MuteShopAudios(true);
                     MuteCowPanel(true);
                     MuteKoktreeAudios(false);
+                    kokPanelAudioSourceForSong.Play();
+                    cowPanelAudioSourceForSong.Pause();
+                    shopPanelAudioSourceForSong.Pause();
+                    eventAudioSource.Pause();
+                    rememberLastPanel = panelNumber;
                     break;
                 case 1:
                     MuteShopAudios(true);
                     MuteCowPanel(false);
                     MuteKoktreeAudios(true);
+                    kokPanelAudioSourceForSong.Pause();
+                    cowPanelAudioSourceForSong.Play();
+                    shopPanelAudioSourceForSong.Pause();
+                    eventAudioSource.Pause();
+                    rememberLastPanel = panelNumber;
                     break;
                 case 2:
                     MuteShopAudios(false);
                     MuteCowPanel(true);
                     MuteKoktreeAudios(true);
+                    kokPanelAudioSourceForSong.Pause();
+                    cowPanelAudioSourceForSong.Pause();
+                    shopPanelAudioSourceForSong.Play();
+                    eventAudioSource.Pause();
+                    rememberLastPanel = panelNumber;
+                    break;
+                case 3:
+                    MuteShopAudios(true);
+                    MuteCowPanel(true);
+                    MuteKoktreeAudios(true);
+                    kokPanelAudioSourceForSong.Pause();
+                    cowPanelAudioSourceForSong.Pause();
+                    shopPanelAudioSourceForSong.Pause();
+                    eventAudioSource.Play();
                     break;
             }
+        }
+
+        public void PlayLastOne()
+        {
+            UpdateAudioMutes(rememberLastPanel);
         }
 
         private void MuteShopAudios(bool yesNo)
@@ -83,17 +125,6 @@ namespace Managers
             {
                 eyoAudioSource.mute = mute;
             }
-        }
-
-        public void PlayMusic()
-        {
-            if (audioSource.isPlaying) return;
-            audioSource.Play();
-        }
-
-        public void StopMusic()
-        {
-            audioSource.Stop();
         }
 
         public void PlayClick()

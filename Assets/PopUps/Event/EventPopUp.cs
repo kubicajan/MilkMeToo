@@ -48,6 +48,7 @@ namespace PopUps
             audioSource.PlayOneShot(splash);
             ConfigureNewValues();
             SetActive();
+            SongManager.instance.UpdateAudioMutes(3);
         }
 
         public void ConfigureNewValues()
@@ -107,7 +108,6 @@ namespace PopUps
             activeKokTreeObject.AddBoughtObject(int.Parse(match.Groups[1].Value));
         }
 
-
         public void AcceptEvent()
         {
             SongManager.instance.PlayClick();
@@ -126,6 +126,7 @@ namespace PopUps
         public override void SetInactiveByClick()
         {
             DoThing(basedResult);
+            SongManager.instance.PlayLastOne();
             base.SetInactiveByClick();
         }
     }
