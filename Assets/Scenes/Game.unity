@@ -61432,7 +61432,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   summaryHolder: {fileID: 1157696173}
   audioSource: {fileID: 1339643956}
+  wompOrWinSource: {fileID: 0}
   splash: {fileID: 8300000, guid: 9a55ed6d053b9e34e98b0c9d7ff24a9a, type: 3}
+  wompSound: {fileID: 8300000, guid: 0ec1dd92d63d936468098de9890717a3, type: 3}
+  winSound: {fileID: 8300000, guid: eca17794d7c0bf440a5cdfb1d07e88fa, type: 3}
 --- !u!1 &1119901421
 GameObject:
   m_ObjectHideFlags: 0

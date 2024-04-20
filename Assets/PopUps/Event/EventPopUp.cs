@@ -19,7 +19,10 @@ namespace PopUps
         private TextMeshProUGUI summaryDescription;
         private TextMeshProUGUI summaryEffectInfo;
         [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioSource wompOrWinSource;
         [SerializeField] private AudioClip splash;
+        [SerializeField] private AudioClip wompSound;
+        [SerializeField] private AudioClip winSound;
 
         private TextMeshProUGUI questionText;
         private Result basedResult;
@@ -111,9 +114,16 @@ namespace PopUps
         public void AcceptEvent()
         {
             SongManager.instance.PlayClick();
+            if (basedResult.effect.StartsWith("+"))
+            {
+                wompOrWinSource.PlayOneShot(winSound);
+            }
+            else if (basedResult.effect.StartsWith(""))
+            {
+                wompOrWinSource.PlayOneShot(wompSound);
+            }
             gameObject.SetActive(false);
             summaryHolder.SetActive(true);
-        //    DoThing(basedResult);
         }
 
         public override void SetInactive()
@@ -122,7 +132,7 @@ namespace PopUps
             base.SetInactive();
             summaryHolder.SetActive(false);
         }
-        
+
         public override void SetInactiveByClick()
         {
             DoThing(basedResult);
