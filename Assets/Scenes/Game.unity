@@ -92835,7 +92835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1757122699}
   m_Layer: 5
-  m_Name: slaveholder
+  m_Name: childLabour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
