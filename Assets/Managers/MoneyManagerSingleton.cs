@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -74,6 +75,18 @@ namespace Managers
         public float GetMoney()
         {
             return money;
+        }
+
+        public void ResetMoney()
+        {
+            money = 0;
+            ChangeDisplayedMoney();
+        }
+        
+        public void ResetMultiplicationAndAddToIt(int value)
+        {
+            multiplication = value;
+            ChangeDisplayStreak();
         }
 
         public float GetTotalMoney()

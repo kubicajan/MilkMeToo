@@ -33,5 +33,15 @@ namespace Objects.PassiveObjects
             yetAnotherJetel.gameObject.SetActive(true);
             yetAnotherAnotherJetel.gameObject.SetActive(true);
         }
+        
+        protected override void ResetHandler()
+        {
+            base.ResetHandler();
+            kokButtonStatus = ButtonStatus.AVAILABLE;
+            anotherJetel.gameObject.SetActive(false);
+            yetAnotherJetel.gameObject.SetActive(false);
+            yetAnotherAnotherJetel.gameObject.SetActive(false);
+            KokTreeButtonStart();
+        }
     }
 }

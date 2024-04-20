@@ -1,3 +1,4 @@
+using System;
 using Managers;
 using PopUps;
 using TMPro;
@@ -34,6 +35,9 @@ namespace Objects.Abstract
 
         protected virtual void Start()
         {
+            Mommy.OnRestart += ResetHandler;
+            InitialPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
+
             primalSpriteButton.gameObject.SetActive(false);
             spriteCanvasPosition =
                 Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position);
@@ -46,12 +50,18 @@ namespace Objects.Abstract
             KokTreeButtonStart();
         }
 
+        protected virtual void ResetHandler()
+        {
+            MakeButtonUnknown();
+            kokButtonUnlockPrice *= Mommy.magicResetValue;
+            primalSpriteButton.gameObject.SetActive(false);
+        }
+
         protected virtual void FixedUpdate()
         {
             bool enoughMoney = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
             UpdateKokTree(enoughMoney);
         }
-
 
         private void UpdateKokTree(bool enoughMoney)
         {
@@ -71,7 +81,7 @@ namespace Objects.Abstract
             clickedInfo = true;
         }
 
-        private void KokTreeButtonStart()
+        protected void KokTreeButtonStart()
         {
             switch (kokButtonStatus)
             {
@@ -88,7 +98,7 @@ namespace Objects.Abstract
                     break;
             }
         }
-        
+
         public void ClickKokButton()
         {
             bool unlock = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
@@ -122,6 +132,7 @@ namespace Objects.Abstract
             kokButton.image.sprite = unknownKokButtonSprite;
             kokButton.enabled = false;
             upgradePriceDisplay.text = "";
+            Destroy(particleSystem);
         }
 
         public void LockButton()
@@ -150,7 +161,7 @@ namespace Objects.Abstract
             upgradePriceDisplay.text = "";
             //   UnlockShopButton();
             UnlockAnotherButton();
-            SwitchToBoughtParticle(); 
+            SwitchToBoughtParticle();
         }
 
         protected void SwitchToAvailableParticle()

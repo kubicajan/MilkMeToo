@@ -8,9 +8,11 @@ namespace Objects.Abstract.ActiveObjectClasses
     public abstract partial class ActiveKokTreeObject
     {
         [SerializeField] public Button shopButton;
+        [SerializeField] private Sprite questionMarkBasicShop;
 
         protected int objectCounter = 0;
         protected string shopDefaultName;
+        private float originalPrice = 0;
 
         protected float shopButtonBuyPrice = 0;
 
@@ -18,6 +20,17 @@ namespace Objects.Abstract.ActiveObjectClasses
         {
             get => objectCounter;
             set => ActivateThings(value);
+        }
+
+        protected override void ResetHandler()
+        {
+            base.ResetHandler();
+            ShopButtonStart();
+            CalculatePrice();
+            shopButton.transform.Find("Image").GetComponent<Image>().sprite = questionMarkBasicShop;
+            ObjectCount = 0;
+            shopButtonBuyPrice = originalPrice;
+            shopButtonBuyPrice *= Mommy.magicResetValue;
         }
 
         protected virtual void ActivateThings(int value)

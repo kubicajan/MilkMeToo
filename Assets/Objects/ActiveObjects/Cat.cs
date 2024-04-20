@@ -18,5 +18,13 @@ namespace Objects.ActiveObjects
             productionPower = 0.5f;
             interval = 0.5f;
         }
+        
+        protected override void ResetHandler()
+        {
+            base.ResetHandler();
+            kokButtonStatus = ButtonStatus.AVAILABLE;
+            KokTreeButtonStart();
+
+        }
     }
 }

@@ -23,6 +23,13 @@ namespace Objects.PassiveObjects
             yetAnotherSlave.gameObject.SetActive(false);
         }
         
+        protected override void ResetHandler()
+        {
+            base.ResetHandler();
+            anotherSlave.gameObject.SetActive(false);
+            yetAnotherSlave.gameObject.SetActive(false);
+        }
+        
         public override void BuyUpgrade()
         {
             base.BuyUpgrade();

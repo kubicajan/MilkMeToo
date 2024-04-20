@@ -48883,6 +48883,7 @@ MonoBehaviour:
   animalNoise: {fileID: 8300000, guid: 90700577c45e7df459445d024e099f4d, type: 3}
   animalNoiseAudioSource: {fileID: 1513722358}
   shopButton: {fileID: 588254793}
+  questionMarkBasicShop: {fileID: 21300000, guid: 6cc2361f05b491d42a9bb1fbc735f55c, type: 3}
 --- !u!1 &875208636
 GameObject:
   m_ObjectHideFlags: 0
@@ -54526,6 +54527,7 @@ MonoBehaviour:
   animalNoise: {fileID: 8300000, guid: ddd68cbc380dd7c44ab9a997061c1c82, type: 3}
   animalNoiseAudioSource: {fileID: 1960399365}
   shopButton: {fileID: 29810112}
+  questionMarkBasicShop: {fileID: 21300000, guid: 6cc2361f05b491d42a9bb1fbc735f55c, type: 3}
   anotherCapy: {fileID: 811135186}
   yetAnotherCapy: {fileID: 179674896}
   yetAnotherAnotherCapy: {fileID: 845465607}
@@ -67476,6 +67478,7 @@ MonoBehaviour:
   animalNoise: {fileID: 8300000, guid: 90700577c45e7df459445d024e099f4d, type: 3}
   animalNoiseAudioSource: {fileID: 306348157}
   shopButton: {fileID: 67073531}
+  questionMarkBasicShop: {fileID: 21300000, guid: 6cc2361f05b491d42a9bb1fbc735f55c, type: 3}
   slider: {fileID: 1119901423}
   audioSource: {fileID: 305163613}
   jingle: {fileID: 8300000, guid: 600b9dc34a58d4447ad7473c2b1748ca, type: 3}
@@ -67700,8 +67703,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1244721380}
-        m_TargetAssemblyTypeName: Objects.Abstract.PassiveKokTreeObject, Assembly-CSharp
-        m_MethodName: ClickKokButton
+        m_TargetAssemblyTypeName: Objects.Mommy, Assembly-CSharp
+        m_MethodName: RestartEverything
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -93210,6 +93213,7 @@ MonoBehaviour:
   animalNoise: {fileID: 8300000, guid: 90700577c45e7df459445d024e099f4d, type: 3}
   animalNoiseAudioSource: {fileID: 1618818089}
   shopButton: {fileID: 691310796}
+  questionMarkBasicShop: {fileID: 21300000, guid: 6cc2361f05b491d42a9bb1fbc735f55c, type: 3}
   animator: {fileID: 2063717396}
 --- !u!1 &1785462441
 GameObject:
@@ -93987,6 +93991,7 @@ MonoBehaviour:
   animalNoise: {fileID: 8300000, guid: 90700577c45e7df459445d024e099f4d, type: 3}
   animalNoiseAudioSource: {fileID: 0}
   shopButton: {fileID: 1459150456}
+  questionMarkBasicShop: {fileID: 21300000, guid: 6cc2361f05b491d42a9bb1fbc735f55c, type: 3}
   anotherGinger: {fileID: 1959839609}
 --- !u!1 &1891392035
 GameObject:
@@ -97653,6 +97658,7 @@ MonoBehaviour:
   animalNoise: {fileID: 8300000, guid: ff80a0397a1f55e439475ddb5d27c451, type: 3}
   animalNoiseAudioSource: {fileID: 305120010}
   shopButton: {fileID: 8613819}
+  questionMarkBasicShop: {fileID: 21300000, guid: 6cc2361f05b491d42a9bb1fbc735f55c, type: 3}
   anotherCow: {fileID: 597666147}
   anotherAnotherCow: {fileID: 450570422}
 --- !u!1 &2087262999
