@@ -10,6 +10,7 @@ namespace Objects
         public static event OnRestartDelegate OnRestart;
         public static int magicResetValue = 100;
         private int timesRestarted = 0;
+        private int unlockCounter = 0;
 
         public Mommy()
         {
@@ -18,9 +19,19 @@ namespace Objects
             kokButtonUnlockPrice = 5;
         }
 
+        public override void LockButton()
+        {
+            unlockCounter++;
+            if (unlockCounter >= 2)
+            {
+                base.LockButton();
+            }
+        }
+
         public override void BuyUpgrade()
         {
             RestartEverything();
+            unlockCounter = 0;
             MoneyManagerSingleton.instance.ResetMoney();
             MoneyManagerSingleton.instance.ResetMultiplicationAndAddToIt(magicResetValue);
         }

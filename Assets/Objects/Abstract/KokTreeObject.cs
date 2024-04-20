@@ -135,7 +135,7 @@ namespace Objects.Abstract
             Destroy(particleSystem);
         }
 
-        public void LockButton()
+        public virtual void LockButton()
         {
             kokButtonStatus = ButtonStatus.LOCKED;
             kokButton.image.sprite = lockedKokButtonSprite;
