@@ -59831,10 +59831,10 @@ RectTransform:
   m_Father: {fileID: 2077840136}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.9, y: 1}
-  m_AnchorMax: {x: 1, y: 1.3234581}
-  m_AnchoredPosition: {x: -1387, y: 491}
-  m_SizeDelta: {x: 811.266, y: 820.55}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.52966654, y: 0.5}
+  m_AnchoredPosition: {x: -976, y: 2488}
+  m_SizeDelta: {x: 887.266, y: 1441.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &950393159
 MonoBehaviour:
@@ -67703,8 +67703,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1244721380}
-        m_TargetAssemblyTypeName: Objects.Mommy, Assembly-CSharp
-        m_MethodName: RestartEverything
+        m_TargetAssemblyTypeName: Objects.Abstract.KokTreeObject, Assembly-CSharp
+        m_MethodName: ClickKokButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -95155,7 +95155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.027, y: 0.09863767}
   m_AnchorMax: {x: 0.5, y: 0.7646357}
-  m_AnchoredPosition: {x: -105.000015, y: 324}
+  m_AnchoredPosition: {x: -105, y: 324}
   m_SizeDelta: {x: -301.62897, y: 24.093002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1959839609
