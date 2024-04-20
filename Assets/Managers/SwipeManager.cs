@@ -14,6 +14,7 @@ namespace Managers
         public float easing = 0.25f;
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip woosh;
+        private int counter = 1;
 
         private void Awake()
         {
@@ -53,15 +54,18 @@ namespace Managers
                 Vector3 newLocation = panelPosition;
                 if (percentage > 0)
                 {
+                    counter--;
                     newLocation += new Vector3(-correctedScreenWidth, 0, 0);
                 }
                 else if (percentage < 0)
                 {
+                    counter++;
                     newLocation += new Vector3(correctedScreenWidth, 0, 0);
                 }
 
                 if (!IsOutOfScreen(newLocation.x))
                 {
+                    SongManager.instance.UpdateAudioMutes(counter);
                     panelPosition = newLocation;
                     StartCoroutine(SmoothMove(transform.position, panelPosition, easing));
                 }
