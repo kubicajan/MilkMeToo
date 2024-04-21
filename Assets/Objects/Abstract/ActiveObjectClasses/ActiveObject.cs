@@ -34,6 +34,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             base.FixedUpdate();
             float money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
+   
             if (InformationPopUp.instance.isActiveAndEnabled && clickedInfo)
             {
                 this.Clicked();
@@ -47,7 +48,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         protected override void FixedUpdate()
         {
             NabijeciSystemTepleVody();
-            ProduceMilk();
+      //      ProduceMilk();
         }
 
         private bool IsItTime()
@@ -107,7 +108,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             
             //this needs to be not converted whereas the other positions need to be converted
             pSystem.transform.position = transformMe.position;
-            pSystem.Play();
+            // pSystem.Play();
             Destroy(pSystem.gameObject, 1.25f);
         }
 
