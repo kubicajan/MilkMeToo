@@ -24,7 +24,6 @@ namespace Objects.ActiveObjects
             base.ResetHandler();
             kokButtonStatus = ButtonStatus.AVAILABLE;
             KokTreeButtonStart();
-
         }
     }
 }

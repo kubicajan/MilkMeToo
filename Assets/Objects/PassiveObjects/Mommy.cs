@@ -1,10 +1,15 @@
 using Managers;
 using Objects.Abstract;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Objects
 {
     public class Mommy : PassiveKokTreeObjects
     {
+        [SerializeField] private ParticleSystem rain;
+        [SerializeField] private Image image;
+
         public delegate void OnRestartDelegate();
 
         public static event OnRestartDelegate OnRestart;
@@ -15,8 +20,16 @@ namespace Objects
         public Mommy()
         {
             objectName = "Mommy";
-            kokButtonDescription = $"She will finally be proud of you. This will restart your progress. \n \n {timesRestarted} times proud so far.";
+            kokButtonDescription =
+                $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress.</color> </b>  \n \n {timesRestarted} times proud so far.";
             kokButtonUnlockPrice = 5;
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            rain.Stop();
+
         }
 
         public override void LockButton()
@@ -40,7 +53,11 @@ namespace Objects
         {
             magicResetValue = 100 * (timesRestarted + 1);
             timesRestarted++;
+            kokButtonDescription =
+                $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress.</color> </b>  \n \n {timesRestarted} times proud so far.";
             OnRestart?.Invoke();
+            image.GetComponent<Image>().color = new Color32(0, 146, 255, 255);
+            rain.Play();
         }
     }
 }
