@@ -52,15 +52,24 @@ namespace Managers
             if (Math.Abs(percentage) >= percentThreshold)
             {
                 Vector3 newLocation = panelPosition;
+
                 if (percentage > 0)
                 {
                     counter--;
                     newLocation += new Vector3(-correctedScreenWidth, 0, 0);
+                    if ((Vector2)panelPosition == new Vector2(0, 0))
+                    {
+                        InitialHanlder.shopSwipedOnce = true;
+                    }
                 }
                 else if (percentage < 0)
                 {
                     counter++;
                     newLocation += new Vector3(correctedScreenWidth, 0, 0);
+                    if ((Vector2)panelPosition == new Vector2(0, 0))
+                    {
+                        InitialHanlder.kokTreeSwipedOnce = true;
+                    }
                 }
 
                 if (!IsOutOfScreen(newLocation.x))
