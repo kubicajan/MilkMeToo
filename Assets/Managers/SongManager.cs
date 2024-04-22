@@ -40,6 +40,7 @@ namespace Managers
         private void Start()
         {
             // cowPanelAudios.Add(GameObject.Find("audioSourceDrugs").GetComponent<AudioSource>());
+            cowPanelAudios.Add(GameObject.Find("Ginger1audioSource").GetComponent<AudioSource>());
             cowPanelAudios.Add(GameObject.Find("audioSourceCapyAnimation").GetComponent<AudioSource>());
             cowPanelAudios.Add(GameObject.Find("audioSourceCatAnimation").GetComponent<AudioSource>());
             kokPanelAudioSourceForSong.clip = kokPanelSong;
