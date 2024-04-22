@@ -47,7 +47,6 @@ public class InitialHanlder : MonoBehaviour
         {
             zeroFaded = true;
             MakeItAppear(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
-
         }
         else
         {
@@ -132,7 +131,7 @@ public class InitialHanlder : MonoBehaviour
         Image image = img.GetComponent<Image>();
         for (float i = text.alpha; i >= 0; i -= Time.deltaTime)
         {
-            image.color = new Color(1, 1, 1, i);
+            image.color = new Color(1, 1, 1, image.color.a - i);
             yield return null;
             text.alpha = i;
         }
