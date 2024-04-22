@@ -55,7 +55,6 @@ namespace Managers
 
                 if (percentage > 0)
                 {
-                    counter--;
                     newLocation += new Vector3(-correctedScreenWidth, 0, 0);
                     InitialHanlder.NOW = true;
                     if ((Vector2)panelPosition == new Vector2(0, 0))
@@ -65,7 +64,6 @@ namespace Managers
                 }
                 else if (percentage < 0)
                 {
-                    counter++;
                     newLocation += new Vector3(correctedScreenWidth, 0, 0);
                     if ((Vector2)panelPosition == new Vector2(0, 0))
                     {
@@ -75,8 +73,24 @@ namespace Managers
 
                 if (!IsOutOfScreen(newLocation.x))
                 {
-                    SongManager.instance.UpdateAudioMutes(counter);
                     panelPosition = newLocation;
+                    if ((Vector2)panelPosition == new Vector2(0, 0))
+                    {
+                        counter = 1;
+                    }
+
+                    if (panelPosition.x > 0)
+                    {
+                        counter = 2;
+                    }
+                    
+                    if (panelPosition.x < 0)
+                    {
+                        counter = 0;
+                    }
+
+
+                    SongManager.instance.UpdateAudioMutes(counter);
                     StartCoroutine(SmoothMove(transform.position, panelPosition, easing));
                 }
             }
