@@ -18,6 +18,9 @@ namespace Managers
 
         private void Awake()
         {
+            //to make phone not turn off
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+            
             InformationPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             InitialPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
