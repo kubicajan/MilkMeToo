@@ -14,6 +14,7 @@ public class InitialHanlder : MonoBehaviour
     private bool oneFaded = false;
     private bool twoFaded = false;
     private bool threeFaded = false;
+    public static bool NOW = false;
 
     private Transform cowClickInfoArrow;
     private Transform cowClickInfoText;
@@ -66,7 +67,7 @@ public class InitialHanlder : MonoBehaviour
 
                 if (!shopSwipedOnce)
                 {
-                    if (!ShopClickInfoArrow.gameObject.activeSelf)
+                    if (!ShopClickInfoArrow.gameObject.activeSelf && NOW)
                     {
                         MakeItAppear(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
                     }
@@ -90,7 +91,6 @@ public class InitialHanlder : MonoBehaviour
 
     private void MakeItAppear(GameObject img, GameObject textMeshPro)
     {
-        Debug.Log("SD");
         textMeshPro.SetActive(true);
         img.SetActive(true);
         SetTransparent(img, textMeshPro);
@@ -99,7 +99,6 @@ public class InitialHanlder : MonoBehaviour
 
     private void FadeIt(GameObject img, GameObject textMeshPro)
     {
-        Debug.Log("SaasdasdasdasD");
         StartCoroutine(FadeImage(img, textMeshPro));
     }
 
@@ -122,11 +121,13 @@ public class InitialHanlder : MonoBehaviour
             yield return null;
             text.alpha = i;
         }
+        textMeshPro.SetActive(false);
+        img.SetActive(false);
     }
 
     IEnumerator UnFadeIt(GameObject img, GameObject textMeshPro)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.8f);
         float duration = 1;
         TextMeshProUGUI text = textMeshPro.GetComponent<TextMeshProUGUI>();
         Image image = img.GetComponent<Image>();

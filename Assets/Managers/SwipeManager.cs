@@ -57,6 +57,7 @@ namespace Managers
                 {
                     counter--;
                     newLocation += new Vector3(-correctedScreenWidth, 0, 0);
+                    InitialHanlder.NOW = true;
                     if ((Vector2)panelPosition == new Vector2(0, 0))
                     {
                         InitialHanlder.shopSwipedOnce = true;
