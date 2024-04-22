@@ -7,8 +7,8 @@ namespace Objects.PassiveObjects
     {
         public VRHeadset()
         {
-            objectName = "VRHeadset";
-            kokButtonDescription = "Put them into the matrix to make them feel better";
+            objectName = "VR Headset";
+            kokButtonDescription = "Put them into the matrix and make them feel better";
             kokButtonUnlockPrice = 5;
         }
     }

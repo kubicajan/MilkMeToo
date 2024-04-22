@@ -11,6 +11,18 @@ namespace Objects.SpecialObjects
         [SerializeField] private Button anotherAnotherCow;
         private Transform vemenButtonTransform;
 
+        public Cows()
+        {
+            objectCounter = 1;
+            effectInfo = "CLICK UPGRADE";
+            objectName = "Cows";
+            description = "It is like you are milking them all at once";
+            kokButtonDescription = "You can get more of them?";
+            shopButtonBuyPrice = 15;
+            kokButtonUnlockPrice = 5;
+            productionPower = 1;
+        }
+        
         protected override void ActivateThings(int value)
         {
             if (value > 1)
@@ -44,18 +56,6 @@ namespace Objects.SpecialObjects
             anotherAnotherCow.gameObject.SetActive(false);
         }
 
-        public Cows()
-        {
-            objectCounter = 1;
-            effectInfo = "CLICK UPGRADE";
-            objectName = "Cows";
-            description = "It is like you are milking them all at once";
-            kokButtonDescription = "You can get more of them?";
-            shopButtonBuyPrice = 15;
-            kokButtonUnlockPrice = 5;
-            productionPower = 1;
-        }
-
         public void BirthACow(int value)
         {
             ObjectCount += value;
@@ -80,10 +80,6 @@ namespace Objects.SpecialObjects
             float  moveX = randomX * makeNegativeOrNotX;
 
             return position - new Vector2(-70f + (moveX), +240f + (moveY));
-        }
-
-        protected override void ProduceMilk()
-        {
         }
     }
 }

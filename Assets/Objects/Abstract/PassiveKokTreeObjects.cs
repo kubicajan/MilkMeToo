@@ -9,7 +9,7 @@ namespace Objects.Abstract
         protected override void Start()
         {
             base.Start();
-            effectInfo = "EXTRA PRODUCTION";
+            effectInfo = $"{multiplicationBonus}% EXTRA PRODUCTION";
         }
 
         protected override void UnlockAnotherButton()

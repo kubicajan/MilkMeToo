@@ -28,6 +28,7 @@ namespace Objects
         protected override void Start()
         {
             base.Start();
+            effectInfo = $"{magicResetValue}% EXTRA PRODUCTION";
             rain.Stop();
 
         }

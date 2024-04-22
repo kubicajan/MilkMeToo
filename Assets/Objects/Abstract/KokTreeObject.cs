@@ -55,6 +55,7 @@ namespace Objects.Abstract
             MakeButtonUnknown();
             kokButtonUnlockPrice *= Mommy.magicResetValue;
             primalSpriteButton.gameObject.SetActive(false);
+            this.StopAllCoroutines();
         }
 
         protected virtual void FixedUpdate()

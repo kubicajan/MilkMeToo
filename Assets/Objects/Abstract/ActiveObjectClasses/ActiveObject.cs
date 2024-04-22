@@ -48,19 +48,6 @@ namespace Objects.Abstract.ActiveObjectClasses
         protected override void FixedUpdate()
         {
             NabijeciSystemTepleVody();
-      //      ProduceMilk();
-        }
-
-        private bool IsItTime()
-        {
-            timer += Time.deltaTime;
-            if (timer > interval)
-            {
-                timer = 0;
-                return true;
-            }
-
-            return false;
         }
 
         public override void Clicked()
@@ -68,20 +55,6 @@ namespace Objects.Abstract.ActiveObjectClasses
             clickedInfo = true;
             InformationPopUp.instance.ShowPopUp(objectName, description, "Amount milked:\n" + allTimeMilked,
                 primalSpriteButton.image.sprite, $"{objectCounter}x");
-        }
-
-        protected virtual void ProduceMilk()
-        {
-            if (primalSpriteButton.gameObject.activeSelf)
-            {
-                if (IsItTime())
-                {
-                    // float finalPoints = MoneyManagerSingleton.instance.AddMoney(objectCounter * productionPower);
-                    // AddToAllTimeMilked(finalPoints);
-                    // MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, spriteCanvasPosition);
-                    // timer = 0f;
-                }
-            }
         }
 
         public virtual void PlayMilked(int? number)
@@ -108,7 +81,6 @@ namespace Objects.Abstract.ActiveObjectClasses
             
             //this needs to be not converted whereas the other positions need to be converted
             pSystem.transform.position = transformMe.position;
-            // pSystem.Play();
             Destroy(pSystem.gameObject, 1.25f);
         }
 
