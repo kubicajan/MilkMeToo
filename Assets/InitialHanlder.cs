@@ -11,6 +11,7 @@ public class InitialHanlder : MonoBehaviour
 {
     public static bool shopSwipedOnce = false;
     public static bool kokTreeSwipedOnce = false;
+    private bool zeroFaded = false;
     private bool oneFaded = false;
     private bool twoFaded = false;
     private bool threeFaded = false;
@@ -32,8 +33,8 @@ public class InitialHanlder : MonoBehaviour
         ShopClickInfoText = transform.Find("ShopClickInfo/text");
         ShopClickInfoArrow = transform.Find("ShopClickInfo/arrow");
 
-        cowClickInfoArrow.gameObject.SetActive(true);
-        cowClickInfoText.gameObject.SetActive(true);
+        cowClickInfoArrow.gameObject.SetActive(false);
+        cowClickInfoText.gameObject.SetActive(false);
         unlocksClickInfoArrow.gameObject.SetActive(false);
         unlocksClickInfoText.gameObject.SetActive(false);
         ShopClickInfoText.gameObject.SetActive(false);
@@ -42,42 +43,54 @@ public class InitialHanlder : MonoBehaviour
 
     public void Update()
     {
-        if (MoneyManagerSingleton.instance.GetTotalMoney() != 0)
+        if (!zeroFaded)
         {
-            if (!oneFaded)
-            {
-                oneFaded = true;
-                FadeIt(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
-            }
+            zeroFaded = true;
+            MakeItAppear(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
 
-            if (!kokTreeSwipedOnce)
+        }
+        else
+        {
+            if (MoneyManagerSingleton.instance.GetTotalMoney() != 0)
             {
-                if (!unlocksClickInfoArrow.gameObject.activeSelf)
+                if (!oneFaded)
                 {
-                    MakeItAppear(unlocksClickInfoArrow.gameObject, unlocksClickInfoText.gameObject);
-                }
-            }
-            else
-            {
-                if (!twoFaded)
-                {
-                    twoFaded = true;
-                    FadeIt(unlocksClickInfoArrow.gameObject, unlocksClickInfoText.gameObject);
+                    oneFaded = true;
+                    StopAllCoroutines();
+                    FadeIt(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
                 }
 
-                if (!shopSwipedOnce)
+                if (!kokTreeSwipedOnce)
                 {
-                    if (!ShopClickInfoArrow.gameObject.activeSelf && NOW)
+                    if (!unlocksClickInfoArrow.gameObject.activeSelf)
                     {
-                        MakeItAppear(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
+                        MakeItAppear(unlocksClickInfoArrow.gameObject, unlocksClickInfoText.gameObject);
                     }
                 }
                 else
                 {
-                    if (!threeFaded)
+                    if (!twoFaded)
                     {
-                        threeFaded = true;
-                        FadeIt(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
+                        twoFaded = true;
+                        StopAllCoroutines();
+                        FadeIt(unlocksClickInfoArrow.gameObject, unlocksClickInfoText.gameObject);
+                    }
+
+                    if (!shopSwipedOnce)
+                    {
+                        if (!ShopClickInfoArrow.gameObject.activeSelf && NOW)
+                        {
+                            MakeItAppear(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
+                        }
+                    }
+                    else
+                    {
+                        if (!threeFaded)
+                        {
+                            threeFaded = true;
+                            StopAllCoroutines();
+                            FadeIt(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
+                        }
                     }
                 }
             }
@@ -92,10 +105,14 @@ public class InitialHanlder : MonoBehaviour
     private void MakeItAppear(GameObject img, GameObject textMeshPro)
     {
         textMeshPro.SetActive(true);
-        img.SetActive(true);
+        // img.SetActive(true);
         SetTransparent(img, textMeshPro);
-        StartCoroutine(UnFadeIt(img, textMeshPro));
+        img.SetActive(true);
+        Image image = img.GetComponent<Image>();
+        image.color = new Color(0, 0, 0, 0);
+        StartCoroutine(UnFadeIt(textMeshPro, img));
     }
+
 
     private void FadeIt(GameObject img, GameObject textMeshPro)
     {
@@ -104,8 +121,6 @@ public class InitialHanlder : MonoBehaviour
 
     private void SetTransparent(GameObject img, GameObject textMeshPro)
     {
-        Image image = img.GetComponent<Image>();
-        image.color = new Color(0, 0, 0, 0);
         TextMeshProUGUI text = textMeshPro.GetComponent<TextMeshProUGUI>();
         text.alpha = 0;
     }
@@ -115,28 +130,36 @@ public class InitialHanlder : MonoBehaviour
         float duration = 1;
         TextMeshProUGUI text = textMeshPro.GetComponent<TextMeshProUGUI>();
         Image image = img.GetComponent<Image>();
-        for (float i = duration; i >= 0; i -= Time.deltaTime)
+        for (float i = text.alpha; i >= 0; i -= Time.deltaTime)
         {
             image.color = new Color(1, 1, 1, i);
             yield return null;
             text.alpha = i;
         }
+
         textMeshPro.SetActive(false);
         img.SetActive(false);
     }
 
-    IEnumerator UnFadeIt(GameObject img, GameObject textMeshPro)
+    IEnumerator UnFadeIt(GameObject textMeshPro, GameObject img)
     {
         yield return new WaitForSeconds(0.8f);
-        float duration = 1;
+        float duration = 0.8f;
         TextMeshProUGUI text = textMeshPro.GetComponent<TextMeshProUGUI>();
-        Image image = img.GetComponent<Image>();
 
         for (float i = 0; i <= duration; i += Time.deltaTime)
         {
-            image.color = new Color(1, 1, 1, i);
             yield return null;
             text.alpha = i;
+        }
+
+        // yield return new WaitForSeconds(1f);
+        Image image = img.GetComponent<Image>();
+
+        for (float i = 0.1f; i <= 1; i += Time.deltaTime)
+        {
+            image.color = new Color(1, 1, 1, i);
+            yield return null;
         }
     }
 }
