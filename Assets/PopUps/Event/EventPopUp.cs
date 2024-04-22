@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Managers;
@@ -7,6 +5,7 @@ using Objects;
 using Objects.Abstract.ActiveObjectClasses;
 using PopUps.Event;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using Utilities;
 using Random = UnityEngine.Random;
@@ -23,6 +22,9 @@ namespace PopUps
         [SerializeField] private AudioClip splash;
         [SerializeField] private AudioClip wompSound;
         [SerializeField] private AudioClip winSound;
+        [SerializeField] private ParticleSystem successParticles;
+        [SerializeField] private ParticleSystem unsuccessParticles;
+
 
         private TextMeshProUGUI questionText;
         private Result basedResult;
@@ -113,17 +115,28 @@ namespace PopUps
 
         public void AcceptEvent()
         {
+            gameObject.SetActive(false);
+            summaryHolder.SetActive(true);
             SongManager.instance.PlayClick();
+            
             if (basedResult.effect.StartsWith("+"))
             {
                 wompOrWinSource.PlayOneShot(winSound);
+                successParticles.gameObject.SetActive(true);
+                unsuccessParticles.gameObject.SetActive(false);
             }
-            else if (basedResult.effect.StartsWith(""))
+            else if (basedResult.effect.StartsWith("-"))
             {
                 wompOrWinSource.PlayOneShot(wompSound);
+                unsuccessParticles.gameObject.SetActive(true);
+                successParticles.gameObject.SetActive(false);
             }
-            gameObject.SetActive(false);
-            summaryHolder.SetActive(true);
+            else
+            {
+                unsuccessParticles.gameObject.SetActive(true);
+                successParticles.gameObject.SetActive(true);
+            }
+
         }
 
         public override void SetInactive()
