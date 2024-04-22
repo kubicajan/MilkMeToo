@@ -84,6 +84,7 @@ namespace Objects.Abstract
 
         protected void KokTreeButtonStart()
         {
+            Debug.Log(objectName + kokButtonStatus);
             switch (kokButtonStatus)
             {
                 case ButtonStatus.LOCKED:

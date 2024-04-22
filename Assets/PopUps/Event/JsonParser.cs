@@ -25,14 +25,13 @@ namespace PopUps
             }
         }
 
-        private void ConfigureLevelOne()
+        public void ConfigureLevelOne()
         {
             ConfigureLevel("EventResults", "EventScenarios");
         }
 
         private static void ConfigureLevel(string resultsName, string scenarioName)
         {
-            Debug.Log($"CONFIGURED + {resultsName}");
             TextAsset resultFile = Resources.Load<TextAsset>(resultsName);
             TextAsset scenarioFile = Resources.Load<TextAsset>(scenarioName);
             results = JsonUtility.FromJson<ResultsHolder>(resultFile.text);

@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -18,6 +17,8 @@ namespace Managers
 
         private void Awake()
         {
+            moneyScore.raycastTarget = false;
+            multiplier.raycastTarget = false;
             ChangeDisplayedMoney();
             multiplier.enabled = false;
 

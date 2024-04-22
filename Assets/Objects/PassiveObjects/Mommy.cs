@@ -21,7 +21,7 @@ namespace Objects
         {
             objectName = "Mommy";
             kokButtonDescription =
-                $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress.</color> </b>  \n \n {timesRestarted} times proud so far.";
+                $"She will finally be proud of you. \n \n <b> <color=red> This will reset your progress.</color> </b>  \n \n {timesRestarted} times proud so far.";
             kokButtonUnlockPrice = 5;
         }
 
@@ -30,7 +30,6 @@ namespace Objects
             base.Start();
             effectInfo = $"{magicResetValue}% EXTRA PRODUCTION";
             rain.Stop();
-
         }
 
         public override void LockButton()

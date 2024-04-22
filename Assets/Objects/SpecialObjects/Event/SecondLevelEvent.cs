@@ -24,6 +24,13 @@ namespace Objects.SpecialObjects.Event
             base.Start();
             gameObject.SetActive(false);
         }
+        
+        protected override void ResetHandler()
+        {
+            base.ResetHandler();
+            kokButtonStatus = ButtonStatus.AVAILABLE;
+            KokTreeButtonStart();
+        }
 
         public override void BuyUpgrade()
         {

@@ -31,7 +31,7 @@ namespace Managers
         private GameObject grassParticleSystem;
 
         private Level level;
-        private List<string> panels = new List<string>() { "CowPanel", "KokTreePanel", "ShopPanel" };
+        private List<string> panels = new() { "CowPanel", "KokTreePanel", "ShopPanel" };
 
         private enum Level
         {
@@ -42,14 +42,19 @@ namespace Managers
 
         private void Start()
         {
-            level = Level.Zero;
-            popUpOpen = false;
-            eventIsShown = false;
+            FirstConfigure();
             EventPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             EventPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
             canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
             eventButton = GameObject.Find("EventButton").GetComponent<Button>();
             FirstSetupParticleSystems();
+        }
+
+        public void FirstConfigure()
+        {
+            level = Level.Zero;
+            popUpOpen = false;
+            eventIsShown = false;
         }
 
         private void Awake()
@@ -80,7 +85,7 @@ namespace Managers
             grassParticleSystem = GameObject.Find("EventGrassParticle");
 
             Vector3 holderPosition = eventHolder.transform.position;
-            suckParticleSystem.gameObject.transform.position = holderPosition;
+            suckParticleSystem.transform.position = holderPosition;
             voidParticleSystem.transform.position = holderPosition;
             pushParticleSystem.transform.position = holderPosition;
             grassParticleSystem.transform.position = holderPosition;
@@ -108,7 +113,7 @@ namespace Managers
                     break;
             }
         }
-
+        
         private void SpawnEvent()
         {
             audioSource.PlayOneShot(clip);
@@ -123,6 +128,14 @@ namespace Managers
             eventHolder.gameObject.SetActive(true);
             popUpOpen = true;
             eventIsShown = true;
+        }
+
+        public void ShutItAllDown()
+        {
+            SetUpFirstLevel();
+            eventHolder.gameObject.SetActive(false);
+            popUpOpen = false;
+            eventIsShown = false;
         }
 
         private void SetUpFirstLevel()

@@ -1,5 +1,6 @@
 using Managers;
 using Objects.Abstract;
+using PopUps;
 
 namespace Objects.SpecialObjects.Event
 {
@@ -24,7 +25,17 @@ namespace Objects.SpecialObjects.Event
         {
             base.ResetHandler();
             kokButtonStatus = ButtonStatus.AVAILABLE;
+            RevertUpgrade();
             KokTreeButtonStart();
+        }
+        
+        private void RevertUpgrade()
+        {
+            gameObject.SetActive(true);
+            JsonParser.instance.ConfigureLevelOne();
+            toUnlockNext.gameObject.SetActive(false);
+            EventManager.instance.FirstConfigure();
+            EventManager.instance.ShutItAllDown();
         }
         
         public override void BuyUpgrade()
