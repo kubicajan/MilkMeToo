@@ -1,43 +1,64 @@
+using System;
+using System.Threading.Tasks;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
 using UnityEngine;
 
 namespace Managers
 {
     public class GoogleLoginManager : MonoBehaviour
     {
-        public string Token;
-        public string Error;
+        public string GooglePlayToken;
+        public string GooglePlayError;
 
-        void Awake()
+        public async Task Authenticate()
         {
-            Debug.Log("Attempting to log in");
             PlayGamesPlatform.Activate();
-            LoginGooglePlayGames();
-        }
-
-        public void LoginGooglePlayGames()
-        {
-            PlayGamesPlatform.Instance.Authenticate((success) =>
+            await UnityServices.InitializeAsync();
+            PlayGamesPlatform.Instance.Authenticate(success =>
             {
                 if (success == SignInStatus.Success)
                 {
-                    Debug.Log("Login with Google Play games successful.");
-
+                    Debug.Log("successful login");
                     PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
                     {
-                        Debug.Log("Authorization code: " + code);
-                        Token = code;
+                        Debug.Log($"Auth code is {code}");
+                        GooglePlayToken = code;
                     });
                 }
                 else
                 {
-                    Error = "Failed to retrieve Google play games authorization code";
-                    Debug.Log("Login Unsuccessful" + success);
+                    GooglePlayError = "failed to retreieve GPG auth code";
+                    Debug.Log("login unsuccessful");
                 }
             });
+
+            await AuthenticateWithUnity();
+
         }
+
+        private async Task AuthenticateWithUnity()
+        {
+            try
+            {
+                await AuthenticationService.Instance.SignInWithGoogleAsync(GooglePlayToken);
+            }
+            catch (AuthenticationException e)
+            {
+                Debug.LogException(e);
+                throw;
+            }
+            catch (RequestFailedException e)
+            {
+                Debug.LogException(e);
+                throw;
+            }
+        }
+        
     }
+
 }
 
 

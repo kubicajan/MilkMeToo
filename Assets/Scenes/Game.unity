@@ -21787,6 +21787,7 @@ GameObject:
   - component: {fileID: 636782164}
   - component: {fileID: 636782163}
   - component: {fileID: 636782162}
+  - component: {fileID: 636782165}
   m_Layer: 5
   m_Name: TheLover
   m_TagString: Untagged
@@ -21811,8 +21812,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15477777, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.89645845}
-  m_AnchoredPosition: {x: -182, y: 378}
-  m_SizeDelta: {x: -180.547, y: -647.849}
+  m_AnchoredPosition: {x: -143.385, y: 424.003}
+  m_SizeDelta: {x: -103.316, y: -555.844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &636782162
 MonoBehaviour:
@@ -21890,7 +21891,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 96c81b8517d7e214596c763e28826ff6, type: 3}
+  m_Sprite: {fileID: -23091374, guid: 0e765b0f0505cba4fa6bc20cb4c8fd5b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21908,6 +21909,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636782159}
   m_CullTransparentMesh: 1
+--- !u!95 &636782165
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636782159}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1945371dfe3d48f46a11ca37350b0873, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &637081380
 GameObject:
   m_ObjectHideFlags: 0
