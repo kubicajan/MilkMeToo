@@ -62,7 +62,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             ConfigureAndPlayMilked(primalSpriteButton.gameObject.transform);
         }
 
-        protected void ConfigureAndPlayMilked(Transform transformMe)
+        protected virtual void ConfigureAndPlayMilked(Transform transformMe)
         {
             float moneyMoney = objectCounter * productionPower;
             StartCoroutine(PlayMilkedCoroutine(transformMe,

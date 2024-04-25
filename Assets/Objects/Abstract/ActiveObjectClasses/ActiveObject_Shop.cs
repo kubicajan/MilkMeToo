@@ -93,7 +93,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             shopButton.transform.Find("ButtonPrice").GetComponent<TextMeshProUGUI>().text = buttonPriceText;
         }
 
-        public void BuyObject()
+        public virtual void BuyObject()
         {
             if (MoneyManagerSingleton.instance.SpendMoney(shopButtonBuyPrice))
             {

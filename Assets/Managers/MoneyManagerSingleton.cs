@@ -12,6 +12,7 @@ namespace Managers
 
         public static MoneyManagerSingleton instance;
         private float totalMoney = 0;
+        public float numberOfTitties = 0;
         private float money = 0;
         private int multiplication = 0;
 

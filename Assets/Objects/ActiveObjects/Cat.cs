@@ -1,4 +1,8 @@
+using Managers;
 using Objects.Abstract.ActiveObjectClasses;
+using Utilities;
+using UnityEngine;
+
 
 namespace Objects.ActiveObjects
 {
@@ -18,12 +22,19 @@ namespace Objects.ActiveObjects
             productionPower = 0.5f;
             interval = 0.5f;
         }
-        
+
         protected override void ResetHandler()
         {
             base.ResetHandler();
             kokButtonStatus = ButtonStatus.AVAILABLE;
             KokTreeButtonStart();
+        }
+
+        protected override void ConfigureAndPlayMilked(Transform transformMe)
+        {
+            float moneyMoney = objectCounter * productionPower * (MoneyManagerSingleton.instance.numberOfTitties + 1);
+            StartCoroutine(PlayMilkedCoroutine(transformMe,
+                Helpers.GetObjectPositionRelativeToCanvas(transformMe.position), moneyMoney));
         }
     }
 }

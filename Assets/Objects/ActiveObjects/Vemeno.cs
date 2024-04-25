@@ -1,3 +1,4 @@
+using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Objects.ActiveObjects
         {
             objectName = "Vemeno";
             description = "ANOTHER ONE?";
-            kokButtonDescription = "This does not seem natural";
+            kokButtonDescription = "This does not seem natural \n \n <b> Gives cats extra production </b> ";
             shopButtonBuyPrice = 15;
             kokButtonUnlockPrice = 5;
             productionPower = 1f;
@@ -34,6 +35,12 @@ namespace Objects.ActiveObjects
             {
                 animator.SetBool("switcheroo", false);
             }
+        }
+
+        public override void BuyObject()
+        {
+            MoneyManagerSingleton.instance.numberOfTitties++;
+            base.BuyObject();
         }
     }
 }
