@@ -1,3 +1,4 @@
+using System;
 using Managers;
 using TMPro;
 using UnityEngine;
@@ -66,7 +67,7 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         private float CalculatePrice()
         {
-            return shopButtonBuyPrice * (objectCounter + 1);
+            return (int)(shopButtonBuyPrice * (float)Math.Pow(1.15f, objectCounter));
         }
 
         private void ShopButtonStart()

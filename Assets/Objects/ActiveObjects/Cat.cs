@@ -11,7 +11,7 @@ namespace Objects.ActiveObjects
         public Cat()
         {
             kokButtonStatus = ButtonStatus.AVAILABLE;
-            shopButtonBuyPrice = 2;
+            shopButtonBuyPrice = 5;
             kokButtonUnlockPrice = 3;
             objectName = "Jeremy";
             description =
