@@ -24,6 +24,10 @@ public class InitialHanlder : MonoBehaviour
     private Transform ShopClickInfoText;
     private Transform ShopClickInfoArrow;
 
+    private Coroutine coroutine1;
+    private Coroutine coroutine2;
+    private Coroutine coroutine3;
+
     private void Start()
     {
         cowClickInfoArrow = transform.Find("CowClickInfo/arrow");
@@ -46,7 +50,7 @@ public class InitialHanlder : MonoBehaviour
         if (!zeroFaded)
         {
             zeroFaded = true;
-            MakeItAppear(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
+            coroutine1 = MakeItAppear(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
         }
         else
         {
@@ -55,7 +59,11 @@ public class InitialHanlder : MonoBehaviour
                 if (!oneFaded)
                 {
                     oneFaded = true;
-                    StopAllCoroutines();
+                    if (coroutine1 != null)
+                    {
+                        StopCoroutine(coroutine1);
+                    }
+
                     FadeIt(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
                 }
 
@@ -63,7 +71,7 @@ public class InitialHanlder : MonoBehaviour
                 {
                     if (!unlocksClickInfoArrow.gameObject.activeSelf)
                     {
-                        MakeItAppear(unlocksClickInfoArrow.gameObject, unlocksClickInfoText.gameObject);
+                        coroutine2 = MakeItAppear(unlocksClickInfoArrow.gameObject, unlocksClickInfoText.gameObject);
                     }
                 }
                 else
@@ -71,7 +79,11 @@ public class InitialHanlder : MonoBehaviour
                     if (!twoFaded)
                     {
                         twoFaded = true;
-                        StopAllCoroutines();
+                        if (coroutine2 != null)
+                        {
+                            StopCoroutine(coroutine2);
+                        }
+
                         FadeIt(unlocksClickInfoArrow.gameObject, unlocksClickInfoText.gameObject);
                     }
 
@@ -79,7 +91,7 @@ public class InitialHanlder : MonoBehaviour
                     {
                         if (!ShopClickInfoArrow.gameObject.activeSelf && NOW)
                         {
-                            MakeItAppear(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
+                            coroutine3 = MakeItAppear(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
                         }
                     }
                     else
@@ -87,7 +99,11 @@ public class InitialHanlder : MonoBehaviour
                         if (!threeFaded)
                         {
                             threeFaded = true;
-                            StopAllCoroutines();
+                            if (coroutine3 != null)
+                            {
+                                StopCoroutine(coroutine3);
+                            }
+
                             FadeIt(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
                         }
                     }
@@ -101,7 +117,7 @@ public class InitialHanlder : MonoBehaviour
         }
     }
 
-    private void MakeItAppear(GameObject img, GameObject textMeshPro)
+    private Coroutine MakeItAppear(GameObject img, GameObject textMeshPro)
     {
         textMeshPro.SetActive(true);
         // img.SetActive(true);
@@ -109,7 +125,7 @@ public class InitialHanlder : MonoBehaviour
         img.SetActive(true);
         Image image = img.GetComponent<Image>();
         image.color = new Color(0, 0, 0, 0);
-        StartCoroutine(UnFadeIt(textMeshPro, img));
+        return StartCoroutine(UnFadeIt(textMeshPro, img));
     }
 
 
