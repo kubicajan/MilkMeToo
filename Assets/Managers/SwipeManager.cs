@@ -132,7 +132,7 @@ namespace Managers
             while (t <= 1.0)
             {
                 t += Time.deltaTime / seconds;
-                transform.position = Vector3.Lerp(startpos, endpos, Mathf.SmoothStep(0f, 1f, t));
+                transform.position = Vector3.Lerp(startpos, endpos,  Mathf.Pow(Mathf.SmoothStep(0f, 1f, t),2));
                 yield return null;
             }
         }
