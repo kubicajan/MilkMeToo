@@ -149,8 +149,9 @@ namespace PopUps
         public override void SetInactiveByClick()
         {
             DoThing(basedResult);
-            SongManager.instance.PlayLastOne();
             base.SetInactiveByClick();
+            summaryHolder.SetActive(false);
+            SongManager.instance.PlayLastOne();
         }
     }
 }
