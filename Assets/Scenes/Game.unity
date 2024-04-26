@@ -80251,8 +80251,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1117572964}
-        m_TargetAssemblyTypeName: PopUps.PopUp`1[[PopUps.EventPopUp, Assembly-CSharp
-        m_MethodName: SetInactiveByClick
+        m_TargetAssemblyTypeName: PopUps.EventPopUp, Assembly-CSharp
+        m_MethodName: SetInactive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -87822,6 +87822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyScore: {fileID: 1045953113}
   multiplier: {fileID: 64331047}
+  numberOfTitties: 0
 --- !u!114 &1629431444
 MonoBehaviour:
   m_ObjectHideFlags: 0

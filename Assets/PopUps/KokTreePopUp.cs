@@ -17,9 +17,9 @@ namespace PopUps
 
         public static event OnBuyUpgradeTriggeredDelegate OnBuyUpgradeTriggered;
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             animatedImage = holdingImageTransform.Find("NameBackground").Find("AnimatedImage").GetComponent<Image>();
             nameText = holdingImageTransform.Find("NameBackground").Find("Name").GetComponent<TextMeshProUGUI>();
             priceText = holdingImageTransform.Find("PriceBackground").Find("Price").GetComponent<TextMeshProUGUI>();

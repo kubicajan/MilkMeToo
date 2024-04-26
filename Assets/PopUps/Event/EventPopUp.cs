@@ -33,9 +33,9 @@ namespace PopUps
         private string result;
         private string effect;
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             description = "";
             question = "";
             gameObject.transform.position = new Vector2(0, 0);
@@ -118,7 +118,7 @@ namespace PopUps
             gameObject.SetActive(false);
             summaryHolder.SetActive(true);
             SongManager.instance.PlayClick();
-            
+
             if (basedResult.effect.StartsWith("+"))
             {
                 wompOrWinSource.PlayOneShot(winSound);
@@ -137,16 +137,25 @@ namespace PopUps
                 successParticles.gameObject.SetActive(true);
             }
 
+            SongManager.instance.PlayLastOne();
         }
 
-        public override void SetInactive()
-        {
-            SongManager.instance.PlayClick();
-            base.SetInactive();
-            summaryHolder.SetActive(false);
-        }
+        //
+        // public override void SetInactive()
+        // {
+        //     SongManager.instance.PlayClick();
+        //     base.SetInactive();
+        //     summaryHolder.SetActive(false);
+        // }
 
         public override void SetInactiveByClick()
+        {
+            base.SetInactiveByClick();
+            summaryHolder.SetActive(false);
+            SongManager.instance.PlayLastOne();
+        }
+
+        public void DissmissEvent()
         {
             DoThing(basedResult);
             base.SetInactiveByClick();

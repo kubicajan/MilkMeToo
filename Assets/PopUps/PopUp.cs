@@ -1,3 +1,4 @@
+using System;
 using Managers;
 using TMPro;
 using UnityEngine;
@@ -24,7 +25,8 @@ namespace PopUps
 
         public static T instance;
 
-        protected virtual void Awake()
+
+        protected virtual void Start()
         {
             holdingImageTransform = transform.Find("HoldingImage");
             descriptionText = holdingImageTransform.Find("DescriptionBackground")
@@ -32,8 +34,7 @@ namespace PopUps
             Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             canvasGroup = canvas.GetComponent<CanvasGroup>();
             CreateSingleton();
-            gameObject.SetActive(false);
-        }
+            gameObject.SetActive(false);        }
 
         private void CreateSingleton()
         {

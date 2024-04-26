@@ -9,9 +9,9 @@ namespace PopUps
         private TextMeshProUGUI amountMilkedText;
         private TextMeshProUGUI counter;
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             nameText = holdingImageTransform.Find("NameBackground").Find("Name").GetComponent<TextMeshProUGUI>();
             animatedImage = holdingImageTransform.Find("NameBackground").Find("AnimatedImage").GetComponent<Image>();
             counter = transform.Find("PlateBackground").Find("Plate").Find("Counter").GetComponent<TextMeshProUGUI>();
