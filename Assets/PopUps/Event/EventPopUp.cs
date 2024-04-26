@@ -46,10 +46,11 @@ namespace PopUps
 
         public void ShowPopUp()
         {
+            //todo: fix
             audioSource.PlayOneShot(splash);
             ConfigureNewValues();
-            SetActive();
             SongManager.instance.UpdateAudioMutes(3);
+            SetActive();
         }
 
         public void ConfigureNewValues()
@@ -136,27 +137,26 @@ namespace PopUps
             SongManager.instance.PlayLastOne();
         }
 
-        //
-        // public override void SetInactive()
-        // {
-        //     SongManager.instance.PlayClick();
-        //     base.SetInactive();
-        //     summaryHolder.SetActive(false);
-        // }
-    
-        public override void SetInactiveByClick()
+        public override void SetInactive()
         {
-            base.SetInactiveByClick();
+            SongManager.instance.PlayClick();
+            base.SetInactive();
             summaryHolder.SetActive(false);
-            SongManager.instance.PlayLastOne();
         }
 
-        public void DissmissEvent()
+        public override void SetInactiveByClick()
         {
-            DoThing(basedResult);
-            base.SetInactiveByClick();
             summaryHolder.SetActive(false);
             SongManager.instance.PlayLastOne();
+            base.SetInactiveByClick();
+        }
+
+        public void DismissEventSummary()
+        {
+            DoThing(basedResult);
+            summaryHolder.SetActive(false);
+            SongManager.instance.PlayLastOne();
+            base.SetInactiveByClick();
         }
     }
 }

@@ -34,7 +34,8 @@ namespace PopUps
             Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             canvasGroup = canvas.GetComponent<CanvasGroup>();
             CreateSingleton();
-            gameObject.SetActive(false);        }
+            gameObject.SetActive(false);
+        }
 
         private void CreateSingleton()
         {
@@ -56,9 +57,9 @@ namespace PopUps
 
         public virtual void SetInactive()
         {
-            gameObject.SetActive(false);
-            canvasGroup.interactable = true;
             OnSetInactiveTriggered?.Invoke();
+            canvasGroup.interactable = true;
+            gameObject.SetActive(false);
         }
 
         public void SetActive()

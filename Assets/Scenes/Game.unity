@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 39198815}
   - component: {fileID: 39198814}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: CanvasPica3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37296,7 +37296,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1117572964}
         m_TargetAssemblyTypeName: PopUps.EventPopUp, Assembly-CSharp
-        m_MethodName: DissmissEvent
+        m_MethodName: DismissEventSummary
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -67993,7 +67993,7 @@ GameObject:
   - component: {fileID: 1216062782}
   - component: {fileID: 1216062781}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: CanvasPica
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68837,7 +68837,7 @@ GameObject:
   - component: {fileID: 1250638567}
   - component: {fileID: 1250638566}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: CanvasPica2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

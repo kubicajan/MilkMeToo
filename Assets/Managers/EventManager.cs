@@ -43,8 +43,8 @@ namespace Managers
         private void Start()
         {
             FirstConfigure();
-            EventPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
-            EventPopUp.OnShowPopUpTriggered += OnShowPopUpTriggeredHandler;
+            EventPopUp.OnSetInactiveTriggered += OnSetEventInactiveTriggeredHandler;
+            EventPopUp.OnShowPopUpTriggered += OnShowEventPopUpTriggeredHandler;
             canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
             eventButton = GameObject.Find("EventButton").GetComponent<Button>();
             FirstSetupParticleSystems();
@@ -126,7 +126,7 @@ namespace Managers
             var weirdPosition = new Vector2(randomX, randomY);
             eventHolder.transform.position = weirdPosition;
             eventHolder.gameObject.SetActive(true);
-            popUpOpen = true;
+            popUpOpen = false;
             eventIsShown = true;
         }
 
@@ -178,13 +178,13 @@ namespace Managers
             return false;
         }
 
-        private void OnSetInactiveTriggeredHandler()
+        private void OnSetEventInactiveTriggeredHandler()
         {
             eventIsShown = false;
             popUpOpen = false;
         }
 
-        private void OnShowPopUpTriggeredHandler()
+        private void OnShowEventPopUpTriggeredHandler()
         {
             popUpOpen = true;
             eventHolder.gameObject.SetActive(false);
