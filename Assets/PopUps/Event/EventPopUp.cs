@@ -28,16 +28,12 @@ namespace PopUps
 
         private TextMeshProUGUI questionText;
         private Result basedResult;
-        private string description;
-        private string question;
         private string result;
         private string effect;
 
         protected override void Start()
         {
             base.Start();
-            description = "";
-            question = "";
             gameObject.transform.position = new Vector2(0, 0);
             summaryHolder.transform.position = new Vector2(0, 0);
             summaryDescription = GameObject.Find("SummaryDescription").GetComponent<TextMeshProUGUI>();
@@ -147,7 +143,7 @@ namespace PopUps
         //     base.SetInactive();
         //     summaryHolder.SetActive(false);
         // }
-
+    
         public override void SetInactiveByClick()
         {
             base.SetInactiveByClick();

@@ -142,7 +142,6 @@ public class InitialHanlder : MonoBehaviour
 
     IEnumerator FadeImage(GameObject img, GameObject textMeshPro)
     {
-        float duration = 1;
         TextMeshProUGUI text = textMeshPro.GetComponent<TextMeshProUGUI>();
         Image image = img.GetComponent<Image>();
         for (float i = text.alpha; i >= 0; i -= Time.deltaTime)

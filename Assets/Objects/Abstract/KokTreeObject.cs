@@ -21,14 +21,13 @@ namespace Objects.Abstract
         private Button kokButton;
         private TextMeshProUGUI upgradePriceDisplay;
         private bool clickedKokInfo;
-        private ParticleSystem particleSystem;
+        private ParticleSystem myParticleSystem;
 
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
         protected string kokButtonDescription = "it is depressed";
         protected int kokButtonUnlockPrice = 10;
         protected string objectName = "";
         protected string effectInfo = "You become depressed";
-        protected Vector2 spriteCanvasPosition;
         protected bool clickedInfo;
         protected string availableParticleName = "AvailableParticle";
         protected string boughtParticleName = "BoughtParticle";
@@ -39,8 +38,6 @@ namespace Objects.Abstract
             InitialPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
 
             primalSpriteButton.gameObject.SetActive(false);
-            spriteCanvasPosition =
-                Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position);
             KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             KokTreePopUp.OnBuyUpgradeTriggered += OnBuyUpgradeTriggeredHandler;
             clickedInfo = false;
@@ -133,7 +130,7 @@ namespace Objects.Abstract
             kokButton.image.sprite = unknownKokButtonSprite;
             kokButton.enabled = false;
             upgradePriceDisplay.text = "";
-            Destroy(particleSystem);
+            Destroy(myParticleSystem);
         }
 
         public virtual void LockButton()
@@ -142,7 +139,7 @@ namespace Objects.Abstract
             kokButton.image.sprite = lockedKokButtonSprite;
             kokButton.enabled = true;
             upgradePriceDisplay.text = kokButtonUnlockPrice + "$";
-            Destroy(particleSystem);
+            Destroy(myParticleSystem);
         }
 
         protected virtual void MakeButtonAvailable()
@@ -177,14 +174,14 @@ namespace Objects.Abstract
 
         private void SwitchParticleSystem(ParticleSystem newParticles)
         {
-            if (particleSystem != null)
+            if (myParticleSystem != null)
             {
-                Destroy(particleSystem);
+                Destroy(myParticleSystem);
             }
 
-            particleSystem = Instantiate(newParticles, gameObject.transform, false);
-            particleSystem.transform.position = gameObject.transform.position;
-            particleSystem.Play();
+            myParticleSystem = Instantiate(newParticles, gameObject.transform, false);
+            myParticleSystem.transform.position = gameObject.transform.position;
+            myParticleSystem.Play();
         }
 
         protected virtual void UnlockAnotherButton()
@@ -194,7 +191,6 @@ namespace Objects.Abstract
 
         private void OnSetInactiveTriggeredHandler()
         {
-            clickedKokInfo = false;
         }
 
         private void OnBuyUpgradeTriggeredHandler()

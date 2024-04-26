@@ -13,7 +13,6 @@ namespace Objects.Abstract.ActiveObjectClasses
         [SerializeField] private AudioClip animalNoise;
         [SerializeField] private AudioSource animalNoiseAudioSource;
 
-        private float timer = 0f;
         private double allTimeMilked = 0;
 
         protected float interval = 1f;
