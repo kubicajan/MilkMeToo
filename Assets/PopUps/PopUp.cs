@@ -55,9 +55,9 @@ namespace PopUps
 
         public virtual void SetInactive()
         {
-            OnSetInactiveTriggered?.Invoke();
             gameObject.SetActive(false);
             canvasGroup.interactable = true;
+            OnSetInactiveTriggered?.Invoke();
         }
 
         public void SetActive()

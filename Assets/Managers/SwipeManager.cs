@@ -92,7 +92,6 @@ namespace Managers
                         counter = 0;
                     }
 
-
                     SongManager.instance.UpdateAudioMutes(counter);
                     StartCoroutine(SmoothMove(transform.position, panelPosition, easing));
                 }
