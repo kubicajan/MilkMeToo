@@ -5873,7 +5873,6 @@ GameObject:
   - component: {fileID: 64331045}
   - component: {fileID: 64331048}
   - component: {fileID: 64331047}
-  - component: {fileID: 64331046}
   m_Layer: 5
   m_Name: Multiplier
   m_TagString: Untagged
@@ -5901,18 +5900,6 @@ RectTransform:
   m_AnchoredPosition: {x: 22.170044, y: 1.4959717}
   m_SizeDelta: {x: 69.92999, y: 2.3470001}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &64331046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 64331044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3b142cb3a1fcb4a99202756038238a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &64331047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19293,7 +19280,6 @@ GameObject:
   - component: {fileID: 356436138}
   - component: {fileID: 356436137}
   - component: {fileID: 356436136}
-  - component: {fileID: 356436135}
   - component: {fileID: 356436139}
   m_Layer: 5
   m_Name: vemenButton
@@ -19322,18 +19308,6 @@ RectTransform:
   m_AnchoredPosition: {x: -212, y: -157.9}
   m_SizeDelta: {x: 160, y: 119.786}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &356436135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356436133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a95667f24042944da3a89ea60021eb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &356436136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37321,8 +37295,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1117572964}
-        m_TargetAssemblyTypeName: PopUps.PopUp`1[[PopUps.EventPopUp, Assembly-CSharp
-        m_MethodName: SetInactiveByClick
+        m_TargetAssemblyTypeName: PopUps.EventPopUp, Assembly-CSharp
+        m_MethodName: DissmissEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -42648,7 +42622,6 @@ GameObject:
   - component: {fileID: 750757675}
   - component: {fileID: 750757674}
   - component: {fileID: 750757673}
-  - component: {fileID: 750757672}
   m_Layer: 5
   m_Name: Cow
   m_TagString: Untagged
@@ -42676,18 +42649,6 @@ RectTransform:
   m_AnchoredPosition: {x: 23, y: -90}
   m_SizeDelta: {x: 908.58, y: 612.661}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &750757672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750757670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7bed916fd4fb744bd0841aa8914729, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &750757673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62025,7 +61986,6 @@ GameObject:
   - component: {fileID: 1045953112}
   - component: {fileID: 1045953114}
   - component: {fileID: 1045953113}
-  - component: {fileID: 1045953115}
   m_Layer: 5
   m_Name: MoneyScore
   m_TagString: Untagged
@@ -62150,18 +62110,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045953111}
   m_CullTransparentMesh: 1
---- !u!114 &1045953115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045953111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3b142cb3a1fcb4a99202756038238a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1072153825
 GameObject:
   m_ObjectHideFlags: 0
@@ -80252,7 +80200,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1117572964}
         m_TargetAssemblyTypeName: PopUps.EventPopUp, Assembly-CSharp
-        m_MethodName: SetInactive
+        m_MethodName: SetInactiveByClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -97680,7 +97628,6 @@ GameObject:
   - component: {fileID: 2014717101}
   - component: {fileID: 2014717104}
   - component: {fileID: 2014717103}
-  - component: {fileID: 2014717102}
   m_Layer: 5
   m_Name: ShopTitle
   m_TagString: Untagged
@@ -97708,18 +97655,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00049973, y: 0.3925171}
   m_SizeDelta: {x: 579.04, y: 145.34}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2014717102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014717100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3b142cb3a1fcb4a99202756038238a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2014717103
 MonoBehaviour:
   m_ObjectHideFlags: 0

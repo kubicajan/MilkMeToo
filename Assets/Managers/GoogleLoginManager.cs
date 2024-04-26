@@ -13,52 +13,71 @@ namespace Managers
         public string GooglePlayToken;
         public string GooglePlayError;
 
-        public async Task Authenticate()
+        public void Start()
         {
-            PlayGamesPlatform.Activate();
-            await UnityServices.InitializeAsync();
-            PlayGamesPlatform.Instance.Authenticate(success =>
-            {
-                if (success == SignInStatus.Success)
-                {
-                    Debug.Log("successful login");
-                    PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
-                    {
-                        Debug.Log($"Auth code is {code}");
-                        GooglePlayToken = code;
-                    });
-                }
-                else
-                {
-                    GooglePlayError = "failed to retreieve GPG auth code";
-                    Debug.Log("login unsuccessful");
-                }
-            });
-
-            await AuthenticateWithUnity();
-
+            Debug.Log("attempting to log in");
+            Authenticate();
         }
 
-        private async Task AuthenticateWithUnity()
+        private void Authenticate()
         {
-            try
+            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+        }
+
+        private void ProcessAuthentication(SignInStatus status)
+        {
+            if (status == SignInStatus.Success)
             {
-                await AuthenticationService.Instance.SignInWithGoogleAsync(GooglePlayToken);
+                Debug.Log("successful login");
             }
-            catch (AuthenticationException e)
+            else
             {
-                Debug.LogException(e);
-                throw;
-            }
-            catch (RequestFailedException e)
-            {
-                Debug.LogException(e);
-                throw;
+                Debug.Log("failed");
             }
         }
         
+        //
+        // public async Task Authenticate()
+        // {
+        //     PlayGamesPlatform.Activate();
+        //     await UnityServices.InitializeAsync();
+        //     PlayGamesPlatform.Instance.Authenticate(success =>
+        //     {
+        //         if (success == SignInStatus.Success)
+        //         {
+        //             Debug.Log("successful login");
+        //             PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
+        //             {
+        //                 Debug.Log($"Auth code is {code}");
+        //                 GooglePlayToken = code;
+        //             });
+        //         }
+        //         else
+        //         {
+        //             GooglePlayError = "failed to retreieve GPG auth code";
+        //             Debug.Log("login unsuccessful");
+        //         }
+        //     });
+        //
+        //     await AuthenticateWithUnity();
+        // }
+        //
+        // private async Task AuthenticateWithUnity()
+        // {
+        //     try
+        //     {
+        //         await AuthenticationService.Instance.SignInWithGoogleAsync(GooglePlayToken);
+        //     }
+        //     catch (AuthenticationException e)
+        //     {
+        //         Debug.LogException(e);
+        //         throw;
+        //     }
+        //     catch (RequestFailedException e)
+        //     {
+        //         Debug.LogException(e);
+        //         throw;
+        //     }
+        // }
     }
-
 }
-
-
