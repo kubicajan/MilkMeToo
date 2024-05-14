@@ -45,6 +45,8 @@ namespace Managers
 
             money += amount;
             totalMoney += amount;
+           //todo:
+            // Social.ReportScore((long)totalMoney, "CgkIrdTOtaYPEAIQBA", (bool success) => { });
             ChangeDisplayedMoney();
             return amount;
         }
@@ -84,7 +86,7 @@ namespace Managers
             money = 0;
             ChangeDisplayedMoney();
         }
-        
+
         public void ResetMultiplicationAndAddToIt(int value)
         {
             multiplication = value;

@@ -1,3 +1,4 @@
+using GooglePlayGames;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +23,7 @@ namespace Objects.SpecialObjects
             kokButtonUnlockPrice = 5;
             productionPower = 1;
         }
-        
+
         protected override void ActivateThings(int value)
         {
             if (value > 1)
@@ -61,8 +62,16 @@ namespace Objects.SpecialObjects
             ObjectCount += value;
         }
 
+        private int counter = 0;
+
         public void MilkMe()
         {
+            counter++;
+            if (counter <= 10)
+            {
+                PlayGamesPlatform.Instance.IncrementAchievement("CgkIrdTOtaYPEAIQBg", 1, (bool success) => { });
+            }
+
             float money = productionPower * ObjectCount;
 
             StartCoroutine(PlayMilkedCoroutine(vemenButtonTransform,
@@ -77,7 +86,7 @@ namespace Objects.SpecialObjects
             float makeNegativeOrNotX = Random.Range(0f, 1f) < 0.5 ? -1 : 1;
 
             float moveY = randomY * makeNegativeOrNotY;
-            float  moveX = randomX * makeNegativeOrNotX;
+            float moveX = randomX * makeNegativeOrNotX;
 
             return position - new Vector2(-70f + (moveX), +240f + (moveY));
         }

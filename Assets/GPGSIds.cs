@@ -24,8 +24,10 @@
 
 public static class GPGSIds
 {
-        public const string leaderboard_leaderboard = "CgkImMe51tobEAIQBg"; // <GPGSID>
-        public const string achievement_you_are_a_milker = "CgkImMe51tobEAIQBw"; // <GPGSID>
+        public const string achievement_mans_best_friend = "CgkIrdTOtaYPEAIQBQ"; // <GPGSID>
+        public const string achievement_big_boy = "CgkIrdTOtaYPEAIQAw"; // <GPGSID>
+        public const string leaderboard_yo_momma = "CgkIrdTOtaYPEAIQBA"; // <GPGSID>
+        public const string achievement_milk_man = "CgkIrdTOtaYPEAIQBg"; // <GPGSID>
 
 }
 

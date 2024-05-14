@@ -24,6 +24,18 @@ namespace Objects.ActiveObjects
             interval = 1f;
         }
 
+        private bool achievementUnlocked = false;
+
+        public override void BuyObject()
+        {
+            base.BuyObject();
+            if (!achievementUnlocked && objectCounter >= 1)
+            {
+                Social.ReportProgress("CgkIrdTOtaYPEAIQBQ", 100.0f, (bool success) => { });
+                achievementUnlocked = true;
+            }
+        }
+
         protected override void Start()
         {
             base.Start();
@@ -60,7 +72,7 @@ namespace Objects.ActiveObjects
             }
             else
             {
-                 ConfigureAndPlayMilked(primalSpriteButton.gameObject.transform);
+                ConfigureAndPlayMilked(primalSpriteButton.gameObject.transform);
             }
         }
     }
