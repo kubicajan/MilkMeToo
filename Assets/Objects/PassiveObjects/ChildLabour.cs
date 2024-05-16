@@ -36,5 +36,12 @@ namespace Objects.PassiveObjects
             anotherSlave.gameObject.SetActive(true);
             yetAnotherSlave.gameObject.SetActive(true);
         }
+        
+        protected override void ActivateAllOfThem()
+        {
+            base.ActivateAllOfThem();
+            anotherSlave.gameObject.SetActive(true);
+            yetAnotherSlave.gameObject.SetActive(true);
+        }
     }
 }

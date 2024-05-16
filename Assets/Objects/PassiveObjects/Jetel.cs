@@ -43,5 +43,13 @@ namespace Objects.PassiveObjects
             yetAnotherAnotherJetel.gameObject.SetActive(false);
             KokTreeButtonStart();
         }
+        
+        protected override void ActivateAllOfThem()
+        {
+            base.ActivateAllOfThem();
+            anotherJetel.gameObject.SetActive(true);
+            yetAnotherJetel.gameObject.SetActive(true);
+            yetAnotherAnotherJetel.gameObject.SetActive(true);
+        }
     }
 }

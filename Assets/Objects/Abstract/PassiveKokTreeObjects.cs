@@ -31,6 +31,11 @@ namespace Objects.Abstract
         public override void BuyUpgrade()
         {
             base.BuyUpgrade();
+            ActivateAllOfThem();
+        }
+
+        protected virtual void ActivateAllOfThem()
+        {
             primalSpriteButton.gameObject.SetActive(true);
         }
     }

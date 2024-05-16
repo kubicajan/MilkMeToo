@@ -14,7 +14,7 @@ namespace Managers
 
         private void Start()
         {
-            // Authenticate();
+            Authenticate();
         }
 
         public async Task Authenticate()

@@ -87724,6 +87724,7 @@ GameObject:
   - component: {fileID: 1629431447}
   - component: {fileID: 1629431448}
   - component: {fileID: 1629431449}
+  - component: {fileID: 1629431450}
   m_Layer: 5
   m_Name: Holder
   m_TagString: Untagged
@@ -87865,6 +87866,22 @@ MonoBehaviour:
   eventSong: {fileID: 8300000, guid: f8de235afb59d304eaf2516a11c3371f, type: 3}
   click: {fileID: 8300000, guid: 08cb3503fb1c59349b7f1b0fe11a28eb, type: 3}
   purchase: {fileID: 8300000, guid: d82b31aa26f4b2346b16007223b61a92, type: 3}
+--- !u!114 &1629431450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629431438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7de20f5e4d444a6a722a01324cef480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wrapper:
+    currentMoney: 0
+    multiplier: 0
+    listToBeSaved: []
 --- !u!1 &1660762549
 GameObject:
   m_ObjectHideFlags: 0
