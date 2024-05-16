@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace Managers
         public float numberOfTitties = 0;
         private float money = 0;
         private int multiplication = 0;
+        private bool multiplicationHasBeenShown = false;
 
         private void Awake()
         {
@@ -33,6 +35,20 @@ namespace Managers
             }
         }
 
+        public void Start()
+        {
+            money = SaveManager.instance.GetCurrentMoney();
+            ChangeDisplayedMoney();
+            multiplication = SaveManager.instance.GetMultiplier();
+
+            if (multiplication != 0)
+            {
+                multiplier.enabled = true;
+            }
+
+            ChangeDisplayStreak();
+        }
+
         public float AddMoney(float amount)
         {
             int multiplyBy = multiplication;
@@ -45,9 +61,11 @@ namespace Managers
 
             money += amount;
             totalMoney += amount;
-           //todo:
+            //todo:
             // Social.ReportScore((long)totalMoney, "CgkIrdTOtaYPEAIQBA", (bool success) => { });
             ChangeDisplayedMoney();
+            SaveManager.instance.UpdateCurrentMoney(amount);
+
             return amount;
         }
 
@@ -56,6 +74,7 @@ namespace Managers
             money += amount;
             totalMoney += amount;
             ChangeDisplayedMoney();
+            SaveManager.instance.UpdateCurrentMoney(amount);
             return amount;
         }
 
@@ -63,6 +82,7 @@ namespace Managers
         {
             if (IsEnoughFunds(amount))
             {
+                SaveManager.instance.UpdateCurrentMoney(-amount);
                 money -= amount;
                 ChangeDisplayedMoney();
                 return true;
@@ -90,6 +110,8 @@ namespace Managers
         public void ResetMultiplicationAndAddToIt(int value)
         {
             multiplication = value;
+            SaveManager.instance.UpdateMultiplier(value);
+            multiplicationHasBeenShown = true;
             ChangeDisplayStreak();
         }
 
@@ -107,6 +129,8 @@ namespace Managers
                 : 0;
             multiplier.enabled = true;
             ChangeDisplayStreak();
+            multiplicationHasBeenShown = true;
+            SaveManager.instance.UpdateMultiplier(multiplication);
         }
 
         private void ChangeDisplayedMoney()

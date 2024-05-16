@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using Managers;
 using PopUps;
 using TMPro;
@@ -44,7 +45,18 @@ namespace Objects.Abstract
 
             upgradePriceDisplay = transform.Find("Price").GetComponent<TextMeshProUGUI>();
             kokButton = transform.GetComponent<Button>();
+            Load();
             KokTreeButtonStart();
+        }
+
+        private void Load()
+        {
+            VyjimecnyElan data = SaveManager.instance.GetItemToUpdate(this.GetType().ToString());
+
+            if (data != null)
+            {
+                kokButtonStatus = data.KokTreeStatus;
+            }
         }
 
         protected virtual void ResetHandler()
@@ -87,6 +99,7 @@ namespace Objects.Abstract
                     LockButton();
                     break;
                 case ButtonStatus.BOUGHT:
+                    MakeButtonBought();
                     break;
                 case ButtonStatus.AVAILABLE:
                     MakeButtonAvailable();
@@ -126,6 +139,7 @@ namespace Objects.Abstract
 
         private void MakeButtonUnknown()
         {
+            SaveManager.instance.UpdateKokTreeStatusWrapper(this.GetType().ToString(), ButtonStatus.UNKNOWN);
             kokButtonStatus = ButtonStatus.UNKNOWN;
             kokButton.image.sprite = unknownKokButtonSprite;
             kokButton.enabled = false;
@@ -135,6 +149,7 @@ namespace Objects.Abstract
 
         public virtual void LockButton()
         {
+            SaveManager.instance.UpdateKokTreeStatusWrapper(this.GetType().ToString(), ButtonStatus.LOCKED);
             kokButtonStatus = ButtonStatus.LOCKED;
             kokButton.image.sprite = lockedKokButtonSprite;
             kokButton.enabled = true;
@@ -144,6 +159,7 @@ namespace Objects.Abstract
 
         protected virtual void MakeButtonAvailable()
         {
+            SaveManager.instance.UpdateKokTreeStatusWrapper(this.GetType().ToString(), ButtonStatus.AVAILABLE);
             kokButton.enabled = true;
             kokButtonStatus = ButtonStatus.AVAILABLE;
             kokButton.image.sprite = availableKokButtonSprite;
@@ -153,12 +169,17 @@ namespace Objects.Abstract
 
         public virtual void BuyUpgrade()
         {
+            MakeButtonBought();
+            UnlockAnotherButton();
+        }
+
+        private void MakeButtonBought()
+        {
+            SaveManager.instance.UpdateKokTreeStatusWrapper(this.GetType().ToString(), ButtonStatus.BOUGHT);
             kokButtonStatus = ButtonStatus.BOUGHT;
             kokButton.image.sprite = boughtKokButtonSprite;
             kokButton.enabled = true;
             upgradePriceDisplay.text = "";
-            //   UnlockShopButton();
-            UnlockAnotherButton();
             SwitchToBoughtParticle();
         }
 

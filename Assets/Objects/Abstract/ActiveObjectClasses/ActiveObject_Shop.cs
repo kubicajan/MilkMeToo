@@ -101,6 +101,7 @@ namespace Objects.Abstract.ActiveObjectClasses
                 ObjectCount++;
                 shopButtonBuyPrice = CalculatePrice();
                 SongManager.instance.PlayPurchase();
+                SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
             }
         }
 
@@ -108,6 +109,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         {
             ObjectCount += amount;
             shopButtonBuyPrice = CalculatePrice();
+            SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), amount);
         }
     }
 }

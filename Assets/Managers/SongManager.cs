@@ -57,48 +57,48 @@ namespace Managers
         public void UpdateAudioMutes(int panelNumber)
         {
             // todo: uncomment
-             switch (panelNumber)
-             {
-                 case 0:
-                     MuteShopAudios(true);
-                     MuteCowPanel(true);
-                     MuteKoktreeAudios(false);
-                     kokPanelAudioSourceForSong.Play();
-                     cowPanelAudioSourceForSong.Pause();
-                     shopPanelAudioSourceForSong.Pause();
-                     eventAudioSource.Pause();
-                     rememberLastPanel = panelNumber;
-                     break;
-                 case 1:
-                     MuteShopAudios(true);
-                     MuteCowPanel(false);
-                     MuteKoktreeAudios(true);
-                     kokPanelAudioSourceForSong.Pause();
-                     cowPanelAudioSourceForSong.Play();
-                     shopPanelAudioSourceForSong.Pause();
-                     eventAudioSource.Pause();
-                     rememberLastPanel = panelNumber;
-                     break;
-                 case 2:
-                     MuteShopAudios(false);
-                     MuteCowPanel(true);
-                     MuteKoktreeAudios(true);
-                     kokPanelAudioSourceForSong.Pause();
-                     cowPanelAudioSourceForSong.Pause();
-                     shopPanelAudioSourceForSong.Play();
-                     eventAudioSource.Pause();
-                     rememberLastPanel = panelNumber;
-                     break;
-                 case 3:
-                     MuteShopAudios(true);
-                     MuteCowPanel(true);
-                     MuteKoktreeAudios(true);
-                     kokPanelAudioSourceForSong.Pause();
-                     cowPanelAudioSourceForSong.Pause();
-                     shopPanelAudioSourceForSong.Pause();
-                     eventAudioSource.Play();
-                     break;
-             }
+             // switch (panelNumber)
+             // {
+             //     case 0:
+             //         MuteShopAudios(true);
+             //         MuteCowPanel(true);
+             //         MuteKoktreeAudios(false);
+             //         kokPanelAudioSourceForSong.Play();
+             //         cowPanelAudioSourceForSong.Pause();
+             //         shopPanelAudioSourceForSong.Pause();
+             //         eventAudioSource.Pause();
+             //         rememberLastPanel = panelNumber;
+             //         break;
+             //     case 1:
+             //         MuteShopAudios(true);
+             //         MuteCowPanel(false);
+             //         MuteKoktreeAudios(true);
+             //         kokPanelAudioSourceForSong.Pause();
+             //         cowPanelAudioSourceForSong.Play();
+             //         shopPanelAudioSourceForSong.Pause();
+             //         eventAudioSource.Pause();
+             //         rememberLastPanel = panelNumber;
+             //         break;
+             //     case 2:
+             //         MuteShopAudios(false);
+             //         MuteCowPanel(true);
+             //         MuteKoktreeAudios(true);
+             //         kokPanelAudioSourceForSong.Pause();
+             //         cowPanelAudioSourceForSong.Pause();
+             //         shopPanelAudioSourceForSong.Play();
+             //         eventAudioSource.Pause();
+             //         rememberLastPanel = panelNumber;
+             //         break;
+             //     case 3:
+             //         MuteShopAudios(true);
+             //         MuteCowPanel(true);
+             //         MuteKoktreeAudios(true);
+             //         kokPanelAudioSourceForSong.Pause();
+             //         cowPanelAudioSourceForSong.Pause();
+             //         shopPanelAudioSourceForSong.Pause();
+             //         eventAudioSource.Play();
+             //         break;
+             // }
         }
 
         public void PlayLastOne()

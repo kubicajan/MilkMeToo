@@ -13,7 +13,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         [SerializeField] private AudioClip animalNoise;
         [SerializeField] private AudioSource animalNoiseAudioSource;
 
-        private double allTimeMilked = 0;
+        protected double allTimeMilked = 0;
 
         protected float interval = 1f;
         protected float productionPower = 0;
@@ -25,7 +25,15 @@ namespace Objects.Abstract.ActiveObjectClasses
             originalPrice = shopButtonBuyPrice;
 
             effectInfo = "SHOP UPGRADE";
+            LoadData();
             ShopButtonStart();
+        }
+
+        protected virtual void LoadData()
+        {
+            VyjimecnyElan data = SaveManager.instance.GetItemToUpdate(this.GetType().ToString());
+            this.ObjectCount = data.CountBought;
+            this.allTimeMilked = data.AmountMilked;
         }
 
         protected void NabijeciSystemTepleVody()
@@ -33,7 +41,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             base.FixedUpdate();
             float money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
-   
+
             if (InformationPopUp.instance.isActiveAndEnabled && clickedInfo)
             {
                 this.Clicked();
@@ -72,12 +80,14 @@ namespace Objects.Abstract.ActiveObjectClasses
         {
             yield return new WaitForSeconds(0.25f);
             animalNoiseAudioSource.PlayOneShot(animalNoise);
+            SaveManager.instance.UpdateAmountMilkedWrapper(this.GetType().ToString(), moneyMoney);
+
             float finalPoints = MoneyManagerSingleton.instance.AddMoney(moneyMoney);
             AddToAllTimeMilked(finalPoints);
             MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, showMilkPosition);
-            
+
             ParticleSystem pSystem = Instantiate(system, transformMe);
-            
+
             //this needs to be not converted whereas the other positions need to be converted
             pSystem.transform.position = transformMe.position;
             Destroy(pSystem.gameObject, 1.25f);

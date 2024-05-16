@@ -1,4 +1,5 @@
 using GooglePlayGames;
+using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,6 +48,21 @@ namespace Objects.SpecialObjects
                 anotherCow.gameObject.SetActive(false);
                 anotherAnotherCow.gameObject.SetActive(false);
             }
+        }
+
+        protected override void LoadData()
+        {
+            VyjimecnyElan data = SaveManager.instance.GetItemToUpdate(this.GetType().ToString());
+            if (data.CountBought == 0)
+            {
+                this.ObjectCount = 1;
+            }
+            else
+            {
+                this.ObjectCount = data.CountBought;
+            }
+
+            this.allTimeMilked = data.AmountMilked;
         }
 
         protected override void Start()

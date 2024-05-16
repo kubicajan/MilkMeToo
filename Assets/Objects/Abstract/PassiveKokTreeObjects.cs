@@ -10,6 +10,10 @@ namespace Objects.Abstract
         {
             base.Start();
             effectInfo = $"{multiplicationBonus}% EXTRA PRODUCTION";
+            if (SaveManager.instance.GetItemToUpdate(this.GetType().ToString()).KokTreeStatus == ButtonStatus.BOUGHT)
+            {
+                primalSpriteButton.gameObject.SetActive(true);
+            }
         }
 
         protected override void UnlockAnotherButton()

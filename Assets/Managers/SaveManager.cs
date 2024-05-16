@@ -1,6 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Objects;
+using UnityEngine.UIElements;
 
 namespace Managers
 {
@@ -8,6 +14,7 @@ namespace Managers
     {
         public Wrapper wrapper;
         public static SaveManager instance;
+        private string saveFilePath;
 
         private void Awake()
         {
@@ -20,22 +27,102 @@ namespace Managers
                 instance = this;
             }
         }
-        
-        //todo: reading from file.
+
 
         public void Start()
         {
-            wrapper = new Wrapper();
+            string dataStringPath = Application.persistentDataPath;
+            const string DATA_FILE_NAME = "saveFile";
+            saveFilePath = Path.Combine(dataStringPath, DATA_FILE_NAME);
+            Load();
         }
 
-        //todo: path
+        public VyjimecnyElan GetItemToUpdate(string className)
+        {
+            return wrapper.listToBeSaved.Find(item => item.Name == className);
+        }
+
+        public void UpdateKokTreeStatusWrapper(string className, ButtonStatus kokTreeStatus)
+        {
+            UpdateItem(className, itemToUpdate => itemToUpdate.KokTreeStatus = kokTreeStatus,
+                () => new VyjimecnyElan(className, kokTreeStatus, 0, 0));
+        }
+
+        public void UpdateCountBoughtWrapper(string className, int countBought)
+        {
+            UpdateItem(className, itemToUpdate => itemToUpdate.CountBought += countBought,
+                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, countBought, 0));
+        }
+
+        public void UpdateAmountMilkedWrapper(string className, float amountMilked)
+        {
+            UpdateItem(className, itemToUpdate => itemToUpdate.AmountMilked += amountMilked,
+                () => new VyjimecnyElan(className, ButtonStatus.BOUGHT, 0, amountMilked));
+        }
+
+        public void UpdateCurrentMoney(float moneyToBeAdded)
+        {
+            wrapper.currentMoney += moneyToBeAdded;
+        }
+
+        public void UpdateMultiplier(int multiplier)
+        {
+            wrapper.multiplier = multiplier;
+        }
+
+        private void UpdateItem(string className, Action<VyjimecnyElan> updateAction, Func<VyjimecnyElan> createNewItem)
+        {
+            VyjimecnyElan itemToUpdate = GetItemToUpdate(className);
+
+            if (itemToUpdate != null)
+            {
+                updateAction(itemToUpdate);
+            }
+            else
+            {
+                wrapper.listToBeSaved.Add(createNewItem());
+            }
+        }
+
+        public float GetCurrentMoney()
+        {
+            return wrapper.currentMoney;
+        }
+
+        public int GetMultiplier()
+        {
+            return wrapper.multiplier;
+        }
+
+        public void Load()
+        {
+            if (File.Exists(saveFilePath))
+            {
+                string jsonData = File.ReadAllText(saveFilePath);
+                Wrapper tmpWrapper = JsonUtility.FromJson<Wrapper>(jsonData);
+                wrapper = tmpWrapper;
+                foreach (var item in wrapper.listToBeSaved)
+                {
+                    Debug.Log(item.Name + " " + item.KokTreeStatus + " " + item.AmountMilked + " " + item.CountBought);
+                }
+            }
+            else
+            {
+                wrapper = new Wrapper();
+            }
+        }
+
         private void SaveGameData()
         {
-            string savePlayerData = JsonUtility.ToJson(wrapper);
-            File.WriteAllText("", savePlayerData);
+            Debug.Log("I am saving");
+            Directory.CreateDirectory(Path.GetDirectoryName(saveFilePath));
+            string savePlayerData = JsonUtility.ToJson(wrapper, true);
+            File.WriteAllText(saveFilePath, savePlayerData);
+            Debug.Log(savePlayerData);
+            Debug.Log($"I saved to{saveFilePath}");
         }
 
-        void OnApplicationPause(bool pauseStatus)
+        public void OnApplicationPause(bool pauseStatus)
         {
             if (pauseStatus)
             {
@@ -43,62 +130,36 @@ namespace Managers
             }
         }
 
-        void OnApplicationQuit()
+        public void OnApplicationQuit()
         {
+            Debug.Log("CLOSING THIS");
             SaveGameData();
         }
     }
 
+    [Serializable]
     public class Wrapper
     {
-        private VyjimecnyElan InitializeDefault() => new VyjimecnyElan(false, 0, 0);
-
-        // Initialize properties with default values using the method
-        public VyjimecnyElan Cat { get; set; }
-        public VyjimecnyElan Capy { get; set; }
-        public VyjimecnyElan Jetel { get; set; }
-        public VyjimecnyElan Seno { get; set; }
-        public VyjimecnyElan VrHeadset { get; set; }
-        public VyjimecnyElan Lover { get; set; }
-        public VyjimecnyElan Drugs { get; set; }
-        public VyjimecnyElan Cows { get; set; }
-        public VyjimecnyElan Slaves { get; set; }
-        public VyjimecnyElan ChildLabour { get; set; }
-        public VyjimecnyElan CumBuckets { get; set; }
-        public VyjimecnyElan Vemeno { get; set; }
-        public VyjimecnyElan Mommy { get; set; }
-
-        //todo: dodelat nastenku a mommy asi taky bude jebat
-        public Wrapper()
-        {
-            Cat = InitializeDefault();
-            Capy = InitializeDefault();
-            Jetel = InitializeDefault();
-            Seno = InitializeDefault();
-            VrHeadset = InitializeDefault();
-            Lover = InitializeDefault();
-            Drugs = InitializeDefault();
-            Cows = InitializeDefault();
-            Slaves = InitializeDefault();
-            ChildLabour = InitializeDefault();
-            CumBuckets = InitializeDefault();
-            Vemeno = InitializeDefault();
-            Mommy = InitializeDefault();
-        }
+        [SerializeField] public float currentMoney = 0;
+        [SerializeField] public int multiplier = 0;
+        [SerializeField] public List<VyjimecnyElan> listToBeSaved = new List<VyjimecnyElan>();
     }
 
 
+    [Serializable]
     public class VyjimecnyElan
     {
-        private bool Unlocked;
-        private int CountBought;
-        private long AmountMilked;
+        public string Name;
+        public ButtonStatus KokTreeStatus;
+        public int CountBought;
+        public float AmountMilked;
 
-        internal VyjimecnyElan(bool unlocked, int countBought, long amountMilked)
+        public VyjimecnyElan(string name, ButtonStatus kokTreeStatus, int countBought, float amountMilked)
         {
-            this.Unlocked = unlocked;
-            this.CountBought = countBought;
-            this.AmountMilked = amountMilked;
+            Name = name;
+            KokTreeStatus = kokTreeStatus;
+            CountBought = countBought;
+            AmountMilked = amountMilked;
         }
     }
 }
