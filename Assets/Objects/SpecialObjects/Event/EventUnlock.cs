@@ -40,9 +40,24 @@ namespace Objects.SpecialObjects.Event
         
         public override void BuyUpgrade()
         {
+            base.BuyUpgrade();
+            LevelUp();
+        }
+
+        protected override void KokTreeButtonStart()
+        {
+            base.KokTreeButtonStart();
+            if (this.kokButtonStatus == ButtonStatus.BOUGHT)
+            {
+                LevelUp();
+
+            }
+        }
+
+        private void LevelUp()
+        {
             toUnlockNext.transform.position = gameObject.transform.position;
             toUnlockNext.gameObject.SetActive(true);
-            base.BuyUpgrade();
             StartCoroutine(EventManager.instance.LevelUpCoroutine());
             gameObject.SetActive(false);
         }

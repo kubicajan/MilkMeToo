@@ -1,3 +1,4 @@
+using Managers;
 using Objects.Abstract;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,10 +19,22 @@ namespace Objects.PassiveObjects
         
         protected override void Start()
         {
-            base.Start();
             anotherSlave.gameObject.SetActive(false);
             yetAnotherSlave.gameObject.SetActive(false);
+            base.Start();
         }
+        
+        protected override void LoadAllAssets()
+        {
+            if (SaveManager.instance.GetItemToUpdate(this.GetType().ToString()).KokTreeStatus == ButtonStatus.BOUGHT)
+            {
+                primalSpriteButton.gameObject.SetActive(true); 
+                anotherSlave.gameObject.SetActive(true);
+                yetAnotherSlave.gameObject.SetActive(true);
+            }
+        }
+        
+        
         
         protected override void ResetHandler()
         {

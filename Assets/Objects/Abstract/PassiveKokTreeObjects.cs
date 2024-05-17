@@ -10,9 +10,14 @@ namespace Objects.Abstract
         {
             base.Start();
             effectInfo = $"{multiplicationBonus}% EXTRA PRODUCTION";
+            LoadAllAssets();
+        }
+
+        protected virtual void LoadAllAssets()
+        {
             if (SaveManager.instance.GetItemToUpdate(this.GetType().ToString()).KokTreeStatus == ButtonStatus.BOUGHT)
             {
-                primalSpriteButton.gameObject.SetActive(true);
+                ActivateAllOfThem();
             }
         }
 

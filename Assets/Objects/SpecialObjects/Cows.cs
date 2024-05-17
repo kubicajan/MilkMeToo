@@ -27,6 +27,7 @@ namespace Objects.SpecialObjects
 
         protected override void ActivateThings(int value)
         {
+            Debug.Log(value);
             if (value > 1)
             {
                 objectCounter = value;
@@ -65,12 +66,13 @@ namespace Objects.SpecialObjects
             this.allTimeMilked = data.AmountMilked;
         }
 
+
         protected override void Start()
         {
-            base.Start();
-            vemenButtonTransform = GameObject.Find("vemenButton").transform;
             anotherCow.gameObject.SetActive(false);
             anotherAnotherCow.gameObject.SetActive(false);
+            base.Start();
+            vemenButtonTransform = GameObject.Find("vemenButton").transform;
         }
 
         public void BirthACow(int value)

@@ -20,10 +20,10 @@ namespace Objects.PassiveObjects
         
         protected override void Start()
         {
-            base.Start();
             anotherJetel.gameObject.SetActive(false);
             yetAnotherJetel.gameObject.SetActive(false);
             yetAnotherAnotherJetel.gameObject.SetActive(false);
+            base.Start();
         }
         
         public override void BuyUpgrade()

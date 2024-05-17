@@ -91,7 +91,7 @@ namespace Objects.Abstract
             clickedInfo = true;
         }
 
-        protected void KokTreeButtonStart()
+        protected virtual void KokTreeButtonStart()
         {
             switch (kokButtonStatus)
             {

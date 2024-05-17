@@ -1,3 +1,4 @@
+using Managers;
 using Objects.Abstract;
 using PopUps;
 using UnityEngine;
@@ -26,6 +27,10 @@ namespace Objects.SpecialObjects
         {
             base.Start();
             cows = cowsButton.transform.GetComponent<Cows>();
+            if (SaveManager.instance.GetItemToUpdate(this.GetType().ToString()).KokTreeStatus == ButtonStatus.BOUGHT)
+            {
+                primalSpriteButton.gameObject.SetActive(true);
+            }
         }
 
         protected override void FixedUpdate()
