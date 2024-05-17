@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 using Objects;
-using UnityEngine.UIElements;
 
 namespace Managers
 {
@@ -26,11 +22,6 @@ namespace Managers
             {
                 instance = this;
             }
-        }
-
-
-        public void Start()
-        {
             string dataStringPath = Application.persistentDataPath;
             const string DATA_FILE_NAME = "saveFile";
             saveFilePath = Path.Combine(dataStringPath, DATA_FILE_NAME);
@@ -96,9 +87,13 @@ namespace Managers
 
         public void Load()
         {
+            Debug.Log("I AM LOADING");
+            Debug.Log("existing? " + File.Exists(saveFilePath));
+            Debug.Log(saveFilePath);
             if (File.Exists(saveFilePath))
             {
                 string jsonData = File.ReadAllText(saveFilePath);
+                Debug.Log(jsonData);
                 Wrapper tmpWrapper = JsonUtility.FromJson<Wrapper>(jsonData);
                 wrapper = tmpWrapper;
                 foreach (var item in wrapper.listToBeSaved)
