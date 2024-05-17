@@ -11435,7 +11435,7 @@ GameObject:
   - component: {fileID: 128130018}
   - component: {fileID: 128130017}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: CanvasPica2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
