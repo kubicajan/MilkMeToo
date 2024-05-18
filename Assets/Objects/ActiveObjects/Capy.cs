@@ -39,10 +39,10 @@ namespace Objects.ActiveObjects
 
         protected override void Start()
         {
-            base.Start();
             anotherCapy.gameObject.SetActive(false);
             yetAnotherCapy.gameObject.SetActive(false);
             yetAnotherAnotherCapy.gameObject.SetActive(false);
+            base.Start();
         }
 
         protected override void ActivateThings(int value)
