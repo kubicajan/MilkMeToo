@@ -65,7 +65,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             }
         }
 
-        private float CalculatePrice()
+        protected float CalculatePrice()
         {
             return (int)(shopButtonBuyPrice * (float)Math.Pow(1.15f, objectCounter));
         }

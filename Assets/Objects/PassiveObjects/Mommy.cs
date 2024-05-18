@@ -14,6 +14,7 @@ namespace Objects
 
         public static event OnRestartDelegate OnRestart;
         public static int magicResetValue = 100;
+        //todo: tady toto je jeste potreba udelat
         private int timesRestarted = 0;
         private int unlockCounter = 0;
 

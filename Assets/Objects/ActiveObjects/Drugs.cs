@@ -12,8 +12,9 @@ namespace Objects.ActiveObjects
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip jingle;
 
-        private int bonus = 100;
+        private int bonus = 30;
         private bool bonusIsOn;
+        private bool turnItOn;
         private int MAX_SLIDER_VALUE = 15;
         protected ParticleSystem milkExplosion;
 
@@ -44,15 +45,28 @@ namespace Objects.ActiveObjects
             NabijeciSystemTepleVody();
             float money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
-            if (!bonusIsOn && this.ObjectCount > 0)
+
+            if (!bonusIsOn && turnItOn)
             {
                 StartCoroutine(StartBonusProduction());
             }
         }
 
+        public override void BuyObject()
+        {
+            if (MoneyManagerSingleton.instance.SpendMoney(shopButtonBuyPrice))
+            {
+                ObjectCount++;
+                turnItOn = true;
+                shopButtonBuyPrice = CalculatePrice();
+                SongManager.instance.PlayPurchase();
+                SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
+            }
+        }
+
         protected override void UpdateShop(float money)
         {
-            if (objectCounter > 0)
+            if (bonusIsOn)
             {
                 UpdateShopButton(false, shopDefaultName, "ACTIVATED");
             }
@@ -61,14 +75,19 @@ namespace Objects.ActiveObjects
                 base.UpdateShop(money);
             }
         }
+        
+        protected override void ActivateThings(int value)
+        {
+            objectCounter = value > 0 ? value : 0;
+        }
 
-        IEnumerator StartBonusProduction()
+        private IEnumerator StartBonusProduction()
         {
             audioSource.Play();
-            bonusIsOn = true;
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(bonus);
 
             float timer = 0f;
+            bonusIsOn = true;
             while (timer <= MAX_SLIDER_VALUE)
             {
                 timer += Time.deltaTime;
