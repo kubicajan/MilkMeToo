@@ -27,6 +27,7 @@ namespace Objects.SpecialObjects
         {
             base.Start();
             cows = cowsButton.transform.GetComponent<Cows>();
+            fatherToKids = SaveManager.instance.GetFatherTo();
             if (SaveManager.instance.GetItemToUpdate(this.GetType().ToString()).KokTreeStatus == ButtonStatus.BOUGHT)
             {
                 primalSpriteButton.gameObject.SetActive(true);
@@ -78,6 +79,7 @@ namespace Objects.SpecialObjects
                     fatherToKids += 1;
                     cows.BirthACow(1);
                     UpdatePopUpCount();
+                    SaveManager.instance.UpdateFatherTo(1);
                 }
             }
         }

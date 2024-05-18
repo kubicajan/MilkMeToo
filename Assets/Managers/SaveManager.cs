@@ -33,6 +33,16 @@ namespace Managers
             return wrapper.listToBeSaved.Find(item => item.Name == className);
         }
 
+        public int GetFatherTo()
+        {
+            return wrapper.fatherTo;
+        }
+        
+        public void UpdateFatherTo(int fatherTo)
+        {
+            wrapper.fatherTo += fatherTo;
+        }
+
         public void UpdateKokTreeStatusWrapper(string className, ButtonStatus kokTreeStatus)
         {
             UpdateItem(className, itemToUpdate => itemToUpdate.KokTreeStatus = kokTreeStatus,
@@ -55,7 +65,7 @@ namespace Managers
         {
             wrapper.currentMoney += moneyToBeAdded;
         }
-
+        
         public void UpdateMultiplier(int multiplier)
         {
             wrapper.multiplier = multiplier;
@@ -136,6 +146,7 @@ namespace Managers
     public class Wrapper
     {
         [SerializeField] public float currentMoney = 0;
+        [SerializeField] public int fatherTo = 0;
         [SerializeField] public int multiplier = 0;
         [SerializeField] public List<VyjimecnyElan> listToBeSaved = new List<VyjimecnyElan>();
     }
