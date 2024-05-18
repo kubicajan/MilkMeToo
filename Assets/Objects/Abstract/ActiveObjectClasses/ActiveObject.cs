@@ -80,9 +80,9 @@ namespace Objects.Abstract.ActiveObjectClasses
         {
             yield return new WaitForSeconds(0.25f);
             animalNoiseAudioSource.PlayOneShot(animalNoise);
-            SaveManager.instance.UpdateAmountMilkedWrapper(this.GetType().ToString(), moneyMoney);
 
             float finalPoints = MoneyManagerSingleton.instance.AddMoney(moneyMoney);
+            SaveManager.instance.UpdateAmountMilkedWrapper(this.GetType().ToString(), finalPoints);
             AddToAllTimeMilked(finalPoints);
             MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, showMilkPosition);
 
