@@ -27,7 +27,6 @@ namespace Objects.SpecialObjects
 
         protected override void ActivateThings(int value)
         {
-            Debug.Log(value);
             if (value > 1)
             {
                 objectCounter = value;
@@ -78,6 +77,7 @@ namespace Objects.SpecialObjects
         public void BirthACow(int value)
         {
             ObjectCount += value;
+            SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
         }
 
         private int counter = 0;
