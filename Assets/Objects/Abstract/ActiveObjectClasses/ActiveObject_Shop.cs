@@ -13,9 +13,9 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected int objectCounter = 0;
         protected string shopDefaultName;
-        private float originalPrice = 0;
+        private Decimal originalPrice = 0;
 
-        protected float shopButtonBuyPrice = 0;
+        protected Decimal shopButtonBuyPrice = 0;
 
         protected int ObjectCount
         {
@@ -48,7 +48,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             }
         }
 
-        protected virtual void UpdateShop(float money)
+        protected virtual void UpdateShop(Decimal money)
         {
             if (kokButtonStatus == ButtonStatus.BOUGHT)
             {
@@ -65,9 +65,9 @@ namespace Objects.Abstract.ActiveObjectClasses
             }
         }
 
-        protected float CalculatePrice()
+        protected Decimal CalculatePrice()
         {
-            return (int)(shopButtonBuyPrice * (float)Math.Pow(1.15f, ObjectCount));
+            return (int)(shopButtonBuyPrice * (Decimal)Math.Pow(1.15f, ObjectCount));
         }
 
         private void ShopButtonStart()

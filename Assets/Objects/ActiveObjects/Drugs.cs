@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Managers;
 using Objects.Abstract.ActiveObjectClasses;
@@ -26,7 +27,7 @@ namespace Objects.ActiveObjects
                                    "Gives temporary boost to production";
             shopButtonBuyPrice = 15;
             kokButtonUnlockPrice = 5;
-            productionPower = 1f;
+            productionPower = 1;
             interval = 1f;
         }
 
@@ -43,7 +44,7 @@ namespace Objects.ActiveObjects
         protected override void FixedUpdate()
         {
             NabijeciSystemTepleVody();
-            float money = MoneyManagerSingleton.instance.GetMoney();
+            Decimal money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
         }
 
@@ -61,7 +62,7 @@ namespace Objects.ActiveObjects
             }
         }
 
-        protected override void UpdateShop(float money)
+        protected override void UpdateShop(Decimal money)
         {
             if (bonusIsOn)
             {

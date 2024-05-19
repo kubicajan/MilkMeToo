@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Managers;
 using PopUps;
@@ -13,10 +14,9 @@ namespace Objects.Abstract.ActiveObjectClasses
         [SerializeField] private AudioClip animalNoise;
         [SerializeField] private AudioSource animalNoiseAudioSource;
 
-        protected double allTimeMilked = 0;
-
+        protected Decimal allTimeMilked = 0;
         protected float interval = 1f;
-        protected float productionPower = 0;
+        protected Decimal productionPower = 0;
         protected string description = "";
 
         protected override void Start()
@@ -33,17 +33,20 @@ namespace Objects.Abstract.ActiveObjectClasses
         {
             VyjimecnyElan data = SaveManager.instance.GetItemToUpdate(this.GetType().ToString());
             this.ObjectCount = data.CountBought;
-            this.allTimeMilked = data.AmountMilked;
-            if (data.ShopBuyPrice != 0)
+            Decimal gggg = Decimal.Parse(data.AmountMilked);
+            this.allTimeMilked = gggg;
+            Decimal ggtmp = Decimal.Parse(data.ShopBuyPrice);
+
+            if (ggtmp != 0)
             {
-                this.shopButtonBuyPrice = data.ShopBuyPrice;
+                this.shopButtonBuyPrice = ggtmp;
             }
         }
 
         protected void NabijeciSystemTepleVody()
         {
             base.FixedUpdate();
-            float money = MoneyManagerSingleton.instance.GetMoney();
+            Decimal money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
 
             if (InformationPopUp.instance.isActiveAndEnabled && clickedInfo)
@@ -75,17 +78,17 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected virtual void ConfigureAndPlayMilked(Transform transformMe)
         {
-            float moneyMoney = objectCounter * productionPower;
+            Decimal moneyMoney = objectCounter * productionPower;
             StartCoroutine(PlayMilkedCoroutine(transformMe,
                 Helpers.GetObjectPositionRelativeToCanvas(transformMe.position), moneyMoney));
         }
 
-        protected IEnumerator PlayMilkedCoroutine(Transform transformMe, Vector2 showMilkPosition, float moneyMoney)
+        protected IEnumerator PlayMilkedCoroutine(Transform transformMe, Vector2 showMilkPosition, Decimal moneyMoney)
         {
             yield return new WaitForSeconds(0.25f);
             animalNoiseAudioSource.PlayOneShot(animalNoise);
 
-            float finalPoints = MoneyManagerSingleton.instance.AddMoney(moneyMoney);
+            Decimal finalPoints = MoneyManagerSingleton.instance.AddMoney(moneyMoney);
             SaveManager.instance.UpdateAmountMilkedWrapper(this.GetType().ToString(), finalPoints);
             AddToAllTimeMilked(finalPoints);
             MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, showMilkPosition);
@@ -97,9 +100,9 @@ namespace Objects.Abstract.ActiveObjectClasses
             Destroy(pSystem.gameObject, 1.25f);
         }
 
-        private void AddToAllTimeMilked(float points)
+        private void AddToAllTimeMilked(Decimal points)
         {
-            allTimeMilked += points; //(float.Parse(allTimeMilked) + points).ToString();
+            allTimeMilked += (int)points; //(float.Parse(allTimeMilked) + points).ToString();
         }
     }
 }

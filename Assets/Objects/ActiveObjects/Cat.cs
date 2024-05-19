@@ -1,3 +1,4 @@
+using System;
 using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using Utilities;
@@ -19,7 +20,7 @@ namespace Objects.ActiveObjects
                 " can get more of his friends to help.";
             kokButtonDescription = "You find a little cat. Try to take it home, but it requires a fee..." +
                                    "\n \n What use is coin for him?";
-            productionPower = 0.5f;
+            productionPower = 0.5m;
             interval = 0.5f;
         }
 
@@ -32,7 +33,7 @@ namespace Objects.ActiveObjects
 
         protected override void ConfigureAndPlayMilked(Transform transformMe)
         {
-            float moneyMoney = objectCounter * productionPower * (MoneyManagerSingleton.instance.numberOfTitties + 1);
+            Decimal moneyMoney = objectCounter * productionPower * (MoneyManagerSingleton.instance.numberOfTitties + 1);
             StartCoroutine(PlayMilkedCoroutine(transformMe,
                 Helpers.GetObjectPositionRelativeToCanvas(transformMe.position), moneyMoney));
         }

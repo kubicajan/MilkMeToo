@@ -1,9 +1,11 @@
+using System;
 using GooglePlayGames;
 using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
+using Random = UnityEngine.Random;
 
 namespace Objects.SpecialObjects
 {
@@ -61,12 +63,14 @@ namespace Objects.SpecialObjects
             {
                 this.ObjectCount = data.CountBought;
             }
-            if (data.ShopBuyPrice != 0)
+            
+            Decimal ggtmp = Decimal.Parse(data.ShopBuyPrice);
+            if (ggtmp != 0)
             {
-                this.shopButtonBuyPrice = data.ShopBuyPrice;
+                this.shopButtonBuyPrice = ggtmp;
             }
-
-            this.allTimeMilked = data.AmountMilked;
+            Decimal gggg = Decimal.Parse(data.AmountMilked);
+            this.allTimeMilked = gggg;
         }
 
 
@@ -94,7 +98,7 @@ namespace Objects.SpecialObjects
                 PlayGamesPlatform.Instance.IncrementAchievement("CgkIrdTOtaYPEAIQBg", 1, (bool success) => { });
             }
 
-            float money = productionPower * ObjectCount;
+            Decimal money = productionPower * ObjectCount;
 
             StartCoroutine(PlayMilkedCoroutine(vemenButtonTransform,
                 MoveItABit(Helpers.GetObjectPositionRelativeToCanvas(vemenButtonTransform.position)), money));

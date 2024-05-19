@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Managers;
@@ -98,7 +99,7 @@ namespace PopUps
         {
             const string PATTERN = @"^([-+]?\d+)";
             Match match = Helpers.ParseRegex(gEffect, PATTERN);
-            MoneyManagerSingleton.instance.AddRewardMoney(float.Parse(match.Groups[1].Value));
+            MoneyManagerSingleton.instance.AddRewardMoney(Decimal.Parse(match.Groups[1].Value));
         }
 
         private void HandleHelperCase(string gEffect)

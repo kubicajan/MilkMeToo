@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using TMPro;
 using UnityEngine;
 
@@ -12,9 +13,9 @@ namespace Managers
         [SerializeField] public TextMeshProUGUI multiplier;
 
         public static MoneyManagerSingleton instance;
-        private float totalMoney = 0;
-        public float numberOfTitties = 0;
-        private float money = 0;
+        private BigInteger totalMoney = 0;
+        public int numberOfTitties = 0;
+        private Decimal money = 0;
         private int multiplication = 0;
         private bool multiplicationHasBeenShown = false;
 
@@ -35,9 +36,11 @@ namespace Managers
             }
         }
 
+
         public void Start()
         {
             money = SaveManager.instance.GetCurrentMoney();
+            totalMoney = SaveManager.instance.GetTotalMoney();
             ChangeDisplayedMoney();
             multiplication = SaveManager.instance.GetMultiplier();
 
@@ -49,7 +52,7 @@ namespace Managers
             ChangeDisplayStreak();
         }
 
-        public float AddMoney(float amount)
+        public Decimal AddMoney(Decimal amount)
         {
             int multiplyBy = multiplication;
             if (multiplyBy == 0)
@@ -60,25 +63,29 @@ namespace Managers
             amount *= multiplyBy;
 
             money += amount;
-            totalMoney += amount;
+            //todo: fix
+            totalMoney += (int)amount;
             //todo:
             // Social.ReportScore((long)totalMoney, "CgkIrdTOtaYPEAIQBA", (bool success) => { });
             ChangeDisplayedMoney();
             SaveManager.instance.UpdateCurrentMoney(amount);
+            //todo:
+            SaveManager.instance.UpdateTotalMoney((int)amount);
 
             return amount;
         }
 
-        public float AddRewardMoney(float amount)
+        public void AddRewardMoney(Decimal amount)
         {
             money += amount;
-            totalMoney += amount;
+            //todo: fix
+            totalMoney += (int)amount;
             ChangeDisplayedMoney();
             SaveManager.instance.UpdateCurrentMoney(amount);
-            return amount;
+            SaveManager.instance.UpdateTotalMoney((int)amount);
         }
 
-        public bool SpendMoney(float amount)
+        public bool SpendMoney(Decimal amount)
         {
             if (IsEnoughFunds(amount))
             {
@@ -91,12 +98,12 @@ namespace Managers
             return false;
         }
 
-        public bool IsEnoughFunds(float price)
+        public bool IsEnoughFunds(Decimal price)
         {
             return money >= price;
         }
 
-        public float GetMoney()
+        public Decimal GetMoney()
         {
             return money;
         }
@@ -115,7 +122,7 @@ namespace Managers
             ChangeDisplayStreak();
         }
 
-        public float GetTotalMoney()
+        public BigInteger GetTotalMoney()
         {
             return totalMoney;
         }

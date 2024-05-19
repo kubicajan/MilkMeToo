@@ -27,7 +27,7 @@ namespace Utilities
             tmpTextHolder = GameObject.Find("tmpTextHolder");
         }
 
-        public void HandleMilkMoneyShow(float points, Vector2 spriteCanvasPosition)
+        public void HandleMilkMoneyShow(Decimal points, Vector2 spriteCanvasPosition)
         {
             ShowMilkedMoney(points, TransformVectorByABitUp(spriteCanvasPosition));
         }
@@ -37,7 +37,7 @@ namespace Utilities
             return position - new Vector2(100f, -120f);
         }
 
-        private void ShowMilkedMoney(float points, Vector2 spriteCanvasPosition)
+        private void ShowMilkedMoney(Decimal points, Vector2 spriteCanvasPosition)
         {
             GameObject textObjectWrapper = Instantiate(tmpTextHolder, spriteCanvasPosition, Quaternion.identity);
             TextMeshProUGUI textMeshPro = textObjectWrapper.GetComponentInChildren<TextMeshProUGUI>();

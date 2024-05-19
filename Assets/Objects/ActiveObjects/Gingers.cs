@@ -15,7 +15,7 @@ namespace Objects.ActiveObjects
             kokButtonDescription = "They do not have souls anyway";
             shopButtonBuyPrice = 15;
             kokButtonUnlockPrice = 5;
-            productionPower = 1f;
+            productionPower = 1;
             interval = 10f;
         }
 
