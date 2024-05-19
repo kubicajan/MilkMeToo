@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
@@ -48,9 +50,16 @@ namespace Objects.ActiveObjects
         protected override void ActivateThings(int value)
         {
             base.ActivateThings(value);
+            StartCoroutine(PlayMilkedCoroutine(value));
+        }
 
+        protected IEnumerator PlayMilkedCoroutine(int value)
+        {
+            yield return new WaitForSeconds(0.68f);
             yetAnotherAnotherCapy.gameObject.SetActive(value > 6);
+            yield return new WaitForSeconds(0.50f);
             yetAnotherCapy.gameObject.SetActive(value > 4);
+            yield return new WaitForSeconds(0.3f);
             anotherCapy.gameObject.SetActive(value > 2);
         }
 
