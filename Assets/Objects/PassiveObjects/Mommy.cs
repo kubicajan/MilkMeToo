@@ -32,12 +32,15 @@ namespace Objects
             effectInfo = $"{magicResetValue}% EXTRA PRODUCTION";
             unlockCounter = SaveManager.instance.GetMommyUnlockCounter();
             timesRestarted = SaveManager.instance.GetTimesProud();
-            if (timesRestarted != 0)
+            kokButtonDescription =
+                $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress.</color> </b>  \n \n {timesRestarted} times proud so far.";
+            if (timesRestarted == 0)
             {
                 rain.Stop();
             }
             else
             {
+                image.GetComponent<Image>().color = new Color32(0, 146, 255, 255);
                 rain.Play();
             }
         }

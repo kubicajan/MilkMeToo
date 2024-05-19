@@ -55,6 +55,13 @@ namespace Managers
             UpdateItem(className, itemToUpdate => itemToUpdate.CountBought += countBought,
                 () => new VyjimecnyElan(className, ButtonStatus.LOCKED, countBought, 0, 0));
         }
+        
+        public void RestartCountBoughtWrapper(string className)
+        {
+            UpdateItem(className, itemToUpdate => itemToUpdate.CountBought =0,
+                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, 0, 0, 0));
+        }
+
 
         public void UpdateShopBuyPriceWrapper(string className, float shopBuyPrice)
         {

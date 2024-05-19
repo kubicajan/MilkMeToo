@@ -63,6 +63,7 @@ namespace Objects.Abstract
         {
             MakeButtonUnknown();
             kokButtonUnlockPrice *= Mommy.magicResetValue;
+            SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
             primalSpriteButton.gameObject.SetActive(false);
             this.StopAllCoroutines();
         }
