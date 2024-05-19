@@ -15,8 +15,6 @@ namespace Objects
         public static event OnRestartDelegate OnRestart;
 
         public static int magicResetValue = 100;
-
-        //todo: tady toto je jeste potreba udelat
         private int timesRestarted = 0;
         private int unlockCounter = 0;
 
@@ -32,9 +30,16 @@ namespace Objects
         {
             base.Start();
             effectInfo = $"{magicResetValue}% EXTRA PRODUCTION";
-            rain.Stop();
             unlockCounter = SaveManager.instance.GetMommyUnlockCounter();
             timesRestarted = SaveManager.instance.GetTimesProud();
+            if (timesRestarted != 0)
+            {
+                rain.Stop();
+            }
+            else
+            {
+                rain.Play();
+            }
         }
 
         public override void LockButton()
