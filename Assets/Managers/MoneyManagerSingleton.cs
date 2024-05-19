@@ -69,13 +69,12 @@ namespace Managers
             BigInteger integerPart;
             SeparateDecimal(amount, out integerPart, out remainingFraction);
             totalMoney += integerPart;
+            SaveManager.instance.UpdateTotalMoney(integerPart);
 
             //todo:
-            // Social.ReportScore((long)totalMoney, "CgkIrdTOtaYPEAIQBA", (bool success) => { });
+           // Social.ReportScore((long)(totalMoney / 1000000), "CgkIrdTOtaYPEAIQBA", (bool success) => { });
             ChangeDisplayedMoney();
             SaveManager.instance.UpdateCurrentMoney(amount);
-            //todo:
-            SaveManager.instance.UpdateTotalMoney((int)amount);
 
             return amount;
         }
