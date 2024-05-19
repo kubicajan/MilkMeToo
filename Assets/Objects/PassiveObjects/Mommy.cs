@@ -13,7 +13,9 @@ namespace Objects
         public delegate void OnRestartDelegate();
 
         public static event OnRestartDelegate OnRestart;
+
         public static int magicResetValue = 100;
+
         //todo: tady toto je jeste potreba udelat
         private int timesRestarted = 0;
         private int unlockCounter = 0;
@@ -31,11 +33,14 @@ namespace Objects
             base.Start();
             effectInfo = $"{magicResetValue}% EXTRA PRODUCTION";
             rain.Stop();
+            unlockCounter = SaveManager.instance.GetMommyUnlockCounter();
+            timesRestarted = SaveManager.instance.GetTimesProud();
         }
 
         public override void LockButton()
         {
             unlockCounter++;
+            SaveManager.instance.UpdateMommyUnlockCounter(unlockCounter);
             if (unlockCounter >= 2)
             {
                 base.LockButton();
@@ -46,6 +51,7 @@ namespace Objects
         {
             RestartEverything();
             unlockCounter = 0;
+            SaveManager.instance.UpdateMommyUnlockCounter(0);
             MoneyManagerSingleton.instance.ResetMoney();
             MoneyManagerSingleton.instance.ResetMultiplicationAndAddToIt(magicResetValue);
         }
@@ -54,6 +60,7 @@ namespace Objects
         {
             magicResetValue = 100 * (timesRestarted + 1);
             timesRestarted++;
+            SaveManager.instance.UpdateTimesProud(1);
             kokButtonDescription =
                 $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress.</color> </b>  \n \n {timesRestarted} times proud so far.";
             OnRestart?.Invoke();

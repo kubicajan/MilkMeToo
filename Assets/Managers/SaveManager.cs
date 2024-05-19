@@ -77,6 +77,26 @@ namespace Managers
         {
             wrapper.multiplier = multiplier;
         }
+        
+        public void UpdateMommyUnlockCounter(int mommyUnlockCounter)
+        {
+            wrapper.mommyUnlockCounter = mommyUnlockCounter;
+        }
+        
+        public int GetMommyUnlockCounter()
+        {
+            return wrapper.mommyUnlockCounter;
+        }
+        
+        public void UpdateTimesProud(int timesProud)
+        {
+            wrapper.timesProud += timesProud;
+        }
+        
+        public int GetTimesProud()
+        {
+            return wrapper.timesProud;
+        }
 
         private void UpdateItem(string className, Action<VyjimecnyElan> updateAction, Func<VyjimecnyElan> createNewItem)
         {
@@ -144,6 +164,8 @@ namespace Managers
     public class Wrapper
     {
         [SerializeField] public float currentMoney = 0;
+        [SerializeField] public int timesProud = 0;
+        [SerializeField] public int mommyUnlockCounter = 0;
         [SerializeField] public int fatherTo = 0;
         [SerializeField] public int multiplier = 0;
         [SerializeField] public List<VyjimecnyElan> listToBeSaved = new List<VyjimecnyElan>();
