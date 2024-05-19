@@ -22,6 +22,7 @@ namespace Managers
             {
                 instance = this;
             }
+
             string dataStringPath = Application.persistentDataPath;
             const string DATA_FILE_NAME = "saveFile";
             saveFilePath = Path.Combine(dataStringPath, DATA_FILE_NAME);
@@ -37,7 +38,7 @@ namespace Managers
         {
             return wrapper.fatherTo;
         }
-        
+
         public void UpdateFatherTo(int fatherTo)
         {
             wrapper.fatherTo += fatherTo;
@@ -46,26 +47,32 @@ namespace Managers
         public void UpdateKokTreeStatusWrapper(string className, ButtonStatus kokTreeStatus)
         {
             UpdateItem(className, itemToUpdate => itemToUpdate.KokTreeStatus = kokTreeStatus,
-                () => new VyjimecnyElan(className, kokTreeStatus, 0, 0));
+                () => new VyjimecnyElan(className, kokTreeStatus, 0, 0, 0));
         }
 
         public void UpdateCountBoughtWrapper(string className, int countBought)
         {
             UpdateItem(className, itemToUpdate => itemToUpdate.CountBought += countBought,
-                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, countBought, 0));
+                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, countBought, 0, 0));
+        }
+
+        public void UpdateShopBuyPriceWrapper(string className, float shopBuyPrice)
+        {
+            UpdateItem(className, itemToUpdate => itemToUpdate.ShopBuyPrice = shopBuyPrice,
+                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, 0, 0, shopBuyPrice));
         }
 
         public void UpdateAmountMilkedWrapper(string className, float amountMilked)
         {
             UpdateItem(className, itemToUpdate => itemToUpdate.AmountMilked += amountMilked,
-                () => new VyjimecnyElan(className, ButtonStatus.BOUGHT, 0, amountMilked));
+                () => new VyjimecnyElan(className, ButtonStatus.BOUGHT, 0, amountMilked, 0));
         }
 
         public void UpdateCurrentMoney(float moneyToBeAdded)
         {
             wrapper.currentMoney += moneyToBeAdded;
         }
-        
+
         public void UpdateMultiplier(int multiplier)
         {
             wrapper.multiplier = multiplier;
@@ -97,19 +104,12 @@ namespace Managers
 
         public void Load()
         {
-            Debug.Log("I AM LOADING");
-            Debug.Log("existing? " + File.Exists(saveFilePath));
             Debug.Log(saveFilePath);
             if (File.Exists(saveFilePath))
             {
                 string jsonData = File.ReadAllText(saveFilePath);
-                Debug.Log(jsonData);
                 Wrapper tmpWrapper = JsonUtility.FromJson<Wrapper>(jsonData);
                 wrapper = tmpWrapper;
-                foreach (var item in wrapper.listToBeSaved)
-                {
-                    Debug.Log(item.Name + " " + item.KokTreeStatus + " " + item.AmountMilked + " " + item.CountBought);
-                }
             }
             else
             {
@@ -119,11 +119,9 @@ namespace Managers
 
         private void SaveGameData()
         {
-            Debug.Log("I am saving");
             Directory.CreateDirectory(Path.GetDirectoryName(saveFilePath));
             string savePlayerData = JsonUtility.ToJson(wrapper, true);
             File.WriteAllText(saveFilePath, savePlayerData);
-            Debug.Log(savePlayerData);
             Debug.Log($"I saved to{saveFilePath}");
         }
 
@@ -159,13 +157,16 @@ namespace Managers
         public ButtonStatus KokTreeStatus;
         public int CountBought;
         public float AmountMilked;
+        public float ShopBuyPrice;
 
-        public VyjimecnyElan(string name, ButtonStatus kokTreeStatus, int countBought, float amountMilked)
+        public VyjimecnyElan(string name, ButtonStatus kokTreeStatus, int countBought, float amountMilked,
+            float shopBuyPrice)
         {
             Name = name;
             KokTreeStatus = kokTreeStatus;
             CountBought = countBought;
             AmountMilked = amountMilked;
+            ShopBuyPrice = shopBuyPrice;
         }
     }
 }

@@ -61,6 +61,10 @@ namespace Objects.SpecialObjects
             {
                 this.ObjectCount = data.CountBought;
             }
+            if (data.ShopBuyPrice != 0)
+            {
+                this.shopButtonBuyPrice = data.ShopBuyPrice;
+            }
 
             this.allTimeMilked = data.AmountMilked;
         }

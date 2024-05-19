@@ -53,7 +53,7 @@ namespace Objects.ActiveObjects
             StartCoroutine(PlayMilkedCoroutine(value));
         }
 
-        protected IEnumerator PlayMilkedCoroutine(int value)
+        private IEnumerator PlayMilkedCoroutine(int value)
         {
             yield return new WaitForSeconds(0.68f);
             yetAnotherAnotherCapy.gameObject.SetActive(value > 6);

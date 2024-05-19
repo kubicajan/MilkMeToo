@@ -57,6 +57,7 @@ namespace Objects.ActiveObjects
                 shopButtonBuyPrice = CalculatePrice();
                 SongManager.instance.PlayPurchase();
                 SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
+                SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
             }
         }
 

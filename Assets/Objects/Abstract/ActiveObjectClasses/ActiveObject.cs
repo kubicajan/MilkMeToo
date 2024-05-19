@@ -22,11 +22,11 @@ namespace Objects.Abstract.ActiveObjectClasses
         protected override void Start()
         {
             base.Start();
-            originalPrice = shopButtonBuyPrice;
 
             effectInfo = "SHOP UPGRADE";
-            LoadData();
             ShopButtonStart();
+            LoadData();
+            originalPrice = shopButtonBuyPrice;
         }
 
         protected virtual void LoadData()
@@ -34,6 +34,10 @@ namespace Objects.Abstract.ActiveObjectClasses
             VyjimecnyElan data = SaveManager.instance.GetItemToUpdate(this.GetType().ToString());
             this.ObjectCount = data.CountBought;
             this.allTimeMilked = data.AmountMilked;
+            if (data.ShopBuyPrice != 0)
+            {
+                this.shopButtonBuyPrice = data.ShopBuyPrice;
+            }
         }
 
         protected void NabijeciSystemTepleVody()

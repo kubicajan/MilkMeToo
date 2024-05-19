@@ -67,13 +67,13 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected float CalculatePrice()
         {
-            return (int)(shopButtonBuyPrice * (float)Math.Pow(1.15f, objectCounter));
+            return (int)(shopButtonBuyPrice * (float)Math.Pow(1.15f, ObjectCount));
         }
 
         private void ShopButtonStart()
         {
             shopDefaultName = shopButton.transform.Find("ButtonName").GetComponent<TextMeshProUGUI>().text;
-            UpdateShopButton(false, "???", "");
+            UpdateShopButton(false, "???","");
         }
 
         private void UnlockShopButton()
@@ -102,6 +102,7 @@ namespace Objects.Abstract.ActiveObjectClasses
                 shopButtonBuyPrice = CalculatePrice();
                 SongManager.instance.PlayPurchase();
                 SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
+                SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
             }
         }
 
@@ -110,6 +111,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             ObjectCount += amount;
             shopButtonBuyPrice = CalculatePrice();
             SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), amount);
+            SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
         }
     }
 }
