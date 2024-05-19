@@ -2,6 +2,7 @@ using System;
 using System.Numerics;
 using TMPro;
 using UnityEngine;
+using Utilities;
 
 namespace Managers
 {
@@ -142,7 +143,7 @@ namespace Managers
 
         private void ChangeDisplayedMoney()
         {
-            moneyScore.text = $"{money}$";
+            moneyScore.text = $"{Helpers.ConvertNumbersToString(money)}$";
             //      totalScore.text = $"ALL TIME: {totalMoney}$";
         }
 

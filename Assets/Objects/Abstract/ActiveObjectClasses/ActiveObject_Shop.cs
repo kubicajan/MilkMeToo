@@ -3,6 +3,7 @@ using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 namespace Objects.Abstract.ActiveObjectClasses
 {
@@ -78,12 +79,12 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         private void UnlockShopButton()
         {
-            UpdateShopButton(true, shopDefaultName, shopButtonBuyPrice.ToString());
+            UpdateShopButton(true, shopDefaultName, Helpers.ConvertNumbersToString(shopButtonBuyPrice));
         }
 
         private void NoMoneyShopButton()
         {
-            UpdateShopButton(false, shopDefaultName, shopButtonBuyPrice.ToString());
+            UpdateShopButton(false, shopDefaultName, Helpers.ConvertNumbersToString(shopButtonBuyPrice));
         }
 
         protected void UpdateShopButton(bool interactable, string buttonNameText, string buttonPriceText)
