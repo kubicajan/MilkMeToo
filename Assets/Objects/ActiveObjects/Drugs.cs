@@ -15,7 +15,7 @@ namespace Objects.ActiveObjects
         private int bonus = 30;
         private bool bonusIsOn;
         private bool turnItOn;
-        private int MAX_SLIDER_VALUE = 15;
+        private int MAX_SLIDER_VALUE = 10;
         protected ParticleSystem milkExplosion;
 
         public Drugs()
@@ -45,11 +45,6 @@ namespace Objects.ActiveObjects
             NabijeciSystemTepleVody();
             float money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
-
-            if (!bonusIsOn && turnItOn)
-            {
-                StartCoroutine(StartBonusProduction());
-            }
         }
 
         public override void BuyObject()
@@ -57,6 +52,7 @@ namespace Objects.ActiveObjects
             if (MoneyManagerSingleton.instance.SpendMoney(shopButtonBuyPrice))
             {
                 ObjectCount++;
+                StartCoroutine(StartBonusProduction());
                 turnItOn = true;
                 shopButtonBuyPrice = CalculatePrice();
                 SongManager.instance.PlayPurchase();
@@ -83,6 +79,8 @@ namespace Objects.ActiveObjects
 
         private IEnumerator StartBonusProduction()
         {
+            primalSpriteButton.gameObject.SetActive(true);
+
             audioSource.Play();
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(bonus);
 
@@ -99,6 +97,7 @@ namespace Objects.ActiveObjects
             ObjectCount = 0;
             bonusIsOn = false;
             audioSource.Stop();
+            primalSpriteButton.gameObject.SetActive(false);
         }
     }
 }
