@@ -65,18 +65,17 @@ namespace Managers
 
             amount *= multiplyBy;
             money += amount;
-            amount += remainingFraction;
+            Decimal tmpAmount = amount + remainingFraction;
             BigInteger integerPart;
-            SeparateDecimal(amount, out integerPart, out remainingFraction);
+            SeparateDecimal(tmpAmount, out integerPart, out remainingFraction);
             totalMoney += integerPart;
             SaveManager.instance.UpdateTotalMoney(integerPart);
-
             //todo:
            // Social.ReportScore((long)(totalMoney / 1000000), "CgkIrdTOtaYPEAIQBA", (bool success) => { });
-            ChangeDisplayedMoney();
+          
+           ChangeDisplayedMoney();
             SaveManager.instance.UpdateCurrentMoney(amount);
-
-            return amount;
+            return amount ;
         }
 
         static void SeparateDecimal(decimal decimalNumber, out BigInteger integerPart, out Decimal remainingFraction)

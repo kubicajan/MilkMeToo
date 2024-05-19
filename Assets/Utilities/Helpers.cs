@@ -95,6 +95,7 @@ namespace Utilities
                     return Math.Round(number / 1000000, 3).ToString() + "M";
                     break;
                 default:
+                    Debug.Log(Math.Round(number, 2).ToString());
                     return Math.Round(number, 2).ToString();
             }
         }
