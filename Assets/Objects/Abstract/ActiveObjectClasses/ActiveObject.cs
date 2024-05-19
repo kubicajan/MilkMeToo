@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
+using System.Numerics;
 using Managers;
 using PopUps;
 using UnityEngine;
 using Utilities;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Objects.Abstract.ActiveObjectClasses
 {
@@ -102,7 +104,7 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         private void AddToAllTimeMilked(Decimal points)
         {
-            allTimeMilked += (int)points; //(float.Parse(allTimeMilked) + points).ToString();
+            allTimeMilked += points; //(float.Parse(allTimeMilked) + points).ToString();
         }
     }
 }

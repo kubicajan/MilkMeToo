@@ -53,6 +53,8 @@ namespace Managers
             ChangeDisplayStreak();
         }
 
+        Decimal remainingFraction = 0;
+
         public Decimal AddMoney(Decimal amount)
         {
             int multiplyBy = multiplication;
@@ -62,10 +64,12 @@ namespace Managers
             }
 
             amount *= multiplyBy;
-
             money += amount;
-            //todo: fix
-            totalMoney += (int)amount;
+            amount += remainingFraction;
+            BigInteger integerPart;
+            SeparateDecimal(amount, out integerPart, out remainingFraction);
+            totalMoney += integerPart;
+
             //todo:
             // Social.ReportScore((long)totalMoney, "CgkIrdTOtaYPEAIQBA", (bool success) => { });
             ChangeDisplayedMoney();
@@ -74,6 +78,15 @@ namespace Managers
             SaveManager.instance.UpdateTotalMoney((int)amount);
 
             return amount;
+        }
+
+        static void SeparateDecimal(decimal decimalNumber, out BigInteger integerPart, out Decimal remainingFraction)
+        {
+            Debug.Log(decimalNumber);
+            string numberString = decimalNumber.ToString();
+            string[] parts = numberString.Split('.');
+            integerPart = BigInteger.Parse(parts[0]);
+            remainingFraction = parts.Length > 1 ? decimal.Parse("0." + parts[1]) : 0m;
         }
 
         public void AddRewardMoney(Decimal amount)

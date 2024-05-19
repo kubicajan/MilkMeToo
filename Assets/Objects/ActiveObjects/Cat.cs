@@ -20,7 +20,7 @@ namespace Objects.ActiveObjects
                 " can get more of his friends to help.";
             kokButtonDescription = "You find a little cat. Try to take it home, but it requires a fee..." +
                                    "\n \n What use is coin for him?";
-            productionPower = 0.5m;
+            productionPower = 0.1m;
             interval = 0.5f;
         }
 
