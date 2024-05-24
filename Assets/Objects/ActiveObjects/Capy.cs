@@ -34,7 +34,7 @@ namespace Objects.ActiveObjects
             base.BuyObject();
             if (!achievementUnlocked && objectCounter >= 1)
             {
-                Social.ReportProgress("CgkIrdTOtaYPEAIQBQ", 100.0f, (bool success) => { });
+                Social.ReportProgress(GPGSIds.achievement_mans_best_friend,100.0f, (bool success) => { });
                 achievementUnlocked = true;
             }
         }

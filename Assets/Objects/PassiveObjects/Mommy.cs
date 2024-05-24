@@ -57,6 +57,8 @@ namespace Objects
 
         public override void BuyUpgrade()
         {
+            Social.ReportProgress(GPGSIds.achievement_you_did_it_she_is_proud_of_you, 100.0f, (bool success) => { });
+
             RestartEverything();
             unlockCounter = 0;
             SaveManager.instance.UpdateMommyUnlockCounter(0);

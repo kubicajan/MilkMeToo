@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using GooglePlayGames;
 using Managers;
 using Objects;
 using Objects.Abstract.ActiveObjectClasses;
@@ -43,6 +44,14 @@ namespace PopUps
             questionText = holdingImageTransform
                 .Find("QuestionBackground")
                 .Find("Question").GetComponent<TextMeshProUGUI>();
+            
+            PlayGamesPlatform.Instance
+                .LoadAchievements(achievements =>
+                {
+                    mamho = achievements
+                        .Where(achivement => achivement.id == GPGSIds.achievement_the_leprechaun)
+                        .Any(ach => ach.completed);
+                });
         }
 
         public void ShowPopUp()
@@ -111,6 +120,9 @@ namespace PopUps
             activeKokTreeObject.AddBoughtObject(int.Parse(match.Groups[1].Value));
         }
 
+        private int leprikonCounter = 0;
+        private bool mamho = false;
+
         public void AcceptEvent()
         {
             gameObject.SetActive(false);
@@ -122,6 +134,12 @@ namespace PopUps
                 wompOrWinSource.PlayOneShot(winSound);
                 successParticles.gameObject.SetActive(true);
                 unsuccessParticles.gameObject.SetActive(false);
+                leprikonCounter++;
+                
+                if (leprikonCounter >= 3 && !mamho)
+                {
+                    Social.ReportProgress(GPGSIds.achievement_the_leprechaun, 100.0f, (bool success) => { });
+                }
             }
             else if (basedResult.effect.StartsWith("-"))
             {

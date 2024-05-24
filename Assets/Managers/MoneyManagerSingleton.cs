@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using System.Numerics;
+using GooglePlayGames;
 using TMPro;
 using UnityEngine;
 using Utilities;
@@ -14,7 +16,34 @@ namespace Managers
         [SerializeField] public TextMeshProUGUI multiplier;
 
         public static MoneyManagerSingleton instance;
-        private BigInteger totalMoney = 0;
+
+        private BigInteger totaloMoneys = 0;
+
+        private bool gg = false;
+        private bool gg3 = false;
+        
+        private BigInteger totalMoney
+        {
+            get => totaloMoneys;
+            set
+            {
+                Debug.Log(totaloMoneys.ToString());
+                totaloMoneys = value;
+
+                if (!gg && totaloMoneys >= 1000000)
+                {
+                    gg = true;
+                    Social.ReportProgress(GPGSIds.achievement_money_can_buy_happiness, 100.0f, (bool success) => { });
+
+                }
+                if (!gg3 && totaloMoneys >= 5000000000000000000)
+                {
+                    gg3 = true;
+                    Social.ReportProgress(GPGSIds.achievement_buy_the_earth, 100.0f, (bool success) => { });
+                }
+            }
+        }
+
         public int numberOfTitties = 0;
         private Decimal money = 0;
         private int multiplication = 0;
@@ -36,7 +65,6 @@ namespace Managers
                 instance = this;
             }
         }
-
 
         public void Start()
         {
@@ -70,12 +98,9 @@ namespace Managers
             SeparateDecimal(tmpAmount, out integerPart, out remainingFraction);
             totalMoney += integerPart;
             SaveManager.instance.UpdateTotalMoney(integerPart);
-            //todo:
-           // Social.ReportScore((long)(totalMoney / 1000000), "CgkIrdTOtaYPEAIQBA", (bool success) => { });
-          
-           ChangeDisplayedMoney();
+            ChangeDisplayedMoney();
             SaveManager.instance.UpdateCurrentMoney(amount);
-            return amount ;
+            return amount;
         }
 
         static void SeparateDecimal(decimal decimalNumber, out BigInteger integerPart, out Decimal remainingFraction)

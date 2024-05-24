@@ -1,6 +1,7 @@
 using Managers;
 using Objects.Abstract;
 using PopUps;
+using UnityEngine;
 
 namespace Objects.SpecialObjects.Event
 {
@@ -58,6 +59,7 @@ namespace Objects.SpecialObjects.Event
         {
             toUnlockNext.transform.position = gameObject.transform.position;
             toUnlockNext.gameObject.SetActive(true);
+            Social.ReportProgress(GPGSIds.achievement_the_idol, 100.0f, (bool success) => { });
             StartCoroutine(EventManager.instance.LevelUpCoroutine());
             gameObject.SetActive(false);
         }

@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
@@ -14,6 +16,7 @@ namespace Objects.SpecialObjects
         [SerializeField] private Button anotherCow;
         [SerializeField] private Button anotherAnotherCow;
         private Transform vemenButtonTransform;
+        private bool loaded = false;
 
         public Cows()
         {
@@ -63,16 +66,16 @@ namespace Objects.SpecialObjects
             {
                 this.ObjectCount = data.CountBought;
             }
-            
+
             Decimal ggtmp = Decimal.Parse(data.ShopBuyPrice);
             if (ggtmp != 0)
             {
                 this.shopButtonBuyPrice = ggtmp;
             }
+
             Decimal gggg = Decimal.Parse(data.AmountMilked);
             this.allTimeMilked = gggg;
         }
-
 
         protected override void Start()
         {
@@ -80,6 +83,13 @@ namespace Objects.SpecialObjects
             anotherAnotherCow.gameObject.SetActive(false);
             base.Start();
             vemenButtonTransform = GameObject.Find("vemenButton").transform;
+            PlayGamesPlatform.Instance
+                .LoadAchievements(achievements =>
+                {
+                    loaded = achievements
+                        .Where(achivement => achivement.id == GPGSIds.achievement_touchy)
+                        .Any(ach => ach.completed);
+                });
         }
 
         public void BirthACow(int value)
@@ -95,7 +105,12 @@ namespace Objects.SpecialObjects
             counter++;
             if (counter <= 10)
             {
-                PlayGamesPlatform.Instance.IncrementAchievement("CgkIrdTOtaYPEAIQBg", 1, (bool success) => { });
+                PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_milk_man, 1, (bool success) => { });
+            }
+
+            if (!loaded)
+            {
+                PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_touchy, 1, (bool success) => { });
             }
 
             Decimal money = productionPower * ObjectCount;

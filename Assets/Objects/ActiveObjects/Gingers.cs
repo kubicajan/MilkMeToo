@@ -1,3 +1,5 @@
+using System.Linq;
+using GooglePlayGames;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +25,11 @@ namespace Objects.ActiveObjects
         {
             base.ActivateThings(value);
 
+            if (!mamho)
+            {
+                Social.ReportProgress(GPGSIds.achievement_its_a_zoo, 100.0f, (bool success) => { });
+            }
+
             if (value > 2)
             {
                 anotherGinger.gameObject.SetActive(true);
@@ -33,10 +40,18 @@ namespace Objects.ActiveObjects
             }
         }
 
+        private bool mamho = false;
         protected override void Start()
         {
             anotherGinger.gameObject.SetActive(false);
             base.Start();
+            PlayGamesPlatform.Instance
+                .LoadAchievements(achievements =>
+                {
+                    mamho = achievements
+                        .Where(achivement => achivement.id == GPGSIds.achievement_its_a_zoo)
+                        .Any(ach => ach.completed);
+                });
         }
 
         public override void PlayMilked(int? number)
