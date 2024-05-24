@@ -27,7 +27,7 @@ namespace Objects.ActiveObjects
             {
                 anotherGinger.gameObject.SetActive(true);
             }
-            else if (value <= 2)
+            else
             {
                 anotherGinger.gameObject.SetActive(false);
             }
@@ -35,8 +35,8 @@ namespace Objects.ActiveObjects
 
         protected override void Start()
         {
-            base.Start();
             anotherGinger.gameObject.SetActive(false);
+            base.Start();
         }
 
         public override void PlayMilked(int? number)
