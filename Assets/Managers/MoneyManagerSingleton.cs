@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using GooglePlayGames;
@@ -21,7 +22,7 @@ namespace Managers
 
         private bool gg = false;
         private bool gg3 = false;
-        
+
         private BigInteger totalMoney
         {
             get => totaloMoneys;
@@ -34,8 +35,8 @@ namespace Managers
                 {
                     gg = true;
                     Social.ReportProgress(GPGSIds.achievement_money_can_buy_happiness, 100.0f, (bool success) => { });
-
                 }
+
                 if (!gg3 && totaloMoneys >= 5000000000000000000)
                 {
                     gg3 = true;
@@ -96,6 +97,7 @@ namespace Managers
             Decimal tmpAmount = amount + remainingFraction;
             BigInteger integerPart;
             SeparateDecimal(tmpAmount, out integerPart, out remainingFraction);
+
             totalMoney += integerPart;
             SaveManager.instance.UpdateTotalMoney(integerPart);
             ChangeDisplayedMoney();
@@ -105,11 +107,10 @@ namespace Managers
 
         static void SeparateDecimal(decimal decimalNumber, out BigInteger integerPart, out Decimal remainingFraction)
         {
-            Debug.Log(decimalNumber);
-            string numberString = decimalNumber.ToString();
+            string numberString = decimalNumber.ToString(CultureInfo.InvariantCulture);
             string[] parts = numberString.Split('.');
-            integerPart = BigInteger.Parse(parts[0]);
-            remainingFraction = parts.Length > 1 ? decimal.Parse("0." + parts[1]) : 0m;
+            integerPart = BigInteger.Parse(parts[0], CultureInfo.InvariantCulture);
+            remainingFraction = parts.Length > 1 ? decimal.Parse("0." + parts[1], CultureInfo.InvariantCulture) : 0m;
         }
 
         public void AddRewardMoney(Decimal amount)

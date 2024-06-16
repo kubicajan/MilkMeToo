@@ -27,7 +27,7 @@ namespace Objects.SpecialObjects
             kokButtonDescription = "You can get more of them?";
             shopButtonBuyPrice = 15;
             kokButtonUnlockPrice = 5;
-            productionPower = 1;
+            productionPower = 0.3m;
         }
 
         protected override void ActivateThings(int value)
@@ -83,13 +83,14 @@ namespace Objects.SpecialObjects
             anotherAnotherCow.gameObject.SetActive(false);
             base.Start();
             vemenButtonTransform = GameObject.Find("vemenButton").transform;
-            PlayGamesPlatform.Instance
-                .LoadAchievements(achievements =>
-                {
-                    loaded = achievements
-                        .Where(achivement => achivement.id == GPGSIds.achievement_touchy)
-                        .Any(ach => ach.completed);
-                });
+  //todo
+            // PlayGamesPlatform.Instance
+            //     .LoadAchievements(achievements =>
+            //     {
+            //         loaded = achievements
+            //             .Where(achivement => achivement.id == GPGSIds.achievement_touchy)
+            //             .Any(ach => ach.completed);
+            //     });
         }
 
         public void BirthACow(int value)
@@ -113,7 +114,7 @@ namespace Objects.SpecialObjects
                 PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_touchy, 1, (bool success) => { });
             }
 
-            Decimal money = productionPower * ObjectCount;
+            Decimal money = productionPower * (Decimal)ObjectCount;
 
             StartCoroutine(PlayMilkedCoroutine(vemenButtonTransform,
                 MoveItABit(Helpers.GetObjectPositionRelativeToCanvas(vemenButtonTransform.position)), money));

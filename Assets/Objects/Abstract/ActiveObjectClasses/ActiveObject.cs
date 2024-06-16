@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Globalization;
 using System.Numerics;
 using Managers;
 using PopUps;
@@ -93,7 +94,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             Decimal finalPoints = MoneyManagerSingleton.instance.AddMoney(moneyMoney);
             SaveManager.instance.UpdateAmountMilkedWrapper(this.GetType().ToString(), finalPoints);
             AddToAllTimeMilked(finalPoints);
-            MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, showMilkPosition);
+            MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints.ToString(), showMilkPosition);
 
             ParticleSystem pSystem = Instantiate(system, transformMe);
 

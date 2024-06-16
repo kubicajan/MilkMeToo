@@ -45,14 +45,15 @@ namespace PopUps
                 .Find("QuestionBackground")
                 .Find("Question").GetComponent<TextMeshProUGUI>();
             
-            PlayGamesPlatform.Instance
-                .LoadAchievements(achievements =>
-                {
-                    mamho = achievements
-                        .Where(achivement => achivement.id == GPGSIds.achievement_the_leprechaun)
-                        .Any(ach => ach.completed);
-                });
-        }
+            //todo:
+        //     PlayGamesPlatform.Instance
+        //         .LoadAchievements(achievements =>
+        //         {
+        //             mamho = achievements
+        //                 .Where(achivement => achivement.id == GPGSIds.achievement_the_leprechaun)
+        //                 .Any(ach => ach.completed);
+        //         });
+         }
 
         public void ShowPopUp()
         {

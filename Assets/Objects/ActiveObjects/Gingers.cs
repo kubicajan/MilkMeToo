@@ -27,7 +27,8 @@ namespace Objects.ActiveObjects
 
             if (!mamho)
             {
-                Social.ReportProgress(GPGSIds.achievement_its_a_zoo, 100.0f, (bool success) => { });
+         //todo
+               // Social.ReportProgress(GPGSIds.achievement_its_a_zoo, 100.0f, (bool success) => { });
             }
 
             if (value > 2)
@@ -45,13 +46,15 @@ namespace Objects.ActiveObjects
         {
             anotherGinger.gameObject.SetActive(false);
             base.Start();
-            PlayGamesPlatform.Instance
-                .LoadAchievements(achievements =>
-                {
-                    mamho = achievements
-                        .Where(achivement => achivement.id == GPGSIds.achievement_its_a_zoo)
-                        .Any(ach => ach.completed);
-                });
+ 
+            //todo:
+            // PlayGamesPlatform.Instance
+            //     .LoadAchievements(achievements =>
+            //     {
+            //         mamho = achievements
+            //             .Where(achivement => achivement.id == GPGSIds.achievement_its_a_zoo)
+            //             .Any(ach => ach.completed);
+            //     });
         }
 
         public override void PlayMilked(int? number)
