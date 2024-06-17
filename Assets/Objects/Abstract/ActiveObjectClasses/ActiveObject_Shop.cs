@@ -32,7 +32,11 @@ namespace Objects.Abstract.ActiveObjectClasses
             shopButtonBuyPrice = originalPrice;
             // CalculatePrice();
             shopButton.transform.Find("Image").GetComponent<Image>().sprite = questionMarkBasicShop;
-            shopButtonBuyPrice *= Mommy.magicResetValue;
+            if (SaveManager.instance.GetTimesProud() != 0)
+            {
+                shopButtonBuyPrice *= Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
+            }
+
             SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
         }
 
@@ -75,7 +79,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         private void ShopButtonStart()
         {
             shopDefaultName = shopButton.transform.Find("ButtonName").GetComponent<TextMeshProUGUI>().text;
-            UpdateShopButton(false, "???","");
+            UpdateShopButton(false, "???", "");
         }
 
         private void UnlockShopButton()

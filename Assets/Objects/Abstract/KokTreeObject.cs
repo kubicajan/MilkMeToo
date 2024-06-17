@@ -45,6 +45,8 @@ namespace Objects.Abstract
 
             upgradePriceDisplay = transform.Find("Price").GetComponent<TextMeshProUGUI>();
             kokButton = transform.GetComponent<Button>();
+            this.kokButtonUnlockPrice *= Mommy.magicResetValue;
+            
             Load();
             KokTreeButtonStart();
         }
