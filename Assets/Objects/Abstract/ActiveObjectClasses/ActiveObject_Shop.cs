@@ -14,7 +14,7 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected int objectCounter = 0;
         protected string shopDefaultName;
-        private Decimal originalPrice = 0;
+        public Decimal originalPrice = 0;
 
         protected Decimal shopButtonBuyPrice = 0;
 
@@ -28,10 +28,10 @@ namespace Objects.Abstract.ActiveObjectClasses
         {
             base.ResetHandler();
             ShopButtonStart();
-            CalculatePrice();
-            shopButton.transform.Find("Image").GetComponent<Image>().sprite = questionMarkBasicShop;
             ObjectCount = 0;
             shopButtonBuyPrice = originalPrice;
+            // CalculatePrice();
+            shopButton.transform.Find("Image").GetComponent<Image>().sprite = questionMarkBasicShop;
             shopButtonBuyPrice *= Mommy.magicResetValue;
         }
 

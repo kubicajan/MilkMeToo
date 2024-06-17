@@ -25,7 +25,10 @@ namespace Objects.ActiveObjects
             description = "NOM";
             kokButtonDescription = "Everyone should experience it at least once. Or twice. Or all the time. \n \n" +
                                    "Gives temporary boost to production";
+          
             shopButtonBuyPrice = 15;
+            originalPrice = 15;
+           
             kokButtonUnlockPrice = 5;
             productionPower = 1;
             interval = 1f;

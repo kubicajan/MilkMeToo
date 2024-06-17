@@ -25,7 +25,7 @@ namespace Managers
             }
 
             string dataStringPath = Application.persistentDataPath;
-            const string DATA_FILE_NAME = "MarkuvPindour";
+            const string DATA_FILE_NAME = "MarkuvDlouhyPindour";
             saveFilePath = Path.Combine(dataStringPath, DATA_FILE_NAME);
             Load();
         }
