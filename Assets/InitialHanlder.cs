@@ -12,6 +12,7 @@ public class InitialHanlder : MonoBehaviour
     public static bool shopSwipedOnce = false;
     public static bool kokTreeSwipedOnce = false;
     private bool zeroFaded = false;
+    private bool tutorialFinished = false;
     private bool oneFaded = false;
     private bool twoFaded = false;
     private bool threeFaded = false;
@@ -43,77 +44,85 @@ public class InitialHanlder : MonoBehaviour
         unlocksClickInfoText.gameObject.SetActive(false);
         ShopClickInfoText.gameObject.SetActive(false);
         ShopClickInfoArrow.gameObject.SetActive(false);
+        tutorialFinished = SaveManager.instance.GetTutorialFinished();
     }
 
     public void Update()
     {
-        if (!zeroFaded)
+        if (!tutorialFinished)
         {
-            zeroFaded = true;
-            coroutine1 = MakeItAppear(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
-        }
-        else
-        {
-            if (MoneyManagerSingleton.instance.GetTotalMoney() != 0)
+            if (!zeroFaded)
             {
-                if (!oneFaded)
+                zeroFaded = true;
+                coroutine1 = MakeItAppear(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
+            }
+            else
+            {
+                if (MoneyManagerSingleton.instance.GetTotalMoney() != 0)
                 {
-                    oneFaded = true;
-                    if (coroutine1 != null)
+                    if (!oneFaded)
                     {
-                        StopCoroutine(coroutine1);
-                    }
-
-                    FadeIt(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
-                }
-
-                if (!kokTreeSwipedOnce)
-                {
-                    if (!unlocksClickInfoArrow.gameObject.activeSelf)
-                    {
-                        coroutine2 = MakeItAppear(unlocksClickInfoArrow.gameObject, unlocksClickInfoText.gameObject);
-                    }
-                }
-                else
-                {
-                    if (!twoFaded)
-                    {
-                        twoFaded = true;
-                        if (coroutine2 != null)
+                        oneFaded = true;
+                        if (coroutine1 != null)
                         {
-                            StopCoroutine(coroutine2);
+                            StopCoroutine(coroutine1);
                         }
 
-                        FadeIt(unlocksClickInfoArrow.gameObject, unlocksClickInfoText.gameObject);
+                        FadeIt(cowClickInfoArrow.gameObject, cowClickInfoText.gameObject);
                     }
 
-                    if (!shopSwipedOnce)
+                    if (!kokTreeSwipedOnce)
                     {
-                        if (!ShopClickInfoArrow.gameObject.activeSelf && NOW)
+                        if (!unlocksClickInfoArrow.gameObject.activeSelf)
                         {
-                            coroutine3 = MakeItAppear(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
+                            coroutine2 = MakeItAppear(unlocksClickInfoArrow.gameObject,
+                                unlocksClickInfoText.gameObject);
                         }
                     }
                     else
                     {
-                        if (!threeFaded)
+                        if (!twoFaded)
                         {
-                            threeFaded = true;
-                            if (coroutine3 != null)
+                            twoFaded = true;
+                            if (coroutine2 != null)
                             {
-                                StopCoroutine(coroutine3);
+                                StopCoroutine(coroutine2);
                             }
 
-                            FadeIt(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
+                            FadeIt(unlocksClickInfoArrow.gameObject, unlocksClickInfoText.gameObject);
+                        }
+
+                        if (!shopSwipedOnce)
+                        {
+                            if (!ShopClickInfoArrow.gameObject.activeSelf && NOW)
+                            {
+                                coroutine3 = MakeItAppear(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
+                            }
+                        }
+                        else
+                        {
+                            if (!threeFaded)
+                            {
+                                threeFaded = true;
+                                if (coroutine3 != null)
+                                {
+                                    StopCoroutine(coroutine3);
+                                }
+
+                                FadeIt(ShopClickInfoArrow.gameObject, ShopClickInfoText.gameObject);
+                                SaveManager.instance.SetTutorialFinished(true);
+                            }
                         }
                     }
                 }
             }
-        }
 
-        if (MoneyManagerSingleton.instance.GetTotalMoney() != 0 && shopSwipedOnce && kokTreeSwipedOnce)
-        {
-            enabled = false;
+            if (MoneyManagerSingleton.instance.GetTotalMoney() != 0 && shopSwipedOnce && kokTreeSwipedOnce)
+            {
+                enabled = false;
+                tutorialFinished = true;
+                SaveManager.instance.SetTutorialFinished(true);
+            }
         }
     }
 

@@ -141,6 +141,16 @@ namespace Managers
             wrapper.totalMoney = (GetTotalMoney() + money).ToString();
         }
 
+        public void SetTutorialFinished(bool finished)
+        {
+            wrapper.tutorialFinished = finished;
+        }
+
+        public bool GetTutorialFinished()
+        {
+            return wrapper.tutorialFinished;
+        }
+
         public void Load()
         {
             Debug.Log(saveFilePath);
@@ -183,6 +193,7 @@ namespace Managers
     public class Wrapper
     {
         [SerializeField] public string currentMoney = "0";
+        [SerializeField] public bool tutorialFinished = false;
         [SerializeField] public string totalMoney = "0";
         [SerializeField] public int timesProud = 0;
         [SerializeField] public int mommyUnlockCounter = 0;
