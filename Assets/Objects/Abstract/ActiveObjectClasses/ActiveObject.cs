@@ -25,11 +25,10 @@ namespace Objects.Abstract.ActiveObjectClasses
         protected override void Start()
         {
             base.Start();
-
+            originalPrice = shopButtonBuyPrice;
             effectInfo = "SHOP UPGRADE";
             ShopButtonStart();
             LoadData();
-            originalPrice = shopButtonBuyPrice;
         }
 
         protected virtual void LoadData()

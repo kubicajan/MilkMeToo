@@ -14,8 +14,6 @@ namespace Objects.ActiveObjects
             kokButtonStatus = ButtonStatus.AVAILABLE;
           
             shopButtonBuyPrice = 5;
-            originalPrice = 5;
-        
             kokButtonUnlockPrice = 3;
             objectName = "Jeremy";
             description =

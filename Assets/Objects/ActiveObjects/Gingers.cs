@@ -15,10 +15,7 @@ namespace Objects.ActiveObjects
             objectName = "Gingers";
             description = "Pact with the devil";
             kokButtonDescription = "They do not have souls anyway";
-         
             shopButtonBuyPrice = 15;
-            originalPrice = 15;
-            
             kokButtonUnlockPrice = 5;
             productionPower = 1;
             interval = 10f;

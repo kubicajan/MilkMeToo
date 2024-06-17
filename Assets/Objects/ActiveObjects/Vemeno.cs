@@ -13,10 +13,7 @@ namespace Objects.ActiveObjects
             objectName = "Vemeno";
             description = "ANOTHER ONE?";
             kokButtonDescription = "This does not seem natural \n \n <b> Gives cats extra production </b> ";
-          
             shopButtonBuyPrice = 15;
-            originalPrice = 15;
-            
             kokButtonUnlockPrice = 5;
             productionPower = 1;
             interval = 1f;

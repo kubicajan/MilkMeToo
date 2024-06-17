@@ -21,10 +21,7 @@ namespace Objects.ActiveObjects
                 "He brought his own family to where animals are equal. You can bring more of them.";
             kokButtonDescription =
                 "The chillest animal on the block. \n \n Perhaps he joins you for some of your wealth.";
-        
             shopButtonBuyPrice = 15;
-            originalPrice = 15;
-        
             kokButtonUnlockPrice = 5;
             productionPower = 0.3m;
             interval = 1f;

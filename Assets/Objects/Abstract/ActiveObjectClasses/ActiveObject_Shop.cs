@@ -33,6 +33,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             // CalculatePrice();
             shopButton.transform.Find("Image").GetComponent<Image>().sprite = questionMarkBasicShop;
             shopButtonBuyPrice *= Mommy.magicResetValue;
+            SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
         }
 
         protected virtual void ActivateThings(int value)
