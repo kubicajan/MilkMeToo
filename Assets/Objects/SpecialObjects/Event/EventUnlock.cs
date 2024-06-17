@@ -15,13 +15,13 @@ namespace Objects.SpecialObjects.Event
             effectInfo = "UNLOCKS EVENTS";
             kokButtonStatus = ButtonStatus.AVAILABLE;
         }
-    
+
         public override void Clicked()
         {
             base.Clicked();
             gameObject.SetActive(false);
         }
-        
+
         protected override void ResetHandler()
         {
             base.ResetHandler();
@@ -29,7 +29,7 @@ namespace Objects.SpecialObjects.Event
             RevertUpgrade();
             KokTreeButtonStart();
         }
-        
+
         private void RevertUpgrade()
         {
             gameObject.SetActive(true);
@@ -38,7 +38,7 @@ namespace Objects.SpecialObjects.Event
             EventManager.instance.FirstConfigure();
             EventManager.instance.ShutItAllDown();
         }
-        
+
         public override void BuyUpgrade()
         {
             base.BuyUpgrade();
@@ -50,16 +50,15 @@ namespace Objects.SpecialObjects.Event
             base.KokTreeButtonStart();
             if (this.kokButtonStatus == ButtonStatus.BOUGHT)
             {
-                LevelUp();
-
+                LevelUp(1);
             }
         }
 
-        private void LevelUp()
+        private void LevelUp(int level = 1)
         {
             toUnlockNext.transform.position = gameObject.transform.position;
             toUnlockNext.gameObject.SetActive(true);
-            Social.ReportProgress(GPGSIds.achievement_the_idol, 100.0f, (bool success) => { });
+            //TODO:    Social.ReportProgress(GPGSIds.achievement_the_idol, 100.0f, (bool success) => { });
             StartCoroutine(EventManager.instance.LevelUpCoroutine());
             gameObject.SetActive(false);
         }

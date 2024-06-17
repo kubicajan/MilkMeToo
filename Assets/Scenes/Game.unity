@@ -12430,11 +12430,11 @@ RectTransform:
   m_Children:
   - {fileID: 856399868}
   m_Father: {fileID: 1448483820}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1980, y: -574.13}
+  m_AnchoredPosition: {x: -1980.0002, y: -574.12994}
   m_SizeDelta: {x: 213.113, y: 181.127}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &202659041
@@ -80391,8 +80391,8 @@ RectTransform:
   - {fileID: 1584038255}
   - {fileID: 1776167485}
   - {fileID: 1244721375}
-  - {fileID: 1986733270}
   - {fileID: 202659040}
+  - {fileID: 1986733270}
   m_Father: {fileID: 1358638267}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -88315,10 +88315,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1629431439}
+  - component: {fileID: 1629431446}
   - component: {fileID: 1629431443}
   - component: {fileID: 1629431444}
   - component: {fileID: 1629431445}
-  - component: {fileID: 1629431446}
   - component: {fileID: 1629431447}
   - component: {fileID: 1629431448}
   - component: {fileID: 1629431449}
@@ -96898,7 +96898,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -96912,7 +96912,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1927341897}
   m_OnClick:
     m_PersistentCalls:
@@ -98022,7 +98022,7 @@ RectTransform:
   m_Children:
   - {fileID: 1398209880}
   m_Father: {fileID: 1448483820}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

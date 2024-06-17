@@ -189,7 +189,7 @@ namespace Objects.Abstract
             SwitchParticleSystem(GameObject.Find(availableParticleName).GetComponent<ParticleSystem>());
         }
 
-        private void SwitchToBoughtParticle()
+        public void SwitchToBoughtParticle()
         {
             SwitchParticleSystem(GameObject.Find(boughtParticleName).GetComponent<ParticleSystem>());
         }

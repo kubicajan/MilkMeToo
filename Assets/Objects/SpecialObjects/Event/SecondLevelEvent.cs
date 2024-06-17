@@ -14,17 +14,17 @@ namespace Objects.SpecialObjects.Event
             kokButtonDescription = "The fabric of reality shatters, what is HE doing here?";
             kokButtonUnlockPrice = 500;
             effectInfo = "SPECIAL EVENTS";
-            kokButtonStatus = ButtonStatus.AVAILABLE;
+            kokButtonStatus = ButtonStatus.UNKNOWN;
             availableParticleName = "SuckParticle";
             boughtParticleName = "VoidParticle";
         }
-
+        
         protected override void Start()
         {
+            // gameObject.SetActive(true);
             base.Start();
-            gameObject.SetActive(false);
         }
-        
+
         protected override void ResetHandler()
         {
             base.ResetHandler();
@@ -35,12 +35,22 @@ namespace Objects.SpecialObjects.Event
         public override void BuyUpgrade()
         {
             base.BuyUpgrade();
-            StartCoroutine(EventManager.instance.LevelUpCoroutine());
+            EventManager.instance.martyr();
         }
+
 
         protected override void UnlockAnotherButton()
         {
             return;
+        }
+
+        protected override void KokTreeButtonStart()
+        {
+            base.KokTreeButtonStart();
+            if (this.kokButtonStatus == ButtonStatus.BOUGHT)
+            {
+                EventManager.instance.martyr();
+            }
         }
     }
 }

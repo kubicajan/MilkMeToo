@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Objects.SpecialObjects.Event;
 using PopUps;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,12 +43,7 @@ namespace Managers
 
         private void Start()
         {
-            FirstConfigure();
-            EventPopUp.OnSetInactiveTriggered += OnSetEventInactiveTriggeredHandler;
-            EventPopUp.OnShowPopUpTriggered += OnShowEventPopUpTriggeredHandler;
-            canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
-            eventButton = GameObject.Find("EventButton").GetComponent<Button>();
-            FirstSetupParticleSystems();
+
         }
 
         public void FirstConfigure()
@@ -67,6 +63,12 @@ namespace Managers
             {
                 instance = this;
             }
+            FirstConfigure();
+            canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
+            eventButton = GameObject.Find("EventButton").GetComponent<Button>();
+            EventPopUp.OnSetInactiveTriggered += OnSetEventInactiveTriggeredHandler;
+            EventPopUp.OnShowPopUpTriggered += OnShowEventPopUpTriggeredHandler;
+            FirstSetupParticleSystems();
         }
 
         private void FixedUpdate()
@@ -91,6 +93,12 @@ namespace Managers
             grassParticleSystem.transform.position = holderPosition;
         }
 
+        public void martyr()
+        {
+            level += 1;
+            StartCoroutine(EventManager.instance.LevelUpCoroutine());
+        }
+
         public IEnumerator LevelUpCoroutine()
         {
             while (eventIsShown)
@@ -98,7 +106,6 @@ namespace Managers
                 // done to wait until there is no more event, so it would not override.
                 yield return null;
             }
-
             level += 1;
 
             switch (level)
@@ -113,7 +120,7 @@ namespace Managers
                     break;
             }
         }
-        
+
         private void SpawnEvent()
         {
             audioSource.PlayOneShot(clip);

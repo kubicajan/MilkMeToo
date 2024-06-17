@@ -141,7 +141,6 @@ namespace Managers
             wrapper.totalMoney = (GetTotalMoney() + money).ToString();
         }
 
-
         public void Load()
         {
             Debug.Log(saveFilePath);
