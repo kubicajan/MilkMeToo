@@ -105,10 +105,7 @@ namespace Managers
                 // done to wait until there is no more event, so it would not override.
                 yield return null;
             }
-
-            Level tmpLevel = Level.Zero;
-            tmpLevel += number;
-            level = tmpLevel;
+            level += number;
 
             switch (level)
             {
@@ -119,6 +116,7 @@ namespace Managers
                     SetUpSecondLevel();
                     break;
                 default:
+                    SetUpSecondLevel();
                     break;
             }
         }
