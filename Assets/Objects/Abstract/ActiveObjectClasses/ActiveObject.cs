@@ -93,7 +93,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             Decimal finalPoints = MoneyManagerSingleton.instance.AddMoney(moneyMoney);
             SaveManager.instance.UpdateAmountMilkedWrapper(this.GetType().ToString(), finalPoints);
             AddToAllTimeMilked(finalPoints);
-            MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints.ToString(), showMilkPosition);
+            MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, showMilkPosition);
 
             ParticleSystem pSystem = Instantiate(system, transformMe);
 

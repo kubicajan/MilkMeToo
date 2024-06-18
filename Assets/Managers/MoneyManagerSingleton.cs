@@ -22,26 +22,26 @@ namespace Managers
 
         private bool gg = false;
         private bool gg3 = false;
-
+        
         private BigInteger totalMoney
         {
             get => totaloMoneys;
             set
             {
-                Debug.Log(totaloMoneys.ToString());
                 totaloMoneys = value;
-
-                if (!gg && totaloMoneys >= 1000000)
-                {
-                    gg = true;
-                    Social.ReportProgress(GPGSIds.achievement_money_can_buy_happiness, 100.0f, (bool success) => { });
-                }
-
-                if (!gg3 && totaloMoneys >= 5000000000000000000)
-                {
-                    gg3 = true;
-                    Social.ReportProgress(GPGSIds.achievement_buy_the_earth, 100.0f, (bool success) => { });
-                }
+                
+                //todo: fix achievements
+                // if (!gg && totaloMoneys >= 1000000)
+                // {
+                //     gg = true;
+                //     Social.ReportProgress(GPGSIds.achievement_money_can_buy_happiness, 100.0f, (bool success) => { });
+                // }
+                //
+                // if (!gg3 && totaloMoneys >= 5000000000000000000)
+                // {
+                //     gg3 = true;
+                //     Social.ReportProgress(GPGSIds.achievement_buy_the_earth, 100.0f, (bool success) => { });
+                // }
             }
         }
 

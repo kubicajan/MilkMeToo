@@ -80,23 +80,29 @@ namespace Utilities
             switch (number)
             {
                 case > QUINTILION:
-                    return Math.Round(number / 1000000000000000, 3).ToString() + "E";
+                    return Math.Round(number / 1000000000000000, 3).ToString("N2") + "E";
                     break;
                 case > QUADRILION:
-                    return Math.Round(number / 1000000000000, 3).ToString() + "P";
+                    return Math.Round(number / 1000000000000, 3).ToString("N2") + "P";
                     break;
                 case > TRILLION:
-                    return Math.Round(number / 1000000000000, 3).ToString() + "T";
+                    return Math.Round(number / 1000000000000, 3).ToString("N2") + "T";
                     break;
                 case > BILION:
-                    return Math.Round(number / 1000000000, 3).ToString() + "B";
+                    return Math.Round(number / 1000000000, 3).ToString("N2") + "B";
                     break;
                 case > MILION:
-                    return Math.Round(number / 1000000, 3).ToString() + "M";
+                    return Math.Round(number / 1000000, 3).ToString("N2") + "M";
                     break;
                 default:
-                    Debug.Log(Math.Round(number, 2).ToString());
-                    return Math.Round(number, 2).ToString();
+                    string gg = number.ToString("N1");
+                    if (gg.Contains(".0"))
+                    {
+                        gg = gg.TrimEnd('0').TrimEnd('.');
+                    }
+
+                    return gg;
+                // return Math.Round(number, 2).ToString();
             }
         }
     }

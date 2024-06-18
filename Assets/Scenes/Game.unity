@@ -37673,7 +37673,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 143, y: 1058}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &726105611
 Animator:
@@ -37749,8 +37749,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -95872,6 +95872,10 @@ MonoBehaviour:
   animalNoise2: {fileID: 8300000, guid: 79f5f28941f5ef9479d583002332ea67, type: 3}
   animalNoise3: {fileID: 8300000, guid: f34f610ac95351b409cbfd6c6976c02f, type: 3}
   animalNoise4: {fileID: 8300000, guid: 12167caf56cc44848a2de0e285d78915, type: 3}
+  animalNoise5: {fileID: 8300000, guid: 9fe4bd27e9723f943921c3d10ef468fa, type: 3}
+  animalNoise6: {fileID: 8300000, guid: 2ff7e102892fc5c4fb626bb8b66b4d98, type: 3}
+  animalNoise7: {fileID: 8300000, guid: 40b161bd8078c8747844d0198d2b4dc0, type: 3}
+  animalNoise8: {fileID: 8300000, guid: 62e812657f2b3e645b710064157247e3, type: 3}
 --- !u!1 &1882196908
 GameObject:
   m_ObjectHideFlags: 0
