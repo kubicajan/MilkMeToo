@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Numerics;
 using System.Text.RegularExpressions;
 using Objects.Abstract.ActiveObjectClasses;
@@ -76,31 +77,31 @@ namespace Utilities
             const Decimal TRILLION = 1000000000000;
             const Decimal QUADRILION = 1000000000000000;
             const Decimal QUINTILION = 1000000000000000000;
+            CultureInfo culture = CultureInfo.GetCultureInfo("en-US");
 
             switch (number)
             {
                 case > QUINTILION:
-                    return Math.Round(number / 1000000000000000, 3).ToString("N2") + "E";
+                    return Math.Round(number / 1000000000000000, 3).ToString("N2",culture) + "E";
                     break;
                 case > QUADRILION:
-                    return Math.Round(number / 1000000000000, 3).ToString("N2") + "P";
+                    return Math.Round(number / 1000000000000, 3).ToString("N2",culture) + "P";
                     break;
                 case > TRILLION:
-                    return Math.Round(number / 1000000000000, 3).ToString("N2") + "T";
+                    return Math.Round(number / 1000000000000, 3).ToString("N2",culture) + "T";
                     break;
                 case > BILION:
-                    return Math.Round(number / 1000000000, 3).ToString("N2") + "B";
+                    return Math.Round(number / 1000000000, 3).ToString("N2",culture) + "B";
                     break;
                 case > MILION:
-                    return Math.Round(number / 1000000, 3).ToString("N2") + "M";
+                    return Math.Round(number / 1000000, 3).ToString("N2",culture) + "M";
                     break;
                 default:
-                    string gg = number.ToString("N1");
-                    if (gg.Contains(".0"))
+                    string gg = number.ToString("N1",culture);
+                    if (gg.EndsWith(".0"))
                     {
                         gg = gg.TrimEnd('0').TrimEnd('.');
                     }
-
                     return gg;
                 // return Math.Round(number, 2).ToString();
             }
