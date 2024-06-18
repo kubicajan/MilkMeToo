@@ -49851,10 +49851,13 @@ MonoBehaviour:
   primalSpriteButton: {fileID: 2063717393}
   shopButtonSprite: {fileID: 21300000, guid: 14c584f075e2f6b43bd1fc52558a2644, type: 3}
   system: {fileID: 670668656}
-  animalNoise: {fileID: 8300000, guid: 90700577c45e7df459445d024e099f4d, type: 3}
+  animalNoise: {fileID: 8300000, guid: aa3a5c3816864e04194499da5e7c361f, type: 3}
   animalNoiseAudioSource: {fileID: 1513722358}
   shopButton: {fileID: 588254793}
   questionMarkBasicShop: {fileID: 21300000, guid: 6cc2361f05b491d42a9bb1fbc735f55c, type: 3}
+  animalNoise2: {fileID: 8300000, guid: 34cf5a3e79d0f744e811ad23d518a656, type: 3}
+  animalNoise3: {fileID: 8300000, guid: abd1b6f432c1def48b3d46690a2ce53f, type: 3}
+  animalNoise4: {fileID: 8300000, guid: 36f1b237f187870449be190315a0cddc, type: 3}
 --- !u!1 &875208636
 GameObject:
   m_ObjectHideFlags: 0
@@ -95861,11 +95864,14 @@ MonoBehaviour:
   primalSpriteButton: {fileID: 2052962544}
   shopButtonSprite: {fileID: 21300000, guid: a829187e1588c29498fe57882e7263dd, type: 3}
   system: {fileID: 670668656}
-  animalNoise: {fileID: 8300000, guid: 90700577c45e7df459445d024e099f4d, type: 3}
+  animalNoise: {fileID: 8300000, guid: 01704048f8bfab5409a408af9f593406, type: 3}
   animalNoiseAudioSource: {fileID: 1916262305}
   shopButton: {fileID: 1459150456}
   questionMarkBasicShop: {fileID: 21300000, guid: 6cc2361f05b491d42a9bb1fbc735f55c, type: 3}
   anotherGinger: {fileID: 1959839609}
+  animalNoise2: {fileID: 8300000, guid: 79f5f28941f5ef9479d583002332ea67, type: 3}
+  animalNoise3: {fileID: 8300000, guid: f34f610ac95351b409cbfd6c6976c02f, type: 3}
+  animalNoise4: {fileID: 8300000, guid: 12167caf56cc44848a2de0e285d78915, type: 3}
 --- !u!1 &1882196908
 GameObject:
   m_ObjectHideFlags: 0

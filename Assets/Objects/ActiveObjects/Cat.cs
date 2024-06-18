@@ -3,16 +3,23 @@ using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using Utilities;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 namespace Objects.ActiveObjects
 {
     public class Cat : ActiveKokTreeObject
     {
+        [SerializeField] private AudioClip animalNoise2;
+
+        [SerializeField] private AudioClip animalNoise3;
+
+        [SerializeField] private AudioClip animalNoise4;
+
         public Cat()
         {
             kokButtonStatus = ButtonStatus.AVAILABLE;
-          
+
             shopButtonBuyPrice = 5;
             kokButtonUnlockPrice = 3;
             objectName = "Jeremy";
@@ -32,9 +39,31 @@ namespace Objects.ActiveObjects
             KokTreeButtonStart();
         }
 
+        protected override void PlayNoise()
+        {
+            int randomNumber = Random.Range(1, 5); // 5 is exclusive, so it will generate numbers from 1 to 4 inclusive
+
+            switch (randomNumber)
+            {
+                case 1:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise);
+                    break;
+                case 2:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise2);
+                    break;
+                case 3:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise3);
+                    break;
+                case 4:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise4);
+                    break;
+            }
+        }
+
         protected override void ConfigureAndPlayMilked(Transform transformMe)
         {
-            Decimal moneyMoney = (Decimal)objectCounter * productionPower * (Decimal)(MoneyManagerSingleton.instance.numberOfTitties + 1);
+            Decimal moneyMoney = (Decimal)objectCounter * productionPower *
+                                 (Decimal)(MoneyManagerSingleton.instance.numberOfTitties + 1);
             StartCoroutine(PlayMilkedCoroutine(transformMe,
                 Helpers.GetObjectPositionRelativeToCanvas(transformMe.position), moneyMoney));
         }

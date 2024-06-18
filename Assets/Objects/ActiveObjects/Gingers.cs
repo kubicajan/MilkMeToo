@@ -10,6 +10,20 @@ namespace Objects.ActiveObjects
     {
         [SerializeField] private Button anotherGinger;
 
+        [SerializeField] private AudioClip animalNoise2;
+
+        [SerializeField] private AudioClip animalNoise3;
+
+        [SerializeField] private AudioClip animalNoise4;
+        
+        [SerializeField] private AudioClip animalNoise5;
+        
+        [SerializeField] private AudioClip animalNoise6;
+
+        [SerializeField] private AudioClip animalNoise7;
+
+        [SerializeField] private AudioClip animalNoise8;
+
         public Gingers()
         {
             objectName = "Gingers";
@@ -71,6 +85,39 @@ namespace Objects.ActiveObjects
             else
             {
                 ConfigureAndPlayMilked(primalSpriteButton.gameObject.transform);
+            }
+        }
+        
+        protected override void PlayNoise()
+        {
+            int randomNumber = Random.Range(1, 9); // 5 is exclusive, so it will generate numbers from 1 to 4 inclusive
+
+            switch (randomNumber)
+            {
+                case 1:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise);
+                    break;
+                case 2:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise2);
+                    break;
+                case 3:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise3);
+                    break;
+                case 4:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise4);
+                    break;           
+                case 5:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise5);
+                    break;
+                case 6:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise6);
+                    break;
+                case 7:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise7);
+                    break;
+                case 8:
+                    animalNoiseAudioSource.PlayOneShot(animalNoise8);
+                    break;
             }
         }
     }

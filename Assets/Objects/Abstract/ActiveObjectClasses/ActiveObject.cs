@@ -14,8 +14,8 @@ namespace Objects.Abstract.ActiveObjectClasses
     {
         [SerializeField] public Sprite shopButtonSprite;
         [SerializeField] public ParticleSystem system;
-        [SerializeField] private AudioClip animalNoise;
-        [SerializeField] private AudioSource animalNoiseAudioSource;
+        [SerializeField] public AudioClip animalNoise;
+        [SerializeField] public AudioSource animalNoiseAudioSource;
 
         protected Decimal allTimeMilked = 0;
         protected float interval = 1f;
@@ -88,7 +88,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         protected IEnumerator PlayMilkedCoroutine(Transform transformMe, Vector2 showMilkPosition, Decimal moneyMoney)
         {
             yield return new WaitForSeconds(0.25f);
-            animalNoiseAudioSource.PlayOneShot(animalNoise);
+            PlayNoise();
 
             Decimal finalPoints = MoneyManagerSingleton.instance.AddMoney(moneyMoney);
             SaveManager.instance.UpdateAmountMilkedWrapper(this.GetType().ToString(), finalPoints);
@@ -100,6 +100,11 @@ namespace Objects.Abstract.ActiveObjectClasses
             //this needs to be not converted whereas the other positions need to be converted
             pSystem.transform.position = transformMe.position;
             Destroy(pSystem.gameObject, 1.25f);
+        }
+
+        protected virtual void PlayNoise()
+        {
+            animalNoiseAudioSource.PlayOneShot(animalNoise);
         }
 
         private void AddToAllTimeMilked(Decimal points)
