@@ -15,9 +15,9 @@ namespace Objects.ActiveObjects
         [SerializeField] private AudioClip animalNoise3;
 
         [SerializeField] private AudioClip animalNoise4;
-        
+
         [SerializeField] private AudioClip animalNoise5;
-        
+
         [SerializeField] private AudioClip animalNoise6;
 
         [SerializeField] private AudioClip animalNoise7;
@@ -41,8 +41,7 @@ namespace Objects.ActiveObjects
 
             if (!mamho)
             {
-         //todo
-               // Social.ReportProgress(GPGSIds.achievement_its_a_zoo, 100.0f, (bool success) => { });
+                Social.ReportProgress(GPGSIds.achievement_its_a_zoo, 100.0f, (bool success) => { });
             }
 
             if (value > 2)
@@ -56,19 +55,19 @@ namespace Objects.ActiveObjects
         }
 
         private bool mamho = false;
+
         protected override void Start()
         {
             anotherGinger.gameObject.SetActive(false);
             base.Start();
- 
-            //todo:
-            // PlayGamesPlatform.Instance
-            //     .LoadAchievements(achievements =>
-            //     {
-            //         mamho = achievements
-            //             .Where(achivement => achivement.id == GPGSIds.achievement_its_a_zoo)
-            //             .Any(ach => ach.completed);
-            //     });
+
+            PlayGamesPlatform.Instance
+                .LoadAchievements(achievements =>
+                {
+                    mamho = achievements
+                        .Where(achivement => achivement.id == GPGSIds.achievement_its_a_zoo)
+                        .Any(ach => ach.completed);
+                });
         }
 
         public override void PlayMilked(int? number)
@@ -87,7 +86,7 @@ namespace Objects.ActiveObjects
                 ConfigureAndPlayMilked(primalSpriteButton.gameObject.transform);
             }
         }
-        
+
         protected override void PlayNoise()
         {
             int randomNumber = Random.Range(1, 9); // 5 is exclusive, so it will generate numbers from 1 to 4 inclusive
@@ -105,7 +104,7 @@ namespace Objects.ActiveObjects
                     break;
                 case 4:
                     animalNoiseAudioSource.PlayOneShot(animalNoise4);
-                    break;           
+                    break;
                 case 5:
                     animalNoiseAudioSource.PlayOneShot(animalNoise5);
                     break;

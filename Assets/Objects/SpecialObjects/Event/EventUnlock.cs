@@ -53,12 +53,12 @@ namespace Objects.SpecialObjects.Event
                 LevelUp(1);
             }
         }
-        
+
         private void LevelUp(int level = 1)
         {
             toUnlockNext.transform.position = gameObject.transform.position;
             toUnlockNext.gameObject.SetActive(true);
-            //TODO:    Social.ReportProgress(GPGSIds.achievement_the_idol, 100.0f, (bool success) => { });
+            Social.ReportProgress(GPGSIds.achievement_the_idol, 100.0f, (bool success) => { });
             StartCoroutine(EventManager.instance.LevelUpCoroutine());
             gameObject.SetActive(false);
         }

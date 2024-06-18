@@ -17,6 +17,7 @@ namespace Objects.SpecialObjects
         [SerializeField] private Button anotherAnotherCow;
         private Transform vemenButtonTransform;
         private bool loaded = false;
+        private bool milkmanLoaded = false;
 
         public Cows()
         {
@@ -83,14 +84,22 @@ namespace Objects.SpecialObjects
             anotherAnotherCow.gameObject.SetActive(false);
             base.Start();
             vemenButtonTransform = GameObject.Find("vemenButton").transform;
-  //todo
-            // PlayGamesPlatform.Instance
-            //     .LoadAchievements(achievements =>
-            //     {
-            //         loaded = achievements
-            //             .Where(achivement => achivement.id == GPGSIds.achievement_touchy)
-            //             .Any(ach => ach.completed);
-            //     });
+
+            PlayGamesPlatform.Instance
+                .LoadAchievements(achievements =>
+                {
+                    loaded = achievements
+                        .Where(achivement => achivement.id == GPGSIds.achievement_touchy)
+                        .Any(ach => ach.completed);
+                });
+
+            PlayGamesPlatform.Instance
+                .LoadAchievements(achievements =>
+                {
+                    milkmanLoaded = achievements
+                        .Where(achivement => achivement.id == GPGSIds.achievement_milk_man)
+                        .Any(ach => ach.completed);
+                });
         }
 
         public void BirthACow(int value)
@@ -104,7 +113,7 @@ namespace Objects.SpecialObjects
         public void MilkMe()
         {
             counter++;
-            if (counter <= 10)
+            if (!milkmanLoaded && counter <= 10)
             {
                 PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_milk_man, 1, (bool success) => { });
             }

@@ -20,28 +20,22 @@ namespace Managers
 
         private BigInteger totaloMoneys = 0;
 
-        private bool gg = false;
-        private bool gg3 = false;
-        
         private BigInteger totalMoney
         {
             get => totaloMoneys;
             set
             {
                 totaloMoneys = value;
-                
-                //todo: fix achievements
-                // if (!gg && totaloMoneys >= 1000000)
-                // {
-                //     gg = true;
-                //     Social.ReportProgress(GPGSIds.achievement_money_can_buy_happiness, 100.0f, (bool success) => { });
-                // }
-                //
-                // if (!gg3 && totaloMoneys >= 5000000000000000000)
-                // {
-                //     gg3 = true;
-                //     Social.ReportProgress(GPGSIds.achievement_buy_the_earth, 100.0f, (bool success) => { });
-                // }
+
+                if (!mamMilion && totaloMoneys >= 1000000)
+                {
+                    Social.ReportProgress(GPGSIds.achievement_money_can_buy_happiness, 100.0f, (bool success) => { });
+                }
+
+                if (!mamGazilion && totaloMoneys >= 5000000000000000000)
+                {
+                    Social.ReportProgress(GPGSIds.achievement_buy_the_earth, 100.0f, (bool success) => { });
+                }
             }
         }
 
@@ -67,8 +61,29 @@ namespace Managers
             }
         }
 
+        private bool mamMilion = false;
+        private bool mamGazilion = false;
+
+
         public void Start()
         {
+            PlayGamesPlatform.Instance
+                .LoadAchievements(achievements =>
+                {
+                    mamMilion = achievements
+                        .Where(achivement => achivement.id == GPGSIds.achievement_money_can_buy_happiness)
+                        .Any(ach => ach.completed);
+                });
+
+            PlayGamesPlatform.Instance
+                .LoadAchievements(achievements =>
+                {
+                    mamGazilion = achievements
+                        .Where(achivement => achivement.id == GPGSIds.achievement_buy_the_earth)
+                        .Any(ach => ach.completed);
+                });
+
+
             money = SaveManager.instance.GetCurrentMoney();
             totalMoney = SaveManager.instance.GetTotalMoney();
             ChangeDisplayedMoney();
@@ -116,7 +131,6 @@ namespace Managers
         public void AddRewardMoney(Decimal amount)
         {
             money += amount;
-            //todo: fix
             totalMoney += (int)amount;
             ChangeDisplayedMoney();
             SaveManager.instance.UpdateCurrentMoney(amount);

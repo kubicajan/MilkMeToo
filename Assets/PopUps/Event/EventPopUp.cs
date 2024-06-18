@@ -44,16 +44,15 @@ namespace PopUps
             questionText = holdingImageTransform
                 .Find("QuestionBackground")
                 .Find("Question").GetComponent<TextMeshProUGUI>();
-            
-            //todo:
-        //     PlayGamesPlatform.Instance
-        //         .LoadAchievements(achievements =>
-        //         {
-        //             mamho = achievements
-        //                 .Where(achivement => achivement.id == GPGSIds.achievement_the_leprechaun)
-        //                 .Any(ach => ach.completed);
-        //         });
-         }
+
+            PlayGamesPlatform.Instance
+                .LoadAchievements(achievements =>
+                {
+                    mamho = achievements
+                        .Where(achivement => achivement.id == GPGSIds.achievement_the_leprechaun)
+                        .Any(ach => ach.completed);
+                });
+        }
 
         public void ShowPopUp()
         {
@@ -136,7 +135,7 @@ namespace PopUps
                 successParticles.gameObject.SetActive(true);
                 unsuccessParticles.gameObject.SetActive(false);
                 leprikonCounter++;
-                
+
                 if (leprikonCounter >= 3 && !mamho)
                 {
                     Social.ReportProgress(GPGSIds.achievement_the_leprechaun, 100.0f, (bool success) => { });
@@ -144,12 +143,14 @@ namespace PopUps
             }
             else if (basedResult.effect.StartsWith("-"))
             {
+                leprikonCounter = 0;
                 wompOrWinSource.PlayOneShot(wompSound);
                 unsuccessParticles.gameObject.SetActive(true);
                 successParticles.gameObject.SetActive(false);
             }
             else
             {
+                leprikonCounter = 0;
                 unsuccessParticles.gameObject.SetActive(true);
                 successParticles.gameObject.SetActive(true);
             }
