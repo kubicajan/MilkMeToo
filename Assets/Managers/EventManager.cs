@@ -43,7 +43,6 @@ namespace Managers
 
         private void Start()
         {
-
         }
 
         public void FirstConfigure()
@@ -63,6 +62,7 @@ namespace Managers
             {
                 instance = this;
             }
+
             FirstConfigure();
             canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
             eventButton = GameObject.Find("EventButton").GetComponent<Button>();
@@ -95,18 +95,20 @@ namespace Managers
 
         public void martyr()
         {
-            level += 1;
-            StartCoroutine(EventManager.instance.LevelUpCoroutine());
+            StartCoroutine(EventManager.instance.LevelUpCoroutine(2));
         }
 
-        public IEnumerator LevelUpCoroutine()
+        public IEnumerator LevelUpCoroutine(int number = 1)
         {
             while (eventIsShown)
             {
                 // done to wait until there is no more event, so it would not override.
                 yield return null;
             }
-            level += 1;
+
+            Level tmpLevel = Level.Zero;
+            tmpLevel += number;
+            level = tmpLevel;
 
             switch (level)
             {

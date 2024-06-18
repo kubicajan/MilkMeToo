@@ -53,7 +53,7 @@ namespace Objects.SpecialObjects.Event
                 LevelUp(1);
             }
         }
-
+        
         private void LevelUp(int level = 1)
         {
             toUnlockNext.transform.position = gameObject.transform.position;
