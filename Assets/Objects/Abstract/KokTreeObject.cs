@@ -18,6 +18,7 @@ namespace Objects.Abstract
         [SerializeField] private Sprite boughtKokButtonSprite;
         [SerializeField] private Sprite unknownKokButtonSprite;
         [SerializeField] public Button primalSpriteButton;
+        private int originalkokUnlockPrice = 0;
 
         private Button kokButton;
         private TextMeshProUGUI upgradePriceDisplay;
@@ -37,6 +38,7 @@ namespace Objects.Abstract
         {
             Mommy.OnRestart += ResetHandler;
             InitialPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
+            originalkokUnlockPrice = kokButtonUnlockPrice;
 
             primalSpriteButton.gameObject.SetActive(false);
             KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
@@ -45,9 +47,12 @@ namespace Objects.Abstract
 
             upgradePriceDisplay = transform.Find("Price").GetComponent<TextMeshProUGUI>();
             kokButton = transform.GetComponent<Button>();
+
             if (SaveManager.instance.wrapper.timesProud > 0)
             {
-                this.kokButtonUnlockPrice *= Mommy.magicResetValue;
+                this.kokButtonUnlockPrice = originalkokUnlockPrice *
+                                            (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
+                kokButtonUnlockPrice = kokButtonUnlockPrice + (int)(kokButtonUnlockPrice * 0.2);
             }
 
             Load();
@@ -67,7 +72,10 @@ namespace Objects.Abstract
         protected virtual void ResetHandler()
         {
             MakeButtonUnknown();
-            kokButtonUnlockPrice *= Mommy.magicResetValue;
+            kokButtonUnlockPrice = originalkokUnlockPrice;
+            kokButtonUnlockPrice = originalkokUnlockPrice *
+                                   (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
+            kokButtonUnlockPrice = kokButtonUnlockPrice + (int)(kokButtonUnlockPrice * 0.2);
             SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
             primalSpriteButton.gameObject.SetActive(false);
             this.StopAllCoroutines();
@@ -159,7 +167,7 @@ namespace Objects.Abstract
             kokButtonStatus = ButtonStatus.LOCKED;
             kokButton.image.sprite = lockedKokButtonSprite;
             kokButton.enabled = true;
-            upgradePriceDisplay.text = kokButtonUnlockPrice + "$";
+            upgradePriceDisplay.text = Helpers.ConvertNumbersToString((Decimal)kokButtonUnlockPrice) + "$";
             Destroy(myParticleSystem);
         }
 
@@ -169,7 +177,7 @@ namespace Objects.Abstract
             kokButton.enabled = true;
             kokButtonStatus = ButtonStatus.AVAILABLE;
             kokButton.image.sprite = availableKokButtonSprite;
-            upgradePriceDisplay.text = kokButtonUnlockPrice + "$";
+            upgradePriceDisplay.text = Helpers.ConvertNumbersToString((Decimal)kokButtonUnlockPrice) + "$";
             SwitchToAvailableParticle();
         }
 
