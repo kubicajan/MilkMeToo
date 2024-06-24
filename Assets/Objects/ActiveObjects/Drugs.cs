@@ -83,7 +83,7 @@ namespace Objects.ActiveObjects
         {
             primalSpriteButton.gameObject.SetActive(true);
 
-            audioSource.Play();
+             audioSource.Play();
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(bonus);
 
             float timer = 0f;
@@ -98,7 +98,7 @@ namespace Objects.ActiveObjects
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(-bonus);
             ObjectCount = 0;
             bonusIsOn = false;
-            audioSource.Stop();
+             audioSource.Stop();
             primalSpriteButton.gameObject.SetActive(false);
         }
     }

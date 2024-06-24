@@ -56,7 +56,6 @@ namespace PopUps
 
         public void ShowPopUp()
         {
-            //todo: fix
             audioSource.PlayOneShot(splash);
             ConfigureNewValues();
             SongManager.instance.UpdateAudioMutes(3);
@@ -154,8 +153,6 @@ namespace PopUps
                 unsuccessParticles.gameObject.SetActive(true);
                 successParticles.gameObject.SetActive(true);
             }
-
-            SongManager.instance.PlayLastOne();
         }
 
         public override void SetInactive()

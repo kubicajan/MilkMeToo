@@ -56,52 +56,69 @@ namespace Managers
 
         public void UpdateAudioMutes(int panelNumber)
         {
-             switch (panelNumber)
-             {
-                 case 0:
-                     MuteShopAudios(true);
-                     MuteCowPanel(true);
-                     MuteKoktreeAudios(false);
-                     kokPanelAudioSourceForSong.Play();
-                     cowPanelAudioSourceForSong.Pause();
-                     shopPanelAudioSourceForSong.Pause();
-                     eventAudioSource.Pause();
-                     rememberLastPanel = panelNumber;
-                     break;
-                 case 1:
-                     MuteShopAudios(true);
-                     MuteCowPanel(false);
-                     MuteKoktreeAudios(true);
-                     kokPanelAudioSourceForSong.Pause();
-                     cowPanelAudioSourceForSong.Play();
-                     shopPanelAudioSourceForSong.Pause();
-                     eventAudioSource.Pause();
-                     rememberLastPanel = panelNumber;
-                     break;
-                 case 2:
-                     MuteShopAudios(false);
-                     MuteCowPanel(true);
-                     MuteKoktreeAudios(true);
-                     kokPanelAudioSourceForSong.Pause();
-                     cowPanelAudioSourceForSong.Pause();
-                     shopPanelAudioSourceForSong.Play();
-                     eventAudioSource.Pause();
-                     rememberLastPanel = panelNumber;
-                     break;
-                 case 3:
-                     MuteShopAudios(true);
-                     MuteCowPanel(true);
-                     MuteKoktreeAudios(true);
-                     kokPanelAudioSourceForSong.Pause();
-                     cowPanelAudioSourceForSong.Pause();
-                     shopPanelAudioSourceForSong.Pause();
-                     eventAudioSource.Play();
-                     break;
-             }
+            switch (panelNumber)
+            {
+                case 0:
+                    // MuteShopAudios(true);
+                    MuteShopAudios(false);
+                    MuteCowPanel(true);
+                    // MuteKoktreeAudios(false);
+                    // kokPanelAudioSourceForSong.Play();
+                    cowPanelAudioSourceForSong.Pause();
+                    if (!shopPanelAudioSourceForSong.isPlaying)
+                    {
+                        shopPanelAudioSourceForSong.Play();
+                    }
+                    // eventAudioSource.Pause();
+                    rememberLastPanel = panelNumber;
+                    break;
+                case 1:
+                    MuteShopAudios(true);
+                    MuteCowPanel(false);
+                    //MuteKoktreeAudios(true);
+                    // kokPanelAudioSourceForSong.Pause();
+                    if (!cowPanelAudioSourceForSong.isPlaying)
+                    {
+                        cowPanelAudioSourceForSong.Play();
+                    }
+
+                    shopPanelAudioSourceForSong.Pause();
+                    // eventAudioSource.Pause();
+                    rememberLastPanel = panelNumber;
+                    break;
+                case 2:
+                    // MuteShopAudios(false);
+                    MuteShopAudios(false);
+                    MuteCowPanel(true);
+                    // MuteKoktreeAudios(true);
+                    // kokPanelAudioSourceForSong.Pause();
+                    cowPanelAudioSourceForSong.Pause();
+                    if (!shopPanelAudioSourceForSong.isPlaying)
+                    {
+                        shopPanelAudioSourceForSong.Play();
+                    }
+
+                    eventAudioSource.Pause();
+                    rememberLastPanel = panelNumber;
+                    break;
+                case 3:
+                    MuteShopAudios(true);
+                    MuteCowPanel(true);
+                    // MuteKoktreeAudios(true);
+                    // kokPanelAudioSourceForSong.Pause();
+                    cowPanelAudioSourceForSong.volume = cowPanelAudioSourceForSong.volume / 2;
+                    shopPanelAudioSourceForSong.volume = shopPanelAudioSourceForSong.volume / 2;
+                    // cowPanelAudioSourceForSong.Pause();
+                    // shopPanelAudioSourceForSong.Pause();
+                    // eventAudioSource.Play();
+                    break;
+            }
         }
 
         public void PlayLastOne()
         {
+            cowPanelAudioSourceForSong.volume = cowPanelAudioSourceForSong.volume * 2;
+            shopPanelAudioSourceForSong.volume = shopPanelAudioSourceForSong.volume * 2;
             UpdateAudioMutes(rememberLastPanel);
         }
 
