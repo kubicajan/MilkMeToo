@@ -41,6 +41,7 @@ namespace Objects.ActiveObjects
 
         protected override void PlayNoise()
         {
+            Random.seed = System.DateTime.Now.Millisecond;
             int randomNumber = Random.Range(1, 5); // 5 is exclusive, so it will generate numbers from 1 to 4 inclusive
 
             switch (randomNumber)

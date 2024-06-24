@@ -22,7 +22,7 @@ namespace Managers
         private RectTransform canvasRect;
         private Button eventButton;
         private float timer = 0f;
-        private float interval = 45f;
+        private float interval = 30f;
         private bool popUpOpen;
         private bool eventIsShown;
 
@@ -123,6 +123,7 @@ namespace Managers
 
         public void SpawnEvent()
         {
+            Random.seed = System.DateTime.Now.Millisecond;
             audioSource.PlayOneShot(clip);
             int randomNumber = Random.Range(0, 3);
             string panelRandom = panels[randomNumber];

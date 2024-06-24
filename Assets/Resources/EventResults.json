@@ -79,9 +79,9 @@
       "Name": "Thoughts",
       "Results": [
         {
-          "text": "It was drugs.",
-          "effect": "+1 drugs",
-          "effectType": 1
+          "text": "It was your mailman.",
+          "effect": "+1% production",
+          "effectType": 2
         },
         {
           "text": "Gas leak",
@@ -115,13 +115,13 @@
       "Results": [
         {
           "text": "YES! Joy overwhelms you and you feel warmth in your pants",
-          "effect": "+1% production",
+          "effect": "+3% production",
           "effectType": 2
         },
         {
-          "text": "NO :( you have to pay a fee for being a silly goose.",
-          "effect": "-3000$",
-          "effectType": 3
+          "text": "NO :( you silly goose.",
+          "effect": "-3% production",
+          "effectType": 2
         }
       ]
     },
@@ -130,12 +130,12 @@
       "Results": [
         {
           "text": "Your kid's college savings are no more.",
-          "effect": "-3000$",
+          "effect": "-10000$",
           "effectType": 3
         },
         {
           "text": "It worked out! Somehow..",
-          "effect": "+5000$",
+          "effect": "+10000$",
           "effectType": 3
         }
       ]
@@ -150,7 +150,7 @@
         },
         {
           "text": "Somebody put a fortune into this!",
-          "effect": "+500$",
+          "effect": "+9300$",
           "effectType": 3
         },
         {
@@ -160,7 +160,7 @@
         },
         {
           "text": "UHHHH",
-          "effect": "-500$",
+          "effect": "-8888$",
           "effectType": 3
         },
         {
@@ -174,23 +174,23 @@
           "effectType": 2
         },
         {
-          "text": "Is that your foreskin?",
+          "text": "Is that your finger?",
           "effect": "-1% production",
           "effectType": 2
         },
         {
           "text": "Your forgotten luggage!",
-          "effect": "+500$",
+          "effect": "+9000$",
           "effectType": 3
         },
         {
           "text": "A christmas present!",
-          "effect": "+500$",
+          "effect": "+50$",
           "effectType": 3
         },
         {
           "text": "Your grandma's ashes",
-          "effect": "-500$",
+          "effect": "-15$",
           "effectType": 3
         }
       ]

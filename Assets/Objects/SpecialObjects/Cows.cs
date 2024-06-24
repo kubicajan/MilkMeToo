@@ -27,7 +27,7 @@ namespace Objects.SpecialObjects
             description = "It is like you are milking them all at once";
             kokButtonDescription = "You can get more of them?";
             shopButtonBuyPrice = 10000;
-            kokButtonUnlockPrice = 80000;
+            kokButtonUnlockPrice = 800000;
             productionPower = 1;
         }
 
@@ -131,6 +131,8 @@ namespace Objects.SpecialObjects
 
         private Vector2 MoveItABit(Vector2 position)
         {
+            Random.seed = System.DateTime.Now.Millisecond;
+
             float randomY = Random.Range(5f, 25f);
             float randomX = Random.Range(10f, 100f);
             float makeNegativeOrNotY = Random.Range(0f, 1f) < 0.5 ? -1 : 1;

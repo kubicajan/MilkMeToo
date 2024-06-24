@@ -30,7 +30,7 @@ namespace Objects.ActiveObjects
             description = "Pact with the devil";
             kokButtonDescription = "They do not have souls anyway";
             shopButtonBuyPrice = 560000;
-            kokButtonUnlockPrice = 200000;
+            kokButtonUnlockPrice = 2000000;
             productionPower = 1000;
             interval = 10f;
         }
@@ -89,6 +89,7 @@ namespace Objects.ActiveObjects
 
         protected override void PlayNoise()
         {
+            Random.seed = System.DateTime.Now.Millisecond;
             int randomNumber = Random.Range(1, 9); // 5 is exclusive, so it will generate numbers from 1 to 4 inclusive
 
             switch (randomNumber)

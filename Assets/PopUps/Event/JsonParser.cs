@@ -46,6 +46,7 @@ namespace PopUps
 
         public Scenario GetRandomScenario()
         {
+            Random.seed = System.DateTime.Now.Millisecond;
             int random = Random.Range(0, scenarios.Count);
 
             return scenarios.ToArray()[random];
@@ -54,6 +55,7 @@ namespace PopUps
         public Result GetResultBasedOnScenario(Scenario scenario)
         {
             ResultWrapper wrapper = results.Objects.Find(wrapper => wrapper.Name.Equals(scenario.Name));
+            Random.seed = System.DateTime.Now.Millisecond;
             int random = Random.Range(0, wrapper.Results.Count());
             return wrapper.Results.ToArray()[random];
         }

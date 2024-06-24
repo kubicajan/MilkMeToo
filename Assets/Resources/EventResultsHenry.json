@@ -49,13 +49,13 @@
       "Name": "Thoughts",
       "Results": [
         {
-          "text": "It was drugs.",
-          "effect": "+1 drugs",
+          "text": "It was work",
+          "effect": "-5% production",
           "effectType": 1
         },
         {
           "text": "It was catboys",
-          "effect": "-5% production",
+          "effect": "+5% production",
           "effectType": 2
         }
       ]

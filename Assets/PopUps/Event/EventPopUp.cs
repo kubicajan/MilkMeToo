@@ -64,6 +64,7 @@ namespace PopUps
 
         public void ConfigureNewValues()
         {
+            Random.seed = System.DateTime.Now.Millisecond;
             Scenario scenario = JsonParser.instance.GetRandomScenario();
             int random = Random.Range(0, scenario.Descriptions.Length);
             string randomDescription = scenario.Descriptions.ToArray()[random];

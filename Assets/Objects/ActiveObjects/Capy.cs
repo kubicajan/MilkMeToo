@@ -56,9 +56,9 @@ namespace Objects.ActiveObjects
         private IEnumerator PlayMilkedCoroutine(int value)
         {
             yield return new WaitForSeconds(0.68f);
-            yetAnotherAnotherCapy.gameObject.SetActive(value > 6);
+            yetAnotherAnotherCapy.gameObject.SetActive(value > 10);
             yield return new WaitForSeconds(0.50f);
-            yetAnotherCapy.gameObject.SetActive(value > 4);
+            yetAnotherCapy.gameObject.SetActive(value > 6);
             yield return new WaitForSeconds(0.3f);
             anotherCapy.gameObject.SetActive(value > 2);
         }
