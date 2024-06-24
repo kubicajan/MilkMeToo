@@ -8,7 +8,7 @@ namespace Objects.PassiveObjects
         {
             objectName = "Buckets";
             kokButtonDescription = "You do not need to keep the milk in your mouth anymore.";
-            kokButtonUnlockPrice = 5;
+            kokButtonUnlockPrice = 3000000;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Objects.SpecialObjects
         {
             objectName = "The Lover";
             kokButtonDescription = "THAT is what I call a MALE";
-            kokButtonUnlockPrice = 5;
+            kokButtonUnlockPrice = 1000000;
             effectInfo = "COW BABIES ???";
             description = "He has found the promised land. He intends to stay";
         }
@@ -75,7 +75,7 @@ namespace Objects.SpecialObjects
 
                 if (currentTime <= 0f)
                 {
-                    currentTime = 5f;
+                    currentTime = 30f + fatherToKids * 2;
                     fatherToKids += 1;
                     cows.BirthACow(1);
                     UpdatePopUpCount();

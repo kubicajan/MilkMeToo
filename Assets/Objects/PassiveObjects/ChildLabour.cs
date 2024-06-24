@@ -14,7 +14,7 @@ namespace Objects.PassiveObjects
         {
             objectName = "Child Labour";
             kokButtonDescription = "Let everyone help";
-            kokButtonUnlockPrice = 5;
+            kokButtonUnlockPrice = 1500000;
         }
         
         protected override void Start()

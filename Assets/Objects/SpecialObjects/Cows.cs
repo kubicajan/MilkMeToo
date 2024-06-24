@@ -26,9 +26,9 @@ namespace Objects.SpecialObjects
             objectName = "Cows";
             description = "It is like you are milking them all at once";
             kokButtonDescription = "You can get more of them?";
-            shopButtonBuyPrice = 15;
-            kokButtonUnlockPrice = 5;
-            productionPower = 100m;
+            shopButtonBuyPrice = 10000;
+            kokButtonUnlockPrice = 80000;
+            productionPower = 1m;
         }
 
         protected override void ActivateThings(int value)

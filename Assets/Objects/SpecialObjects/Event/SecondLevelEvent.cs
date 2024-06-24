@@ -12,7 +12,7 @@ namespace Objects.SpecialObjects.Event
         {
             objectName = "God among men";
             kokButtonDescription = "The fabric of reality shatters, what is HE doing here?";
-            kokButtonUnlockPrice = 500;
+            kokButtonUnlockPrice = 50000;
             effectInfo = "SPECIAL EVENTS";
             kokButtonStatus = ButtonStatus.UNKNOWN;
             availableParticleName = "SuckParticle";

@@ -22,7 +22,7 @@ namespace Managers
         private RectTransform canvasRect;
         private Button eventButton;
         private float timer = 0f;
-        private float interval = 3f;
+        private float interval = 45f;
         private bool popUpOpen;
         private bool eventIsShown;
 

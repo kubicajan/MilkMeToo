@@ -15,7 +15,7 @@ namespace Objects.PassiveObjects
             kokButtonStatus = ButtonStatus.AVAILABLE;
             objectName = "Jetel";
             kokButtonDescription = "Maybe it is time to start feeding your cows";
-            kokButtonUnlockPrice = 5;
+            kokButtonUnlockPrice = 200;
         }
         
         protected override void Start()
