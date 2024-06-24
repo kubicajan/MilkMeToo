@@ -127,7 +127,7 @@ namespace Objects.Abstract
         public void ClickKokButton()
         {
             bool unlock = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
-            string money = $"Price \n {kokButtonUnlockPrice.ToString()}$";
+            string money = $"Price \n {Helpers.ConvertNumbersToString((Decimal)kokButtonUnlockPrice)}$";
             string name = objectName;
             SongManager.instance.PlayClick();
 

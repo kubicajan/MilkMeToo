@@ -69,7 +69,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         public override void Clicked()
         {
             clickedInfo = true;
-            InformationPopUp.instance.ShowPopUp(objectName, description, "Amount milked:\n" + allTimeMilked,
+            InformationPopUp.instance.ShowPopUp(objectName, description, "Amount milked:\n" + Helpers.ConvertNumbersToString(allTimeMilked),
                 primalSpriteButton.image.sprite, $"{objectCounter}x");
         }
 

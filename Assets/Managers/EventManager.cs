@@ -121,7 +121,7 @@ namespace Managers
             }
         }
 
-        private void SpawnEvent()
+        public void SpawnEvent()
         {
             audioSource.PlayOneShot(clip);
             int randomNumber = Random.Range(0, 3);
@@ -189,6 +189,7 @@ namespace Managers
         {
             eventIsShown = false;
             popUpOpen = false;
+            timer = 0;
         }
 
         private void OnShowEventPopUpTriggeredHandler()

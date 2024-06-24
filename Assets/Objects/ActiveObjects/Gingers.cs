@@ -30,7 +30,7 @@ namespace Objects.ActiveObjects
             description = "Pact with the devil";
             kokButtonDescription = "They do not have souls anyway";
             shopButtonBuyPrice = 560000;
-            kokButtonUnlockPrice = 20000;
+            kokButtonUnlockPrice = 200000;
             productionPower = 1000;
             interval = 10f;
         }

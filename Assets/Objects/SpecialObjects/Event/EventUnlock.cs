@@ -1,3 +1,5 @@
+using System.Linq;
+using GooglePlayGames;
 using Managers;
 using Objects.Abstract;
 using PopUps;
@@ -7,6 +9,8 @@ namespace Objects.SpecialObjects.Event
 {
     public class EventUnlock : KokTreeObject
     {
+        private bool mamho = false;
+
         public EventUnlock()
         {
             objectName = "NASTENKA";
@@ -14,6 +18,13 @@ namespace Objects.SpecialObjects.Event
             kokButtonUnlockPrice = 500;
             effectInfo = "UNLOCKS EVENTS";
             kokButtonStatus = ButtonStatus.AVAILABLE;
+            // PlayGamesPlatform.Instance
+            //     .LoadAchievements(achievements =>
+            //     {
+            //         mamho = achievements
+            //             .Where(achivement => achivement.id == GPGSIds.achievement_the_idol)
+            //             .Any(ach => ach.completed);
+            //     });
         }
 
         public override void Clicked()
@@ -43,6 +54,7 @@ namespace Objects.SpecialObjects.Event
         {
             base.BuyUpgrade();
             LevelUp();
+            EventManager.instance.SpawnEvent();
         }
 
         protected override void KokTreeButtonStart()
@@ -58,7 +70,13 @@ namespace Objects.SpecialObjects.Event
         {
             toUnlockNext.transform.position = gameObject.transform.position;
             toUnlockNext.gameObject.SetActive(true);
-            Social.ReportProgress(GPGSIds.achievement_the_idol, 100.0f, (bool success) => { });
+
+            if (!mamho)
+            {
+                Social.ReportProgress(GPGSIds.achievement_the_idol, 100.0f, (bool success) => { });
+                mamho = true;
+            }
+
             StartCoroutine(EventManager.instance.LevelUpCoroutine());
             gameObject.SetActive(false);
         }
