@@ -51,7 +51,7 @@ namespace Objects.SpecialObjects
             base.Clicked();
             string fatherTo = $"Father to:\n{fatherToKids}";
             InformationPopUp.instance.ShowPopUp(objectName, description, fatherTo,
-                primalSpriteButton.image.sprite, "UNIQUE");
+                primalSpriteButton.GetComponent<Image>().sprite, "UNIQUE");
         }
 
         private void UpdatePopUpCount()

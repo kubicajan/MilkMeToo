@@ -8,8 +8,8 @@ namespace Objects.PassiveObjects
 {
     public class ChildLabour : PassiveKokTreeObjects
     {
-        [SerializeField] private Button anotherSlave;
-        [SerializeField] private Button yetAnotherSlave;
+        [SerializeField] private GameObject anotherSlave;
+        [SerializeField] private GameObject yetAnotherSlave;
         public ChildLabour()
         {
             objectName = "Child Labour";

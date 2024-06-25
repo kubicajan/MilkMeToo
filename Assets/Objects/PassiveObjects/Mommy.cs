@@ -43,6 +43,12 @@ namespace Objects
                 image.GetComponent<Image>().color = new Color32(0, 146, 255, 255);
                 rain.Play();
             }
+            if (SaveManager.instance.wrapper.timesProud > 0)
+            {
+                this.kokButtonUnlockPrice = originalkokUnlockPrice *
+                                            (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
+                kokButtonUnlockPrice = kokButtonUnlockPrice + (int)(kokButtonUnlockPrice * 0.2);
+            }
         }
 
         public override void LockButton()
@@ -58,12 +64,20 @@ namespace Objects
         public override void BuyUpgrade()
         {
             Social.ReportProgress(GPGSIds.achievement_you_did_it_she_is_proud_of_you, 100.0f, (bool success) => { });
+            
 
             RestartEverything();
             unlockCounter = 0;
             SaveManager.instance.UpdateMommyUnlockCounter(0);
             MoneyManagerSingleton.instance.ResetMoney();
             MoneyManagerSingleton.instance.ResetMultiplicationAndAddToIt(magicResetValue);
+            
+            if (SaveManager.instance.wrapper.timesProud > 0)
+            {
+                this.kokButtonUnlockPrice = originalkokUnlockPrice *
+                                            (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
+                kokButtonUnlockPrice = kokButtonUnlockPrice + (int)(kokButtonUnlockPrice * 0.2);
+            }
         }
 
         private void RestartEverything()

@@ -5,6 +5,7 @@ using System.Numerics;
 using Managers;
 using PopUps;
 using UnityEngine;
+using UnityEngine.UI;
 using Utilities;
 using Vector2 = UnityEngine.Vector2;
 
@@ -70,7 +71,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         {
             clickedInfo = true;
             InformationPopUp.instance.ShowPopUp(objectName, description, "Amount milked:\n" + Helpers.ConvertNumbersToString(allTimeMilked),
-                primalSpriteButton.image.sprite, $"{objectCounter}x");
+                primalSpriteButton.GetComponent<Image>().sprite, $"{objectCounter}x");
         }
 
         public virtual void PlayMilked(int? number)

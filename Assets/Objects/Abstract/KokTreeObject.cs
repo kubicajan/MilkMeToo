@@ -17,8 +17,8 @@ namespace Objects.Abstract
         [SerializeField] private Sprite lockedKokButtonSprite;
         [SerializeField] private Sprite boughtKokButtonSprite;
         [SerializeField] private Sprite unknownKokButtonSprite;
-        [SerializeField] public Button primalSpriteButton;
-        private int originalkokUnlockPrice = 0;
+        [SerializeField] public GameObject primalSpriteButton;
+        protected int originalkokUnlockPrice = 0;
 
         private Button kokButton;
         private TextMeshProUGUI upgradePriceDisplay;
@@ -40,7 +40,7 @@ namespace Objects.Abstract
             InitialPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             originalkokUnlockPrice = kokButtonUnlockPrice;
 
-            primalSpriteButton.gameObject.SetActive(false);
+            primalSpriteButton.SetActive(false);
             KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             KokTreePopUp.OnBuyUpgradeTriggered += OnBuyUpgradeTriggeredHandler;
             clickedInfo = false;
@@ -77,7 +77,7 @@ namespace Objects.Abstract
                                    (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
             kokButtonUnlockPrice = kokButtonUnlockPrice + (int)(kokButtonUnlockPrice * 0.2);
             SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
-            primalSpriteButton.gameObject.SetActive(false);
+            primalSpriteButton.SetActive(false);
             this.StopAllCoroutines();
         }
 
