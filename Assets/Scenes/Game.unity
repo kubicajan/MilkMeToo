@@ -12340,7 +12340,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: 97f8fb516104f0d4da107b575ecd2766, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: acb509bf811e7424e94926449af8fc36, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: 981c2c87b462f764991ca7dd339aa679, type: 3}
-  primalSpriteButton: {fileID: 0}
+  primalSpriteButton: {fileID: 1194561192}
 --- !u!114 &202659042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19093,7 +19093,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: 741712d2e1b0b6443bf584feb33c0788, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: 57dcf077b13ae104cba23a7984728e94, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 636782162}
+  primalSpriteButton: {fileID: 636782159}
   cowsButton: {fileID: 2080557141}
 --- !u!1 &349954428
 GameObject:
@@ -21164,7 +21164,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: f66f229ff19a3ec43b57140866da04a2, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: cafd462fc5976754e9750b194bcba0b7, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 1627141976}
+  primalSpriteButton: {fileID: 1627141975}
 --- !u!1 &568504754
 GameObject:
   m_ObjectHideFlags: 0
@@ -49157,7 +49157,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: e0b93aea8e591d44791147d45293b3f3, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: 60fef9e48a4d30e42bb4c66058db0a09, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 0}
+  primalSpriteButton: {fileID: 2041258123}
 --- !u!1 &860958977
 GameObject:
   m_ObjectHideFlags: 0
@@ -49734,7 +49734,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: 53c849d32d4eb3143b803486a58d8cdb, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: 9ce90202883fa834ebf173e8fdd15f4a, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 2063717393}
+  primalSpriteButton: {fileID: 2063717391}
   shopButtonSprite: {fileID: 21300000, guid: 14c584f075e2f6b43bd1fc52558a2644, type: 3}
   system: {fileID: 670668656}
   animalNoise: {fileID: 8300000, guid: aa3a5c3816864e04194499da5e7c361f, type: 3}
@@ -55457,7 +55457,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: 44ef4c22073ee314e9fde6b60f962a8d, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: 997255e84e5d0f64f81371549631ef2f, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 1977478231}
+  primalSpriteButton: {fileID: 1977478227}
   shopButtonSprite: {fileID: 21300000, guid: 5cfea2956a3202248afc39e278b464ce, type: 3}
   system: {fileID: 670668656}
   animalNoise: {fileID: 8300000, guid: ddd68cbc380dd7c44ab9a997061c1c82, type: 3}
@@ -55619,7 +55619,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: eb8e2ddd6876ae349a331c6134344ff1, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: e4d15a583d12bcd4683a7cb716fa525b, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 0}
+  primalSpriteButton: {fileID: 1843181977}
   anotherJetel: {fileID: 891543222}
   yetAnotherJetel: {fileID: 1072153827}
   yetAnotherAnotherJetel: {fileID: 1161622748}
@@ -62221,6 +62221,7 @@ RectTransform:
   - {fileID: 739636165}
   - {fileID: 367748099}
   - {fileID: 1757122699}
+  - {fileID: 1194561193}
   m_Father: {fileID: 1000396773}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -67967,6 +67968,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161622746}
   m_CullTransparentMesh: 1
+--- !u!1 &1194561192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194561193}
+  - component: {fileID: 1194561195}
+  - component: {fileID: 1194561194}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1194561193
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194561192}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1098616789}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2792, y: 36}
+  m_SizeDelta: {x: 376.719, y: 116.873}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1194561194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194561192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1141940420, guid: 4eb8cc97ebd78d04582d808277fb6cbe, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1194561195
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194561192}
+  m_CullTransparentMesh: 1
 --- !u!1 &1216062779
 GameObject:
   m_ObjectHideFlags: 0
@@ -68376,7 +68453,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: 289d867093e971c42b0f2efdb1b63d8a, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: 00dbc943fdb94654c9e4d1bb06a07316, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 0}
+  primalSpriteButton: {fileID: 1927341895}
   shopButtonSprite: {fileID: 21300000, guid: 7925e3882507ada4fbece292e2a0fe81, type: 3}
   system: {fileID: 1448120825}
   animalNoise: {fileID: 8300000, guid: 90700577c45e7df459445d024e099f4d, type: 3}
@@ -68673,7 +68750,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: b97f4ed5a003bc748a14b63b104d38b1, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: c888f54d8acb56f4bbd65c3174fcf9d3, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 0}
+  primalSpriteButton: {fileID: 1194561192}
   rain: {fileID: 2078361960}
   image: {fileID: 1827817057}
 --- !u!1 &1248877974
@@ -82091,7 +82168,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: fa193aba3cf584844a275d8042ec090b, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: 44581c7ed95ecf247b785e9d8c80f088, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 0}
+  primalSpriteButton: {fileID: 1539958098}
 --- !u!1 &1585635712
 GameObject:
   m_ObjectHideFlags: 0
@@ -94577,7 +94654,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: 6e08f51d6b3f5cf45a0368e316fbd55f, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: c054ece2e92ad834cbe4d116ebdec131, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 778499335}
+  primalSpriteButton: {fileID: 778499334}
   shopButtonSprite: {fileID: 21300000, guid: 314c6eaad17bde44aaf1ed36cf4f198f, type: 3}
   system: {fileID: 670668656}
   animalNoise: {fileID: 8300000, guid: 90700577c45e7df459445d024e099f4d, type: 3}
@@ -95375,7 +95452,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: e9322325a92ded941814d70f1fdc88c3, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: 12d69a120c3da134d9584ddf5d9a8d71, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 2052962544}
+  primalSpriteButton: {fileID: 2052962543}
   shopButtonSprite: {fileID: 21300000, guid: a829187e1588c29498fe57882e7263dd, type: 3}
   system: {fileID: 670668656}
   animalNoise: {fileID: 8300000, guid: 01704048f8bfab5409a408af9f593406, type: 3}
@@ -96115,9 +96192,9 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: 26a52fc45f82b4a4fa78f341e5d91e37, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: e017d55fa0016394c995a13b957058d0, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 0}
-  anotherSlave: {fileID: 0}
-  yetAnotherSlave: {fileID: 0}
+  primalSpriteButton: {fileID: 2012308358}
+  anotherSlave: {fileID: 188533615}
+  yetAnotherSlave: {fileID: 45219654}
 --- !u!1 &1914600795
 GameObject:
   m_ObjectHideFlags: 0
@@ -96763,7 +96840,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.027, y: 0.09863767}
   m_AnchorMax: {x: 0.5, y: 0.7646357}
-  m_AnchoredPosition: {x: -95.000046, y: 334}
+  m_AnchoredPosition: {x: -95.000015, y: 334}
   m_SizeDelta: {x: -301.62897, y: 24.093002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1959839609
@@ -97607,7 +97684,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: 4cf8126f063764146a540db257d0cd51, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: 5407fdaa6dcc439449d4da26e31fd4bd, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 0}
+  primalSpriteButton: {fileID: 1194561192}
 --- !u!1 &1991169295
 GameObject:
   m_ObjectHideFlags: 0
@@ -98356,7 +98433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15477777, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -16.999992, y: 243}
+  m_AnchoredPosition: {x: -17, y: 243}
   m_SizeDelta: {x: -163.62897, y: 253.093}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2052962549
@@ -103991,7 +104068,7 @@ MonoBehaviour:
   lockedKokButtonSprite: {fileID: 21300000, guid: e5d47eeb7e85fb34c93f4827a34251a0, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: fa7c5fc6672c7554faea4c94e7f4223c, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
-  primalSpriteButton: {fileID: 1708730789}
+  primalSpriteButton: {fileID: 1708730788}
   shopButtonSprite: {fileID: 21300000, guid: 50ad111a762b5db44af4215f6054bf4d, type: 3}
   system: {fileID: 670668656}
   animalNoise: {fileID: 8300000, guid: ff80a0397a1f55e439475ddb5d27c451, type: 3}
