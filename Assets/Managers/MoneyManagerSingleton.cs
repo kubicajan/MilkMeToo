@@ -131,10 +131,10 @@ namespace Managers
         public void AddRewardMoney(Decimal amount)
         {
             money += amount;
-            totalMoney += (int)amount;
+            totalMoney += (BigInteger)amount;
             ChangeDisplayedMoney();
             SaveManager.instance.UpdateCurrentMoney(amount);
-            SaveManager.instance.UpdateTotalMoney((int)amount);
+            SaveManager.instance.UpdateTotalMoney((BigInteger)amount);
         }
 
         public bool SpendMoney(Decimal amount)

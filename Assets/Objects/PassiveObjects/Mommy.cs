@@ -1,3 +1,5 @@
+using System;
+using System.Numerics;
 using Managers;
 using Objects.Abstract;
 using UnityEngine;
@@ -47,7 +49,7 @@ namespace Objects
             {
                 this.kokButtonUnlockPrice = originalkokUnlockPrice *
                                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-                kokButtonUnlockPrice = kokButtonUnlockPrice + (int)(kokButtonUnlockPrice * 0.2);
+                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20)/100);
             }
         }
 
@@ -76,7 +78,8 @@ namespace Objects
             {
                 this.kokButtonUnlockPrice = originalkokUnlockPrice *
                                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-                kokButtonUnlockPrice = kokButtonUnlockPrice + (int)(kokButtonUnlockPrice * 0.2);
+                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20)/100);
+
             }
         }
 

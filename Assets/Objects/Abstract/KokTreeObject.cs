@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using System.Reflection;
 using Managers;
 using PopUps;
@@ -18,7 +19,7 @@ namespace Objects.Abstract
         [SerializeField] private Sprite boughtKokButtonSprite;
         [SerializeField] private Sprite unknownKokButtonSprite;
         [SerializeField] public GameObject primalSpriteButton;
-        protected int originalkokUnlockPrice = 0;
+        protected Decimal originalkokUnlockPrice = 0;
 
         private Button kokButton;
         private TextMeshProUGUI upgradePriceDisplay;
@@ -27,7 +28,7 @@ namespace Objects.Abstract
 
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
         protected string kokButtonDescription = "it is depressed";
-        protected int kokButtonUnlockPrice = 10;
+        protected Decimal kokButtonUnlockPrice = 10;
         protected string objectName = "";
         protected string effectInfo = "You become depressed";
         protected bool clickedInfo;
@@ -52,7 +53,7 @@ namespace Objects.Abstract
             {
                 this.kokButtonUnlockPrice = originalkokUnlockPrice *
                                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-                kokButtonUnlockPrice = kokButtonUnlockPrice + (int)(kokButtonUnlockPrice * 0.2);
+                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20)/100);
             }
 
             Load();
@@ -75,7 +76,7 @@ namespace Objects.Abstract
             kokButtonUnlockPrice = originalkokUnlockPrice;
             kokButtonUnlockPrice = originalkokUnlockPrice *
                                    (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-            kokButtonUnlockPrice = kokButtonUnlockPrice + (int)(kokButtonUnlockPrice * 0.2);
+            kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20)/100);
             SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
             primalSpriteButton.SetActive(false);
             this.StopAllCoroutines();
