@@ -71,12 +71,6 @@ namespace Objects.SpecialObjects.Event
             toUnlockNext.transform.position = gameObject.transform.position;
             toUnlockNext.gameObject.SetActive(true);
 
-            if (!mamho)
-            {
-                Social.ReportProgress(GPGSIds.achievement_the_idol, 100.0f, (bool success) => { });
-                mamho = true;
-            }
-
             StartCoroutine(EventManager.instance.LevelUpCoroutine());
             gameObject.SetActive(false);
         }

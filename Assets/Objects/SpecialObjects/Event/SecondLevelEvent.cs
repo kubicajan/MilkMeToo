@@ -32,8 +32,15 @@ namespace Objects.SpecialObjects.Event
             KokTreeButtonStart();
         }
 
+        private bool mamho = false;
+
         public override void BuyUpgrade()
         {
+            if (!mamho)
+            {
+                Social.ReportProgress(GPGSIds.achievement_the_idol, 100.0f, (bool success) => { });
+                mamho = true;
+            }
             base.BuyUpgrade();
             EventManager.instance.martyr();
         }

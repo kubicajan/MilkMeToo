@@ -92,7 +92,6 @@ namespace Objects.Abstract.ActiveObjectClasses
             PlayNoise();
 
             Decimal finalPoints = MoneyManagerSingleton.instance.AddMoney(moneyMoney);
-            SaveManager.instance.UpdateAmountMilkedWrapper(this.GetType().ToString(), finalPoints);
             AddToAllTimeMilked(finalPoints);
             MilkMoneySingleton.instance.HandleMilkMoneyShow(finalPoints, showMilkPosition);
 
@@ -110,6 +109,7 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         private void AddToAllTimeMilked(Decimal points)
         {
+            SaveManager.instance.UpdateAmountMilkedWrapper(this.GetType().ToString(), points);
             allTimeMilked += points; //(float.Parse(allTimeMilked) + points).ToString();
         }
     }

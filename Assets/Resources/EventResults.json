@@ -185,12 +185,12 @@
         },
         {
           "text": "A christmas present!",
-          "effect": "+50$",
+          "effect": "+13420$",
           "effectType": 3
         },
         {
           "text": "Your grandma's ashes",
-          "effect": "-15$",
+          "effect": "-15000$",
           "effectType": 3
         }
       ]

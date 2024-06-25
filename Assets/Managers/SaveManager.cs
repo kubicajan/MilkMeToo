@@ -72,7 +72,8 @@ namespace Managers
         public void UpdateAmountMilkedWrapper(string className, Decimal amountMilked)
         {
             Decimal tmp = Decimal.Parse(GetItemToUpdate(className).AmountMilked) + amountMilked;
-            UpdateItem(className, itemToUpdate => tmp.ToString(),
+
+            UpdateItem(className, itemToUpdate => itemToUpdate.AmountMilked = tmp.ToString(),
                 () => new VyjimecnyElan(className, ButtonStatus.BOUGHT, 0, amountMilked.ToString(), "0"));
         }
 
