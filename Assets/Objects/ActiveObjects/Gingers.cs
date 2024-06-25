@@ -39,7 +39,7 @@ namespace Objects.ActiveObjects
         {
             base.ActivateThings(value);
 
-            if (!mamho)
+            if (!mamho && value > 0)
             {
                 Social.ReportProgress(GPGSIds.achievement_its_a_zoo, 100.0f, (bool success) => { });
             }
