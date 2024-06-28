@@ -174,14 +174,24 @@ namespace Managers
 
         private float timer = 0;
         private float interval = 30f;
+
         private void IsItTimeToSave()
         {
             timer += Time.deltaTime;
-
             if (timer > interval)
             {
                 timer = 0;
                 SaveGameData();
+                int million = 1000000;
+                if (GetTotalMoney() >= 999999999)
+                {
+                    Social.ReportScore((999999999), GPGSIds.leaderboard_total_money_made_in_mil, success => { });
+                }
+                else if (GetTotalMoney() > million)
+                {
+                    Social.ReportScore((long)(GetTotalMoney() / million),
+                        GPGSIds.leaderboard_total_money_made_in_mil, success => { });
+                }
             }
         }
 
