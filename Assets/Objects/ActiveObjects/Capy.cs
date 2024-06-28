@@ -21,8 +21,8 @@ namespace Objects.ActiveObjects
                 "He brought his own family to where animals are equal. You can bring more of them.";
             kokButtonDescription =
                 "The chillest animal on the block. \n \n Perhaps he joins you for some of your wealth.";
-            shopButtonBuyPrice = 100;
-            kokButtonUnlockPrice = 100;
+            shopButtonBuyPrice = 250;
+            kokButtonUnlockPrice = 200;
             productionPower = 0.6m;
             interval = 1f;
         }
@@ -56,11 +56,11 @@ namespace Objects.ActiveObjects
         private IEnumerator PlayMilkedCoroutine(int value)
         {
             yield return new WaitForSeconds(0.68f);
-            yetAnotherAnotherCapy.gameObject.SetActive(value > 10);
+            yetAnotherAnotherCapy.gameObject.SetActive(value >= 30);
             yield return new WaitForSeconds(0.50f);
-            yetAnotherCapy.gameObject.SetActive(value > 6);
+            yetAnotherCapy.gameObject.SetActive(value >= 10);
             yield return new WaitForSeconds(0.3f);
-            anotherCapy.gameObject.SetActive(value > 2);
+            anotherCapy.gameObject.SetActive(value >= 5);
         }
 
         public override void PlayMilked(int? number)

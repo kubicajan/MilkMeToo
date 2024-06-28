@@ -20,15 +20,15 @@ namespace Objects.ActiveObjects
         {
             kokButtonStatus = ButtonStatus.AVAILABLE;
 
-            shopButtonBuyPrice = 3;
-            kokButtonUnlockPrice = 3;
+            shopButtonBuyPrice = 30;
+            kokButtonUnlockPrice = 15;
             objectName = "Jeremy";
             description =
                 "Look at this cat and don't mind that your competition started disappearing. You" +
                 " can get more of his friends to help.";
             kokButtonDescription = "You find a little cat. Try to take it home, but it requires a fee..." +
                                    "\n \n What use is coin for him?";
-            productionPower = 1m;
+            productionPower = 2m;
             interval = 0.5f;
         }
 

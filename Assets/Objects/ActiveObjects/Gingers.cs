@@ -29,9 +29,9 @@ namespace Objects.ActiveObjects
             objectName = "Gingers";
             description = "Pact with the devil";
             kokButtonDescription = "They do not have souls anyway";
-            shopButtonBuyPrice = 560000;
+            shopButtonBuyPrice = 1000000;
             kokButtonUnlockPrice = 2000000;
-            productionPower = 1000;
+            productionPower = 800;
             interval = 10f;
         }
 
