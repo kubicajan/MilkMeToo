@@ -22,8 +22,8 @@ namespace Managers
         [SerializeField] private AudioClip purchase;
         [SerializeField] private Image musicHolder;
         [SerializeField] private GameObject soundButton;
-        
-        
+
+
         private List<AudioSource> shopAudios = new();
         private List<AudioSource> cowPanelAudios = new();
         private List<AudioSource> koktreeAudios = new();
@@ -90,7 +90,6 @@ namespace Managers
                 mutedMusic = false;
                 cowPanelAudioSourceForSong.clip = gamerSong;
                 cowPanelAudioSourceForSong.Play();
-                // cowPanelAudioSourceForSong.time = Mathf.Clamp(15, 0, cowPanelAudioSourceForSong.clip.length);
                 return;
             }
 

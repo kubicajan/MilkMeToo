@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
+using TMPro;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Managers
     {
         public string GooglePlayToken;
         public string GooglePlayError;
+        [SerializeField] private TextMeshProUGUI notLoggedIn;
 
         private void Start()
         {
@@ -35,6 +37,7 @@ namespace Managers
                 }
                 else
                 {
+                    notLoggedIn.text = "NOT LOGGED IN";
                     GooglePlayError = "Failed to retrieve GPG auth code";
                     Debug.LogError("Login Unsuccessful");
                 }
@@ -51,11 +54,15 @@ namespace Managers
             }
             catch (AuthenticationException ex)
             {
+                notLoggedIn.text = "UnityAuthException";
+
                 Debug.LogException(ex);
                 throw;
             }
             catch (RequestFailedException ex)
             {
+                notLoggedIn.text = "UnityAuthException2";
+
                 Debug.LogException(ex);
                 throw;
             }
