@@ -30,6 +30,11 @@ namespace Managers
             Load();
         }
 
+        private void FixedUpdate()
+        {
+            IsItTimeToSave();
+        }
+
         public VyjimecnyElan GetItemToUpdate(string className)
         {
             return wrapper.listToBeSaved.Find(item => item.Name == className);
@@ -164,6 +169,19 @@ namespace Managers
             else
             {
                 wrapper = new Wrapper();
+            }
+        }
+
+        private float timer = 0;
+        private float interval = 30f;
+        private void IsItTimeToSave()
+        {
+            timer += Time.deltaTime;
+
+            if (timer > interval)
+            {
+                timer = 0;
+                SaveGameData();
             }
         }
 

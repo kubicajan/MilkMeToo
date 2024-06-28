@@ -4,7 +4,7 @@ namespace Objects.Abstract
 {
     public abstract class PassiveKokTreeObjects : KokTreeObject
     {
-        private int multiplicationBonus = 10;
+        protected int multiplicationBonus = 10;
 
         protected override void Start()
         {

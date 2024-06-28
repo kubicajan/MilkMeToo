@@ -16,7 +16,7 @@ namespace Objects.ActiveObjects
         private int bonus = 30;
         private bool bonusIsOn;
         private bool turnItOn;
-        private int MAX_SLIDER_VALUE = 20;
+        private int MAX_SLIDER_VALUE = 12;
         protected ParticleSystem milkExplosion;
         public bool onMilkingScreen = false;
 
