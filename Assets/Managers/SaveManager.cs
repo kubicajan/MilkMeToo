@@ -183,6 +183,8 @@ namespace Managers
                 timer = 0;
                 SaveGameData();
                 int million = 1000000;
+                
+                
                 if (GetTotalMoney() >= 999999999)
                 {
                     Social.ReportScore((999999999), GPGSIds.leaderboard_total_money_made_in_mil, success => { });
