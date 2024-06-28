@@ -19,6 +19,9 @@ namespace Managers
 
         public static MoneyManagerSingleton instance;
 
+        private double temporaryMultiplication = 0;
+        private double temporaryMultiplicationPilulky = 0;
+
         private BigInteger totaloMoneys = 0;
 
         private BigInteger totalMoney
@@ -105,7 +108,7 @@ namespace Managers
 
         public Decimal AddMoney(Decimal amount)
         {
-            double multiplyBy = multiplication;
+            double multiplyBy = multiplication + temporaryMultiplication + temporaryMultiplicationPilulky;
             if (multiplyBy == 0)
             {
                 multiplyBy = 1;
@@ -192,14 +195,16 @@ namespace Managers
         IEnumerator AddMultiplierCoroutine(int value)
         {
             double tmpBonus = value;
-            double stepBonus = (tmpBonus / (8)) / 4;
-            MoneyManagerSingleton.instance.RaiseMultiplicationBy(tmpBonus);
+            double stepBonus = (tmpBonus / (5)) / 4;
+            double tmpTemporaryMultiplication = this.multiplication;
+            MoneyManagerSingleton.instance.RaiseTemporaryMultiplication(tmpBonus);
 
             while (bonusIsOn)
             {
-                MoneyManagerSingleton.instance.RaiseMultiplicationBy(-stepBonus);
+                MoneyManagerSingleton.instance.RaiseTemporaryMultiplication(-stepBonus);
                 yield return new WaitForSeconds(0.25f);
             }
+            SetRaiseTemporaryMultiplicationToZero();
         }
 
         private bool bonusIsOn = false;
@@ -209,7 +214,7 @@ namespace Managers
             bonusIsOn = true;
             slider.gameObject.SetActive(true);
             float timer = 0f;
-            while (timer <= 8)
+            while (timer <= 5)
             {
                 timer += Time.deltaTime;
                 slider.value = timer;
@@ -220,6 +225,32 @@ namespace Managers
             slider.gameObject.SetActive(false);
         }
 
+        public void RaiseTemporaryMultiplication(double raiseBy)
+        {
+            temporaryMultiplication = temporaryMultiplication + raiseBy;
+            multiplier.enabled = true;
+            ChangeDisplayStreak();
+            multiplicationHasBeenShown = true;
+        }
+
+        public void SetRaiseTemporaryMultiplicationToZero()
+        {
+            temporaryMultiplication = 0;
+        }
+
+        public void RaiseTemporaryMultiplication2(double raiseBy)
+        {
+            temporaryMultiplicationPilulky = temporaryMultiplicationPilulky + raiseBy;
+            multiplier.enabled = true;
+            ChangeDisplayStreak();
+            multiplicationHasBeenShown = true;
+        }
+
+        public void SettemporaryMultiplicationPilulkyToZero()
+        {
+            temporaryMultiplicationPilulky = 0;
+        }
+
         public void RaiseMultiplicationBy(double raiseBy)
         {
             multiplication = multiplication + raiseBy;
@@ -227,6 +258,7 @@ namespace Managers
             ChangeDisplayStreak();
             multiplicationHasBeenShown = true;
             SaveManager.instance.UpdateMultiplier(multiplication);
+            // RaiseTemporaryMultiplication(raiseBy);
         }
 
         private void ChangeDisplayedMoney()
@@ -237,7 +269,8 @@ namespace Managers
 
         private void ChangeDisplayStreak()
         {
-            multiplier.text = $"MULTIPLIER: {Helpers.ConvertNumbersToString((decimal)multiplication, true)}X";
+            multiplier.text =
+                $"MULTIPLIER: {Helpers.ConvertNumbersToString((decimal)(temporaryMultiplication + temporaryMultiplicationPilulky + multiplication), true)}X";
         }
     }
 }

@@ -35,12 +35,32 @@
       "Results": [
         {
           "text": "Henry Cavill came to say hi ",
-          "effect": "+20% production",
+          "effect": "+200% production",
           "effectType": 2
         },
         {
-          "text": "Henry Cavill came to say hi ",
-          "effect": "+20% production",
+          "text": "It was Prof. Ing. Pgd Krejza ",
+          "effect": "-200% production",
+          "effectType": 2
+        },
+        {
+          "text": "Zeman came for a drink ",
+          "effect": "-1000000$",
+          "effectType": 3
+        },
+        {
+          "text": "IS THIS THE LEGENDARY NICOLAS CAGE?",
+          "effect": "+400% production",
+          "effectType": 2
+        },
+        {
+          "text": "Hejno divokých krav prošťouchno",
+          "effect": "+100% production",
+          "effectType": 2
+        },
+        {
+          "text": "Grim rapper. Oh no.",
+          "effect": "-200% production",
           "effectType": 2
         }
       ]
@@ -50,12 +70,12 @@
       "Results": [
         {
           "text": "It was work",
-          "effect": "-5% production",
+          "effect": "-50% production",
           "effectType": 2
         },
         {
           "text": "It was catboys",
-          "effect": "+5% production",
+          "effect": "+50% production",
           "effectType": 2
         }
       ]
@@ -95,17 +115,17 @@
       "Results": [
         {
           "text": "Henry Cavill's naked calendar is inside! The cows love it.",
-          "effect": "+20% production",
+          "effect": "+200% production",
           "effectType": 2
         },
         {
           "text": "Newspapers that say that Henry Cavill's new show got cancelled. It hits your cows like a truck.",
-          "effect": "-40% production",
+          "effect": "-400% production",
           "effectType": 2
         },
         {
           "text": "Full collection of Henry Cavill's movies. This Should keep the cows entertained.",
-          "effect": "+20% production",
+          "effect": "+200% production",
           "effectType": 2
         }
       ]

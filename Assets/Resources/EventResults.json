@@ -50,27 +50,27 @@
         },
         {
           "text": "Your mother's math teacher came to take a look at you. Why is her eye twitching?",
-          "effect": "-1% production",
+          "effect": "-17% production",
           "effectType": 2
         },
         {
           "text": "Your mother in law came to visit",
-          "effect": "-1% production",
+          "effect": "-17% production",
           "effectType": 2
         },
         {
           "text": "Mailman brought news, kisses and words of encouragement!",
-          "effect": "+2% production",
+          "effect": "+34% production",
           "effectType": 2
         },
         {
           "text": "Your step mother's husband came to say hi, asking questions.",
-          "effect": "-2% production",
+          "effect": "-16% production",
           "effectType": 2
         },
         {
           "text": "Your step mother came to say hi. Her husband is never home.",
-          "effect": "+2% production",
+          "effect": "+16% production",
           "effectType": 2
         }
       ]
@@ -80,22 +80,22 @@
       "Results": [
         {
           "text": "It was your mailman.",
-          "effect": "+1% production",
+          "effect": "+45% production",
           "effectType": 2
         },
         {
           "text": "Gas leak",
-          "effect": "-1% production",
+          "effect": "-45% production",
           "effectType": 2
         },
         {
           "text": "It is your cousin",
-          "effect": "+1% production",
+          "effect": "+15% production",
           "effectType": 2
         },
         {
           "text": "BEEEEEEEEEEEESSSSSSSSSSS",
-          "effect": "-1% production",
+          "effect": "-15% production",
           "effectType": 2
         },
         {
@@ -105,7 +105,7 @@
         },
         {
           "text": "It is a good warm dinner",
-          "effect": "+2% production",
+          "effect": "+20% production",
           "effectType": 2
         }
       ]
@@ -115,12 +115,12 @@
       "Results": [
         {
           "text": "YES! Joy overwhelms you and you feel warmth in your pants",
-          "effect": "+3% production",
+          "effect": "+30% production",
           "effectType": 2
         },
         {
           "text": "NO :( you silly goose.",
-          "effect": "-3% production",
+          "effect": "-30% production",
           "effectType": 2
         }
       ]

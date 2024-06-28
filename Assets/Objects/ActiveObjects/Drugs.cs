@@ -101,18 +101,20 @@ namespace Objects.ActiveObjects
 
             while (bonusIsOn)
             {
-                MoneyManagerSingleton.instance.RaiseMultiplicationBy(stepBonus);
+                MoneyManagerSingleton.instance.RaiseTemporaryMultiplication2(stepBonus);
                 MilkMoneySingleton.instance.HandleMilkMoneyShow((decimal)stepBonus, MoveItABit(
                     Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position)), "%");
 
                 count = stepBonus + count;
                 yield return new WaitForSeconds(0.25f);
             }
+
             yield return new WaitForSeconds(0.4f);
 
-            MilkMoneySingleton.instance.HandleMilkMoneyShow((decimal)-tmpBonus, 
+            MilkMoneySingleton.instance.HandleMilkMoneyShow((decimal)-tmpBonus,
                 Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position), "%");
-            MoneyManagerSingleton.instance.RaiseMultiplicationBy(-tmpBonus);
+            MoneyManagerSingleton.instance.RaiseTemporaryMultiplication2(-tmpBonus);
+            MoneyManagerSingleton.instance.SettemporaryMultiplicationPilulkyToZero();
         }
 
 
