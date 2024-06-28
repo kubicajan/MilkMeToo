@@ -43,29 +43,29 @@ namespace Managers
                 }
             });
 
-            await AuthenticateWithUnity();
+            // await AuthenticateWithUnity();
         }
 
-        private async Task AuthenticateWithUnity()
-        {
-            try
-            {
-                await AuthenticationService.Instance.SignInWithGoogleAsync(GooglePlayToken);
-            }
-            catch (AuthenticationException ex)
-            {
-                notLoggedIn.text = "UnityAuthException";
-
-                Debug.LogException(ex);
-                throw;
-            }
-            catch (RequestFailedException ex)
-            {
-                notLoggedIn.text = "UnityAuthException2";
-
-                Debug.LogException(ex);
-                throw;
-            }
-        }
+    //     private async Task AuthenticateWithUnity()
+    //     {
+    //         try
+    //         {
+    //             await AuthenticationService.Instance.SignInWithGoogleAsync(GooglePlayToken);
+    //         }
+    //         catch (AuthenticationException ex)
+    //         {
+    //             notLoggedIn.text = "UnityAuthException";
+    //
+    //             Debug.LogException(ex);
+    //             throw;
+    //         }
+    //         catch (RequestFailedException ex)
+    //         {
+    //             notLoggedIn.text = "UnityAuthException2";
+    //
+    //             Debug.LogException(ex);
+    //             throw;
+    //         }
+    //     }
     }
 }

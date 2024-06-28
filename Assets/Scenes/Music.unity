@@ -236,8 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f107ff6f13e92940b3a38cb96e22637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Token: 
-  Error: 
+  GooglePlayToken: 
+  GooglePlayError: 
+  notLoggedIn: {fileID: 0}
 --- !u!4 &559041226
 Transform:
   m_ObjectHideFlags: 0
@@ -284,6 +285,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  Drugs: {fileID: 0}
+  kokPanelAudioSourceForSong: {fileID: 0}
+  cowPanelAudioSourceForSong: {fileID: 0}
+  shopPanelAudioSourceForSong: {fileID: 0}
+  eventAudioSource: {fileID: 0}
+  kokPanelSong: {fileID: 0}
+  gamerSong: {fileID: 0}
+  cowPanelSong: {fileID: 0}
+  shopPanelSong: {fileID: 0}
+  eventSong: {fileID: 0}
+  click: {fileID: 0}
+  purchase: {fileID: 0}
+  musicHolder: {fileID: 0}
+  soundButton: {fileID: 0}
 --- !u!82 &721960406
 AudioSource:
   m_ObjectHideFlags: 0
