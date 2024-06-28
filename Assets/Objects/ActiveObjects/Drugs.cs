@@ -60,7 +60,7 @@ namespace Objects.ActiveObjects
                 SongManager.instance.PlayPurchase();
                 SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
                 SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
-                
+
                 StartCoroutine(WaitUntilOnCowMilkingScreen());
             }
         }
@@ -91,9 +91,10 @@ namespace Objects.ActiveObjects
         private IEnumerator StartBonusProduction()
         {
             primalSpriteButton.gameObject.SetActive(true);
+            int tmpBonus = bonus + (int)(SaveManager.instance.GetMultiplier() * 0.25);
 
             audioSource.Play();
-            MoneyManagerSingleton.instance.RaiseMultiplicationBy(bonus);
+            MoneyManagerSingleton.instance.RaiseMultiplicationBy(tmpBonus);
 
             float timer = 0f;
             while (timer <= MAX_SLIDER_VALUE)
@@ -103,7 +104,7 @@ namespace Objects.ActiveObjects
                 yield return null;
             }
 
-            MoneyManagerSingleton.instance.RaiseMultiplicationBy(-bonus);
+            MoneyManagerSingleton.instance.RaiseMultiplicationBy(-tmpBonus);
             ObjectCount = 0;
             bonusIsOn = false;
             audioSource.Stop();
