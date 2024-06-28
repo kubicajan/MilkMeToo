@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Objects.ActiveObjects;
 using UnityEngine;
 
 namespace Managers
@@ -6,6 +7,7 @@ namespace Managers
     public class SongManager : MonoBehaviour
     {
         [SerializeField] private AudioSource audioSource;
+        [SerializeField] private Drugs Drugs;
         [SerializeField] private AudioSource kokPanelAudioSourceForSong;
         [SerializeField] private AudioSource cowPanelAudioSourceForSong;
         [SerializeField] private AudioSource shopPanelAudioSourceForSong;
@@ -53,45 +55,40 @@ namespace Managers
             eventAudioSource.loop = true;
             UpdateAudioMutes(1);
         }
+        
 
         public void UpdateAudioMutes(int panelNumber)
         {
             switch (panelNumber)
             {
                 case 0:
-                    // MuteShopAudios(true);
                     MuteShopAudios(false);
                     MuteCowPanel(true);
-                    // MuteKoktreeAudios(false);
-                    // kokPanelAudioSourceForSong.Play();
+                    Drugs.onMilkingScreen = false;
                     cowPanelAudioSourceForSong.Pause();
                     if (!shopPanelAudioSourceForSong.isPlaying)
                     {
                         shopPanelAudioSourceForSong.Play();
                     }
-                    // eventAudioSource.Pause();
+
                     rememberLastPanel = panelNumber;
                     break;
                 case 1:
                     MuteShopAudios(true);
                     MuteCowPanel(false);
-                    //MuteKoktreeAudios(true);
-                    // kokPanelAudioSourceForSong.Pause();
+                    Drugs.onMilkingScreen = true;
                     if (!cowPanelAudioSourceForSong.isPlaying)
                     {
                         cowPanelAudioSourceForSong.Play();
                     }
 
                     shopPanelAudioSourceForSong.Pause();
-                    // eventAudioSource.Pause();
                     rememberLastPanel = panelNumber;
                     break;
                 case 2:
-                    // MuteShopAudios(false);
+                    Drugs.onMilkingScreen = false;
                     MuteShopAudios(false);
                     MuteCowPanel(true);
-                    // MuteKoktreeAudios(true);
-                    // kokPanelAudioSourceForSong.Pause();
                     cowPanelAudioSourceForSong.Pause();
                     if (!shopPanelAudioSourceForSong.isPlaying)
                     {
@@ -102,15 +99,11 @@ namespace Managers
                     rememberLastPanel = panelNumber;
                     break;
                 case 3:
+                    Drugs.onMilkingScreen = false;
                     MuteShopAudios(true);
                     MuteCowPanel(true);
-                    // MuteKoktreeAudios(true);
-                    // kokPanelAudioSourceForSong.Pause();
                     cowPanelAudioSourceForSong.volume = cowPanelAudioSourceForSong.volume / 2;
                     shopPanelAudioSourceForSong.volume = shopPanelAudioSourceForSong.volume / 2;
-                    // cowPanelAudioSourceForSong.Pause();
-                    // shopPanelAudioSourceForSong.Pause();
-                    // eventAudioSource.Play();
                     break;
             }
         }

@@ -16,8 +16,9 @@ namespace Objects.ActiveObjects
         private int bonus = 30;
         private bool bonusIsOn;
         private bool turnItOn;
-        private int MAX_SLIDER_VALUE = 10;
+        private int MAX_SLIDER_VALUE = 20;
         protected ParticleSystem milkExplosion;
+        public bool onMilkingScreen = false;
 
         public Drugs()
         {
@@ -53,13 +54,21 @@ namespace Objects.ActiveObjects
             if (MoneyManagerSingleton.instance.SpendMoney(shopButtonBuyPrice))
             {
                 ObjectCount++;
-                StartCoroutine(StartBonusProduction());
+                bonusIsOn = true;
                 turnItOn = true;
                 shopButtonBuyPrice = CalculatePrice();
                 SongManager.instance.PlayPurchase();
                 SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
                 SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
+                
+                StartCoroutine(WaitUntilOnCowMilkingScreen());
             }
+        }
+
+        IEnumerator WaitUntilOnCowMilkingScreen()
+        {
+            yield return new WaitUntil(() => onMilkingScreen);
+            StartCoroutine(StartBonusProduction());
         }
 
         protected override void UpdateShop(Decimal money)
@@ -73,7 +82,7 @@ namespace Objects.ActiveObjects
                 base.UpdateShop(money);
             }
         }
-        
+
         protected override void ActivateThings(int value)
         {
             objectCounter = value > 0 ? value : 0;
@@ -83,11 +92,10 @@ namespace Objects.ActiveObjects
         {
             primalSpriteButton.gameObject.SetActive(true);
 
-             audioSource.Play();
+            audioSource.Play();
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(bonus);
 
             float timer = 0f;
-            bonusIsOn = true;
             while (timer <= MAX_SLIDER_VALUE)
             {
                 timer += Time.deltaTime;
@@ -98,7 +106,7 @@ namespace Objects.ActiveObjects
             MoneyManagerSingleton.instance.RaiseMultiplicationBy(-bonus);
             ObjectCount = 0;
             bonusIsOn = false;
-             audioSource.Stop();
+            audioSource.Stop();
             primalSpriteButton.gameObject.SetActive(false);
         }
     }
