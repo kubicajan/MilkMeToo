@@ -9,7 +9,8 @@ namespace Objects.PassiveObjects
         {
             objectName = "VR Headset";
             kokButtonDescription = "Put them into the matrix and make them feel better";
-            kokButtonUnlockPrice = 50000;
+            kokButtonUnlockPrice = 350000;
+            multiplicationBonus = 30;
         }
     }
 }

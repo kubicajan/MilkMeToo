@@ -18,7 +18,7 @@ namespace Objects.SpecialObjects
         {
             objectName = "The Lover";
             kokButtonDescription = "THAT is what I call a MALE";
-            kokButtonUnlockPrice = 1200000;
+            kokButtonUnlockPrice = 1800000;
             effectInfo = "COW BABIES ???";
             description = "He has found the promised land. He intends to stay";
         }
