@@ -73,7 +73,7 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected Decimal CalculatePrice()
         {
-            return (shopButtonBuyPrice * (Decimal)Math.Pow(1.15f, ObjectCount));
+            return (shopButtonBuyPrice * (Decimal)Math.Pow(1.08f, ObjectCount));
         }
 
         private void ShopButtonStart()
