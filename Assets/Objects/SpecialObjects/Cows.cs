@@ -139,7 +139,11 @@ namespace Objects.SpecialObjects
         public void MilkMe()
         {
             IamMilkingNow();
-            counter++;
+            if (!milkmanLoaded || !loaded)
+            {
+                counter++;
+            }
+
             if (!milkmanLoaded && counter >= 10)
             {
                 PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_milk_man, 10,
