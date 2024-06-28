@@ -149,11 +149,8 @@ namespace Objects.SpecialObjects
 
             if (!loaded && counter >= 100)
             {
+                counter = 0;
                 PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_touchy, 100, (bool success) => { });
-                if (counter >= 10000)
-                {
-                    loaded = true;
-                }
             }
 
             Decimal money = productionPower * (Decimal)ObjectCount;
