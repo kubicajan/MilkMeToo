@@ -30,11 +30,13 @@ namespace Managers
                 if (!mamMilion && totaloMoneys >= 1000000)
                 {
                     Social.ReportProgress(GPGSIds.achievement_money_can_buy_happiness, 100.0f, (bool success) => { });
+                    mamMilion = true;
                 }
 
                 if (!mamGazilion && totaloMoneys >= 5000000000000000000)
                 {
                     Social.ReportProgress(GPGSIds.achievement_buy_the_earth, 100.0f, (bool success) => { });
+                    mamGazilion = true;
                 }
             }
         }

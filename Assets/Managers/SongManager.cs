@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Objects.ActiveObjects;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Managers
 {
@@ -13,14 +14,20 @@ namespace Managers
         [SerializeField] private AudioSource shopPanelAudioSourceForSong;
         [SerializeField] private AudioSource eventAudioSource;
         [SerializeField] private AudioClip kokPanelSong;
+        [SerializeField] private AudioClip gamerSong;
         [SerializeField] private AudioClip cowPanelSong;
         [SerializeField] private AudioClip shopPanelSong;
         [SerializeField] private AudioClip eventSong;
         [SerializeField] private AudioClip click;
         [SerializeField] private AudioClip purchase;
+        [SerializeField] private Image musicHolder;
+        [SerializeField] private GameObject soundButton;
+        
+        
         private List<AudioSource> shopAudios = new();
         private List<AudioSource> cowPanelAudios = new();
         private List<AudioSource> koktreeAudios = new();
+        private List<AudioSource> specialAudios = new();
         private int rememberLastPanel;
 
         public static SongManager instance;
@@ -45,6 +52,18 @@ namespace Managers
             cowPanelAudios.Add(GameObject.Find("Ginger1audioSource").GetComponent<AudioSource>());
             cowPanelAudios.Add(GameObject.Find("audioSourceCapyAnimation").GetComponent<AudioSource>());
             cowPanelAudios.Add(GameObject.Find("audioSourceCatAnimation").GetComponent<AudioSource>());
+            cowPanelAudios.Add(GameObject.Find("audioSourceCow").GetComponent<AudioSource>());
+            cowPanelAudios.Add(GameObject.Find("audioSourceDrugs").GetComponent<AudioSource>());
+
+
+            specialAudios.Add(GameObject.Find("audioSourceSplash").GetComponent<AudioSource>());
+            specialAudios.Add(GameObject.Find("audioSourceSwipe").GetComponent<AudioSource>());
+            specialAudios.Add(GameObject.Find("audioSourceEvent").GetComponent<AudioSource>());
+            specialAudios.Add(GameObject.Find("audioSourceEventPopUpClick").GetComponent<AudioSource>());
+            specialAudios.Add(GameObject.Find("eventSongAudi").GetComponent<AudioSource>());
+            specialAudios.Add(GameObject.Find("audioSource").GetComponent<AudioSource>());
+
+
             kokPanelAudioSourceForSong.clip = kokPanelSong;
             kokPanelAudioSourceForSong.loop = true;
             cowPanelAudioSourceForSong.clip = cowPanelSong;
@@ -55,18 +74,80 @@ namespace Managers
             eventAudioSource.loop = true;
             UpdateAudioMutes(1);
         }
-        
+
+        private bool mutedMusic = false;
+        private bool mutedAudios = false;
+
+        private int counter = 0;
+
+        public void MuteAllMusic()
+        {
+            counter++;
+
+            if (counter == 1)
+            {
+                musicHolder.color = Color.blue;
+                mutedMusic = false;
+                cowPanelAudioSourceForSong.clip = gamerSong;
+                cowPanelAudioSourceForSong.Play();
+                // cowPanelAudioSourceForSong.time = Mathf.Clamp(15, 0, cowPanelAudioSourceForSong.clip.length);
+                return;
+            }
+
+            if (counter == 2)
+            {
+                musicHolder.color = Color.red;
+                mutedMusic = true;
+                cowPanelAudioSourceForSong.Pause();
+                shopPanelAudioSourceForSong.Pause();
+                return;
+            }
+
+            if (counter == 3)
+            {
+                musicHolder.color = Color.white;
+                mutedMusic = false;
+                cowPanelAudioSourceForSong.clip = cowPanelSong;
+                cowPanelAudioSourceForSong.Play();
+                UpdateAudioMutes(1);
+                counter = 0;
+            }
+        }
+
+        public void MuteAllSounds()
+        {
+            mutedAudios = !mutedAudios;
+            if (!mutedAudios)
+            {
+                soundButton.transform.GetComponent<Image>().color = Color.cyan;
+                MuteSpecialAudios(false);
+                UpdateAudioMutes(1);
+            }
+            else
+            {
+                soundButton.transform.GetComponent<Image>().color = Color.red;
+                MuteSpecialAudios(true);
+                MuteShopAudios(true);
+                MuteCowPanel(true);
+            }
+        }
+
 
         public void UpdateAudioMutes(int panelNumber)
         {
             switch (panelNumber)
             {
                 case 0:
-                    MuteShopAudios(false);
-                    MuteCowPanel(true);
+                    if (!mutedAudios)
+                    {
+                        MuteShopAudios(false);
+                        MuteCowPanel(true);
+                    }
+
                     Drugs.onMilkingScreen = false;
+
                     cowPanelAudioSourceForSong.Pause();
-                    if (!shopPanelAudioSourceForSong.isPlaying)
+                    if (!shopPanelAudioSourceForSong.isPlaying && !mutedMusic)
                     {
                         shopPanelAudioSourceForSong.Play();
                     }
@@ -74,10 +155,14 @@ namespace Managers
                     rememberLastPanel = panelNumber;
                     break;
                 case 1:
-                    MuteShopAudios(true);
-                    MuteCowPanel(false);
+                    if (!mutedAudios)
+                    {
+                        MuteShopAudios(true);
+                        MuteCowPanel(false);
+                    }
+
                     Drugs.onMilkingScreen = true;
-                    if (!cowPanelAudioSourceForSong.isPlaying)
+                    if (!cowPanelAudioSourceForSong.isPlaying && !mutedMusic)
                     {
                         cowPanelAudioSourceForSong.Play();
                     }
@@ -87,10 +172,14 @@ namespace Managers
                     break;
                 case 2:
                     Drugs.onMilkingScreen = false;
-                    MuteShopAudios(false);
-                    MuteCowPanel(true);
+                    if (!mutedAudios)
+                    {
+                        MuteShopAudios(false);
+                        MuteCowPanel(true);
+                    }
+
                     cowPanelAudioSourceForSong.Pause();
-                    if (!shopPanelAudioSourceForSong.isPlaying)
+                    if (!shopPanelAudioSourceForSong.isPlaying && !mutedMusic)
                     {
                         shopPanelAudioSourceForSong.Play();
                     }
@@ -100,10 +189,18 @@ namespace Managers
                     break;
                 case 3:
                     Drugs.onMilkingScreen = false;
-                    MuteShopAudios(true);
-                    MuteCowPanel(true);
-                    cowPanelAudioSourceForSong.volume = cowPanelAudioSourceForSong.volume / 2;
-                    shopPanelAudioSourceForSong.volume = shopPanelAudioSourceForSong.volume / 2;
+                    if (!mutedAudios)
+                    {
+                        MuteShopAudios(true);
+                        MuteCowPanel(true);
+                    }
+
+                    if (!mutedMusic)
+                    {
+                        cowPanelAudioSourceForSong.volume = cowPanelAudioSourceForSong.volume / 2;
+                        shopPanelAudioSourceForSong.volume = shopPanelAudioSourceForSong.volume / 2;
+                    }
+
                     break;
             }
         }
@@ -118,6 +215,11 @@ namespace Managers
         private void MuteShopAudios(bool yesNo)
         {
             MuteAudios(yesNo, shopAudios);
+        }
+
+        private void MuteSpecialAudios(bool yesNo)
+        {
+            MuteAudios(yesNo, specialAudios);
         }
 
         private void MuteCowPanel(bool yesNo)
