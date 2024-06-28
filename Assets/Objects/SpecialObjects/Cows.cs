@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
@@ -54,6 +55,31 @@ namespace Objects.SpecialObjects
                 anotherCow.gameObject.SetActive(false);
                 anotherAnotherCow.gameObject.SetActive(false);
             }
+        }
+
+        private bool iAmMilking = false;
+        private Coroutine timerCoroutine = null;
+
+        private void IamMilkingNow()
+        {
+            iAmMilking = true;
+            if (timerCoroutine != null)
+            {
+                StopCoroutine(timerCoroutine);
+            }
+
+            timerCoroutine = StartCoroutine(StartTimer());
+        }
+
+        private IEnumerator StartTimer()
+        {
+            yield return new WaitForSeconds(0.3f);
+            iAmMilking = false;
+        }
+
+        public bool AmIMilkingNow()
+        {
+            return iAmMilking;
         }
 
         protected override void LoadData()
@@ -112,6 +138,7 @@ namespace Objects.SpecialObjects
 
         public void MilkMe()
         {
+            IamMilkingNow();
             counter++;
             if (!milkmanLoaded && counter <= 10)
             {

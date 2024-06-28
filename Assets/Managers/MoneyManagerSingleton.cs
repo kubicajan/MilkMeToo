@@ -115,7 +115,7 @@ namespace Managers
 
             totalMoney += integerPart;
             SaveManager.instance.UpdateTotalMoney(integerPart);
-            Social.ReportScore((long)(SaveManager.instance.GetTotalMoney()/1000000), GPGSIds.leaderboard_total_money_made_in_mil, success => { });
+            // Social.ReportScore((long)(SaveManager.instance.GetTotalMoney()/1000000), GPGSIds.leaderboard_total_money_made_in_mil, success => { });
 
             ChangeDisplayedMoney();
             SaveManager.instance.UpdateCurrentMoney(amount);

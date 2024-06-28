@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Objects.SpecialObjects;
 using PopUps;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +14,7 @@ namespace Managers
         public float percentThreshold = 20f;
         public float easing = 0.25f;
         [SerializeField] private AudioSource audioSource;
+        [SerializeField] private Cows Cows;
         [SerializeField] private AudioClip woosh;
         private int counter = 1;
 
@@ -20,7 +22,7 @@ namespace Managers
         {
             //to make phone not turn off
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
-            
+
             InformationPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             InitialPopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
             KokTreePopUp.OnSetInactiveTriggered += OnSetInactiveTriggeredHandler;
@@ -34,71 +36,77 @@ namespace Managers
 
         public void OnDrag(PointerEventData eventData)
         {
-            Vector3 correctedPosition = Camera.main.ScreenToWorldPoint(eventData.position);
-            Vector3 correctedPressPosition = Camera.main.ScreenToWorldPoint(eventData.pressPosition);
-            float difference = correctedPressPosition.x - correctedPosition.x;
-            float newPosition = panelPosition.x - difference;
-
-            if (!IsOutOfScreen(newPosition))
+            if (!Cows.AmIMilkingNow())
             {
-                transform.position = panelPosition - new Vector3(difference, 0, 0);
+                Vector3 correctedPosition = Camera.main.ScreenToWorldPoint(eventData.position);
+                Vector3 correctedPressPosition = Camera.main.ScreenToWorldPoint(eventData.pressPosition);
+                float difference = correctedPressPosition.x - correctedPosition.x;
+                float newPosition = panelPosition.x - difference;
+
+                if (!IsOutOfScreen(newPosition))
+                {
+                    transform.position = panelPosition - new Vector3(difference, 0, 0);
+                }
             }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            Vector3 correctedPosition = Correct(eventData.position);
-            Vector3 correctedPressPosition = Correct(eventData.pressPosition);
-            float correctedScreenWidth = GetCorrectedScreenWidth();
-            float percentage = (correctedPressPosition.x - correctedPosition.x) / correctedScreenWidth;
-
-            if (Math.Abs(percentage) >= percentThreshold)
+            if (!Cows.AmIMilkingNow())
             {
-                Vector3 newLocation = panelPosition;
+                Vector3 correctedPosition = Correct(eventData.position);
+                Vector3 correctedPressPosition = Correct(eventData.pressPosition);
+                float correctedScreenWidth = GetCorrectedScreenWidth();
+                float percentage = (correctedPressPosition.x - correctedPosition.x) / correctedScreenWidth;
 
-                if (percentage > 0)
+                if (Math.Abs(percentage) >= percentThreshold)
                 {
-                    newLocation += new Vector3(-correctedScreenWidth, 0, 0);
-                    InitialHanlder.NOW = true;
-                    if ((Vector2)panelPosition == new Vector2(0, 0))
+                    Vector3 newLocation = panelPosition;
+
+                    if (percentage > 0)
                     {
-                        InitialHanlder.shopSwipedOnce = true;
+                        newLocation += new Vector3(-correctedScreenWidth, 0, 0);
+                        InitialHanlder.NOW = true;
+                        if ((Vector2)panelPosition == new Vector2(0, 0))
+                        {
+                            InitialHanlder.shopSwipedOnce = true;
+                        }
+                    }
+                    else if (percentage < 0)
+                    {
+                        newLocation += new Vector3(correctedScreenWidth, 0, 0);
+                        if ((Vector2)panelPosition == new Vector2(0, 0))
+                        {
+                            InitialHanlder.kokTreeSwipedOnce = true;
+                        }
+                    }
+
+                    if (!IsOutOfScreen(newLocation.x))
+                    {
+                        panelPosition = newLocation;
+                        if ((Vector2)panelPosition == new Vector2(0, 0))
+                        {
+                            counter = 1;
+                        }
+
+                        if (panelPosition.x > 0)
+                        {
+                            counter = 2;
+                        }
+
+                        if (panelPosition.x < 0)
+                        {
+                            counter = 0;
+                        }
+
+                        SongManager.instance.UpdateAudioMutes(counter);
+                        StartCoroutine(SmoothMove(transform.position, panelPosition, easing));
                     }
                 }
-                else if (percentage < 0)
+                else
                 {
-                    newLocation += new Vector3(correctedScreenWidth, 0, 0);
-                    if ((Vector2)panelPosition == new Vector2(0, 0))
-                    {
-                        InitialHanlder.kokTreeSwipedOnce = true;
-                    }
-                }
-
-                if (!IsOutOfScreen(newLocation.x))
-                {
-                    panelPosition = newLocation;
-                    if ((Vector2)panelPosition == new Vector2(0, 0))
-                    {
-                        counter = 1;
-                    }
-
-                    if (panelPosition.x > 0)
-                    {
-                        counter = 2;
-                    }
-                    
-                    if (panelPosition.x < 0)
-                    {
-                        counter = 0;
-                    }
-
-                    SongManager.instance.UpdateAudioMutes(counter);
                     StartCoroutine(SmoothMove(transform.position, panelPosition, easing));
                 }
-            }
-            else
-            {
-                StartCoroutine(SmoothMove(transform.position, panelPosition, easing));
             }
         }
 
@@ -131,7 +139,7 @@ namespace Managers
             while (t <= 1.0)
             {
                 t += Time.deltaTime / seconds;
-                transform.position = Vector3.Lerp(startpos, endpos,  Mathf.Pow(Mathf.SmoothStep(0f, 1f, t),2));
+                transform.position = Vector3.Lerp(startpos, endpos, Mathf.Pow(Mathf.SmoothStep(0f, 1f, t), 2));
                 yield return null;
             }
         }
