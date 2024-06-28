@@ -4,6 +4,8 @@ using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
+using Random = UnityEngine.Random;
 
 namespace Objects.ActiveObjects
 {
@@ -69,7 +71,9 @@ namespace Objects.ActiveObjects
         {
             yield return new WaitUntil(() => onMilkingScreen);
             StartCoroutine(StartBonusProduction());
+            StartCoroutine(AddMultiplierCoroutine());
         }
+
 
         protected override void UpdateShop(Decimal money)
         {
@@ -88,13 +92,54 @@ namespace Objects.ActiveObjects
             objectCounter = value > 0 ? value : 0;
         }
 
+
+        IEnumerator AddMultiplierCoroutine()
+        {
+            double tmpBonus = bonus + (SaveManager.instance.GetMultiplier() * 0.25);
+            double stepBonus = (tmpBonus / (MAX_SLIDER_VALUE)) / 4;
+            double count = 0;
+
+            // Vector2 vcectr = MoveItABit(
+            //     Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position));
+            // vcectr.y += 10;
+
+            while (bonusIsOn)
+            {
+                MoneyManagerSingleton.instance.RaiseMultiplicationBy(stepBonus);
+                MilkMoneySingleton.instance.HandleMilkMoneyShow((decimal)stepBonus, MoveItABit(
+                    Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position)), "%");
+
+                count = stepBonus + count;
+                yield return new WaitForSeconds(0.25f);
+            }
+            yield return new WaitForSeconds(0.4f);
+
+            MilkMoneySingleton.instance.HandleMilkMoneyShow((decimal)-tmpBonus, 
+                Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position), "%");
+            MoneyManagerSingleton.instance.RaiseMultiplicationBy(-tmpBonus);
+        }
+
+
+        private Vector2 MoveItABit(Vector2 position)
+        {
+            Random.seed = System.DateTime.Now.Millisecond;
+
+            float randomY = Random.Range(5f, 25f);
+            float randomX = Random.Range(10f, 100f);
+            float makeNegativeOrNotY = Random.Range(0f, 1f) < 0.5 ? -1 : 1;
+            float makeNegativeOrNotX = Random.Range(0f, 1f) < 0.5 ? -1 : 1;
+
+            float moveY = randomY * makeNegativeOrNotY;
+            float moveX = randomX * makeNegativeOrNotX;
+
+            return position - new Vector2(+35f + (moveX), -140f + (moveY));
+        }
+
         private IEnumerator StartBonusProduction()
         {
             primalSpriteButton.gameObject.SetActive(true);
-            int tmpBonus = bonus + (int)(SaveManager.instance.GetMultiplier() * 0.25);
 
             audioSource.Play();
-            MoneyManagerSingleton.instance.RaiseMultiplicationBy(tmpBonus);
 
             float timer = 0f;
             while (timer <= MAX_SLIDER_VALUE)
@@ -104,7 +149,6 @@ namespace Objects.ActiveObjects
                 yield return null;
             }
 
-            MoneyManagerSingleton.instance.RaiseMultiplicationBy(-tmpBonus);
             ObjectCount = 0;
             bonusIsOn = false;
             audioSource.Stop();

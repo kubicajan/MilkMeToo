@@ -27,9 +27,9 @@ namespace Utilities
             tmpTextHolder = GameObject.Find("tmpTextHolder");
         }
 
-        public void HandleMilkMoneyShow(Decimal points, Vector2 spriteCanvasPosition)
+        public void HandleMilkMoneyShow(Decimal points, Vector2 spriteCanvasPosition, string suffix = "$")
         {
-            ShowMilkedMoney(points, TransformVectorByABitUp(spriteCanvasPosition));
+            ShowMilkedMoney(points, TransformVectorByABitUp(spriteCanvasPosition), suffix);
         }
 
         private Vector2 TransformVectorByABitUp(Vector2 position)
@@ -37,14 +37,22 @@ namespace Utilities
             return position - new Vector2(100f, -120f);
         }
 
-        private void ShowMilkedMoney(Decimal points, Vector2 spriteCanvasPosition)
+        private void ShowMilkedMoney(Decimal points, Vector2 spriteCanvasPosition, string suffix)
         {
             GameObject textObjectWrapper = Instantiate(tmpTextHolder, spriteCanvasPosition, Quaternion.identity);
             TextMeshProUGUI textMeshPro = textObjectWrapper.GetComponentInChildren<TextMeshProUGUI>();
             textObjectWrapper.transform.SetParent(GameObject.Find("EvenGreaterHolder").transform, false);
             textMeshPro.fontSize = 50;
 
-            textMeshPro.text = $"+ {Helpers.ConvertNumbersToString(points)}";
+            if (points > 0)
+            {
+                textMeshPro.text = $"+{Helpers.ConvertNumbersToString(points)}{suffix}";
+            }
+            else
+            {
+                textMeshPro.text = $"{Helpers.ConvertNumbersToString(points)}{suffix}";
+            }
+
             textMeshPro.CrossFadeAlpha(0.0f, 0.8f, true);
             textMeshPro.raycastTarget = false;
             Destroy(textObjectWrapper, 0.8f);

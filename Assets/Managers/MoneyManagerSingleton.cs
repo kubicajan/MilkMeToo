@@ -43,7 +43,7 @@ namespace Managers
 
         public int numberOfTitties = 0;
         private Decimal money = 0;
-        private int multiplication = 0;
+        private double multiplication = 0;
         private bool multiplicationHasBeenShown = false;
 
         private void Awake()
@@ -103,13 +103,13 @@ namespace Managers
 
         public Decimal AddMoney(Decimal amount)
         {
-            int multiplyBy = multiplication;
+            double multiplyBy = multiplication;
             if (multiplyBy == 0)
             {
                 multiplyBy = 1;
             }
 
-            amount *= multiplyBy;
+            amount *= (int)multiplyBy;
             money += amount;
             Decimal tmpAmount = amount + remainingFraction;
             BigInteger integerPart;
@@ -181,9 +181,9 @@ namespace Managers
             return totalMoney;
         }
 
-        public void RaiseMultiplicationBy(int raiseBy)
+        public void RaiseMultiplicationBy(double raiseBy)
         {
-            int tmpMultiplication = multiplication + raiseBy;
+            double tmpMultiplication = multiplication + raiseBy;
 
             multiplication = tmpMultiplication > 0
                 ? tmpMultiplication
@@ -202,7 +202,7 @@ namespace Managers
 
         private void ChangeDisplayStreak()
         {
-            multiplier.text = $"MULTIPLIER: {multiplication.ToString()}X";
+            multiplier.text = $"MULTIPLIER: {Helpers.ConvertNumbersToString((decimal)multiplication, true)}X";
         }
     }
 }

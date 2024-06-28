@@ -82,7 +82,7 @@ namespace Managers
                 () => new VyjimecnyElan(className, ButtonStatus.BOUGHT, 0, amountMilked.ToString(), "0"));
         }
 
-        public void UpdateMultiplier(int multiplier)
+        public void UpdateMultiplier(double multiplier)
         {
             wrapper.multiplier = multiplier;
         }
@@ -121,7 +121,7 @@ namespace Managers
             }
         }
 
-        public int GetMultiplier()
+        public double GetMultiplier()
         {
             return wrapper.multiplier;
         }
@@ -184,7 +184,6 @@ namespace Managers
                 SaveGameData();
                 int million = 1000000;
                 
-                
                 if (GetTotalMoney() >= 999999999999999)
                 {
                     Social.ReportScore((999999999), GPGSIds.leaderboard_total_money_made_in_mil, success => { });
@@ -229,7 +228,7 @@ namespace Managers
         [SerializeField] public int timesProud = 0;
         [SerializeField] public int mommyUnlockCounter = 0;
         [SerializeField] public int fatherTo = 0;
-        [SerializeField] public int multiplier = 0;
+        [SerializeField] public double multiplier = 0;
         [SerializeField] public List<VyjimecnyElan> listToBeSaved = new List<VyjimecnyElan>();
     }
 
