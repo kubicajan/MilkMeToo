@@ -134,20 +134,26 @@ namespace Objects.SpecialObjects
             SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
         }
 
-        private int counter = 0;
+        private long counter = 0;
 
         public void MilkMe()
         {
             IamMilkingNow();
             counter++;
-            if (!milkmanLoaded && counter <= 10)
+            if (!milkmanLoaded && counter >= 10)
             {
-                PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_milk_man, 1, (bool success) => { });
+                PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_milk_man, 10,
+                    (bool success) => { });
+                milkmanLoaded = true;
             }
 
-            if (!loaded)
+            if (!loaded && counter >= 100)
             {
-                PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_touchy, 1, (bool success) => { });
+                PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_touchy, 100, (bool success) => { });
+                if (counter >= 10000)
+                {
+                    loaded = true;
+                }
             }
 
             Decimal money = productionPower * (Decimal)ObjectCount;
