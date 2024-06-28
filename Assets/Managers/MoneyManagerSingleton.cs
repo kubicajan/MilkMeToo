@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using GooglePlayGames;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utilities;
 
 namespace Managers
@@ -12,9 +14,8 @@ namespace Managers
     public class MoneyManagerSingleton : MonoBehaviour
     {
         [SerializeField] public TextMeshProUGUI moneyScore;
-
-        //[SerializeField] public TextMeshProUGUI totalScore;
         [SerializeField] public TextMeshProUGUI multiplier;
+        [SerializeField] public Slider slider;
 
         public static MoneyManagerSingleton instance;
 
@@ -69,6 +70,7 @@ namespace Managers
 
         public void Start()
         {
+            slider.gameObject.SetActive(false);
             PlayGamesPlatform.Instance
                 .LoadAchievements(achievements =>
                 {
@@ -181,13 +183,46 @@ namespace Managers
             return totalMoney;
         }
 
+        public void eyo(int value)
+        {
+            StartCoroutine(StartBonusProduction());
+            StartCoroutine(AddMultiplierCoroutine(value));
+        }
+
+        IEnumerator AddMultiplierCoroutine(int value)
+        {
+            double tmpBonus = value;
+            double stepBonus = (tmpBonus / (8)) / 4;
+            MoneyManagerSingleton.instance.RaiseMultiplicationBy(tmpBonus);
+
+            while (bonusIsOn)
+            {
+                MoneyManagerSingleton.instance.RaiseMultiplicationBy(-stepBonus);
+                yield return new WaitForSeconds(0.25f);
+            }
+        }
+
+        private bool bonusIsOn = false;
+
+        private IEnumerator StartBonusProduction()
+        {
+            bonusIsOn = true;
+            slider.gameObject.SetActive(true);
+            float timer = 0f;
+            while (timer <= 8)
+            {
+                timer += Time.deltaTime;
+                slider.value = timer;
+                yield return null;
+            }
+
+            bonusIsOn = false;
+            slider.gameObject.SetActive(false);
+        }
+
         public void RaiseMultiplicationBy(double raiseBy)
         {
-            double tmpMultiplication = multiplication + raiseBy;
-
-            multiplication = tmpMultiplication > 0
-                ? tmpMultiplication
-                : 0;
+            multiplication = multiplication + raiseBy;
             multiplier.enabled = true;
             ChangeDisplayStreak();
             multiplicationHasBeenShown = true;

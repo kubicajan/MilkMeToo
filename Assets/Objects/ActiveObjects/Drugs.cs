@@ -99,10 +99,6 @@ namespace Objects.ActiveObjects
             double stepBonus = (tmpBonus / (MAX_SLIDER_VALUE)) / 4;
             double count = 0;
 
-            // Vector2 vcectr = MoveItABit(
-            //     Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position));
-            // vcectr.y += 10;
-
             while (bonusIsOn)
             {
                 MoneyManagerSingleton.instance.RaiseMultiplicationBy(stepBonus);

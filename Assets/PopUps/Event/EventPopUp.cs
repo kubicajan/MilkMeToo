@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using System.Text.RegularExpressions;
 using GooglePlayGames;
@@ -9,6 +10,7 @@ using PopUps.Event;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Utilities;
 using Random = UnityEngine.Random;
 
@@ -26,7 +28,6 @@ namespace PopUps
         [SerializeField] private AudioClip winSound;
         [SerializeField] private ParticleSystem successParticles;
         [SerializeField] private ParticleSystem unsuccessParticles;
-
 
         private TextMeshProUGUI questionText;
         private Result basedResult;
@@ -101,9 +102,9 @@ namespace PopUps
         {
             const string PATTERN = @"^([-+]?\d+)";
             Match match = Helpers.ParseRegex(gEffect, PATTERN);
-            MoneyManagerSingleton.instance.RaiseMultiplicationBy(int.Parse(match.Groups[1].Value));
+            MoneyManagerSingleton.instance.eyo(int.Parse(match.Groups[1].Value));
         }
-
+        
         private void HandleMoneyCase(string gEffect)
         {
             const string PATTERN = @"^([-+]?\d+)";
