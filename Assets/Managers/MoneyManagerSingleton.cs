@@ -8,11 +8,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
+using Random = UnityEngine.Random;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Managers
 {
     public class MoneyManagerSingleton : MonoBehaviour
     {
+        [SerializeField] private AudioSource audioHorn;
+        [SerializeField] private AudioClip hornSound;
         [SerializeField] public TextMeshProUGUI moneyScore;
         [SerializeField] public TextMeshProUGUI multiplier;
         [SerializeField] public Slider slider;
@@ -195,16 +199,38 @@ namespace Managers
         IEnumerator AddMultiplierCoroutine(int value)
         {
             double tmpBonus = value;
-            double stepBonus = (tmpBonus / (5)) / 4;
+            double stepBonus = (tmpBonus / (10)) / 4;
             double tmpTemporaryMultiplication = this.multiplication;
             MoneyManagerSingleton.instance.RaiseTemporaryMultiplication(tmpBonus);
+            audioHorn.PlayOneShot(hornSound);
 
             while (bonusIsOn)
             {
                 MoneyManagerSingleton.instance.RaiseTemporaryMultiplication(-stepBonus);
                 yield return new WaitForSeconds(0.25f);
             }
+
             SetRaiseTemporaryMultiplicationToZero();
+
+            double percentTobeSaved = tmpBonus / 25;
+            if (tmpBonus <= 0 && (multiplication + percentTobeSaved) <= 0)
+            {
+                SetMultiplicationToZero();
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.5f);
+                RaiseMultiplicationBy(percentTobeSaved);
+            }
+        }
+
+        private void SetMultiplicationToZero()
+        {
+            multiplication = 0;
+            multiplier.enabled = true;
+            ChangeDisplayStreak();
+            multiplicationHasBeenShown = true;
+            SaveManager.instance.UpdateMultiplier(multiplication);
         }
 
         private bool bonusIsOn = false;
@@ -214,7 +240,7 @@ namespace Managers
             bonusIsOn = true;
             slider.gameObject.SetActive(true);
             float timer = 0f;
-            while (timer <= 5)
+            while (timer <= 10)
             {
                 timer += Time.deltaTime;
                 slider.value = timer;

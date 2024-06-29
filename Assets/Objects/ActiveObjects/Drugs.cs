@@ -103,7 +103,7 @@ namespace Objects.ActiveObjects
             {
                 MoneyManagerSingleton.instance.RaiseTemporaryMultiplication2(stepBonus);
                 MilkMoneySingleton.instance.HandleMilkMoneyShow((decimal)stepBonus, MoveItABit(
-                    Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position)), "%");
+                    Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position)), "X");
 
                 count = stepBonus + count;
                 yield return new WaitForSeconds(0.25f);
@@ -112,7 +112,7 @@ namespace Objects.ActiveObjects
             yield return new WaitForSeconds(0.4f);
 
             MilkMoneySingleton.instance.HandleMilkMoneyShow((decimal)-tmpBonus,
-                Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position), "%");
+                Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position), "X");
             MoneyManagerSingleton.instance.RaiseTemporaryMultiplication2(-tmpBonus);
             MoneyManagerSingleton.instance.SettemporaryMultiplicationPilulkyToZero();
         }
