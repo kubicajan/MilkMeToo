@@ -106,6 +106,7 @@ namespace Managers
             totalMoney = SaveManager.instance.GetTotalMoney();
             ChangeDisplayedMoney();
             multiplication = SaveManager.instance.GetMultiplier();
+            temporaryPermanentMultiplication = SaveManager.instance.GetTemporaryPermanentMultiplier();
 
             if (multiplication != 0)
             {
@@ -188,6 +189,7 @@ namespace Managers
         {
             multiplication = value;
             SaveManager.instance.UpdateMultiplier(value);
+            SaveManager.instance.UpdateTemporaryPermanentMultiplier(0);
             multiplicationHasBeenShown = true;
             ChangeDisplayStreak();
         }
@@ -255,6 +257,8 @@ namespace Managers
         private void AddTotemporarilyPermanently(double value)
         {
             temporaryPermanentMultiplication += value;
+            SaveManager.instance.UpdateTemporaryPermanentMultiplier(temporaryPermanentMultiplication);
+
             multiplier.enabled = true;
             ChangeDisplayStreak("red");
             multiplicationHasBeenShown = true;

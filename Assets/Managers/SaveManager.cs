@@ -86,6 +86,11 @@ namespace Managers
         {
             wrapper.multiplier = multiplier;
         }
+        
+        public void UpdateTemporaryPermanentMultiplier(double temporaryMultiplier)
+        {
+            wrapper.temporaryPermanentMultiplier = temporaryMultiplier;
+        }
 
         public void UpdateMommyUnlockCounter(int mommyUnlockCounter)
         {
@@ -124,6 +129,11 @@ namespace Managers
         public double GetMultiplier()
         {
             return wrapper.multiplier;
+        }
+        
+        public double GetTemporaryPermanentMultiplier()
+        {
+            return wrapper.temporaryPermanentMultiplier;
         }
 
         public Decimal GetCurrentMoney()
@@ -229,6 +239,7 @@ namespace Managers
         [SerializeField] public int mommyUnlockCounter = 0;
         [SerializeField] public int fatherTo = 0;
         [SerializeField] public double multiplier = 0;
+        [SerializeField] public double temporaryPermanentMultiplier = 0;
         [SerializeField] public List<VyjimecnyElan> listToBeSaved = new List<VyjimecnyElan>();
     }
 
