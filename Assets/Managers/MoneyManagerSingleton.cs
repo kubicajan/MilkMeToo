@@ -192,63 +192,48 @@ namespace Managers
 
         public void eyo(int value)
         {
-            StartCoroutine(StartBonusProduction());
-            StartCoroutine(AddMultiplierCoroutine(value));
-        }
-
-        IEnumerator AddMultiplierCoroutine(int value)
-        {
-            double tmpBonus = value;
-            double stepBonus = (tmpBonus / (10)) / 4;
-            double tmpTemporaryMultiplication = this.multiplication;
-            MoneyManagerSingleton.instance.RaiseTemporaryMultiplication(tmpBonus);
-            audioHorn.PlayOneShot(hornSound);
-
-            while (bonusIsOn)
-            {
-                MoneyManagerSingleton.instance.RaiseTemporaryMultiplication(-stepBonus);
-                yield return new WaitForSeconds(0.25f);
-            }
-
-            SetRaiseTemporaryMultiplicationToZero();
-
-            double percentTobeSaved = tmpBonus / 25;
-            if (tmpBonus <= 0 && (multiplication + percentTobeSaved) <= 0)
-            {
-                SetMultiplicationToZero();
-            }
-            else
-            {
-                yield return new WaitForSeconds(0.5f);
-                RaiseMultiplicationBy(percentTobeSaved);
-            }
-        }
-
-        private void SetMultiplicationToZero()
-        {
-            multiplication = 0;
-            multiplier.enabled = true;
-            ChangeDisplayStreak();
-            multiplicationHasBeenShown = true;
-            SaveManager.instance.UpdateMultiplier(multiplication);
+            StartCoroutine(StartBonusProduction(value));
         }
 
         private bool bonusIsOn = false;
 
-        private IEnumerator StartBonusProduction()
+        private IEnumerator StartBonusProduction(int value)
         {
+            float valueToBeSavedPermanently = (float)value / 10;
+            RaiseMultiplicationBy(valueToBeSavedPermanently);
+            float actualValue = value - valueToBeSavedPermanently;
             bonusIsOn = true;
             slider.gameObject.SetActive(true);
+            audioHorn.PlayOneShot(hornSound);
+            
+            float finalTime = 10f;
             float timer = 0f;
-            while (timer <= 10)
+
+            RaiseTemporaryMultiplication(value);
+            while (timer <= finalTime)
             {
                 timer += Time.deltaTime;
-                slider.value = timer;
+
+                float t = Mathf.Pow(timer / finalTime, 3f);
+
+                float currentAcceleration = Mathf.Lerp(0, 10, t);
+                slider.value = (finalTime * currentAcceleration) / 10;
+
+                float magicValue = actualValue - (actualValue * currentAcceleration) / 10;
+                MoneyManagerSingleton.instance.SetTempMultiplication(magicValue);
                 yield return null;
             }
 
             bonusIsOn = false;
             slider.gameObject.SetActive(false);
+        }
+
+        public void SetTempMultiplication(double value)
+        {
+            temporaryMultiplication = value;
+            multiplier.enabled = true;
+            ChangeDisplayStreak();
+            multiplicationHasBeenShown = true;
         }
 
         public void RaiseTemporaryMultiplication(double raiseBy)
@@ -293,10 +278,18 @@ namespace Managers
             //      totalScore.text = $"ALL TIME: {totalMoney}$";
         }
 
-        private void ChangeDisplayStreak()
+        private void ChangeDisplayStreak(string gg = null)
         {
-            multiplier.text =
-                $"MULTIPLIER: {Helpers.ConvertNumbersToString((decimal)(temporaryMultiplication + temporaryMultiplicationPilulky + multiplication), true)}X";
+            if (gg != null)
+            {
+                multiplier.text =
+                    $"MULTIPLIER: {Helpers.ConvertNumbersToString((decimal)(temporaryMultiplication + temporaryMultiplicationPilulky + multiplication), true)}X";
+
+            }
+            else
+            {
+                multiplier.text = gg;
+            }
         }
     }
 }
