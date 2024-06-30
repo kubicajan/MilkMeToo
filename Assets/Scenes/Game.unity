@@ -93813,7 +93813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventHolder: {fileID: 568504754}
   levelOneSprite: {fileID: 21300000, guid: 5407fdaa6dcc439449d4da26e31fd4bd, type: 3}
-  levelTwoSprite: {fileID: 21300000, guid: 97f8fb516104f0d4da107b575ecd2766, type: 3}
+  levelTwoSprite: {fileID: 21300000, guid: 5be85155f48222e438a6210b18969bad, type: 3}
   audioSource: {fileID: 1772927522}
   clip: {fileID: 8300000, guid: efaf8dea6f8d67141a235016794120c8, type: 3}
 --- !u!114 &1629431447

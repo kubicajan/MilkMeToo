@@ -48,7 +48,6 @@ namespace Managers
 
         private void Start()
         {
-            // cowPanelAudios.Add(GameObject.Find("audioSourceDrugs").GetComponent<AudioSource>());
             cowPanelAudios.Add(GameObject.Find("Ginger1audioSource").GetComponent<AudioSource>());
             cowPanelAudios.Add(GameObject.Find("audioSourceCapyAnimation").GetComponent<AudioSource>());
             cowPanelAudios.Add(GameObject.Find("audioSourceCatAnimation").GetComponent<AudioSource>());
@@ -62,6 +61,7 @@ namespace Managers
             specialAudios.Add(GameObject.Find("audioSourceEventPopUpClick").GetComponent<AudioSource>());
             specialAudios.Add(GameObject.Find("eventSongAudi").GetComponent<AudioSource>());
             specialAudios.Add(GameObject.Find("audioSource").GetComponent<AudioSource>());
+            specialAudios.Add(GameObject.Find("audioSourceHorn").GetComponent<AudioSource>());
 
 
             kokPanelAudioSourceForSong.clip = kokPanelSong;
@@ -183,7 +183,7 @@ namespace Managers
                         shopPanelAudioSourceForSong.Play();
                     }
 
-                    eventAudioSource.Pause();
+                    // eventAudioSource.Pause();
                     rememberLastPanel = panelNumber;
                     break;
                 case 3:
