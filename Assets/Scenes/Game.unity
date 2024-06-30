@@ -19673,7 +19673,7 @@ GameObject:
   - component: {fileID: 380645993}
   - component: {fileID: 380645992}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: FillParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19961,7 +19961,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7264151, g: 0.0712709, b: 0.10711784, a: 1}
+      maxColor: {r: 0.12571776, g: 1, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -21043,8 +21043,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.8113208, g: 0.49959925, b: 0.117871106, a: 1}
-        key1: {r: 0.6886792, g: 0.16529505, b: 0.12604125, a: 0.39607844}
+        key0: {r: 0.8301887, g: 0.6845141, b: 0.6845141, a: 1}
+        key1: {r: 0.8490566, g: 0.7000712, b: 0.7000712, a: 0.20784314}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -42229,7 +42229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703055223}
   m_Layer: 5
-  m_Name: Fill Area
+  m_Name: FillArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86274,7 +86274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8207547, g: 0, b: 0.22581838, a: 1}
+  m_Color: {r: 0.24393654, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
