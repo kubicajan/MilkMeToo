@@ -5,6 +5,7 @@ using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace Objects.ActiveObjects
@@ -95,7 +96,7 @@ namespace Objects.ActiveObjects
 
         IEnumerator AddMultiplierCoroutine()
         {
-            double tmpBonus = bonus + (SaveManager.instance.GetMultiplier() * 0.25);
+            double tmpBonus = bonus + (ObjectCount * 5);
             double stepBonus = (tmpBonus / (MAX_SLIDER_VALUE)) / 4;
             double count = 0;
 
@@ -115,6 +116,7 @@ namespace Objects.ActiveObjects
                 Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position), "X");
             MoneyManagerSingleton.instance.RaiseTemporaryMultiplication2(-tmpBonus);
             MoneyManagerSingleton.instance.SettemporaryMultiplicationPilulkyToZero();
+            MoneyManagerSingleton.instance.ClearStreakDisplayColour();
         }
 
 
@@ -147,7 +149,7 @@ namespace Objects.ActiveObjects
                 yield return null;
             }
 
-            ObjectCount = 0;
+            // ObjectCount = 0;
             bonusIsOn = false;
             audioSource.Stop();
             primalSpriteButton.gameObject.SetActive(false);

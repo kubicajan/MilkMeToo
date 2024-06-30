@@ -5,9 +5,11 @@ using System.Linq;
 using System.Numerics;
 using GooglePlayGames;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
+using ColorUtility = UnityEngine.ColorUtility;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 
@@ -20,10 +22,13 @@ namespace Managers
         [SerializeField] public TextMeshProUGUI moneyScore;
         [SerializeField] public TextMeshProUGUI multiplier;
         [SerializeField] public Slider slider;
+        ParticleSystem fillParticle;
+        private Image fillArea;
 
         public static MoneyManagerSingleton instance;
 
         private double temporaryMultiplication = 0;
+        private double temporaryPermanentMultiplication = 0;
         private double temporaryMultiplicationPilulky = 0;
 
         private BigInteger totaloMoneys = 0;
@@ -78,6 +83,8 @@ namespace Managers
         public void Start()
         {
             slider.gameObject.SetActive(false);
+            fillParticle = slider.transform.Find("FillArea/Fill/FillParticle").GetComponent<ParticleSystem>();
+            fillArea = slider.transform.Find("FillArea/Fill").GetComponent<Image>();
             PlayGamesPlatform.Instance
                 .LoadAchievements(achievements =>
                 {
@@ -200,16 +207,32 @@ namespace Managers
         private IEnumerator StartBonusProduction(int value)
         {
             float valueToBeSavedPermanently = (float)value / 10;
-            RaiseMultiplicationBy(valueToBeSavedPermanently);
-            float actualValue = value - valueToBeSavedPermanently;
+            float actualValue = 0;
+
+            if (temporaryPermanentMultiplication + valueToBeSavedPermanently <= 0)
+            {
+                actualValue = value;
+                AddTotemporarilyPermanently(-temporaryPermanentMultiplication);
+            }
+            else
+            {
+                AddTotemporarilyPermanently(valueToBeSavedPermanently);
+                actualValue = value - valueToBeSavedPermanently;
+            }
+
             bonusIsOn = true;
             slider.gameObject.SetActive(true);
             audioHorn.PlayOneShot(hornSound);
-            
+
             float finalTime = 10f;
             float timer = 0f;
+            string colour = value >= 0 ? "#20FF00" : "#D1003A";
+            ColorUtility.TryParseHtmlString(colour, out Color parsedColor);
+            fillArea.color = parsedColor;
+            fillParticle.startColor = parsedColor;
 
-            RaiseTemporaryMultiplication(value);
+
+            SetTempMultiplication(value, colour);
             while (timer <= finalTime)
             {
                 timer += Time.deltaTime;
@@ -220,41 +243,42 @@ namespace Managers
                 slider.value = (finalTime * currentAcceleration) / 10;
 
                 float magicValue = actualValue - (actualValue * currentAcceleration) / 10;
-                MoneyManagerSingleton.instance.SetTempMultiplication(magicValue);
+                MoneyManagerSingleton.instance.SetTempMultiplication(magicValue, colour);
                 yield return null;
             }
 
+            ClearStreakDisplayColour();
             bonusIsOn = false;
             slider.gameObject.SetActive(false);
         }
 
-        public void SetTempMultiplication(double value)
+        private void AddTotemporarilyPermanently(double value)
+        {
+            temporaryPermanentMultiplication += value;
+            multiplier.enabled = true;
+            ChangeDisplayStreak("red");
+            multiplicationHasBeenShown = true;
+        }
+
+        public void SetTempMultiplication(double value, string colour)
         {
             temporaryMultiplication = value;
             multiplier.enabled = true;
-            ChangeDisplayStreak();
+            ChangeDisplayStreak(colour);
             multiplicationHasBeenShown = true;
-        }
-
-        public void RaiseTemporaryMultiplication(double raiseBy)
-        {
-            temporaryMultiplication = temporaryMultiplication + raiseBy;
-            multiplier.enabled = true;
-            ChangeDisplayStreak();
-            multiplicationHasBeenShown = true;
-        }
-
-        public void SetRaiseTemporaryMultiplicationToZero()
-        {
-            temporaryMultiplication = 0;
         }
 
         public void RaiseTemporaryMultiplication2(double raiseBy)
         {
             temporaryMultiplicationPilulky = temporaryMultiplicationPilulky + raiseBy;
             multiplier.enabled = true;
-            ChangeDisplayStreak();
+            ChangeDisplayStreak("#FFFF00");
             multiplicationHasBeenShown = true;
+        }
+
+        public void ClearStreakDisplayColour()
+        {
+            ChangeDisplayStreak("white");
         }
 
         public void SettemporaryMultiplicationPilulkyToZero()
@@ -278,18 +302,10 @@ namespace Managers
             //      totalScore.text = $"ALL TIME: {totalMoney}$";
         }
 
-        private void ChangeDisplayStreak(string gg = null)
+        private void ChangeDisplayStreak(string color = "white")
         {
-            if (gg != null)
-            {
-                multiplier.text =
-                    $"MULTIPLIER: {Helpers.ConvertNumbersToString((decimal)(temporaryMultiplication + temporaryMultiplicationPilulky + multiplication), true)}X";
-
-            }
-            else
-            {
-                multiplier.text = gg;
-            }
+            multiplier.text =
+                $"MULTIPLIER: <color={color}>{Helpers.ConvertNumbersToString((decimal)(temporaryMultiplication + temporaryMultiplicationPilulky + temporaryPermanentMultiplication + multiplication), true)}X</color>";
         }
     }
 }
