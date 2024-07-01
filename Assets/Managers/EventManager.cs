@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Objects.PassiveObjects;
 using Objects.SpecialObjects.Event;
 using PopUps;
 using UnityEngine;
@@ -22,7 +23,7 @@ namespace Managers
         private RectTransform canvasRect;
         private Button eventButton;
         private float timer = 0f;
-        private float interval = 2f;
+        public  float interval = 2f;
         private bool popUpOpen;
         private bool eventIsShown;
 
@@ -39,10 +40,6 @@ namespace Managers
             Zero,
             First,
             Second
-        }
-
-        private void Start()
-        {
         }
 
         public void FirstConfigure()
@@ -105,6 +102,7 @@ namespace Managers
                 // done to wait until there is no more event, so it would not override.
                 yield return null;
             }
+
             level += number;
 
             switch (level)
@@ -177,7 +175,7 @@ namespace Managers
         {
             timer += Time.deltaTime;
 
-            if (timer > interval)
+            if (timer > (interval - TimeBonus.timeBonus))
             {
                 timer = 0;
                 return true;

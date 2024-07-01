@@ -1,5 +1,6 @@
 using Managers;
 using Objects.Abstract;
+using Objects.PassiveObjects;
 using UnityEngine;
 
 namespace Objects.SpecialObjects.Event
@@ -11,18 +12,18 @@ namespace Objects.SpecialObjects.Event
         public SecondLevelEvent()
         {
             objectName = "God among men";
-            kokButtonDescription = "The fabric of reality shatters, what is HE doing here?";
             kokButtonUnlockPrice = 850000;
             effectInfo = "SPECIAL EVENTS";
             kokButtonStatus = ButtonStatus.UNKNOWN;
             availableParticleName = "SuckParticle";
             boughtParticleName = "VoidParticle";
         }
-        
+
         protected override void Start()
         {
-            // gameObject.SetActive(true);
             base.Start();
+            kokButtonDescription =
+                $"The fabric of reality shatters, what is HE doing here? \n \n Upgrades events.";
         }
 
         protected override void ResetHandler()
@@ -41,6 +42,7 @@ namespace Objects.SpecialObjects.Event
                 Social.ReportProgress(GPGSIds.achievement_the_idol, 100.0f, (bool success) => { });
                 mamho = true;
             }
+
             base.BuyUpgrade();
             EventManager.instance.martyr();
         }

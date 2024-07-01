@@ -10,11 +10,13 @@ namespace Objects.SpecialObjects.Event
     public class EventUnlock : KokTreeObject
     {
         private bool mamho = false;
+        [SerializeField] public GameObject anotherToUnlockNext;
+
 
         public EventUnlock()
         {
             objectName = "NASTENKA";
-            kokButtonDescription = "Is this a witcher 1 reference";
+            kokButtonDescription = "Is this a witcher 1 reference?";
             kokButtonUnlockPrice = 500;
             effectInfo = "UNLOCKS EVENTS";
             kokButtonStatus = ButtonStatus.AVAILABLE;
@@ -55,6 +57,7 @@ namespace Objects.SpecialObjects.Event
             base.BuyUpgrade();
             LevelUp();
             EventManager.instance.SpawnEvent();
+            anotherToUnlockNext.GetComponent<KokTreeObject>().LockButton();
         }
 
         protected override void KokTreeButtonStart()
