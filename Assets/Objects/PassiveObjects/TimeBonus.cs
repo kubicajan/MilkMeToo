@@ -11,6 +11,7 @@ namespace Objects.PassiveObjects
         private int timerMultiplication = 2;
         private int counter = 0;
         private Decimal originalPrice = 0;
+        private int maxBumbo = 5;
 
         public TimeBonus()
         {
@@ -26,16 +27,33 @@ namespace Objects.PassiveObjects
             VyjimecnyElan data = SaveManager.instance.GetItemToUpdate(this.GetType().ToString());
             counter = data.CountBought;
             Decimal tmpPrice = Decimal.Parse(data.ShopBuyPrice);
-         
+
             if (tmpPrice != 0)
             {
                 kokButtonUnlockPrice = tmpPrice;
             }
+
             timeBonus = timerMultiplication * counter;
-            
+
             kokButtonDescription =
                 $"Warp time and space itself. \n \n Events appear {timerMultiplication}s faster per upgrade! \n \n  Event every: {EventManager.instance.interval - (timeBonus)}s";
-            effectInfo = $"{counter}/5 bought";
+            effectInfo = $"{counter}/{maxBumbo} bought";
+        }
+
+        protected override void LoadAllAssets()
+        {
+            base.LoadAllAssets();
+            if (SaveManager.instance.GetTimesProud() >= 1)
+            {
+                maxBumbo = 10;
+            }
+        }
+        
+        protected override void ResetHandler()
+        {
+            LockButton();
+            maxBumbo = 10;
+            kokButtonUnlockPrice = kokButtonUnlockPrice * 100;
         }
 
         public override void BuyUpgrade()
@@ -47,10 +65,10 @@ namespace Objects.PassiveObjects
             UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
             SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), kokButtonUnlockPrice);
             kokButtonDescription =
-                $"Warp time and space itself - events appear {timerMultiplication}s faster per upgrade! \n \n  Currently every: {EventManager.instance.interval - (timeBonus)}s";
-            effectInfo = $"{counter}/5 bought";
+                $"Warp time and space itself. \n \n Events appear {timerMultiplication}s faster per upgrade! \n \n  Event every: {EventManager.instance.interval - (timeBonus)}s";
+            effectInfo = $"{counter}/{maxBumbo} bought";
 
-            if (counter >= 5)
+            if (counter >= maxBumbo)
             {
                 base.BuyUpgrade();
             }
