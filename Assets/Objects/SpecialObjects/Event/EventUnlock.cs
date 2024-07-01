@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using GooglePlayGames;
 using Managers;
@@ -37,10 +38,26 @@ namespace Objects.SpecialObjects.Event
 
         protected override void ResetHandler()
         {
-            base.ResetHandler();
-            kokButtonStatus = ButtonStatus.AVAILABLE;
-            RevertUpgrade();
-            KokTreeButtonStart();
+            this.transform.position = new Vector2(-1980, -500);
+            UpdateUpgradePriceDisplayText("");
+
+            // base.ResetHandler();
+            // kokButtonStatus = ButtonStatus.AVAILABLE;
+            // RevertUpgrade();
+            // KokTreeButtonStart();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            if (SaveManager.instance.GetTimesProud() >= 1)
+            {
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+                this.gameObject.SetActive(true);
+            }
         }
 
         private void RevertUpgrade()
@@ -75,7 +92,17 @@ namespace Objects.SpecialObjects.Event
             toUnlockNext.gameObject.SetActive(true);
 
             StartCoroutine(EventManager.instance.LevelUpCoroutine());
+            
+            if (SaveManager.instance.GetTimesProud() >= 1)
+            {
+                this.toUnlockNext.SetActive(false);;
+            }
+            else
+            {
+                this.toUnlockNext.SetActive(true);;
+            }
             gameObject.SetActive(false);
+
         }
     }
 }

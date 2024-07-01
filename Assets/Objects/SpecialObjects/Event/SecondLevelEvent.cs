@@ -24,13 +24,24 @@ namespace Objects.SpecialObjects.Event
             base.Start();
             kokButtonDescription =
                 $"The fabric of reality shatters, what is HE doing here? \n \n Upgrades events.";
+            if (SaveManager.instance.GetTimesProud() >= 1)
+            {
+                this.gameObject.SetActive(false);;
+            }
+            else
+            {
+                this.gameObject.SetActive(true);;
+            }
         }
 
         protected override void ResetHandler()
         {
-            base.ResetHandler();
-            kokButtonStatus = ButtonStatus.AVAILABLE;
-            KokTreeButtonStart();
+            this.transform.position = new Vector2(-1980, -500);
+            UpdateUpgradePriceDisplayText("");
+
+            // base.ResetHandler();
+            // kokButtonStatus = ButtonStatus.AVAILABLE;
+            // KokTreeButtonStart();
         }
 
         private bool mamho = false;
@@ -53,6 +64,14 @@ namespace Objects.SpecialObjects.Event
             if (this.kokButtonStatus == ButtonStatus.BOUGHT)
             {
                 EventManager.instance.martyr();
+            }
+            if (SaveManager.instance.GetTimesProud() >= 1)
+            {
+                this.gameObject.SetActive(false);;
+            }
+            else
+            {
+                this.gameObject.SetActive(true);;
             }
         }
     }

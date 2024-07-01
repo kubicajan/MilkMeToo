@@ -71,7 +71,6 @@ namespace Objects
         {
             Social.ReportProgress(GPGSIds.achievement_you_did_it_she_is_proud_of_you, 100.0f, (bool success) => { });
 
-
             RestartEverything();
             unlockCounter = 0;
             SaveManager.instance.UpdateMommyUnlockCounter(0);
@@ -84,6 +83,7 @@ namespace Objects
                                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
                 kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
             }
+            toUnlockNext.gameObject.SetActive(true);
         }
 
         private void RestartEverything()
