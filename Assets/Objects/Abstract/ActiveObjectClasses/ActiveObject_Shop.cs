@@ -24,6 +24,14 @@ namespace Objects.Abstract.ActiveObjectClasses
             set => ActivateThings(value);
         }
 
+        protected int freeObjects = 0;
+
+        protected int FreeObjects
+        {
+            get => freeObjects;
+            set => ActivateFreeThings(value);
+        }
+
         protected override void ResetHandler()
         {
             base.ResetHandler();
@@ -40,18 +48,39 @@ namespace Objects.Abstract.ActiveObjectClasses
             SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
         }
 
+        protected virtual void ActivateFreeThings(int value)
+        {
+            if (value > 0)
+            {
+                freeObjects = value;
+                primalSpriteButton.gameObject.SetActive(true);
+                SaveManager.instance.UpdateFreeCountWrapper(this.GetType().ToString(), value);
+            }
+            else
+            {
+                SaveManager.instance.UpdateFreeCountWrapper(this.GetType().ToString(), -freeObjects);
+                freeObjects = 0;
+                ObjectCount += value;
+            }
+        }
+
         protected virtual void ActivateThings(int value)
         {
             if (value > 0)
             {
                 objectCounter = value;
                 primalSpriteButton.gameObject.SetActive(true);
+                SaveManager.instance.SetUpdateCountBoughtWrapper(this.GetType().ToString(), value);
             }
             else
             {
                 objectCounter = 0;
                 primalSpriteButton.gameObject.SetActive(false);
+                SaveManager.instance.SetUpdateCountBoughtWrapper(this.GetType().ToString(), value);
             }
+
+            shopButtonBuyPrice = CalculatePrice();
+            SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
         }
 
         protected virtual void UpdateShop(Decimal money)
@@ -73,7 +102,7 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected Decimal CalculatePrice()
         {
-            return (shopButtonBuyPrice * (Decimal)Math.Pow(1.08f, ObjectCount));
+            return (originalPrice * (Decimal)Math.Pow(1.15f, ObjectCount));
         }
 
         private void ShopButtonStart()
@@ -105,19 +134,13 @@ namespace Objects.Abstract.ActiveObjectClasses
             if (MoneyManagerSingleton.instance.SpendMoney(shopButtonBuyPrice))
             {
                 ObjectCount++;
-                shopButtonBuyPrice = CalculatePrice();
                 SongManager.instance.PlayPurchase();
-                SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
-                SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
             }
         }
 
-        public void AddBoughtObject(int amount)
+        public void AddFreeObject(int amount)
         {
-            ObjectCount += amount;
-            shopButtonBuyPrice = CalculatePrice();
-            SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), amount);
-            SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
+            FreeObjects += amount;
         }
     }
 }

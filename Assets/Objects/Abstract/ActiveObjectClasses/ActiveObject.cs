@@ -36,6 +36,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         {
             VyjimecnyElan data = SaveManager.instance.GetItemToUpdate(this.GetType().ToString());
             this.ObjectCount = data.CountBought;
+            this.FreeObjects = data.FreeCount;
             Decimal gggg = Decimal.Parse(data.AmountMilked);
             this.allTimeMilked = gggg;
             Decimal ggtmp = Decimal.Parse(data.ShopBuyPrice);
@@ -70,8 +71,9 @@ namespace Objects.Abstract.ActiveObjectClasses
         public override void Clicked()
         {
             clickedInfo = true;
-            InformationPopUp.instance.ShowPopUp(objectName, description, "Amount milked:\n" + Helpers.ConvertNumbersToString(allTimeMilked),
-                primalSpriteButton.GetComponent<Image>().sprite, $"{objectCounter}x");
+            InformationPopUp.instance.ShowPopUp(objectName, description,
+                "Amount milked:\n" + Helpers.ConvertNumbersToString(allTimeMilked),
+                primalSpriteButton.GetComponent<Image>().sprite, $"{objectCounter + freeObjects}x");
         }
 
         public virtual void PlayMilked(int? number)
@@ -81,7 +83,7 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected virtual void ConfigureAndPlayMilked(Transform transformMe)
         {
-            Decimal moneyMoney = objectCounter * productionPower;
+            Decimal moneyMoney = (objectCounter + freeObjects) * productionPower;
             StartCoroutine(PlayMilkedCoroutine(transformMe,
                 Helpers.GetObjectPositionRelativeToCanvas(transformMe.position), moneyMoney));
         }

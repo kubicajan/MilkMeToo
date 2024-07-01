@@ -63,7 +63,7 @@ namespace Objects.ActiveObjects
 
         protected override void ConfigureAndPlayMilked(Transform transformMe)
         {
-            Decimal moneyMoney = (Decimal)objectCounter * productionPower *
+            Decimal moneyMoney = (Decimal)(objectCounter + freeObjects) * productionPower *
                                  (Decimal)(MoneyManagerSingleton.instance.numberOfTitties * 1.4 + 1);
             StartCoroutine(PlayMilkedCoroutine(transformMe,
                 Helpers.GetObjectPositionRelativeToCanvas(transformMe.position), moneyMoney));

@@ -53,25 +53,37 @@ namespace Managers
         public void UpdateKokTreeStatusWrapper(string className, ButtonStatus kokTreeStatus)
         {
             UpdateItem(className, itemToUpdate => itemToUpdate.KokTreeStatus = kokTreeStatus,
-                () => new VyjimecnyElan(className, kokTreeStatus, 0, "0", "0"));
+                () => new VyjimecnyElan(className, kokTreeStatus, 0, "0", "0", 0));
         }
 
         public void UpdateCountBoughtWrapper(string className, int countBought)
         {
             UpdateItem(className, itemToUpdate => itemToUpdate.CountBought += countBought,
-                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, countBought, "0", "0"));
+                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, countBought, "0", "0", 0));
+        }
+
+        public void SetUpdateCountBoughtWrapper(string className, int countBought)
+        {
+            UpdateItem(className, itemToUpdate => itemToUpdate.CountBought = countBought,
+                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, countBought, "0", "0", 0));
+        }
+
+        public void UpdateFreeCountWrapper(string className, int freeCount)
+        {
+            UpdateItem(className, itemToUpdate => itemToUpdate.FreeCount = freeCount,
+                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, 0, "0", "0", freeCount));
         }
 
         public void RestartCountBoughtWrapper(string className)
         {
             UpdateItem(className, itemToUpdate => itemToUpdate.CountBought = 0,
-                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, 0, "0", "0"));
+                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, 0, "0", "0", 0));
         }
 
         public void UpdateShopBuyPriceWrapper(string className, Decimal shopBuyPrice)
         {
             UpdateItem(className, itemToUpdate => itemToUpdate.ShopBuyPrice = shopBuyPrice.ToString(),
-                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, 0, "0", shopBuyPrice.ToString()));
+                () => new VyjimecnyElan(className, ButtonStatus.LOCKED, 0, "0", shopBuyPrice.ToString(), 0));
         }
 
         public void UpdateAmountMilkedWrapper(string className, Decimal amountMilked)
@@ -79,14 +91,14 @@ namespace Managers
             Decimal tmp = Decimal.Parse(GetItemToUpdate(className).AmountMilked) + amountMilked;
 
             UpdateItem(className, itemToUpdate => itemToUpdate.AmountMilked = tmp.ToString(),
-                () => new VyjimecnyElan(className, ButtonStatus.BOUGHT, 0, amountMilked.ToString(), "0"));
+                () => new VyjimecnyElan(className, ButtonStatus.BOUGHT, 0, amountMilked.ToString(), "0", 0));
         }
 
         public void UpdateMultiplier(double multiplier)
         {
             wrapper.multiplier = multiplier;
         }
-        
+
         public void UpdateTemporaryPermanentMultiplier(double temporaryMultiplier)
         {
             wrapper.temporaryPermanentMultiplier = temporaryMultiplier;
@@ -130,7 +142,7 @@ namespace Managers
         {
             return wrapper.multiplier;
         }
-        
+
         public double GetTemporaryPermanentMultiplier()
         {
             return wrapper.temporaryPermanentMultiplier;
@@ -193,7 +205,7 @@ namespace Managers
                 timer = 0;
                 SaveGameData();
                 int million = 1000000;
-                
+
                 if (GetTotalMoney() >= 999999999999999)
                 {
                     Social.ReportScore((999999999), GPGSIds.leaderboard_total_money_made_in_mil, success => { });
@@ -247,19 +259,21 @@ namespace Managers
     public class VyjimecnyElan
     {
         public string Name;
+        public int FreeCount;
         public ButtonStatus KokTreeStatus;
         public int CountBought;
         public string AmountMilked;
         public string ShopBuyPrice = "0";
 
         public VyjimecnyElan(string name, ButtonStatus kokTreeStatus, int countBought, string amountMilked,
-            string shopBuyPrice)
+            string shopBuyPrice, int freeCount)
         {
             Name = name;
             KokTreeStatus = kokTreeStatus;
             CountBought = countBought;
             AmountMilked = amountMilked;
             ShopBuyPrice = shopBuyPrice;
+            FreeCount = freeCount;
         }
     }
 }

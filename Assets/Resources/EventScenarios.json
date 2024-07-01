@@ -20,13 +20,20 @@
         "You remembered something.",
         "You hear something",
         "You smell something",
-        "You feel something"
+        "You feel something",
+        "You are forced to do something"
       ]
     },
     {
       "Name": "Fifty",
       "Question": "Find out?",
       "Descriptions": [
+        "You toss a coin. Is it heads?",
+        "You toss a coin. Is it tails?",
+        "An oracle tells you to toss your son into a sewer, saying he is cursed. Is he?",
+        "An online article says that if you drink urine, you will get stronger. Is it true?",
+        "You heard selling your left testicle brings good luck. Is it true?",
+        "You slam your foot into a furniture. You might have just lost your pinky.",
         "It might be Friday today, but you are not sure. Is it?",
         "At the end of the day you sit down and realise you are satisfied with yourself. Or are you?",
         "You queue up a ranked game - it will work out this time. Or will it?",
@@ -37,6 +44,9 @@
       "Name": "Investments",
       "Question": "Give your bank info?",
       "Descriptions": [
+        "A friend asks you for a favour, he will pay you back.",
+        "A 'wizard' underneath the bridge promises fortune",
+        "The chocolate milk stock is on the rise! You should act.",
         "You get a letter saying you won in lottery, asking you to pick up the prize! But.. you do not remember playing.",
         "You get an email from an arabic prince saying you will inherit a fortune! Hurray!",
         "You get a call about your car's extended warranty - they will cut you a deal!",
@@ -51,7 +61,22 @@
         "While digging a cow pool, you find a wooden box six feet under the surface.",
         "At the end of the day, your cows gather around a mysterious glowing objects.",
         "You find a hidden compartment in your pocket.",
-        "There is a box in front of your door - and you can hear meowing from inside."
+        "There is a box in front of your door - and you can hear meowing from inside.",
+        "Your grandpa left you a time capsule to open 100 years later.",
+        "You find an old fridge in your basement. It is still running!"
+      ]
+    },
+    {
+      "Name": "Bites",
+      "Question": "What do you do?",
+      "Descriptions": [
+        "A capybara bites you. It tickles.",
+        "A cat scratches you. What a lovely creature.",
+        "A capybara headbutts you. Cutie.",
+        "A cat and a capybara both pee on you. Aren't they sweet?",
+        "Something ate all of your shoes.",
+        "You find a capybara sleeping in your bed. Adorable.",
+        "Your cats do not recognize you and start panicking. Poor babies."
       ]
     }
   ]

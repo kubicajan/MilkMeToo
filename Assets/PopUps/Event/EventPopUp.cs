@@ -118,7 +118,8 @@ namespace PopUps
             Match match = Helpers.ParseRegex(gEffect, PATTERN);
             string objectName = match.Groups[2].Value;
             ActiveKokTreeObject activeKokTreeObject = Helpers.GetActiveKokTreeObject(objectName);
-            activeKokTreeObject.AddBoughtObject(int.Parse(match.Groups[1].Value));
+            var gg = int.Parse(match.Groups[1].Value);
+            activeKokTreeObject.AddFreeObject(int.Parse(match.Groups[1].Value));
         }
 
         private int leprikonCounter = 0;

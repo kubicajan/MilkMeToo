@@ -39,14 +39,44 @@
           "effectType": 1
         },
         {
+          "text": "Your father returned with the milk",
+          "effect": "+10% production",
+          "effectType": 2
+        },
+        {
+          "text": "Some hippies say they will pretend to be cats, if you let them stay.",
+          "effect": "+3 cat",
+          "effectType": 1
+        },
+        {
           "text": "The neighbour came over and stole one of your cats",
           "effect": "-1 cat",
           "effectType": 1
         },
         {
-          "text": "A CAPYBARA?",
+          "text": "A CAPYBARA? And he intends to stay.",
           "effect": "+1 capy",
           "effectType": 1
+        },
+        {
+          "text": "Is that the Muffin man? He ate two of your cats.",
+          "effect": "-2 cat",
+          "effectType": 1
+        },
+        {
+          "text": "A capybara came to find a lover. They left with a whole harem.",
+          "effect": "-3 capy",
+          "effectType": 1
+        },
+        {
+          "text": "The milkman delivered you some milk! Wait what?",
+          "effect": "+15% production",
+          "effectType": 2
+        },
+        {
+          "text": "A big baby came to suck on your cow's utter. Get it off!",
+          "effect": "-15% production",
+          "effectType": 2
         },
         {
           "text": "Your mother's math teacher came to take a look at you. Why is her eye twitching?",
@@ -100,12 +130,32 @@
         },
         {
           "text": "You forgor",
-          "effect": "+0% production",
+          "effect": "-10% production",
           "effectType": 2
         },
         {
           "text": "It is a good warm dinner",
           "effect": "+20% production",
+          "effectType": 2
+        },
+        {
+          "text": "You think about milk",
+          "effect": "+20% production",
+          "effectType": 2
+        },
+        {
+          "text": "You think about buying a bull for special flavoured milk",
+          "effect": "+30% production",
+          "effectType": 2
+        },
+        {
+          "text": "Existential depression",
+          "effect": "-30% production",
+          "effectType": 2
+        },
+        {
+          "text": "You think about water",
+          "effect": "-20% production",
           "effectType": 2
         }
       ]
@@ -155,7 +205,7 @@
         },
         {
           "text": "A new set of teeth for your cows!",
-          "effect": "+2% production",
+          "effect": "+20% production",
           "effectType": 2
         },
         {
@@ -169,18 +219,83 @@
           "effectType": 1
         },
         {
+          "text": "A bunch of kittens",
+          "effect": "+3 cat",
+          "effectType": 1
+        },
+        {
+          "text": "A free capybara!",
+          "effect": "+1 capy",
+          "effectType": 1
+        },
+        {
+          "text": "An overwhelming joy!",
+          "effect": "+5 cat",
+          "effectType": 1
+        },
+        {
+          "text": "They are so chill",
+          "effect": "+2 capy",
+          "effectType": 1
+        },
+        {
           "text": "That does not smell good.",
-          "effect": "-1% production",
+          "effect": "-10% production",
+          "effectType": 2
+        },
+        {
+          "text": "Is that a marriage proposal - 10 years of bad luck!",
+          "effect": "-18% production",
+          "effectType": 2
+        },
+        {
+          "text": "A snack!",
+          "effect": "+18% production",
+          "effectType": 2
+        },
+        {
+          "text": "It is from South America!",
+          "effect": "+3 capy",
+          "effectType": 1
+        },
+        {
+          "text": "Old pics with your ex are inside.",
+          "effect": "-20% production",
+          "effectType": 2
+        },
+        {
+          "text": "You can never tell anyone about this.",
+          "effect": "+20% production",
           "effectType": 2
         },
         {
           "text": "Is that your finger?",
-          "effect": "-1% production",
+          "effect": "-10% production",
           "effectType": 2
         },
         {
-          "text": "Your forgotten luggage!",
+          "text": "Your lost luggage!",
           "effect": "+9000$",
+          "effectType": 3
+        },
+        {
+          "text": "Shiny!",
+          "effect": "+9000$",
+          "effectType": 3
+        },
+        {
+          "text": "A bottle of olive oil! Neat!",
+          "effect": "+9000$",
+          "effectType": 3
+        },
+        {
+          "text": "A tax collector pops out. Oh no.",
+          "effect": "-20000",
+          "effectType": 3
+        },
+        {
+          "text": "It is a mimic and SUCKS in some of your money before you close it!",
+          "effect": "-20000",
           "effectType": 3
         },
         {
@@ -192,6 +307,56 @@
           "text": "Your grandma's ashes",
           "effect": "-15000$",
           "effectType": 3
+        }
+      ]
+    },
+    {
+      "Name": "Bites",
+      "Results": [
+        {
+          "text": "You eat three cats to show who is the boss.",
+          "effect": "-3 cat",
+          "effectType": 1
+        },
+        {
+          "text": "You should get more capybaras",
+          "effect": "+2 capy",
+          "effectType": 1
+        },
+        {
+          "text": "You run your cat over with a tractor to show dominance",
+          "effect": "-1 cat",
+          "effectType": 1
+        },
+        {
+          "text": "You force your cats to breed. The more the merrier.",
+          "effect": "+3 cat",
+          "effectType": 1
+        },
+        {
+          "text": "You feed your capybaras excellent dinner to reward good behaviour",
+          "effect": "+10% production",
+          "effectType": 2
+        },
+        {
+          "text": "I heard capybara meat is the best.",
+          "effect": "-2 capy",
+          "effectType": 1
+        },
+        {
+          "text": "You tear a cat in half, making it two cats. Genius.",
+          "effect": "+1 cat",
+          "effectType": 1
+        },
+        {
+          "text": "Throw a capybara to the alligators.",
+          "effect": "-1 capy",
+          "effectType": 1
+        },
+        {
+          "text": "Impregnate a capybara to make a new one.",
+          "effect": "+1 capy",
+          "effectType": 1
         }
       ]
     }
