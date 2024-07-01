@@ -152,7 +152,7 @@ namespace Objects.Abstract
         //     KokTreePopUp.instance.EnableButton(enoughMoney, GetType());
         // }
 
-        private void MakeButtonUnknown()
+        protected void MakeButtonUnknown()
         {
             SaveManager.instance.UpdateKokTreeStatusWrapper(this.GetType().ToString(), ButtonStatus.UNKNOWN);
             kokButtonStatus = ButtonStatus.UNKNOWN;

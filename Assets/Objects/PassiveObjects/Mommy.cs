@@ -1,5 +1,3 @@
-using System;
-using System.Numerics;
 using Managers;
 using Objects.Abstract;
 using UnityEngine;
@@ -18,7 +16,7 @@ namespace Objects
 
         public static int magicResetValue = 100;
         private int timesRestarted = 0;
-        private int unlockCounter = 0;
+        public static int unlockCounter = 0;
 
         public Mommy()
         {
@@ -30,9 +28,10 @@ namespace Objects
 
         protected override void Start()
         {
+            unlockCounter = SaveManager.instance.GetMommyUnlockCounter();
+
             base.Start();
             effectInfo = $"{magicResetValue}% EXTRA PRODUCTION";
-            unlockCounter = SaveManager.instance.GetMommyUnlockCounter();
             timesRestarted = SaveManager.instance.GetTimesProud();
             kokButtonDescription =
                 $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress.</color> </b>  \n \n {timesRestarted} times proud so far.";
@@ -45,11 +44,16 @@ namespace Objects
                 image.GetComponent<Image>().color = new Color32(0, 146, 255, 255);
                 rain.Play();
             }
+
             if (SaveManager.instance.wrapper.timesProud > 0)
             {
                 this.kokButtonUnlockPrice = originalkokUnlockPrice *
                                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20)/100);
+                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
+            }
+            else
+            {
+                kokButtonUnlockPrice = 2000000000;
             }
         }
 
@@ -66,20 +70,19 @@ namespace Objects
         public override void BuyUpgrade()
         {
             Social.ReportProgress(GPGSIds.achievement_you_did_it_she_is_proud_of_you, 100.0f, (bool success) => { });
-            
+
 
             RestartEverything();
             unlockCounter = 0;
             SaveManager.instance.UpdateMommyUnlockCounter(0);
             MoneyManagerSingleton.instance.ResetMoney();
             MoneyManagerSingleton.instance.ResetMultiplicationAndAddToIt(magicResetValue);
-            
+
             if (SaveManager.instance.wrapper.timesProud > 0)
             {
                 this.kokButtonUnlockPrice = originalkokUnlockPrice *
                                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20)/100);
-
+                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
             }
         }
 
