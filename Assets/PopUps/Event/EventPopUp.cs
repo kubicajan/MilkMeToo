@@ -76,8 +76,31 @@ namespace PopUps
             questionText.text = scenario.Question;
 
             //set summary/accept fields
+            if (basedResult.effectType == EffectStatus.MONEY)
+            {
+                summaryEffectInfo.text = Helpers.ConvertNumbersToString((dopici(basedResult.effect)));
+            }
+            else
+            {
+                summaryEffectInfo.text = basedResult.effect;
+            }
+
             summaryDescription.text = basedResult.text;
-            summaryEffectInfo.text = basedResult.effect;
+        }
+
+        private Decimal dopici(string effect)
+        {
+            const string PATTERN = @"^([-+]?\d+)";
+            Match match = Helpers.ParseRegex(effect, PATTERN);
+            double tmpValue = int.Parse(match.Groups[1].Value);
+            double multiplier = MoneyManagerSingleton.instance.GetTotalPermanentMultiplication();
+            if (multiplier == 0)
+            {
+                multiplier = 1;
+            }
+
+            var gg = (tmpValue * multiplier);
+            return (Decimal)(tmpValue * multiplier);
         }
 
         private void DoThing(Result basedResult)
@@ -104,12 +127,10 @@ namespace PopUps
             Match match = Helpers.ParseRegex(gEffect, PATTERN);
             MoneyManagerSingleton.instance.eyo(int.Parse(match.Groups[1].Value));
         }
-        
+
         private void HandleMoneyCase(string gEffect)
         {
-            const string PATTERN = @"^([-+]?\d+)";
-            Match match = Helpers.ParseRegex(gEffect, PATTERN);
-            MoneyManagerSingleton.instance.AddRewardMoney(Decimal.Parse(match.Groups[1].Value));
+            MoneyManagerSingleton.instance.AddRewardMoney(dopici(gEffect));
         }
 
         private void HandleHelperCase(string gEffect)
@@ -140,6 +161,7 @@ namespace PopUps
 
                 if (leprikonCounter >= 3 && !mamho)
                 {
+                    mamho = true;
                     Social.ReportProgress(GPGSIds.achievement_the_leprechaun, 100.0f, (bool success) => { });
                 }
             }

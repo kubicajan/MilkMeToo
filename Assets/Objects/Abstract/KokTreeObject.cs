@@ -53,7 +53,7 @@ namespace Objects.Abstract
             {
                 this.kokButtonUnlockPrice = originalkokUnlockPrice *
                                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20)/100);
+                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
             }
 
             Load();
@@ -76,7 +76,7 @@ namespace Objects.Abstract
             kokButtonUnlockPrice = originalkokUnlockPrice;
             kokButtonUnlockPrice = originalkokUnlockPrice *
                                    (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-            kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20)/100);
+            kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
             SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
             primalSpriteButton.SetActive(false);
             this.StopAllCoroutines();
@@ -194,8 +194,17 @@ namespace Objects.Abstract
             kokButtonStatus = ButtonStatus.BOUGHT;
             kokButton.image.sprite = boughtKokButtonSprite;
             kokButton.enabled = true;
-            upgradePriceDisplay.text = "";
+            UpdateUpgradePriceDisplayText("");
             SwitchToBoughtParticle();
+        }
+
+        protected void UpdateUpgradePriceDisplayText(string value)
+        {
+            upgradePriceDisplay.text = value;
+        }
+        protected void UpdateUpgradePriceDisplayText(Decimal value)
+        {
+            UpdateUpgradePriceDisplayText(Helpers.ConvertNumbersToString(value));
         }
 
         protected void SwitchToAvailableParticle()

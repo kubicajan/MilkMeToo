@@ -47,12 +47,6 @@ namespace Objects.SpecialObjects.Event
             EventManager.instance.martyr();
         }
 
-
-        protected override void UnlockAnotherButton()
-        {
-            return;
-        }
-
         protected override void KokTreeButtonStart()
         {
             base.KokTreeButtonStart();

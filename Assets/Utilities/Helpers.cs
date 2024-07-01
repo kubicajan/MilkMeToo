@@ -79,7 +79,7 @@ namespace Utilities
             const Decimal QUINTILION = 1000000000000000000;
             CultureInfo culture = CultureInfo.GetCultureInfo("en-US");
 
-            switch (number)
+            switch (Math.Abs(number))
             {
                 case > QUINTILION:
                     return Math.Round(number / 1000000000000000, 3).ToString("N2", culture) + "E";

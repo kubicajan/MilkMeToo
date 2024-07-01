@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using GooglePlayGames;
+using Objects.PassiveObjects;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -208,7 +209,7 @@ namespace Managers
 
         private IEnumerator StartBonusProduction(int value)
         {
-            float valueToBeSavedPermanently = (float)value / 10;
+            float valueToBeSavedPermanently = (float)(((double)value / 100) * MultiplierBonus.permanentBonus);
             float actualValue = 0;
 
             if (temporaryPermanentMultiplication + valueToBeSavedPermanently <= 0)
@@ -298,6 +299,11 @@ namespace Managers
             multiplicationHasBeenShown = true;
             SaveManager.instance.UpdateMultiplier(multiplication);
             // RaiseTemporaryMultiplication(raiseBy);
+        }
+
+        public double GetTotalPermanentMultiplication()
+        {
+            return multiplication + temporaryPermanentMultiplication;
         }
 
         private void ChangeDisplayedMoney()
