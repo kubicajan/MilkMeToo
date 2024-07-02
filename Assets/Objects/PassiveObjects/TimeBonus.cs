@@ -54,6 +54,8 @@ namespace Objects.PassiveObjects
             LockButton();
             maxBumbo = 10;
             kokButtonUnlockPrice = kokButtonUnlockPrice * 100;
+            effectInfo = $"{counter}/{maxBumbo} bought";
+
         }
 
         public override void BuyUpgrade()
@@ -67,6 +69,7 @@ namespace Objects.PassiveObjects
             kokButtonDescription =
                 $"Warp time and space itself. \n \n Events appear {timerMultiplication}s faster per upgrade! \n \n  Event every: {EventManager.instance.interval - (timeBonus)}s";
             effectInfo = $"{counter}/{maxBumbo} bought";
+            UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
 
             if (counter >= maxBumbo)
             {

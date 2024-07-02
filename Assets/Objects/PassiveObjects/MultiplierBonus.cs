@@ -58,6 +58,7 @@ namespace Objects.PassiveObjects
             maxBumbo = 10;
             kokButtonUnlockPrice = kokButtonUnlockPrice * 100;
             SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), kokButtonUnlockPrice);
+            effectInfo = $"{counter}/{maxBumbo} bought";
 
             // kokButtonUnlockPrice = originalkokUnlockPrice;
             // kokButtonUnlockPrice = originalkokUnlockPrice *
@@ -79,6 +80,7 @@ namespace Objects.PassiveObjects
             kokButtonDescription =
                 $"Make it last! \n \n Keep extra {permaMultiplier}% of event multiplier permanently per upgrade! \n \n Currently {permanentBonus}% ";
             effectInfo = $"{counter}/{maxBumbo} bought";
+            UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
 
             if (counter >= maxBumbo)
             {
