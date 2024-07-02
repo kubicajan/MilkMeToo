@@ -58,8 +58,8 @@ namespace Objects.Abstract.ActiveObjectClasses
             }
             else
             {
-                SaveManager.instance.UpdateFreeCountWrapper(this.GetType().ToString(), -freeObjects);
                 freeObjects = 0;
+                SaveManager.instance.UpdateFreeCountWrapper(this.GetType().ToString(), freeObjects);
                 ObjectCount += value;
             }
         }

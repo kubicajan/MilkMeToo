@@ -45,12 +45,12 @@ namespace Objects.ActiveObjects
             slider.maxValue = MAX_SLIDER_VALUE;
         }
 
-        protected override void FixedUpdate()
-        {
-            NabijeciSystemTepleVody();
-            Decimal money = MoneyManagerSingleton.instance.GetMoney();
-            UpdateShop(money);
-        }
+        // protected override void FixedUpdate()
+        // {
+        //     NabijeciSystemTepleVody();
+        //     Decimal money = MoneyManagerSingleton.instance.GetMoney();
+        //     UpdateShop(money);
+        // }
 
         public override void BuyObject()
         {

@@ -47,9 +47,8 @@ namespace Objects.Abstract.ActiveObjectClasses
             }
         }
 
-        protected void NabijeciSystemTepleVody()
+        private void NabijeciSystemTepleVody()
         {
-            base.FixedUpdate();
             Decimal money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
 
@@ -66,6 +65,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         protected override void FixedUpdate()
         {
             NabijeciSystemTepleVody();
+            base.FixedUpdate();
         }
 
         public override void Clicked()

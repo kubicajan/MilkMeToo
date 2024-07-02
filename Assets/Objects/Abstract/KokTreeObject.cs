@@ -81,11 +81,30 @@ namespace Objects.Abstract
             primalSpriteButton.SetActive(false);
             this.StopAllCoroutines();
         }
-        
+
         protected virtual void FixedUpdate()
         {
-            bool enoughMoney = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
-            UpdateKokTree(enoughMoney);
+            if (IsItTime())
+            {
+                bool enoughMoney = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
+                UpdateKokTree(enoughMoney);
+            }
+        }
+
+        private float timer = 0f;
+        public float interval = 0.5f;
+
+        private bool IsItTime()
+        {
+            timer += Time.deltaTime;
+
+            if (timer > (interval))
+            {
+                timer = 0;
+                return true;
+            }
+
+            return false;
         }
 
         private void UpdateKokTree(bool enoughMoney)
@@ -202,6 +221,7 @@ namespace Objects.Abstract
         {
             upgradePriceDisplay.text = value;
         }
+
         protected void UpdateUpgradePriceDisplayText(Decimal value)
         {
             UpdateUpgradePriceDisplayText(Helpers.ConvertNumbersToString(value));

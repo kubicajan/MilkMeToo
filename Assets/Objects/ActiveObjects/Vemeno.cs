@@ -22,19 +22,39 @@ namespace Objects.ActiveObjects
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (ObjectCount > 0)
+            if (IsItTime() )
             {
-                animator.SetBool("isTiddy", true);
+                Debug.Log("Animation finished");
+                if (ObjectCount > 0)
+                {
+                    animator.SetBool("isTiddy", true);
+                }
+
+                if (Random.Range(0, 10) < 2)
+                {
+                    animator.SetBool("switcheroo", true);
+                }
+                else
+                {
+                    animator.SetBool("switcheroo", false);
+                }
+            }
+        }
+        
+        private float timer = 0f;
+        public float interval = 0.5f;
+
+        private bool IsItTime()
+        {
+            timer += Time.deltaTime;
+
+            if (timer > (interval))
+            {
+                timer = 0;
+                return true;
             }
 
-            if (Random.Range(0, 10) < 2)
-            {
-                animator.SetBool("switcheroo", true);
-            }
-            else
-            {
-                animator.SetBool("switcheroo", false);
-            }
+            return false;
         }
 
         public override void BuyObject()
