@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Linq;
 using GooglePlayGames;
-using GooglePlayGames.BasicApi;
 using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
@@ -55,6 +54,9 @@ namespace Objects.SpecialObjects
                 anotherCow.gameObject.SetActive(false);
                 anotherAnotherCow.gameObject.SetActive(false);
             }
+            SaveManager.instance.SetUpdateCountBoughtWrapper(this.GetType().ToString(), value);
+            shopButtonBuyPrice = CalculatePrice();
+            SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
         }
 
         private bool iAmMilking = false;
@@ -130,8 +132,8 @@ namespace Objects.SpecialObjects
 
         public void BirthACow(int value)
         {
-            ObjectCount += value;
-            SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
+            FreeObjects += value;
+            SaveManager.instance.UpdateFreeCountWrapper(this.GetType().ToString(), 1);
         }
 
         private long counter = 0;

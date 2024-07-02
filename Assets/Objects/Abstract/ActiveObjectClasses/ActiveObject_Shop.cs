@@ -70,15 +70,13 @@ namespace Objects.Abstract.ActiveObjectClasses
             {
                 objectCounter = value;
                 primalSpriteButton.gameObject.SetActive(true);
-                SaveManager.instance.SetUpdateCountBoughtWrapper(this.GetType().ToString(), value);
             }
             else
             {
                 objectCounter = 0;
                 primalSpriteButton.gameObject.SetActive(false);
-                SaveManager.instance.SetUpdateCountBoughtWrapper(this.GetType().ToString(), value);
             }
-
+            SaveManager.instance.SetUpdateCountBoughtWrapper(this.GetType().ToString(), value);
             shopButtonBuyPrice = CalculatePrice();
             SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
         }
@@ -102,6 +100,10 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected Decimal CalculatePrice()
         {
+            var r = ObjectCount;
+            var g = originalPrice;
+            var gg = Math.Pow(1.15f, ObjectCount);
+            var ggg = originalPrice * (Decimal)Math.Pow(1.15f, ObjectCount);
             return (originalPrice * (Decimal)Math.Pow(1.15f, ObjectCount));
         }
 

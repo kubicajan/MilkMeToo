@@ -81,7 +81,7 @@ namespace Objects.Abstract
             primalSpriteButton.SetActive(false);
             this.StopAllCoroutines();
         }
-
+        
         protected virtual void FixedUpdate()
         {
             bool enoughMoney = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
