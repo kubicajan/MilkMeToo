@@ -21,6 +21,7 @@ namespace Managers
         [SerializeField] private AudioSource audioHorn;
         [SerializeField] private AudioClip hornSound;
         [SerializeField] public TextMeshProUGUI moneyScore;
+        [SerializeField] public TextMeshProUGUI MULTI;
         [SerializeField] public TextMeshProUGUI multiplier;
         [SerializeField] public Slider slider;
         ParticleSystem fillParticle;
@@ -229,7 +230,7 @@ namespace Managers
 
             float finalTime = 10f;
             float timer = 0f;
-            string colour = value >= 0 ? "#20FF00" : "#D1003A";
+            string colour = value >= 0 ? "#33cc33" : "#D1003A";
             ColorUtility.TryParseHtmlString(colour, out Color parsedColor);
             fillArea.color = parsedColor;
             fillParticle.startColor = parsedColor;
@@ -247,6 +248,7 @@ namespace Managers
 
                 float magicValue = actualValue - (actualValue * currentAcceleration) / 10;
                 MoneyManagerSingleton.instance.SetTempMultiplication(magicValue, colour);
+
                 yield return null;
             }
 
@@ -269,6 +271,9 @@ namespace Managers
         {
             temporaryMultiplication = value;
             multiplier.enabled = true;
+            MULTI.text =
+                $"<color={colour}>{Helpers.ConvertNumbersToString((decimal)(temporaryMultiplication), true)}X</color>";
+
             ChangeDisplayStreak(colour);
             multiplicationHasBeenShown = true;
         }
