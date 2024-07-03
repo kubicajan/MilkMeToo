@@ -23,6 +23,7 @@ namespace Managers
         [SerializeField] public TextMeshProUGUI moneyScore;
         [SerializeField] public TextMeshProUGUI MULTI;
         [SerializeField] public TextMeshProUGUI multiplier;
+        [SerializeField] private ParticleSystem obegaParticl;
         [SerializeField] public Slider slider;
         ParticleSystem fillParticle;
         private Image fillArea;
@@ -234,6 +235,7 @@ namespace Managers
             ColorUtility.TryParseHtmlString(colour, out Color parsedColor);
             fillArea.color = parsedColor;
             fillParticle.startColor = parsedColor;
+            // obegaParticl.Play();
 
 
             SetTempMultiplication(value, colour);
@@ -254,6 +256,7 @@ namespace Managers
 
             ClearStreakDisplayColour();
             bonusIsOn = false;
+            // obegaParticl.Stop();
             slider.gameObject.SetActive(false);
         }
 
@@ -272,7 +275,7 @@ namespace Managers
             temporaryMultiplication = value;
             multiplier.enabled = true;
             MULTI.text =
-                $"<color={colour}>{Helpers.ConvertNumbersToString((decimal)(temporaryMultiplication), true)}X</color>";
+                $"<color={colour}>{Helpers.ConvertNumbersToString((decimal)(temporaryMultiplication + temporaryMultiplicationPilulky + temporaryPermanentMultiplication + multiplication), true)}X</color>";
 
             ChangeDisplayStreak(colour);
             multiplicationHasBeenShown = true;
