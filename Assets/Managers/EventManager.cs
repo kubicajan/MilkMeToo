@@ -23,7 +23,7 @@ namespace Managers
         private RectTransform canvasRect;
         private Button eventButton;
         private float timer = 0f;
-        public  float interval = 2f;
+        public float interval = 2f;
         private bool popUpOpen;
         private bool eventIsShown;
 
@@ -97,6 +97,7 @@ namespace Managers
 
         public IEnumerator LevelUpCoroutine(int number = 1)
         {
+            Debug.Log(number);
             while (eventIsShown)
             {
                 // done to wait until there is no more event, so it would not override.

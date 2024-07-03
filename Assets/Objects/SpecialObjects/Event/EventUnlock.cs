@@ -13,7 +13,6 @@ namespace Objects.SpecialObjects.Event
         private bool mamho = false;
         [SerializeField] public GameObject anotherToUnlockNext;
 
-
         public EventUnlock()
         {
             objectName = "NASTENKA";
@@ -44,7 +43,7 @@ namespace Objects.SpecialObjects.Event
             // base.ResetHandler();
             // kokButtonStatus = ButtonStatus.AVAILABLE;
             // RevertUpgrade();
-            // KokTreeButtonStart();
+            //KokTreeButtonStart();
         }
 
         protected override void Start()
@@ -54,7 +53,7 @@ namespace Objects.SpecialObjects.Event
             {
                 this.gameObject.SetActive(false);
             }
-            else
+            else if (this.kokButtonStatus != ButtonStatus.BOUGHT)
             {
                 this.gameObject.SetActive(true);
             }
@@ -92,17 +91,19 @@ namespace Objects.SpecialObjects.Event
             toUnlockNext.gameObject.SetActive(true);
 
             StartCoroutine(EventManager.instance.LevelUpCoroutine());
-            
+
             if (SaveManager.instance.GetTimesProud() >= 1)
             {
-                this.toUnlockNext.SetActive(false);;
+                this.toUnlockNext.SetActive(false);
+                ;
             }
             else
             {
-                this.toUnlockNext.SetActive(true);;
+                this.toUnlockNext.SetActive(true);
+                ;
             }
-            gameObject.SetActive(false);
 
+            gameObject.SetActive(false);
         }
     }
 }
