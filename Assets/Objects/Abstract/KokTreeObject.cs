@@ -1,6 +1,5 @@
 using System;
 using System.Numerics;
-using System.Reflection;
 using Managers;
 using PopUps;
 using TMPro;
@@ -25,6 +24,7 @@ namespace Objects.Abstract
         private TextMeshProUGUI upgradePriceDisplay;
         private bool clickedKokInfo;
         private ParticleSystem myParticleSystem;
+        private GameObject ConnectingTissueGameObject;
 
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
         protected string kokButtonDescription = "it is depressed";
@@ -56,8 +56,11 @@ namespace Objects.Abstract
                 kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
             }
 
+            ConnectingTissueGameObject = GameObject.Find("ConnectingTissue");
+
             Load();
             KokTreeButtonStart();
+            ConnectToNextUnlock();
         }
 
         private void Load()
@@ -142,6 +145,30 @@ namespace Objects.Abstract
                     MakeButtonUnknown();
                     break;
             }
+        }
+
+        protected virtual void ConnectToNextUnlock()
+        {
+            GameObject copiedObject = Instantiate(ConnectingTissueGameObject, this.gameObject.transform, false);
+            copiedObject.transform.position = this.gameObject.transform.position;
+            LineRenderer br = copiedObject.GetComponent<LineRenderer>();
+            br.positionCount = 2;
+            br.SetPosition(0, UnityEngine.Vector3.zero);
+            UnityEngine.Vector3 localPositionOfToUnlockNext = 
+                this.gameObject.transform.InverseTransformPoint(toUnlockNext.transform.position);
+
+            br.SetPosition(1,localPositionOfToUnlockNext);
+        }
+
+        private UnityEngine.Vector2 reee(UnityEngine.Vector3 position)
+        {
+            UnityEngine.Vector3 screenPosition = RectTransformUtility.WorldToScreenPoint(null, position);
+            RectTransform canvasRectTransform = GameObject.Find("KokTreeCanvas").GetComponent<RectTransform>();
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransform, screenPosition, null,
+                out UnityEngine.Vector2 canvasPosition);
+
+            return canvasPosition;
         }
 
         protected void What(string uhName, string money, bool unlock)
