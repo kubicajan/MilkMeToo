@@ -14,16 +14,30 @@ namespace Objects.PassiveObjects
             kokButtonStatus = ButtonStatus.AVAILABLE;
             objectName = "Toilet";
             // kokButtonDescription = $"Flush everything down  \n \n {flushed}$ flushed";
-            kokButtonUnlockPrice = 0;
+            kokButtonUnlockPrice = 100;
             multiplicationBonus = 0;
             effectInfo = "???";
         }
+        
+        public override void LockButton()
+        {
+            base.LockButton();
+            UpdateUpgradePriceDisplayText("");
+        }
 
+        protected override void MakeButtonAvailable()
+        {
+            base.MakeButtonAvailable();
+            UpdateUpgradePriceDisplayText("");
+        }
+        
+        
         protected override void LoadAllAssets()
         {
+            availableParticleName = "AvailableParticle2";
             flushed = SaveManager.instance.GetFlushed();
             kokButtonDescription = $"Flush everything down!  \n \n {Helpers.ConvertNumbersToString(flushed)}$ flushed.";
-            
+
             if (SaveManager.instance.GetTimesProud() >= 1)
             {
                 base.LoadAllAssets();
@@ -40,7 +54,7 @@ namespace Objects.PassiveObjects
         protected override void ResetHandler()
         {
         }
-        
+
         public override void ClickKokButton()
         {
             bool unlock = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);

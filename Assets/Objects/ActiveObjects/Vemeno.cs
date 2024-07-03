@@ -41,16 +41,16 @@ namespace Objects.ActiveObjects
             }
         }
         
-        private float timer = 0f;
+        private float timer2 = 0f;
         private float interval2 = 0.5f;
 
         private bool IsItTime()
         {
-            timer += Time.deltaTime;
+            timer2 += Time.deltaTime;
 
-            if (timer > (interval2))
+            if (timer2 > (interval2))
             {
-                timer = 0;
+                timer2 = 0;
                 return true;
             }
 
