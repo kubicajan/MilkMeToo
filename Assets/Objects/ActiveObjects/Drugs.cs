@@ -32,7 +32,7 @@ namespace Objects.ActiveObjects
             shopButtonBuyPrice = 5000;
             kokButtonUnlockPrice = 15000;
             productionPower = 1;
-            interval = 1f;
+            // interval = 1f;
         }
 
         protected override void Start()

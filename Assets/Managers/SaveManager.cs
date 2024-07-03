@@ -153,9 +153,19 @@ namespace Managers
             return Decimal.Parse(wrapper.currentMoney);
         }
 
+        public Decimal GetFlushed()
+        {
+            return Decimal.Parse(wrapper.Flushed);
+        }
+
         public void UpdateCurrentMoney(Decimal moneyToBeAdded)
         {
             wrapper.currentMoney = (GetCurrentMoney() + moneyToBeAdded).ToString();
+        }
+
+        public void UpdateFlushed(Decimal flushedToBeAdded)
+        {
+            wrapper.currentMoney = (GetFlushed() + flushedToBeAdded).ToString();
         }
 
 
@@ -252,6 +262,7 @@ namespace Managers
         [SerializeField] public int fatherTo = 0;
         [SerializeField] public double multiplier = 0;
         [SerializeField] public double temporaryPermanentMultiplier = 0;
+        [SerializeField] public string Flushed = "0";
         [SerializeField] public List<VyjimecnyElan> listToBeSaved = new List<VyjimecnyElan>();
     }
 

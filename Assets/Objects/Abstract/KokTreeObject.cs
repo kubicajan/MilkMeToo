@@ -92,13 +92,13 @@ namespace Objects.Abstract
         }
 
         private float timer = 0f;
-        public float interval = 0.5f;
+        public float interval23 = 0.15f;
 
         private bool IsItTime()
         {
             timer += Time.deltaTime;
 
-            if (timer > (interval))
+            if (timer > (interval23))
             {
                 timer = 0;
                 return true;
@@ -144,11 +144,17 @@ namespace Objects.Abstract
             }
         }
 
+        protected void What(string uhName, string money, bool unlock)
+        {
+            KokTreePopUp.instance.ShowPopUp(uhName, kokButtonDescription, money, kokButton.image.sprite, GetType(),
+                unlock, effectInfo);
+        }
+
         public virtual void ClickKokButton()
         {
             bool unlock = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
             string money = $"Price \n {Helpers.ConvertNumbersToString((Decimal)kokButtonUnlockPrice)}$";
-            string name = objectName;
+            string objName = objectName;
             SongManager.instance.PlayClick();
 
             if (kokButtonStatus == ButtonStatus.BOUGHT)
@@ -159,11 +165,10 @@ namespace Objects.Abstract
 
             if (kokButtonStatus == ButtonStatus.LOCKED)
             {
-                name = "???";
+                objName = "???";
             }
 
-            KokTreePopUp.instance.ShowPopUp(name, kokButtonDescription, money, kokButton.image.sprite, GetType(),
-                unlock, effectInfo);
+            What(objName, money, unlock);
         }
 
         // private void UpdatePopUpButton(bool enoughMoney)

@@ -16,7 +16,7 @@ namespace Objects.ActiveObjects
             shopButtonBuyPrice = 50000;
             kokButtonUnlockPrice = 2500000;
             productionPower = 1;
-            interval = 1f;
+            // interval = 1f;
         }
 
         protected override void FixedUpdate()
@@ -42,13 +42,13 @@ namespace Objects.ActiveObjects
         }
         
         private float timer = 0f;
-        public float interval = 0.5f;
+        private float interval2 = 0.5f;
 
         private bool IsItTime()
         {
             timer += Time.deltaTime;
 
-            if (timer > (interval))
+            if (timer > (interval2))
             {
                 timer = 0;
                 return true;

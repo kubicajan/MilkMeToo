@@ -19,7 +19,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         [SerializeField] public AudioSource animalNoiseAudioSource;
 
         protected Decimal allTimeMilked = 0;
-        protected float interval = 1f;
+        // protected float interval = 1f;
         protected Decimal productionPower = 0;
         protected string description = "";
 

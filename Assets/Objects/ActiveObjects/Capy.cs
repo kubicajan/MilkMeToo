@@ -24,7 +24,7 @@ namespace Objects.ActiveObjects
             shopButtonBuyPrice = 250;
             kokButtonUnlockPrice = 200;
             productionPower = 0.6m;
-            interval = 1f;
+            // interval = 1f;
         }
 
         private bool achievementUnlocked = false;

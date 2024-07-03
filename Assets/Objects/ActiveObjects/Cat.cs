@@ -29,7 +29,7 @@ namespace Objects.ActiveObjects
             kokButtonDescription = "You find a little cat. Try to take it home, but it requires a fee..." +
                                    "\n \n What use is coin for him?";
             productionPower = 2m;
-            interval = 0.5f;
+            // interval = 0.5f;
         }
 
         protected override void ResetHandler()
