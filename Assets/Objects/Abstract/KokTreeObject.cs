@@ -276,7 +276,7 @@ namespace Objects.Abstract
                 ColorUtility.TryParseHtmlString("#FFDA00", out Color parsedColor);
                 br.startColor = parsedColor;
             }
-
+            UpdateUpgradePriceDisplayText("");
             SwitchToBoughtParticle();
         }
 

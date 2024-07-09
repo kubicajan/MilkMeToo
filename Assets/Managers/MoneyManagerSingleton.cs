@@ -19,7 +19,11 @@ namespace Managers
     public class MoneyManagerSingleton : MonoBehaviour
     {
         [SerializeField] private AudioSource audioHorn;
-        [SerializeField] private AudioClip hornSound;
+        [SerializeField] private AudioClip hornSound;     
+        
+        [SerializeField] private AudioSource audioTikTok;
+        [SerializeField] private AudioClip tiktokSound;
+        
         [SerializeField] public TextMeshProUGUI moneyScore;
         [SerializeField] public TextMeshProUGUI MULTI;
         [SerializeField] public TextMeshProUGUI multiplier;
@@ -228,6 +232,7 @@ namespace Managers
             bonusIsOn = true;
             slider.gameObject.SetActive(true);
             audioHorn.PlayOneShot(hornSound);
+            audioTikTok.PlayOneShot(tiktokSound);
 
             float finalTime = 10f;
             float timer = 0f;
@@ -258,6 +263,8 @@ namespace Managers
             bonusIsOn = false;
             // obegaParticl.Stop();
             slider.gameObject.SetActive(false);
+            audioTikTok.Stop();
+
         }
 
         private void AddTotemporarilyPermanently(double value)

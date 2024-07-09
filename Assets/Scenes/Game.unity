@@ -60773,9 +60773,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toUnlockNext: {fileID: 1194561192}
-  availableKokButtonSprite: {fileID: 21300000, guid: edf6dbc6a5cc58d45a4c1f6cd9e779c2, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: f66f229ff19a3ec43b57140866da04a2, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: cafd462fc5976754e9750b194bcba0b7, type: 3}
+  availableKokButtonSprite: {fileID: 21300000, guid: b393b34c202513247bd37dfabea98899, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: 220995c1986617a4f91712d6eb0ed61e, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: 1a914d03704f1994e917f6fedf5c79fb, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: 5e8be6ccd0d33a94b86fc07234fb9b49, type: 3}
   primalSpriteButton: {fileID: 1194561192}
   interval23: 0.5
@@ -71348,6 +71348,134 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0242d27a410e4beaac85d77927241e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &959658499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 959658501}
+  - component: {fileID: 959658500}
+  m_Layer: 0
+  m_Name: tiktokAudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &959658500
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959658499}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &959658501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959658499}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 195, y: -116, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963160241
 GameObject:
   m_ObjectHideFlags: 0
@@ -73812,9 +73940,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toUnlockNext: {fileID: 1194561192}
-  availableKokButtonSprite: {fileID: 21300000, guid: edf6dbc6a5cc58d45a4c1f6cd9e779c2, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: f66f229ff19a3ec43b57140866da04a2, type: 3}
-  boughtKokButtonSprite: {fileID: 21300000, guid: cafd462fc5976754e9750b194bcba0b7, type: 3}
+  availableKokButtonSprite: {fileID: 21300000, guid: 480759be66e2f6345885dd8c09dd8b96, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: d85da53d19b6b8e46b1f7ab486c12cc9, type: 3}
+  boughtKokButtonSprite: {fileID: 21300000, guid: d1d0e0a30d4fc5c45991d9971a29b30c, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: 981c2c87b462f764991ca7dd339aa679, type: 3}
   primalSpriteButton: {fileID: 1194561192}
   interval23: 0.5
@@ -104324,6 +104452,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioHorn: {fileID: 973851289}
   hornSound: {fileID: 8300000, guid: 6018885229dbca24caf98af269882c52, type: 3}
+  audioTikTok: {fileID: 959658500}
+  tiktokSound: {fileID: 8300000, guid: 54554ab4d5ff87740ab61fbc8416490a, type: 3}
   moneyScore: {fileID: 1045953113}
   MULTI: {fileID: 1396964855}
   multiplier: {fileID: 64331047}
@@ -111308,7 +111438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toUnlockNext: {fileID: 1194561192}
   availableKokButtonSprite: {fileID: 21300000, guid: da64883eae4e6434594ce26cb0be8c3c, type: 3}
-  lockedKokButtonSprite: {fileID: 21300000, guid: f66f229ff19a3ec43b57140866da04a2, type: 3}
+  lockedKokButtonSprite: {fileID: 21300000, guid: 636e5ade2bd37b54c8c4ac2107669c92, type: 3}
   boughtKokButtonSprite: {fileID: 21300000, guid: cafd462fc5976754e9750b194bcba0b7, type: 3}
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
   primalSpriteButton: {fileID: 1194561192}
