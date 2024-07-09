@@ -20,6 +20,7 @@ namespace Objects.SpecialObjects.Event
             kokButtonUnlockPrice = 500;
             effectInfo = "UNLOCKS EVENTS";
             kokButtonStatus = ButtonStatus.AVAILABLE;
+            showTheLine = false;
             // PlayGamesPlatform.Instance
             //     .LoadAchievements(achievements =>
             //     {

@@ -17,6 +17,7 @@ namespace Objects.SpecialObjects.Event
             kokButtonStatus = ButtonStatus.UNKNOWN;
             availableParticleName = "SuckParticle";
             boughtParticleName = "VoidParticle";
+            showTheLine = false;
         }
 
         protected override void Start()

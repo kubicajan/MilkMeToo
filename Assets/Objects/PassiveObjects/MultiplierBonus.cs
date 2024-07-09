@@ -17,6 +17,7 @@ namespace Objects.PassiveObjects
             objectName = "Eat concrete";
             kokButtonUnlockPrice = 35000;
             multiplicationBonus = 20;
+            showTheLine = false;
         }
 
         protected override void Start()

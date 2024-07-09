@@ -17,6 +17,7 @@ namespace Objects.PassiveObjects
             kokButtonUnlockPrice = 100;
             multiplicationBonus = 0;
             effectInfo = "???";
+            showTheLine = false;
         }
         
         public override void LockButton()

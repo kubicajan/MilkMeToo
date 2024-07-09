@@ -24,7 +24,7 @@ namespace Objects.Abstract
         private TextMeshProUGUI upgradePriceDisplay;
         private bool clickedKokInfo;
         private ParticleSystem myParticleSystem;
-        private GameObject ConnectingTissueGameObject;
+        protected GameObject ConnectingTissueGameObject;
 
         protected ButtonStatus kokButtonStatus = ButtonStatus.UNKNOWN;
         protected string kokButtonDescription = "it is depressed";
@@ -34,6 +34,7 @@ namespace Objects.Abstract
         protected bool clickedInfo;
         protected string availableParticleName = "AvailableParticle";
         protected string boughtParticleName = "BoughtParticle";
+        protected bool showTheLine = true;
 
         protected virtual void Start()
         {
@@ -59,8 +60,8 @@ namespace Objects.Abstract
             ConnectingTissueGameObject = GameObject.Find("ConnectingTissue");
 
             Load();
-            KokTreeButtonStart();
             ConnectToNextUnlock();
+            KokTreeButtonStart();
         }
 
         private void Load()
@@ -76,6 +77,7 @@ namespace Objects.Abstract
         protected virtual void ResetHandler()
         {
             MakeButtonUnknown();
+            UpdateKokTree(MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice));
             kokButtonUnlockPrice = originalkokUnlockPrice;
             kokButtonUnlockPrice = originalkokUnlockPrice *
                                    (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
@@ -95,7 +97,7 @@ namespace Objects.Abstract
         }
 
         private float timer = 0f;
-        public float interval23 = 0.15f;
+        public float interval23 = 0.5f;
 
         private bool IsItTime()
         {
@@ -110,7 +112,7 @@ namespace Objects.Abstract
             return false;
         }
 
-        private void UpdateKokTree(bool enoughMoney)
+        public void UpdateKokTree(bool enoughMoney)
         {
             if (kokButtonStatus == ButtonStatus.LOCKED && enoughMoney)
             {
@@ -147,17 +149,22 @@ namespace Objects.Abstract
             }
         }
 
+        protected LineRenderer br = null;
+
         protected virtual void ConnectToNextUnlock()
         {
-            GameObject copiedObject = Instantiate(ConnectingTissueGameObject, this.gameObject.transform, false);
-            copiedObject.transform.position = this.gameObject.transform.position;
-            LineRenderer br = copiedObject.GetComponent<LineRenderer>();
-            br.positionCount = 2;
-            br.SetPosition(0, UnityEngine.Vector3.zero);
-            UnityEngine.Vector3 localPositionOfToUnlockNext = 
-                this.gameObject.transform.InverseTransformPoint(toUnlockNext.transform.position);
+            if (showTheLine)
+            {
+                GameObject copiedObject = Instantiate(ConnectingTissueGameObject, this.gameObject.transform, false);
+                copiedObject.transform.position = this.gameObject.transform.position;
+                br = copiedObject.GetComponent<LineRenderer>();
+                br.positionCount = 2;
+                br.SetPosition(0, UnityEngine.Vector3.zero);
+                UnityEngine.Vector3 localPositionOfToUnlockNext =
+                    this.gameObject.transform.InverseTransformPoint(toUnlockNext.transform.position);
 
-            br.SetPosition(1,localPositionOfToUnlockNext);
+                br.SetPosition(1, localPositionOfToUnlockNext);
+            }
         }
 
         private UnityEngine.Vector2 reee(UnityEngine.Vector3 position)
@@ -210,6 +217,12 @@ namespace Objects.Abstract
             kokButton.image.sprite = unknownKokButtonSprite;
             kokButton.enabled = false;
             upgradePriceDisplay.text = "";
+            if (br != null)
+            {
+                ColorUtility.TryParseHtmlString("#000000", out Color parsedColor);
+                br.startColor = parsedColor;
+            }
+
             Destroy(myParticleSystem);
         }
 
@@ -220,6 +233,12 @@ namespace Objects.Abstract
             kokButton.image.sprite = lockedKokButtonSprite;
             kokButton.enabled = true;
             upgradePriceDisplay.text = Helpers.ConvertNumbersToString((Decimal)kokButtonUnlockPrice) + "$";
+            if (br != null)
+            {
+                ColorUtility.TryParseHtmlString("#000000", out Color parsedColor);
+                br.startColor = parsedColor;
+            }
+
             Destroy(myParticleSystem);
         }
 
@@ -230,6 +249,12 @@ namespace Objects.Abstract
             kokButtonStatus = ButtonStatus.AVAILABLE;
             kokButton.image.sprite = availableKokButtonSprite;
             upgradePriceDisplay.text = Helpers.ConvertNumbersToString((Decimal)kokButtonUnlockPrice) + "$";
+            if (br != null)
+            {
+                ColorUtility.TryParseHtmlString("#00BBFF", out Color parsedColor);
+                br.startColor = parsedColor;
+            }
+
             SwitchToAvailableParticle();
         }
 
@@ -245,7 +270,13 @@ namespace Objects.Abstract
             kokButtonStatus = ButtonStatus.BOUGHT;
             kokButton.image.sprite = boughtKokButtonSprite;
             kokButton.enabled = true;
-            UpdateUpgradePriceDisplayText("");
+
+            if (br != null)
+            {
+                ColorUtility.TryParseHtmlString("#FFDA00", out Color parsedColor);
+                br.startColor = parsedColor;
+            }
+
             SwitchToBoughtParticle();
         }
 
@@ -283,7 +314,9 @@ namespace Objects.Abstract
 
         protected virtual void UnlockAnotherButton()
         {
-            toUnlockNext.GetComponent<KokTreeObject>().LockButton();
+            var g = toUnlockNext.GetComponent<KokTreeObject>();
+            g.LockButton();
+            g.UpdateKokTree(MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice));
         }
 
         private void OnSetInactiveTriggeredHandler()

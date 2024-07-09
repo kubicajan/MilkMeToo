@@ -18,6 +18,7 @@ namespace Objects.PassiveObjects
             objectName = "Another dimension";
             kokButtonUnlockPrice = 100000;
             multiplicationBonus = 0;
+            showTheLine = false;
         }
 
         protected override void Start()

@@ -111171,6 +111171,7 @@ GameObject:
   - component: {fileID: 1797592778}
   - component: {fileID: 1797592777}
   - component: {fileID: 1797592780}
+  - component: {fileID: 1797592781}
   m_Layer: 5
   m_Name: Toilet
   m_TagString: Untagged
@@ -111187,7 +111188,7 @@ RectTransform:
   m_GameObject: {fileID: 1797592774}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000318, y: 1.0000318, z: 1.0000318}
+  m_LocalScale: {x: 1.0000318, y: 1.000032, z: 1.000032}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1209690922}
@@ -111312,6 +111313,26 @@ MonoBehaviour:
   unknownKokButtonSprite: {fileID: 21300000, guid: be0f938d5ab1a6449a2fc76d0618020e, type: 3}
   primalSpriteButton: {fileID: 1194561192}
   interval23: 0.5
+--- !u!95 &1797592781
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797592774}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 36c55aea055063141be0f3039a1074ef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1802448599
 GameObject:
   m_ObjectHideFlags: 0
@@ -111570,7 +111591,7 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 0.1720351
         value: 1
         inSlope: 0
         outSlope: 0
@@ -111583,9 +111604,9 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.121568635, g: 0.6627451, b: 0.7607844, a: 1}
-      key1: {r: 0.12941177, g: 0.64705884, b: 0.7411765, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0, g: 0, b: 0, a: 0.654902}
+      key1: {r: 0, g: 0, b: 0, a: 0.36862746}
+      key2: {r: 0, g: 0, b: 0, a: 0.6392157}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -111599,9 +111620,9 @@ LineRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 193
+      atime0: 0
       atime1: 65535
-      atime2: 0
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
@@ -112574,7 +112595,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.9, y: 1}
   m_AnchorMax: {x: 1, y: 1.3234581}
-  m_AnchoredPosition: {x: -5459, y: -1697.0001}
+  m_AnchoredPosition: {x: -5459, y: -1697}
   m_SizeDelta: {x: 811.266, y: 820.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1900845756
