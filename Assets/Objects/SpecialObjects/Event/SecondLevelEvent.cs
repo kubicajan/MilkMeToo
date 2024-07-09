@@ -1,6 +1,5 @@
 using Managers;
 using Objects.Abstract;
-using Objects.PassiveObjects;
 using UnityEngine;
 
 namespace Objects.SpecialObjects.Event
@@ -38,6 +37,10 @@ namespace Objects.SpecialObjects.Event
         protected override void ResetHandler()
         {
             this.transform.position = new Vector2(-1980, -500);
+            if (this.kokButtonStatus != ButtonStatus.BOUGHT)
+            {
+                this.BuyUpgrade();
+            }
             UpdateUpgradePriceDisplayText("");
 
             // base.ResetHandler();
