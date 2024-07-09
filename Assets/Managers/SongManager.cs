@@ -62,8 +62,6 @@ namespace Managers
             specialAudios.Add(GameObject.Find("eventSongAudi").GetComponent<AudioSource>());
             specialAudios.Add(GameObject.Find("audioSource").GetComponent<AudioSource>());
             specialAudios.Add(GameObject.Find("audioSourceHorn").GetComponent<AudioSource>());
-            specialAudios.Add(GameObject.Find("tiktokAudioSource").GetComponent<AudioSource>());
-
 
             kokPanelAudioSourceForSong.clip = kokPanelSong;
             kokPanelAudioSourceForSong.loop = true;
