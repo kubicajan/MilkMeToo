@@ -25,7 +25,6 @@ namespace Objects
                 $"She will finally be proud of you. \n \n <b> <color=red> This will reset your progress.</color> </b>  \n \n {timesRestarted} times proud so far.";
             kokButtonUnlockPrice = 2000000000;
             showTheLine = false;
-
         }
 
         protected override void Start()
@@ -49,9 +48,11 @@ namespace Objects
 
             if (SaveManager.instance.wrapper.timesProud > 0)
             {
-                this.kokButtonUnlockPrice = originalkokUnlockPrice *
-                                            (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
+                // this.kokButtonUnlockPrice = originalkokUnlockPrice *
+                //                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
+                // kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
+                kokButtonUnlockPrice = 79228162514264337590000m;
+                UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
             }
             else
             {
@@ -71,6 +72,10 @@ namespace Objects
 
         public override void BuyUpgrade()
         {
+            if (SaveManager.instance.wrapper.timesProud > 0)
+            {
+                return;
+            }
             Social.ReportProgress(GPGSIds.achievement_you_did_it_she_is_proud_of_you, 100.0f, (bool success) => { });
 
             RestartEverything();
@@ -81,10 +86,13 @@ namespace Objects
 
             if (SaveManager.instance.wrapper.timesProud > 0)
             {
-                this.kokButtonUnlockPrice = originalkokUnlockPrice *
-                                            (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
+                // this.kokButtonUnlockPrice = originalkokUnlockPrice *
+                //                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
+                // kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
+                kokButtonUnlockPrice = 7922816251426433759354m;
+                UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
             }
+
             toUnlockNext.gameObject.SetActive(true);
         }
 

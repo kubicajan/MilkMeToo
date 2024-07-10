@@ -100,11 +100,7 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected Decimal CalculatePrice()
         {
-            var r = ObjectCount;
-            var g = originalPrice;
-            var gg = Math.Pow(1.15f, ObjectCount);
-            var ggg = originalPrice * (Decimal)Math.Pow(1.15f, ObjectCount);
-            return (originalPrice * (Decimal)Math.Pow(1.15f, ObjectCount));
+            return (originalPrice * (Decimal)Math.Pow(1.3f, ObjectCount));
         }
 
         private void ShopButtonStart()

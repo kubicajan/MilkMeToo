@@ -50,6 +50,7 @@ namespace Objects.PassiveObjects
             }
 
             UpdateUpgradePriceDisplayText("");
+            effectInfo = "???";
         }
 
         protected override void ResetHandler()

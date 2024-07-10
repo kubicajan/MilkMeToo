@@ -7,7 +7,7 @@ namespace Objects.PassiveObjects
     public class MultiplierBonus : PassiveKokTreeObjects
     {
         public static double permanentBonus = 10;
-        private double permaMultiplier = 1.2;
+        private double permaMultiplier = 1.5;
         private int counter = 0;
         private Decimal originalPrice;
         private int maxBumbo = 5;
@@ -15,7 +15,7 @@ namespace Objects.PassiveObjects
         public MultiplierBonus()
         {
             objectName = "Eat concrete";
-            kokButtonUnlockPrice = 35000;
+            kokButtonUnlockPrice = 400000;
             multiplicationBonus = 20;
             showTheLine = false;
         }
@@ -34,7 +34,7 @@ namespace Objects.PassiveObjects
             }
 
             double tmpBonus = permaMultiplier * counter;
-            if (tmpPrice != 0)
+            if (tmpBonus != 0)
             {
                 permanentBonus = tmpBonus;
             }

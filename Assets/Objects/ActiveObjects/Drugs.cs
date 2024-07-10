@@ -59,7 +59,7 @@ namespace Objects.ActiveObjects
                 ObjectCount++;
                 bonusIsOn = true;
                 turnItOn = true;
-                shopButtonBuyPrice = CalculatePrice();
+                shopButtonBuyPrice = CalculatePrice()*2;
                 SongManager.instance.PlayPurchase();
                 SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
                 SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);

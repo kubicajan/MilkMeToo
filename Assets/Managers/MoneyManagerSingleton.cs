@@ -124,7 +124,7 @@ namespace Managers
 
         public Decimal AddMoney(Decimal amount)
         {
-            double multiplyBy = multiplication + temporaryMultiplication + temporaryMultiplicationPilulky;
+            double multiplyBy = multiplication + temporaryMultiplication + temporaryPermanentMultiplication + temporaryMultiplicationPilulky;
             if (multiplyBy == 0)
             {
                 multiplyBy = 1;

@@ -1,7 +1,6 @@
 using System;
 using Managers;
 using Objects.Abstract;
-using Objects.SpecialObjects.Event;
 
 namespace Objects.PassiveObjects
 {

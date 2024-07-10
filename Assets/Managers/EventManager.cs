@@ -66,6 +66,7 @@ namespace Managers
             EventPopUp.OnSetInactiveTriggered += OnSetEventInactiveTriggeredHandler;
             EventPopUp.OnShowPopUpTriggered += OnShowEventPopUpTriggeredHandler;
             FirstSetupParticleSystems();
+            interval = 45f;
         }
 
         private void FixedUpdate()

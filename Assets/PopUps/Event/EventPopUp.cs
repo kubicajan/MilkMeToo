@@ -78,7 +78,15 @@ namespace PopUps
             //set summary/accept fields
             if (basedResult.effectType == EffectStatus.MONEY)
             {
-                summaryEffectInfo.text = Helpers.ConvertNumbersToString((dopici(basedResult.effect)));
+                var gg = dopici(basedResult.effect);
+                if (gg > 0)
+                {
+                    summaryEffectInfo.text = $"+{Helpers.ConvertNumbersToString((gg))}$";
+                }
+                else
+                {
+                    summaryEffectInfo.text = $"{Helpers.ConvertNumbersToString((gg))}$";
+                }
             }
             else
             {
@@ -99,8 +107,7 @@ namespace PopUps
                 multiplier = 1;
             }
 
-            var gg = (tmpValue * multiplier);
-            return (Decimal)(tmpValue * multiplier);
+            return (Decimal)(tmpValue * multiplier/5);
         }
 
         private void DoThing(Result basedResult)
