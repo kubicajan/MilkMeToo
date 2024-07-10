@@ -15,8 +15,8 @@ namespace Objects.PassiveObjects
         public MultiplierBonus()
         {
             objectName = "Eat concrete";
-            kokButtonUnlockPrice = 400000;
-            multiplicationBonus = 20;
+            kokButtonUnlockPrice = 200000;
+            multiplicationBonus = 0;
             showTheLine = false;
         }
 

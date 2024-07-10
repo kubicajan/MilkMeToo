@@ -240,12 +240,12 @@
         },
         {
           "text": "That does not smell good.",
-          "effect": "-10% production",
+          "effect": "-5% production",
           "effectType": 2
         },
         {
           "text": "Is that a marriage proposal - 10 years of bad luck!",
-          "effect": "-18% production",
+          "effect": "-15% production",
           "effectType": 2
         },
         {
@@ -260,7 +260,7 @@
         },
         {
           "text": "Old pics with your ex are inside.",
-          "effect": "-20% production",
+          "effect": "-10% production",
           "effectType": 2
         },
         {
@@ -275,27 +275,27 @@
         },
         {
           "text": "Your lost luggage!",
-          "effect": "+9000$",
+          "effect": "+10000$",
           "effectType": 3
         },
         {
           "text": "Shiny!",
-          "effect": "+9000$",
+          "effect": "+10000$",
           "effectType": 3
         },
         {
           "text": "A bottle of olive oil! Neat!",
-          "effect": "+9000$",
+          "effect": "+10000$",
           "effectType": 3
         },
         {
           "text": "A tax collector pops out. Oh no.",
-          "effect": "-20000",
+          "effect": "-10000",
           "effectType": 3
         },
         {
           "text": "It is a mimic and SUCKS in some of your money before you close it!",
-          "effect": "-20000",
+          "effect": "-10000",
           "effectType": 3
         },
         {
@@ -305,7 +305,7 @@
         },
         {
           "text": "Your grandma's ashes",
-          "effect": "-15000$",
+          "effect": "-8000$",
           "effectType": 3
         }
       ]

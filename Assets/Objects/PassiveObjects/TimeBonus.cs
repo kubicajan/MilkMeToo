@@ -15,7 +15,7 @@ namespace Objects.PassiveObjects
         public TimeBonus()
         {
             objectName = "Another dimension";
-            kokButtonUnlockPrice = 100000;
+            kokButtonUnlockPrice = 30000;
             multiplicationBonus = 0;
             showTheLine = false;
         }
