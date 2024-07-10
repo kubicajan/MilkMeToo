@@ -24,15 +24,18 @@
 
 public static class GPGSIds
 {
+        public const string leaderboard_flushed = "CgkIrdTOtaYPEAIQEQ"; // <GPGSID>
         public const string achievement_buy_the_earth = "CgkIrdTOtaYPEAIQDQ"; // <GPGSID>
-        public const string achievement_milk_man = "CgkIrdTOtaYPEAIQBg"; // <GPGSID>
         public const string achievement_you_did_it_she_is_proud_of_you = "CgkIrdTOtaYPEAIQBw"; // <GPGSID>
-        public const string achievement_its_a_zoo = "CgkIrdTOtaYPEAIQCA"; // <GPGSID>
-        public const string leaderboard_total_money_made_in_mil = "CgkIrdTOtaYPEAIQBA"; // <GPGSID>
         public const string achievement_mans_best_friend = "CgkIrdTOtaYPEAIQBQ"; // <GPGSID>
-        public const string achievement_money_can_buy_happiness = "CgkIrdTOtaYPEAIQCw"; // <GPGSID>
         public const string achievement_the_leprechaun = "CgkIrdTOtaYPEAIQCg"; // <GPGSID>
+        public const string leaderboard_total_money_made_in_mil = "CgkIrdTOtaYPEAIQEA"; // <GPGSID>
+        public const string achievement_logacy_of_floppa = "CgkIrdTOtaYPEAIQDw"; // <GPGSID>
         public const string achievement_the_idol = "CgkIrdTOtaYPEAIQCQ"; // <GPGSID>
+        public const string achievement_milk_man = "CgkIrdTOtaYPEAIQBg"; // <GPGSID>
+        public const string achievement_its_a_zoo = "CgkIrdTOtaYPEAIQCA"; // <GPGSID>
+        public const string achievement_money_can_buy_happiness = "CgkIrdTOtaYPEAIQCw"; // <GPGSID>
+        public const string achievement_time_lord = "CgkIrdTOtaYPEAIQDg"; // <GPGSID>
         public const string achievement_touchy = "CgkIrdTOtaYPEAIQDA"; // <GPGSID>
 
 }

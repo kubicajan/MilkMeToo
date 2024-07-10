@@ -1,6 +1,7 @@
 using System;
 using Managers;
 using Objects.Abstract;
+using UnityEngine;
 
 namespace Objects.PassiveObjects
 {
@@ -43,7 +44,7 @@ namespace Objects.PassiveObjects
             kokButtonDescription =
                 $"Make it last! \n \n Gain {permaMultiplier}% of event multiplier permanently, per upgrade! \n \n Currently {permanentBonus}% ";
         }
-        
+
         protected override void LoadAllAssets()
         {
             base.LoadAllAssets();
@@ -75,7 +76,7 @@ namespace Objects.PassiveObjects
             permanentBonus += permaMultiplier;
             counter++;
             SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), counter);
-            kokButtonUnlockPrice *= 2;
+            kokButtonUnlockPrice *= 1.5m;
             UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
             SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), kokButtonUnlockPrice);
             kokButtonDescription =
@@ -86,6 +87,10 @@ namespace Objects.PassiveObjects
             if (counter >= maxBumbo)
             {
                 base.BuyUpgrade();
+                if (maxBumbo == 10)
+                {
+                    Social.ReportProgress(GPGSIds.achievement_logacy_of_floppa, 100.0f, (bool success) => { });
+                }
             }
         }
 

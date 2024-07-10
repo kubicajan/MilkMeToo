@@ -1,6 +1,7 @@
 using System;
 using Managers;
 using Objects.Abstract;
+using UnityEngine;
 
 namespace Objects.PassiveObjects
 {
@@ -63,7 +64,7 @@ namespace Objects.PassiveObjects
             timeBonus += timerMultiplication;
             counter++;
             SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), counter);
-            kokButtonUnlockPrice *= 2;
+            kokButtonUnlockPrice *= 1.5m;
             UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
             SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), kokButtonUnlockPrice);
             kokButtonDescription =
@@ -74,6 +75,10 @@ namespace Objects.PassiveObjects
             if (counter >= maxBumbo)
             {
                 base.BuyUpgrade();
+                if (maxBumbo == 10)
+                {
+                    Social.ReportProgress(GPGSIds.achievement_time_lord, 100.0f, (bool success) => { });
+                }
             }
         }
 

@@ -40,7 +40,9 @@ namespace Utilities
         private void ShowMilkedMoney(Decimal points, Vector2 spriteCanvasPosition, string suffix)
         {
             GameObject textObjectWrapper = Instantiate(tmpTextHolder, spriteCanvasPosition, Quaternion.identity);
-            TextMeshProUGUI textMeshPro = textObjectWrapper.GetComponentInChildren<TextMeshProUGUI>();
+            Canvas canvas = textObjectWrapper.GetComponentInChildren<Canvas>();
+            canvas.transform.position = spriteCanvasPosition;
+            TextMeshProUGUI textMeshPro = canvas.GetComponentInChildren<TextMeshProUGUI>();
             textObjectWrapper.transform.SetParent(GameObject.Find("EvenGreaterHolder").transform, false);
             textMeshPro.fontSize = 50;
 

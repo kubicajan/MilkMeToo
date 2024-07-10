@@ -1,6 +1,7 @@
 using System;
 using Managers;
 using Objects.Abstract;
+using UnityEngine;
 using Utilities;
 
 namespace Objects.PassiveObjects
@@ -80,6 +81,8 @@ namespace Objects.PassiveObjects
         {
             flushed += MoneyManagerSingleton.instance.GetMoney();
             SaveManager.instance.UpdateFlushed(flushed);
+            Social.ReportScore((long)(SaveManager.instance.GetFlushed()/1000000),
+                GPGSIds.leaderboard_flushed, success => { });
             MoneyManagerSingleton.instance.SpendMoney(MoneyManagerSingleton.instance.GetMoney());
             kokButtonDescription = $"Flush everything down  \n \n {Helpers.ConvertNumbersToString(flushed)}$ flushed";
             UpdateUpgradePriceDisplayText("");
