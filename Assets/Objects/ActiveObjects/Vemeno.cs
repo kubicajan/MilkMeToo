@@ -22,7 +22,7 @@ namespace Objects.ActiveObjects
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (IsItTime() )
+            if (IsItTime2() )
             {
                 Debug.Log("Animation finished");
                 if (ObjectCount > 0)
@@ -44,7 +44,7 @@ namespace Objects.ActiveObjects
         private float timer2 = 0f;
         private float interval2 = 0.5f;
 
-        private bool IsItTime()
+        private bool IsItTime2()
         {
             timer2 += Time.deltaTime;
 

@@ -83,6 +83,8 @@ namespace Objects.PassiveObjects
                 $"Make it last! \n \n Keep extra {permaMultiplier}% of event multiplier permanently per upgrade! \n \n Currently {permanentBonus}% ";
             effectInfo = $"{counter}/{maxBumbo} bought";
             UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
+            bool enoughMoney = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
+            UpdateKokTree(enoughMoney);
 
             if (counter >= maxBumbo)
             {

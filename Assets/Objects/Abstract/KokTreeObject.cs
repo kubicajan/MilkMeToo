@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using Managers;
+using Objects.ActiveObjects;
 using PopUps;
 using TMPro;
 using UnityEngine;
@@ -89,7 +90,7 @@ namespace Objects.Abstract
 
         protected virtual void FixedUpdate()
         {
-            if (IsItTime())
+            if (!Drugs.onMilkingScreen && IsItTime())
             {
                 bool enoughMoney = MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice);
                 UpdateKokTree(enoughMoney);
@@ -97,9 +98,9 @@ namespace Objects.Abstract
         }
 
         private float timer = 0f;
-        public float interval23 = 0.5f;
+        public float interval23 = 0.2f;
 
-        private bool IsItTime()
+        protected bool IsItTime()
         {
             timer += Time.deltaTime;
 
@@ -238,7 +239,6 @@ namespace Objects.Abstract
                 ColorUtility.TryParseHtmlString("#000000", out Color parsedColor);
                 br.startColor = parsedColor;
             }
-
             Destroy(myParticleSystem);
         }
 
@@ -276,6 +276,7 @@ namespace Objects.Abstract
                 ColorUtility.TryParseHtmlString("#FFDA00", out Color parsedColor);
                 br.startColor = parsedColor;
             }
+
             UpdateUpgradePriceDisplayText("");
             SwitchToBoughtParticle();
         }
@@ -316,7 +317,7 @@ namespace Objects.Abstract
         {
             var g = toUnlockNext.GetComponent<KokTreeObject>();
             g.LockButton();
-            g.UpdateKokTree(MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice));
+            g.UpdateKokTree(MoneyManagerSingleton.instance.IsEnoughFunds(g.kokButtonUnlockPrice));
         }
 
         private void OnSetInactiveTriggeredHandler()

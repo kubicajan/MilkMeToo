@@ -1,6 +1,7 @@
 using System;
 using Managers;
 using Objects.Abstract;
+using Unity.VisualScripting;
 using UnityEngine;
 using Utilities;
 
@@ -21,6 +22,8 @@ namespace Objects.PassiveObjects
             showTheLine = false;
         }
         
+        
+
         public override void LockButton()
         {
             base.LockButton();
@@ -32,7 +35,6 @@ namespace Objects.PassiveObjects
             base.MakeButtonAvailable();
             UpdateUpgradePriceDisplayText("");
         }
-        
         
         protected override void LoadAllAssets()
         {

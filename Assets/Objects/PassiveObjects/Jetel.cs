@@ -12,7 +12,7 @@ namespace Objects.PassiveObjects
 
         public Jetel()
         {
-            kokButtonStatus = ButtonStatus.AVAILABLE;
+            kokButtonStatus = ButtonStatus.LOCKED;
             objectName = "Jetel";
             kokButtonDescription = "Maybe it is time to start feeding your cows";
             kokButtonUnlockPrice = 2000;
@@ -37,7 +37,7 @@ namespace Objects.PassiveObjects
         protected override void ResetHandler()
         {
             base.ResetHandler();
-            kokButtonStatus = ButtonStatus.AVAILABLE;
+            kokButtonStatus = ButtonStatus.LOCKED;
             anotherJetel.gameObject.SetActive(false);
             yetAnotherJetel.gameObject.SetActive(false);
             yetAnotherAnotherJetel.gameObject.SetActive(false);

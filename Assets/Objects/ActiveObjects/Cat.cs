@@ -18,7 +18,7 @@ namespace Objects.ActiveObjects
 
         public Cat()
         {
-            kokButtonStatus = ButtonStatus.AVAILABLE;
+            kokButtonStatus = ButtonStatus.LOCKED;
 
             shopButtonBuyPrice = 30;
             kokButtonUnlockPrice = 15;
@@ -35,7 +35,7 @@ namespace Objects.ActiveObjects
         protected override void ResetHandler()
         {
             base.ResetHandler();
-            kokButtonStatus = ButtonStatus.AVAILABLE;
+            kokButtonStatus = ButtonStatus.LOCKED;
             KokTreeButtonStart();
         }
 

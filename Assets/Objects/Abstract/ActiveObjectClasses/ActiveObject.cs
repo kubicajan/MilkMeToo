@@ -3,6 +3,7 @@ using System.Collections;
 using System.Globalization;
 using System.Numerics;
 using Managers;
+using Objects.ActiveObjects;
 using PopUps;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ namespace Objects.Abstract.ActiveObjectClasses
         [SerializeField] public AudioSource animalNoiseAudioSource;
 
         protected Decimal allTimeMilked = 0;
+
         // protected float interval = 1f;
         protected Decimal productionPower = 0;
         protected string description = "";
@@ -64,7 +66,12 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected override void FixedUpdate()
         {
-            NabijeciSystemTepleVody();
+            if (!Drugs.onMilkingScreen)
+
+            {
+                NabijeciSystemTepleVody();
+            }
+
             base.FixedUpdate();
         }
 

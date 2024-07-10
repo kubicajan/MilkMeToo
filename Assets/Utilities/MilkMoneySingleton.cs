@@ -27,9 +27,10 @@ namespace Utilities
             tmpTextHolder = GameObject.Find("tmpTextHolder");
         }
 
-        public void HandleMilkMoneyShow(Decimal points, Vector2 spriteCanvasPosition, string suffix = "$")
+        public void HandleMilkMoneyShow(Decimal points, Vector2 spriteCanvasPosition, string suffix = "$",
+            string colour = "#FFFFFF")
         {
-            ShowMilkedMoney(points, TransformVectorByABitUp(spriteCanvasPosition), suffix);
+            ShowMilkedMoney(points, TransformVectorByABitUp(spriteCanvasPosition), suffix, colour);
         }
 
         private Vector2 TransformVectorByABitUp(Vector2 position)
@@ -37,7 +38,7 @@ namespace Utilities
             return position - new Vector2(100f, -120f);
         }
 
-        private void ShowMilkedMoney(Decimal points, Vector2 spriteCanvasPosition, string suffix)
+        private void ShowMilkedMoney(Decimal points, Vector2 spriteCanvasPosition, string suffix, string colour)
         {
             GameObject textObjectWrapper = Instantiate(tmpTextHolder, spriteCanvasPosition, Quaternion.identity);
             Canvas canvas = textObjectWrapper.GetComponentInChildren<Canvas>();
@@ -45,6 +46,8 @@ namespace Utilities
             TextMeshProUGUI textMeshPro = canvas.GetComponentInChildren<TextMeshProUGUI>();
             textObjectWrapper.transform.SetParent(GameObject.Find("EvenGreaterHolder").transform, false);
             textMeshPro.fontSize = 50;
+            ColorUtility.TryParseHtmlString(colour, out Color parsedColor);
+            textMeshPro.color = parsedColor;
 
             if (points > 0)
             {

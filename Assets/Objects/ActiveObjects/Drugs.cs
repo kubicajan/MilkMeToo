@@ -5,7 +5,6 @@ using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
-using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace Objects.ActiveObjects
@@ -16,20 +15,20 @@ namespace Objects.ActiveObjects
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip jingle;
 
-        private int bonus = 30;
+        private int bonus = 15;
         private bool bonusIsOn;
         private bool turnItOn;
         private int MAX_SLIDER_VALUE = 12;
         protected ParticleSystem milkExplosion;
-        public bool onMilkingScreen = false;
+        public static bool onMilkingScreen = false;
 
         public Drugs()
         {
             objectName = "Drugs";
             description = "NOM";
-            kokButtonDescription = "Everyone should experience it at least once. Or twice. Or all the time. \n \n" +
-                                   "Gives temporary boost to production";
-            shopButtonBuyPrice = 5000;
+            kokButtonDescription = $"Everyone should experience it at least once. Or twice. Or all the time. \n \n" +
+                                   $" Gives {bonus}% base + 4% per bought pill";
+            shopButtonBuyPrice = 10000;
             kokButtonUnlockPrice = 15000;
             productionPower = 1;
             // interval = 1f;
@@ -59,7 +58,7 @@ namespace Objects.ActiveObjects
                 ObjectCount++;
                 bonusIsOn = true;
                 turnItOn = true;
-                shopButtonBuyPrice = CalculatePrice()*2;
+                shopButtonBuyPrice = (originalPrice * (Decimal)Math.Pow(1.5, ObjectCount));
                 SongManager.instance.PlayPurchase();
                 SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
                 SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
@@ -96,7 +95,7 @@ namespace Objects.ActiveObjects
 
         IEnumerator AddMultiplierCoroutine()
         {
-            double tmpBonus = bonus + (ObjectCount * 5);
+            double tmpBonus = bonus + (ObjectCount * 4);
             double stepBonus = (tmpBonus / (MAX_SLIDER_VALUE)) / 4;
             double count = 0;
 
@@ -104,7 +103,9 @@ namespace Objects.ActiveObjects
             {
                 MoneyManagerSingleton.instance.RaiseTemporaryMultiplication2(stepBonus);
                 MilkMoneySingleton.instance.HandleMilkMoneyShow((decimal)stepBonus, MoveItABit(
-                    Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position)), "X");
+                        Helpers.GetObjectPositionRelativeToCanvas(primalSpriteButton.gameObject.transform.position)),
+                    "X",
+                    "#FFFF00");
 
                 count = stepBonus + count;
                 yield return new WaitForSeconds(0.25f);

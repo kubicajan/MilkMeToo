@@ -19,7 +19,7 @@ namespace Objects.SpecialObjects.Event
             kokButtonDescription = "Is this a witcher 1 reference?";
             kokButtonUnlockPrice = 500;
             effectInfo = "UNLOCKS EVENTS";
-            kokButtonStatus = ButtonStatus.AVAILABLE;
+            kokButtonStatus = ButtonStatus.LOCKED;
             showTheLine = false;
             // PlayGamesPlatform.Instance
             //     .LoadAchievements(achievements =>

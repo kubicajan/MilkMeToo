@@ -133,6 +133,7 @@ namespace Objects.Abstract.ActiveObjectClasses
             {
                 ObjectCount++;
                 SongManager.instance.PlayPurchase();
+                NabijeciSystemTepleVody();
             }
         }
 
