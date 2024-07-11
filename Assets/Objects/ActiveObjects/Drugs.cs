@@ -27,7 +27,7 @@ namespace Objects.ActiveObjects
             objectName = "Drugs";
             description = "NOM";
             kokButtonDescription = $"Everyone should experience it at least once. Or twice. Or all the time. \n \n" +
-                                   $" Gives {bonus}% base + 4% per bought pill";
+                                   $" Gives {bonus}% base + 5% per bought pill";
             shopButtonBuyPrice = 10000;
             kokButtonUnlockPrice = 15000;
             productionPower = 1;
@@ -60,7 +60,7 @@ namespace Objects.ActiveObjects
                 turnItOn = true;
                 shopButtonBuyPrice = (originalPrice * (Decimal)Math.Pow(1.5, ObjectCount));
                 SongManager.instance.PlayPurchase();
-                SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), 1);
+                SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), ObjectCount);
                 SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
 
                 StartCoroutine(WaitUntilOnCowMilkingScreen());
@@ -89,13 +89,14 @@ namespace Objects.ActiveObjects
 
         protected override void ActivateThings(int value)
         {
-            objectCounter = value > 0 ? value : 0;
+            objectCounter = value;
+            shopButtonBuyPrice = CalculatePrice();
         }
 
 
         IEnumerator AddMultiplierCoroutine()
         {
-            double tmpBonus = bonus + (ObjectCount * 4);
+            double tmpBonus = bonus + (ObjectCount * 5);
             double stepBonus = (tmpBonus / (MAX_SLIDER_VALUE)) / 4;
             double count = 0;
 
