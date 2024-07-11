@@ -45,7 +45,7 @@
         },
         {
           "text": "Zeman came for a drink ",
-          "effect": "-1000000$",
+          "effect": "-100000$",
           "effectType": 3
         },
         {
@@ -85,12 +85,12 @@
       "Results": [
         {
           "text": "YES! YOU WON A GAZILLION",
-          "effect": "+1000000$",
+          "effect": "+99999$",
           "effectType": 3
         },
         {
           "text": "NO! YOU LOST A GAZILLION",
-          "effect": "-1000000$",
+          "effect": "-99999$",
           "effectType": 3
         }
       ]
