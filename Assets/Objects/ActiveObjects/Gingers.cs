@@ -27,11 +27,11 @@ namespace Objects.ActiveObjects
         public Gingers()
         {
             objectName = "Gingers";
-            description = "Pact with the devil";
+            description = "Pact with the devil.";
             kokButtonDescription = "They do not have souls anyway";
             shopButtonBuyPrice = 1000000;
             kokButtonUnlockPrice = 2000000;
-            productionPower = 800;
+            productionPower = 600;
             // interval = 10f;
         }
 

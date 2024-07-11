@@ -24,8 +24,8 @@ namespace Objects.SpecialObjects
             objectCounter = 1;
             effectInfo = "CLICK UPGRADE";
             objectName = "Cows";
-            description = "It is like you are milking them all at once";
-            kokButtonDescription = "You can get more of them?";
+            description = "It is like you are milking them all at once.";
+            kokButtonDescription = "You can get more of them? \n \n <b> Gives extra production to your clicks </b>";
             shopButtonBuyPrice = 10000;
             kokButtonUnlockPrice = 800000;
             productionPower = 10000;

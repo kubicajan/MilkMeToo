@@ -27,7 +27,7 @@ namespace Objects.ActiveObjects
             objectName = "Drugs";
             description = "NOM";
             kokButtonDescription = $"Everyone should experience it at least once. Or twice. Or all the time. \n \n" +
-                                   $" Gives {bonus}% base + 5% per bought pill";
+                                   $" Gives {bonus}% base multiplier + 5% per bought pill";
             shopButtonBuyPrice = 10000;
             kokButtonUnlockPrice = 15000;
             productionPower = 1;

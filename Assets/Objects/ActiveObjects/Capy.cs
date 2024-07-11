@@ -21,9 +21,9 @@ namespace Objects.ActiveObjects
                 "He brought his own family to where animals are equal. You can bring more of them.";
             kokButtonDescription =
                 "The chillest animal on the block. \n \n Perhaps he joins you for some of your wealth.";
-            shopButtonBuyPrice = 100;
-            kokButtonUnlockPrice = 200;
-            productionPower = 1m;
+            shopButtonBuyPrice = 40;
+            kokButtonUnlockPrice = 1000;
+            productionPower = 4m;
             // interval = 1f;
         }
 
@@ -58,7 +58,7 @@ namespace Objects.ActiveObjects
             yield return new WaitForSeconds(0.68f);
             yetAnotherAnotherCapy.gameObject.SetActive(value >= 35);
             yield return new WaitForSeconds(0.50f);
-            yetAnotherCapy.gameObject.SetActive(value >= 20);
+            yetAnotherCapy.gameObject.SetActive(value >= 25);
             yield return new WaitForSeconds(0.3f);
             anotherCapy.gameObject.SetActive(value >= 5);
         }

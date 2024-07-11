@@ -17,7 +17,7 @@ namespace Objects.SpecialObjects
         public TheLover()
         {
             objectName = "The Lover";
-            kokButtonDescription = "THAT is what I call a MALE";
+            kokButtonDescription = "THAT is what I call a MALE \n \n <b> Periodically creates new cows </b>";
             kokButtonUnlockPrice = 1800000;
             effectInfo = "COW BABIES ???";
             description = "He has found the promised land. He intends to stay";

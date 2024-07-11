@@ -20,7 +20,7 @@ namespace Objects.ActiveObjects
         {
             kokButtonStatus = ButtonStatus.LOCKED;
 
-            shopButtonBuyPrice = 30;
+            shopButtonBuyPrice = 10;
             kokButtonUnlockPrice = 15;
             objectName = "Jeremy";
             description =

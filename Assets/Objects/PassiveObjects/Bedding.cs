@@ -8,7 +8,7 @@ namespace Objects.PassiveObjects
         {
             objectName = "Bedding";
             kokButtonDescription = "Such luxury - they can sleep on their food";
-            kokButtonUnlockPrice = 35000;
+            kokButtonUnlockPrice = 40000;
             multiplicationBonus = 20;
         }
     }

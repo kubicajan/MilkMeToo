@@ -7,7 +7,7 @@ namespace Objects.PassiveObjects
 {
     public class MultiplierBonus : PassiveKokTreeObjects
     {
-        public static double permanentBonus = 10;
+        public static double permanentBonus = 15;
         private double permaMultiplier = 1.5;
         private int counter = 0;
         private Decimal originalPrice;
