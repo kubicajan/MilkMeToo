@@ -88,7 +88,22 @@ namespace PopUps
                     summaryEffectInfo.text = $"{Helpers.ConvertNumbersToString((gg))}$";
                 }
             }
+            else if (basedResult.effectType == EffectStatus.PRODUCTION)
+            {
+                const string PATTERN = @"^([-+]?\d+)";
+                Match match = Helpers.ParseRegex(basedResult.effect, PATTERN);
+                int gg = (int)timesTen(int.Parse(match.Groups[1].Value));
+                if (gg > 0)
+                {
+                    summaryEffectInfo.text = "+" + gg + "% production";
+                }
+                else
+                {
+                    summaryEffectInfo.text = gg + "% production";
+                }
+            }
             else
+
             {
                 summaryEffectInfo.text = basedResult.effect;
             }
@@ -107,7 +122,17 @@ namespace PopUps
                 multiplier = 1;
             }
 
-            return (Decimal)(tmpValue * multiplier/5);
+            return (Decimal)(tmpValue * multiplier / 5);
+        }
+
+        private Decimal timesTen(Decimal value)
+        {
+            if (SaveManager.instance.GetTimesProud() != 0)
+            {
+                return value * 10;
+            }
+
+            return value;
         }
 
         private void DoThing(Result basedResult)
@@ -132,7 +157,8 @@ namespace PopUps
         {
             const string PATTERN = @"^([-+]?\d+)";
             Match match = Helpers.ParseRegex(gEffect, PATTERN);
-            MoneyManagerSingleton.instance.eyo(int.Parse(match.Groups[1].Value));
+            int gg = (int)timesTen(int.Parse(match.Groups[1].Value));
+            MoneyManagerSingleton.instance.eyo(gg);
         }
 
         private void HandleMoneyCase(string gEffect)

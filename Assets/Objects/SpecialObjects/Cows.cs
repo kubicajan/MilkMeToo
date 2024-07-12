@@ -106,7 +106,7 @@ namespace Objects.SpecialObjects
             this.allTimeMilked = gggg;
             if (SaveManager.instance.GetTimesProud() != 0)
             {
-                productionPower = 10000;
+                productionPower = 10;
             }
         }
 
