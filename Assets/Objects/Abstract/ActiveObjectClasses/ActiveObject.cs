@@ -53,7 +53,14 @@ namespace Objects.Abstract.ActiveObjectClasses
         {
             Decimal money = MoneyManagerSingleton.instance.GetMoney();
             UpdateShop(money);
+        }
 
+        protected override void FixedUpdate()
+        {
+            if (!Drugs.onMilkingScreen)
+            {
+                NabijeciSystemTepleVody();
+            }
             if (InformationPopUp.instance.isActiveAndEnabled && clickedInfo)
             {
                 this.Clicked();
@@ -62,16 +69,6 @@ namespace Objects.Abstract.ActiveObjectClasses
             {
                 clickedInfo = false;
             }
-        }
-
-        protected override void FixedUpdate()
-        {
-            if (!Drugs.onMilkingScreen)
-
-            {
-                NabijeciSystemTepleVody();
-            }
-
             base.FixedUpdate();
         }
 

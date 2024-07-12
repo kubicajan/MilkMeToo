@@ -7,7 +7,7 @@ namespace Objects.PassiveObjects
 {
     public class MultiplierBonus : PassiveKokTreeObjects
     {
-        public static double permanentBonus = 15;
+        public static double permanentBonus = 10;
         private double permaMultiplier = 1.5;
         private int counter = 0;
         private Decimal originalPrice;
@@ -37,7 +37,7 @@ namespace Objects.PassiveObjects
             double tmpBonus = permaMultiplier * counter;
             if (tmpBonus != 0)
             {
-                permanentBonus = tmpBonus;
+                permanentBonus += tmpBonus;
             }
 
             effectInfo = $"{counter}/{maxBumbo} bought";

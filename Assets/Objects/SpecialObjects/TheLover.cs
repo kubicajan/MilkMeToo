@@ -37,6 +37,14 @@ namespace Objects.SpecialObjects
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
+            if (InformationPopUp.instance.isActiveAndEnabled && clickedInfo)
+            {
+                this.Clicked();
+            }
+            else
+            {
+                clickedInfo = false;
+            }
             CreateNewCow();
         }
 
