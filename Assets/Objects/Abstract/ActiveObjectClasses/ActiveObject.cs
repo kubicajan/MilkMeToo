@@ -8,6 +8,7 @@ using PopUps;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
+using Object = UnityEngine.Object;
 using Vector2 = UnityEngine.Vector2;
 
 namespace Objects.Abstract.ActiveObjectClasses
@@ -30,8 +31,8 @@ namespace Objects.Abstract.ActiveObjectClasses
             base.Start();
             originalPrice = shopButtonBuyPrice;
             effectInfo = "SHOP UPGRADE";
-            ShopButtonStart();
             LoadData();
+            ShopButtonStart();
         }
 
         protected virtual void LoadData()

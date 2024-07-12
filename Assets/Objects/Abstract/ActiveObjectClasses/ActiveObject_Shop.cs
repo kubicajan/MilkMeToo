@@ -100,7 +100,12 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected Decimal CalculatePrice()
         {
-            return (originalPrice * (Decimal)Math.Pow(1.3f, ObjectCount));
+            int mommyInfluence = 1;
+            if (SaveManager.instance.GetTimesProud() != 0)
+            {
+                mommyInfluence =  Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
+            }
+            return (originalPrice * (Decimal)Math.Pow(1.3f, ObjectCount) * mommyInfluence);
         }
 
         private void ShopButtonStart()

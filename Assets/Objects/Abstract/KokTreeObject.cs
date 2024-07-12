@@ -55,7 +55,7 @@ namespace Objects.Abstract
             {
                 this.kokButtonUnlockPrice = originalkokUnlockPrice *
                                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
+                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 35) / 100);
             }
 
             ConnectingTissueGameObject = GameObject.Find("ConnectingTissue");
@@ -82,7 +82,7 @@ namespace Objects.Abstract
             kokButtonUnlockPrice = originalkokUnlockPrice;
             kokButtonUnlockPrice = originalkokUnlockPrice *
                                    (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-            kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
+            kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 35) / 100);
             SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
             primalSpriteButton.SetActive(false);
             this.StopAllCoroutines();

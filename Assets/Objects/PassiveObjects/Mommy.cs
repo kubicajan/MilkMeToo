@@ -22,7 +22,7 @@ namespace Objects
         {
             objectName = "Mommy";
             kokButtonDescription =
-                $"She will finally be proud of you. \n \n <b> <color=red> This will reset your progress.</color> </b>  \n \n {timesRestarted} times proud so far.";
+                $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress. You keep all multipliers and event upgrades.</color> </b>";
             kokButtonUnlockPrice = 2000000000;
             showTheLine = false;
         }
@@ -35,7 +35,7 @@ namespace Objects
             effectInfo = $"{magicResetValue}% EXTRA PRODUCTION";
             timesRestarted = SaveManager.instance.GetTimesProud();
             kokButtonDescription =
-                $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress.</color> </b>  \n \n {timesRestarted} times proud so far.";
+                $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress. You keep all multipliers and event upgrades.</color> </b>";
             if (timesRestarted == 0)
             {
                 rain.Stop();
