@@ -193,7 +193,7 @@ namespace Managers
         {
             multiplication = value;
             SaveManager.instance.UpdateMultiplier(value);
-            SaveManager.instance.UpdateTemporaryPermanentMultiplier(0);
+            // SaveManager.instance.UpdateTemporaryPermanentMultiplier(0);
             multiplicationHasBeenShown = true;
             ChangeDisplayStreak();
         }

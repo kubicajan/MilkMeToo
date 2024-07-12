@@ -1,6 +1,7 @@
 using System;
 using Managers;
 using Objects.Abstract;
+using PopUps;
 using Unity.VisualScripting;
 using UnityEngine;
 using Utilities;
@@ -13,7 +14,7 @@ namespace Objects.PassiveObjects
 
         public Toilet()
         {
-            kokButtonStatus = ButtonStatus.AVAILABLE;
+            kokButtonStatus = ButtonStatus.LOCKED;
             objectName = "Toilet";
             // kokButtonDescription = $"Flush everything down  \n \n {flushed}$ flushed";
             kokButtonUnlockPrice = 100;
@@ -21,8 +22,15 @@ namespace Objects.PassiveObjects
             effectInfo = "???";
             showTheLine = false;
         }
-        
-        
+
+        protected override void OnBuyUpgradeTriggeredHandler()
+        {
+            if (KokTreePopUp.instance.GetCallingType() == GetType())
+            {
+                BuyUpgrade();
+                SongManager.instance.PlayPurchase();
+            }
+        }
 
         public override void LockButton()
         {
@@ -35,7 +43,7 @@ namespace Objects.PassiveObjects
             base.MakeButtonAvailable();
             UpdateUpgradePriceDisplayText("");
         }
-        
+
         protected override void LoadAllAssets()
         {
             availableParticleName = "AvailableParticle2";
@@ -83,7 +91,7 @@ namespace Objects.PassiveObjects
         {
             flushed += MoneyManagerSingleton.instance.GetMoney();
             SaveManager.instance.UpdateFlushed(flushed);
-            Social.ReportScore((long)(SaveManager.instance.GetFlushed()/1000000),
+            Social.ReportScore((long)(SaveManager.instance.GetFlushed() / 1000000),
                 GPGSIds.leaderboard_flushed, success => { });
             MoneyManagerSingleton.instance.SpendMoney(MoneyManagerSingleton.instance.GetMoney());
             kokButtonDescription = $"Flush everything down  \n \n {Helpers.ConvertNumbersToString(flushed)}$ flushed";

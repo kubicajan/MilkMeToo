@@ -324,7 +324,7 @@ namespace Objects.Abstract
         {
         }
 
-        private void OnBuyUpgradeTriggeredHandler()
+        protected virtual void OnBuyUpgradeTriggeredHandler()
         {
             if (KokTreePopUp.instance.GetCallingType() == GetType())
             {

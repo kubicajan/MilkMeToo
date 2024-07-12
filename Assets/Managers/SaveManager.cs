@@ -165,7 +165,7 @@ namespace Managers
 
         public void UpdateFlushed(Decimal flushedToBeAdded)
         {
-            wrapper.currentMoney = (GetFlushed() + flushedToBeAdded).ToString();
+            wrapper.Flushed = (GetFlushed() + flushedToBeAdded).ToString();
         }
 
 
