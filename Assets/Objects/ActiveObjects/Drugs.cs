@@ -15,6 +15,7 @@ namespace Objects.ActiveObjects
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip jingle;
 
+        double bbbo = 3.5;
         private int bonus = 15;
         private bool bonusIsOn;
         private bool turnItOn;
@@ -34,6 +35,28 @@ namespace Objects.ActiveObjects
             // interval = 1f;
         }
 
+        protected override void ResetHandler()
+        {
+            bonusIsOn = false;
+            audioSource.Stop();
+            primalSpriteButton.gameObject.SetActive(false);
+            MoneyManagerSingleton.instance.SettemporaryMultiplicationPilulkyToZero();
+            MoneyManagerSingleton.instance.ClearStreakDisplayColour();
+            base.ResetHandler();
+            int mommyInfluence = 1;
+
+            if (SaveManager.instance.GetTimesProud() != 0)
+            {
+                bonus = 40;
+                bbbo = 5;
+                mommyInfluence = Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
+                kokButtonDescription = $"Everyone should experience it at least once. Or twice. Or all the time. \n \n" +
+                                       $" Gives {bonus}% base multiplier + {bbbo}% per bought pill";
+            }
+
+            shopButtonBuyPrice = (originalPrice * (Decimal)Math.Pow(1.5, ObjectCount) * mommyInfluence);
+        }
+
         protected override void Start()
         {
             audioSource.clip = jingle;
@@ -42,6 +65,14 @@ namespace Objects.ActiveObjects
             milkExplosion.transform.position = primalSpriteButton.transform.position;
             milkExplosion.Play();
             slider.maxValue = MAX_SLIDER_VALUE;
+            int mommyInfluence = 1;
+            if (SaveManager.instance.GetTimesProud() != 0)
+            {
+                bonus = 40;
+                bbbo = 5;
+                kokButtonDescription = $"Everyone should experience it at least once. Or twice. Or all the time. \n \n" +
+                                       $"Extra {bonus}% base multiplier + {bbbo}% per use";
+            }
         }
 
         // protected override void FixedUpdate()
@@ -51,6 +82,7 @@ namespace Objects.ActiveObjects
         //     UpdateShop(money);
         // }
 
+
         public override void BuyObject()
         {
             if (MoneyManagerSingleton.instance.SpendMoney(shopButtonBuyPrice))
@@ -58,7 +90,13 @@ namespace Objects.ActiveObjects
                 ObjectCount++;
                 bonusIsOn = true;
                 turnItOn = true;
-                shopButtonBuyPrice = (originalPrice * (Decimal)Math.Pow(1.5, ObjectCount));
+                int mommyInfluence = 1;
+                if (SaveManager.instance.GetTimesProud() != 0)
+                {
+                    mommyInfluence = Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
+                }
+
+                shopButtonBuyPrice = (originalPrice * (Decimal)Math.Pow(1.5, ObjectCount) * mommyInfluence);
                 SongManager.instance.PlayPurchase();
                 SaveManager.instance.UpdateCountBoughtWrapper(this.GetType().ToString(), ObjectCount);
                 SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
@@ -96,7 +134,7 @@ namespace Objects.ActiveObjects
 
         IEnumerator AddMultiplierCoroutine()
         {
-            double tmpBonus = bonus + (ObjectCount * 3.5);
+            double tmpBonus = bonus + (ObjectCount * bbbo);
             double stepBonus = (tmpBonus / (MAX_SLIDER_VALUE)) / 4;
             double count = 0;
 

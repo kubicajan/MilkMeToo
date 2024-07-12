@@ -35,7 +35,7 @@ namespace Objects
             effectInfo = $"{magicResetValue}% EXTRA PRODUCTION";
             timesRestarted = SaveManager.instance.GetTimesProud();
             kokButtonDescription =
-                $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress. You keep all multipliers and event upgrades.</color> </b>";
+                $"She will finally be proud of you. \n \n <b> <color=red> Restarts your progress. You keep all multipliers and event upgrades, buffs pills</color> </b>";
             if (timesRestarted == 0)
             {
                 rain.Stop();
