@@ -34,8 +34,13 @@ namespace Objects.ActiveObjects
             {
                 this.shopButtonBuyPrice = ggtmp;
             }
-
             MoneyManagerSingleton.instance.numberOfTitties = ObjectCount;
+        }
+
+        protected override void ResetHandler()
+        {
+            base.ResetHandler();
+            MoneyManagerSingleton.instance.numberOfTitties = 0;
         }
 
         protected override void FixedUpdate()

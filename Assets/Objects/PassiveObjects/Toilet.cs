@@ -92,7 +92,7 @@ namespace Objects.PassiveObjects
             flushed += MoneyManagerSingleton.instance.GetMoney();
             SaveManager.instance.UpdateFlushed(flushed);
             Social.ReportScore((long)(SaveManager.instance.GetFlushed() / 1000000),
-                GPGSIds.leaderboard_flushed, success => { });
+                GPGSIds.leaderboard_flushed_in_mil, success => { });
             MoneyManagerSingleton.instance.SpendMoney(MoneyManagerSingleton.instance.GetMoney());
             kokButtonDescription = $"Flush everything down  \n \n {Helpers.ConvertNumbersToString(flushed)}$ flushed";
             UpdateUpgradePriceDisplayText("");
