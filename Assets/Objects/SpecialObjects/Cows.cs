@@ -28,7 +28,7 @@ namespace Objects.SpecialObjects
             kokButtonDescription = "You can get more of them? \n \n <b> Gives extra production to your clicks </b>";
             shopButtonBuyPrice = 10000;
             kokButtonUnlockPrice = 800000;
-            productionPower = 1;
+            productionPower = 100000;
         }
 
         protected override void ActivateThings(int value)

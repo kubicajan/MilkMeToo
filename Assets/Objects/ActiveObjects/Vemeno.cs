@@ -1,6 +1,8 @@
+using System;
 using Managers;
 using Objects.Abstract.ActiveObjectClasses;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Objects.ActiveObjects
 {
@@ -19,10 +21,27 @@ namespace Objects.ActiveObjects
             // interval = 1f;
         }
 
+        protected override void LoadData()
+        {
+            VyjimecnyElan data = SaveManager.instance.GetItemToUpdate(this.GetType().ToString());
+            this.ObjectCount = data.CountBought;
+            this.FreeObjects = data.FreeCount;
+            Decimal gggg = Decimal.Parse(data.AmountMilked);
+            this.allTimeMilked = gggg;
+            Decimal ggtmp = Decimal.Parse(data.ShopBuyPrice);
+
+            if (ggtmp != 0)
+            {
+                this.shopButtonBuyPrice = ggtmp;
+            }
+
+            MoneyManagerSingleton.instance.numberOfTitties = ObjectCount;
+        }
+
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (IsItTime2() )
+            if (IsItTime2())
             {
                 Debug.Log("Animation finished");
                 if (ObjectCount > 0)
@@ -40,7 +59,7 @@ namespace Objects.ActiveObjects
                 }
             }
         }
-        
+
         private float timer2 = 0f;
         private float interval2 = 0.5f;
 
