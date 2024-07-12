@@ -16,7 +16,7 @@ namespace Objects.ActiveObjects
             description = "ANOTHER ONE?";
             kokButtonDescription = "This does not seem natural \n \n <b> Gives cats extra production </b> ";
             shopButtonBuyPrice = 75000;
-            kokButtonUnlockPrice = 25000000;
+            kokButtonUnlockPrice = 120000000;
             productionPower = 1;
             // interval = 1f;
         }
