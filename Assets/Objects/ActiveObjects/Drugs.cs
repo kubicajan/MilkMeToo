@@ -47,8 +47,8 @@ namespace Objects.ActiveObjects
 
             if (SaveManager.instance.GetTimesProud() != 0)
             {
-                bonus = 150;
-                bbbo = 30;
+                bonus = 300;
+                bbbo = 50;
                 mommyInfluence = Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
                 kokButtonDescription = $"Everyone should experience it at least once. Or twice. Or all the time. \n \n" +
                                        $" Gives {bonus}% base multiplier + {bbbo}% per bought pill";
@@ -68,8 +68,8 @@ namespace Objects.ActiveObjects
             int mommyInfluence = 1;
             if (SaveManager.instance.GetTimesProud() != 0)
             {
-                bonus = 150;
-                bbbo = 30;
+                bonus = 300;
+                bbbo = 50;
                 kokButtonDescription = $"Everyone should experience it at least once. Or twice. Or all the time. \n \n" +
                                        $"Extra {bonus}% base multiplier + {bbbo}% per use";
             }

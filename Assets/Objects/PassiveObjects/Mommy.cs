@@ -22,7 +22,7 @@ namespace Objects
         {
             objectName = "Mommy";
             kokButtonDescription =
-                $"She will finally be proud of you. \n \n <b> <color=red> This will restart your progress. You keep all multipliers and event upgrades.</color> </b>";
+                $"She will finally be proud of you. \n \n <b> <color=red> Restarts your progress but gives upgrades. Keeps multiplier.</color> </b>";
             kokButtonUnlockPrice = 2000000000;
             showTheLine = false;
         }

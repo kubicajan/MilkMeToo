@@ -104,6 +104,10 @@ namespace Objects.SpecialObjects
 
             Decimal gggg = Decimal.Parse(data.AmountMilked);
             this.allTimeMilked = gggg;
+            if (SaveManager.instance.GetTimesProud() != 0)
+            {
+                productionPower = 10000;
+            }
         }
 
         protected override void Start()
@@ -128,6 +132,10 @@ namespace Objects.SpecialObjects
                         .Where(achivement => achivement.id == GPGSIds.achievement_milk_man)
                         .Any(ach => ach.completed);
                 });
+            if (SaveManager.instance.GetTimesProud() != 0)
+            {
+                productionPower = 10;
+            }
         }
 
         public void BirthACow(int value)

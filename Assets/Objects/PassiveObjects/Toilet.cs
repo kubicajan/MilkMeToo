@@ -89,8 +89,8 @@ namespace Objects.PassiveObjects
 
         public override void BuyUpgrade()
         {
-            flushed += MoneyManagerSingleton.instance.GetMoney();
-            SaveManager.instance.UpdateFlushed(flushed);
+            SaveManager.instance.UpdateFlushed(MoneyManagerSingleton.instance.GetMoney());
+            flushed = SaveManager.instance.GetFlushed();
             Social.ReportScore((long)(SaveManager.instance.GetFlushed() / 1000000),
                 GPGSIds.leaderboard_flushed_in_mil, success => { });
             MoneyManagerSingleton.instance.SpendMoney(MoneyManagerSingleton.instance.GetMoney());
