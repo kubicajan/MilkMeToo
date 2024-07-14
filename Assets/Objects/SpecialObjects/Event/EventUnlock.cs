@@ -17,7 +17,7 @@ namespace Objects.SpecialObjects.Event
         {
             objectName = "NASTENKA";
             kokButtonDescription = "Is this a witcher 1 reference?";
-            kokButtonUnlockPrice = 1500;
+            kokButtonUnlockPrice = 500;
             effectInfo = "UNLOCKS EVENTS";
             kokButtonStatus = ButtonStatus.LOCKED;
             showTheLine = false;

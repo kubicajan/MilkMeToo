@@ -22,7 +22,7 @@ namespace Objects.ActiveObjects
             kokButtonDescription =
                 "The chillest animal on the block. \n \n Perhaps he joins you for some of your wealth.";
             shopButtonBuyPrice = 40;
-            kokButtonUnlockPrice = 1000;
+            kokButtonUnlockPrice = 400;
             productionPower = 4m;
             // interval = 1f;
         }

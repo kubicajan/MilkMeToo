@@ -20,6 +20,7 @@ namespace Objects.PassiveObjects
             kokButtonUnlockPrice = 100;
             multiplicationBonus = 0;
             effectInfo = "???";
+            availableParticleName = "AvailableParticle2";
             showTheLine = false;
         }
 
