@@ -61,6 +61,7 @@ namespace Objects.PassiveObjects
             kokButtonUnlockPrice = kokButtonUnlockPrice * 100;
             SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), kokButtonUnlockPrice);
             effectInfo = $"{counter}/{maxBumbo} bought";
+            UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
 
             // kokButtonUnlockPrice = originalkokUnlockPrice;
             // kokButtonUnlockPrice = originalkokUnlockPrice *
