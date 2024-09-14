@@ -38,13 +38,20 @@ namespace Objects.SpecialObjects.Event
 
         protected override void ResetHandler()
         {
-            this.transform.position = new Vector2(-1980, -500);
-            UpdateUpgradePriceDisplayText("");
+            if(SaveManager.instance.GetTimesProud() >= 1)
+            {
+                this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
+            }
+            else
+            {
+                this.transform.position = new Vector2(-1980, -500);
+                UpdateUpgradePriceDisplayText("");
 
-            // base.ResetHandler();
-            // kokButtonStatus = ButtonStatus.AVAILABLE;
-            // RevertUpgrade();
-            //KokTreeButtonStart();
+                // base.ResetHandler();
+                // kokButtonStatus = ButtonStatus.AVAILABLE;
+                // RevertUpgrade();
+                //KokTreeButtonStart();
+            }
         }
 
         protected override void Start()

@@ -67,6 +67,7 @@ namespace Objects.PassiveObjects
 
         protected override void ResetHandler()
         {
+            this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
         }
 
         public override void ClickKokButton()

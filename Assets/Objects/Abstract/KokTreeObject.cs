@@ -77,15 +77,22 @@ namespace Objects.Abstract
 
         protected virtual void ResetHandler()
         {
-            MakeButtonUnknown();
-            UpdateKokTree(MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice));
-            kokButtonUnlockPrice = originalkokUnlockPrice;
-            kokButtonUnlockPrice = originalkokUnlockPrice *
-                                   (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-            kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 35) / 100);
-            SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
-            primalSpriteButton.SetActive(false);
-            this.StopAllCoroutines();
+            if (SaveManager.instance.GetTimesProud() < 1)
+            {
+                MakeButtonUnknown();
+                UpdateKokTree(MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice));
+                kokButtonUnlockPrice = originalkokUnlockPrice;
+                kokButtonUnlockPrice = originalkokUnlockPrice *
+                                       (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
+                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 35) / 100);
+                SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
+                primalSpriteButton.SetActive(false);
+                this.StopAllCoroutines();
+            }
+            else if(SaveManager.instance.GetTimesProud() >= 1)
+            {
+                this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
+            }
         }
 
         protected virtual void FixedUpdate()
@@ -239,6 +246,7 @@ namespace Objects.Abstract
                 ColorUtility.TryParseHtmlString("#000000", out Color parsedColor);
                 br.startColor = parsedColor;
             }
+
             Destroy(myParticleSystem);
         }
 

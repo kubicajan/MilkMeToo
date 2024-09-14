@@ -36,16 +36,24 @@ namespace Objects.SpecialObjects.Event
 
         protected override void ResetHandler()
         {
-            this.transform.position = new Vector2(-1980, -500);
-            if (this.kokButtonStatus != ButtonStatus.BOUGHT)
+            if(SaveManager.instance.GetTimesProud() >= 1)
             {
-                this.BuyUpgrade();
+                this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
             }
-            UpdateUpgradePriceDisplayText("");
+            else
+            {
+                this.transform.position = new Vector2(-1980, -500);
+                if (this.kokButtonStatus != ButtonStatus.BOUGHT)
+                {
+                    this.BuyUpgrade();
+                }
 
-            // base.ResetHandler();
-            // kokButtonStatus = ButtonStatus.AVAILABLE;
-            // KokTreeButtonStart();
+                UpdateUpgradePriceDisplayText("");
+
+                // base.ResetHandler();
+                // kokButtonStatus = ButtonStatus.AVAILABLE;
+                // KokTreeButtonStart();
+            }
         }
 
         private bool mamho = false;

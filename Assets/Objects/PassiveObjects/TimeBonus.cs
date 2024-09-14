@@ -52,10 +52,17 @@ namespace Objects.PassiveObjects
         
         protected override void ResetHandler()
         {
-            LockButton();
-            maxBumbo = 10;
-            kokButtonUnlockPrice = kokButtonUnlockPrice * 100;
-            effectInfo = $"{counter}/{maxBumbo} bought";
+            if(SaveManager.instance.GetTimesProud() >= 1)
+            {
+                this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
+            }
+            else
+            {
+                LockButton();
+                maxBumbo = 10;
+                kokButtonUnlockPrice = kokButtonUnlockPrice * 100;
+                effectInfo = $"{counter}/{maxBumbo} bought";
+            }
 
         }
 

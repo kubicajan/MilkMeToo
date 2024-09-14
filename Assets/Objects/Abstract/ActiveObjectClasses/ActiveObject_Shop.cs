@@ -34,18 +34,25 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected override void ResetHandler()
         {
-            base.ResetHandler();
-            ShopButtonStart();
-            ObjectCount = 0;
-            shopButtonBuyPrice = originalPrice;
-            // CalculatePrice();
-            shopButton.transform.Find("Image").GetComponent<Image>().sprite = questionMarkBasicShop;
-            if (SaveManager.instance.GetTimesProud() != 0)
+            if (SaveManager.instance.GetTimesProud() >= 1)
             {
-                shopButtonBuyPrice *= Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
+                this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
             }
+            else
+            {
+                base.ResetHandler();
+                ShopButtonStart();
+                ObjectCount = 0;
+                shopButtonBuyPrice = originalPrice;
+                // CalculatePrice();
+                shopButton.transform.Find("Image").GetComponent<Image>().sprite = questionMarkBasicShop;
+                if (SaveManager.instance.GetTimesProud() != 0)
+                {
+                    shopButtonBuyPrice *= Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
+                }
 
-            SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
+                SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
+            }
         }
 
         protected virtual void ActivateFreeThings(int value)
@@ -76,6 +83,7 @@ namespace Objects.Abstract.ActiveObjectClasses
                 objectCounter = 0;
                 primalSpriteButton.gameObject.SetActive(false);
             }
+
             SaveManager.instance.SetUpdateCountBoughtWrapper(this.GetType().ToString(), value);
             shopButtonBuyPrice = CalculatePrice();
             SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
@@ -103,8 +111,9 @@ namespace Objects.Abstract.ActiveObjectClasses
             int mommyInfluence = 1;
             if (SaveManager.instance.GetTimesProud() != 0)
             {
-                mommyInfluence =  Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
+                mommyInfluence = Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
             }
+
             return (originalPrice * (Decimal)Math.Pow(1.3f, ObjectCount) * mommyInfluence);
         }
 

@@ -51,8 +51,8 @@ namespace Objects
                 // this.kokButtonUnlockPrice = originalkokUnlockPrice *
                 //                             (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
                 // kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 20) / 100);
-                kokButtonUnlockPrice = 79228162514264337590000m;
-                UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
+                kokButtonUnlockPrice = 1;
+                // UpdateUpgradePriceDisplayText(kokButtonUnlockPrice);
             }
             else
             {
@@ -74,7 +74,7 @@ namespace Objects
         {
             if (SaveManager.instance.wrapper.timesProud > 0)
             {
-                return;
+                OnRestart?.Invoke();
             }
             Social.ReportProgress(GPGSIds.achievement_you_did_it_she_is_proud_of_you, 100.0f, (bool success) => { });
 
