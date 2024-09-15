@@ -106,33 +106,31 @@ public class bossclickscript : MonoBehaviour
         return parsedColor;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if ((Input.touchCount > 0 || Input.GetMouseButtonDown(0)) && !coroutineGoing)
         {
-            //for (int i = 0; i < Input.touchCount; i++)
-            //{
-            //Touch touch = Input.GetTouch(i);
-            //if (touch.phase == TouchPhase.Began)
-            //{
-            if (!finish)
+            for (int i = 0; i < Input.touchCount; i++)
             {
-                TakeDamage(1);
+                Touch touch = Input.GetTouch(i);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    if (!finish)
+                    {
+                        TakeDamage(1);
+                    }
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), Input.mousePosition, Camera.main, out Vector2 localPoint);
+                    ShowMilkedMoney("BAM!", localPoint);
+                    audioSource.PlayOneShot(soundArray[Random.Range(0, soundArray.Count)]);
+                    mooaudiosource.PlayOneShot(moo);
+                    animator.Play("BAMAnimation", 0, 0f);
+                    timer = 0;
+                    ModifyStreak(streak + 1);
+                    if (slider.value <= 0)
+                    {
+                        LevelUpCow();
+                    }
+                }
             }
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), Input.mousePosition, Camera.main, out Vector2 localPoint);
-            ShowMilkedMoney("BAM!", localPoint);
-            audioSource.PlayOneShot(soundArray[Random.Range(0, soundArray.Count)]);
-            mooaudiosource.PlayOneShot(moo);
-            animator.Play("BAMAnimation", 0, 0f);
-            timer = 0;
-            ModifyStreak(streak + 1);
-            if (slider.value <= 0)
-            {
-                LevelUpCow();
-            }
-            //}
-            //}
         }
         if (StreakBrokenForLong() && streakHealing)
         {
@@ -201,7 +199,7 @@ public class bossclickscript : MonoBehaviour
                 StartCoroutine(FillSlider(MAX_HP_3, GiveColorFromHex("#634C05")));
                 instructions.text = INSTRUCTION_3;
                 cowRenderer.sprite = sprite2;
-                slowlyHealAmount = 3; 
+                slowlyHealAmount = 3;
                 StartCoroutine(SlowlyHeal());
                 break;
             case MAX_HP_3:
