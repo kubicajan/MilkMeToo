@@ -1,17 +1,23 @@
-using System;
+
 using System.Collections;
+using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
+using Color = UnityEngine.Color;
 
 public class bossclickscript : MonoBehaviour
 {
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+    public Image obscure1;
+    public Image obscure2;
     public TextMeshProUGUI text;
     public TextMeshProUGUI instructions;
+    public TextMeshProUGUI thankstext;
     public GameObject textPrefab;
     public GameObject cow;
     public Sprite sprite;
@@ -21,13 +27,24 @@ public class bossclickscript : MonoBehaviour
     public Canvas canvas;
     public TextMeshProUGUI streakText;
     private Animator animator;
+    public AudioSource audioSource;
+    public AudioSource mooaudiosource;
+    public AudioSource music;
+    public AudioSource gottem;
+    public AudioSource trumpet;
+    public AudioClip clip1;
+    public AudioClip clip2;
+    public AudioClip clip3;
+    public AudioClip clip4;
+    public AudioClip clip5;
+    public AudioClip moo;
 
 
-    private const int MAX_HP_1 = 10;//1000
-    private const int MAX_HP_2 = 20;//1500
-    private const int MAX_HP_3 = 12;//3000
-    private const int MAX_HP_4 = 1400;//6000
-    private const int MAX_HP_5 = 30;//15000
+    private const int MAX_HP_1 = 2;//1000
+    private const int MAX_HP_2 = 4;//1500
+    private const int MAX_HP_3 = 5;//3000
+    private const int MAX_HP_4 = 6;//6000
+    private const int MAX_HP_5 = 8;//15000
 
     private const string INSTRUCTION_1 = "It is a lonely bison, he is just standing there. \n\n <color=red> TAME HIM!</color> ";
     private const string INSTRUCTION_2 = "He is tougher than we thought! \n \n Bison gains: \n\n <color=red> extra HP </color>";
@@ -38,19 +55,36 @@ public class bossclickscript : MonoBehaviour
     private float timer = 0;
     private float interval = 0.3f;
     private int streak = 0;
+    private Image image;
 
     private bool coroutineGoing = false;
     private SpriteRenderer cowRenderer;
 
+    List<AudioClip> soundArray = new List<AudioClip>();
+
     // Start is called before the first frame update
     void Start()
     {
+        thankstext.enabled = false;
         SetMaxHealth(MAX_HP_1);
         SetHealth(MAX_HP_1);
         text.text = "100%";
         cowRenderer = cow.GetComponent<SpriteRenderer>();
         animator = cow.GetComponent<Animator>();
         instructions.text = INSTRUCTION_1;
+        image = canvas.GetComponent<Image>();
+        image.color = GiveColorFromHex("#1E633A");
+        soundArray.Add(clip1);
+        soundArray.Add(clip2);
+        soundArray.Add(clip3);
+        soundArray.Add(clip4);
+        soundArray.Add(clip5);
+    }
+
+    private UnityEngine.Color GiveColorFromHex(string colour)
+    {
+        ColorUtility.TryParseHtmlString(colour, out UnityEngine.Color parsedColor);
+        return parsedColor;
     }
 
     // Update is called once per frame
@@ -63,10 +97,14 @@ public class bossclickscript : MonoBehaviour
             //Touch touch = Input.GetTouch(i);
             //if (touch.phase == TouchPhase.Began)
             //{
-
-            TakeDamage(1);
+            if (!finish)
+            {
+                TakeDamage(1);
+            }
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), Input.mousePosition, Camera.main, out Vector2 localPoint);
             ShowMilkedMoney("BAM!", localPoint);
+            audioSource.PlayOneShot(soundArray[Random.Range(0, soundArray.Count)]);
+            mooaudiosource.PlayOneShot(moo);
             animator.Play("BAMAnimation", 0, 0f);
             timer = 0;
             ModifyStreak(streak + 1);
@@ -119,7 +157,7 @@ public class bossclickscript : MonoBehaviour
         TextMeshProUGUI newText = newObject.GetComponentInChildren<TextMeshProUGUI>();
 
         newText.fontSize = 50;
-        ColorUtility.TryParseHtmlString(colour, out Color parsedColor);
+        ColorUtility.TryParseHtmlString(colour, out UnityEngine.Color parsedColor);
         newText.color = parsedColor;
         newText.text = $"{huh}{points}";
         newText.CrossFadeAlpha(0.0f, 0.8f, true);
@@ -130,39 +168,100 @@ public class bossclickscript : MonoBehaviour
     private int slowlyHealAmount = 0;
     private bool streakHealing = false;
     private int streakHealingAmountDivider = 10;
+    private bool finish = false;
     public void LevelUpCow()
     {
         switch (slider.maxValue)
         {
             case MAX_HP_1:
-                StartCoroutine(FillSlider(MAX_HP_2));
+                StartCoroutine(FillSlider(MAX_HP_2, GiveColorFromHex("#1A4414")));
                 cowRenderer.sprite = sprite;
                 instructions.text = INSTRUCTION_2;
                 break;
             case MAX_HP_2:
-                StartCoroutine(FillSlider(MAX_HP_3));
+                StartCoroutine(FillSlider(MAX_HP_3, GiveColorFromHex("#634C05")));
                 instructions.text = INSTRUCTION_3;
                 cowRenderer.sprite = sprite2;
                 slowlyHealAmount = 1; //TODO:  dat tady 3
                 StartCoroutine(SlowlyHeal());
                 break;
             case MAX_HP_3:
-                StartCoroutine(FillSlider(MAX_HP_4));
+                StartCoroutine(FillSlider(MAX_HP_4, GiveColorFromHex("#793E05")));
                 instructions.text = INSTRUCTION_4;
                 cowRenderer.sprite = sprite3;
                 streakHealing = true;
                 streakHealingAmountDivider = 10;
                 break;
             case MAX_HP_4:
-                StartCoroutine(FillSlider(MAX_HP_5));
+                StartCoroutine(FillSlider(MAX_HP_5, GiveColorFromHex("#712723")));
                 instructions.text = INSTRUCTION_5;
                 cowRenderer.sprite = sprite4;
-                slowlyHealAmount = 3; //TODO:  dat tady 5?
+                slowlyHealAmount = 0; //TODO:  dat tady 5?
                 streakHealingAmountDivider = 1;
                 break;
             case MAX_HP_5:
+                slider.value = 1;
+                finish = true;
+                streakHealing = false;
+                StopAllCoroutines();
+                StartCoroutine(FadeInThanks());
+                music.volume = music.volume / 3;
+                trumpet.Play();
+                gottem.Play();
                 break;
         }
+    }
+
+    private IEnumerator FadeInThanks()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < 3f)
+        {
+            elapsedTime += Time.deltaTime;
+
+            float alphaValue = Mathf.Clamp01(elapsedTime / 3f);
+
+            Color tempColor = obscure1.color;
+            tempColor.a = alphaValue;
+            obscure1.color = tempColor;
+            yield return null;
+        }
+
+        Color finalColor = obscure1.color;
+        finalColor.a = 1f;
+        obscure1.color = finalColor;
+        obscure2.color = finalColor;
+        thankstext.enabled = true;
+        elapsedTime = 0f;
+
+        while (elapsedTime < 3f)
+        {
+            elapsedTime += Time.deltaTime;
+            float alphaValue = Mathf.Clamp01(1 - (elapsedTime / 3f));
+            Color tempColor = obscure2.color;
+            tempColor.a = alphaValue;
+            obscure2.color = tempColor;
+
+            yield return null;
+        }
+        Color finalColor2 = image.color;
+        finalColor2.a = 0f;
+        obscure2.color = finalColor2;
+    }
+
+    IEnumerator SmoothTransition(UnityEngine.Color color)
+    {
+        float elapsedTime = 0f;
+        float fillDuration = 30f;
+
+        while (elapsedTime < fillDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            image.color = UnityEngine.Color.Lerp(image.color, color, elapsedTime / fillDuration);
+            yield return null;
+        }
+        image.color = color;
     }
 
     IEnumerator SlowlyHeal()
@@ -183,7 +282,7 @@ public class bossclickscript : MonoBehaviour
         ShowMilkedMoney(heal.ToString(), MoveItABit(Helpers.GetObjectPositionRelativeToCanvas(new Vector2())), ColorToHexString(gradient.Evaluate(slider.normalizedValue)), "+");
     }
 
-    public string ColorToHexString(Color color)
+    public string ColorToHexString(UnityEngine.Color color)
     {
         int r = Mathf.RoundToInt(color.r * 255f);
         int g = Mathf.RoundToInt(color.g * 255f);
@@ -208,7 +307,7 @@ public class bossclickscript : MonoBehaviour
         return position - new Vector2(+35f + (moveX), -140f + (moveY));
     }
 
-    private IEnumerator FillSlider(int maxValue)
+    private IEnumerator FillSlider(int maxValue, Color color)
     {
         coroutineGoing = true;
         float fillDuration = 3f;
@@ -217,15 +316,18 @@ public class bossclickscript : MonoBehaviour
 
         slider.value = 1;
         float startValue = slider.value;
+        Color original = image.color;
 
         while (elapsedTime < fillDuration)
         {
             elapsedTime += Time.deltaTime;
             SetHealth(Mathf.Lerp(startValue, maxValue, elapsedTime / fillDuration));
             SetTextValue();
+            image.color = UnityEngine.Color.Lerp(original, color, elapsedTime / fillDuration);
             yield return null;
         }
         slider.value = maxValue;
+        image.color = color;
         coroutineGoing = false;
     }
 
