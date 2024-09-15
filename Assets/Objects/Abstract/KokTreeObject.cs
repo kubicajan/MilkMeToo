@@ -14,14 +14,14 @@ namespace Objects.Abstract
     {
         [SerializeField] public GameObject toUnlockNext;
 
-        [SerializeField] private Sprite availableKokButtonSprite;
+        [SerializeField] protected Sprite availableKokButtonSprite;
         [SerializeField] private Sprite lockedKokButtonSprite;
         [SerializeField] private Sprite boughtKokButtonSprite;
         [SerializeField] private Sprite unknownKokButtonSprite;
         [SerializeField] public GameObject primalSpriteButton;
         protected Decimal originalkokUnlockPrice = 0;
 
-        private Button kokButton;
+        protected Button kokButton;
         private TextMeshProUGUI upgradePriceDisplay;
         private bool clickedKokInfo;
         private ParticleSystem myParticleSystem;
@@ -77,22 +77,15 @@ namespace Objects.Abstract
 
         protected virtual void ResetHandler()
         {
-            if (SaveManager.instance.GetTimesProud() < 1)
-            {
-                MakeButtonUnknown();
-                UpdateKokTree(MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice));
-                kokButtonUnlockPrice = originalkokUnlockPrice;
-                kokButtonUnlockPrice = originalkokUnlockPrice *
-                                       (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
-                kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 35) / 100);
-                SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
-                primalSpriteButton.SetActive(false);
-                this.StopAllCoroutines();
-            }
-            else if(SaveManager.instance.GetTimesProud() >= 1)
-            {
-                this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
-            }
+            MakeButtonUnknown();
+            UpdateKokTree(MoneyManagerSingleton.instance.IsEnoughFunds(kokButtonUnlockPrice));
+            kokButtonUnlockPrice = originalkokUnlockPrice;
+            kokButtonUnlockPrice = originalkokUnlockPrice *
+                                   (Mommy.magicResetValue * SaveManager.instance.wrapper.timesProud);
+            kokButtonUnlockPrice = kokButtonUnlockPrice + ((kokButtonUnlockPrice * 35) / 100);
+            SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
+            primalSpriteButton.SetActive(false);
+            this.StopAllCoroutines();
         }
 
         protected virtual void FixedUpdate()

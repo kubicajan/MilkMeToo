@@ -60,7 +60,6 @@ namespace Objects.ActiveObjects
         {
             anotherGinger.gameObject.SetActive(false);
             base.Start();
-
             PlayGamesPlatform.Instance
                 .LoadAchievements(achievements =>
                 {

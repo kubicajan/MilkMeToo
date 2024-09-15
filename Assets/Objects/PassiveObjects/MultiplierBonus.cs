@@ -56,12 +56,6 @@ namespace Objects.PassiveObjects
 
         protected override void ResetHandler()
         {
-            if (SaveManager.instance.GetTimesProud() >= 1)
-            {
-                this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
-            }
-            else
-            {
                 LockButton();
                 maxBumbo = 10;
                 kokButtonUnlockPrice = kokButtonUnlockPrice * 100;
@@ -76,7 +70,6 @@ namespace Objects.PassiveObjects
                 // SaveManager.instance.RestartCountBoughtWrapper(this.GetType().ToString());
                 // primalSpriteButton.SetActive(false);
                 // this.StopAllCoroutines();
-            }
         }
 
         public override void BuyUpgrade()

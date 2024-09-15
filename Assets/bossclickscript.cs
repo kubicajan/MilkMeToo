@@ -41,10 +41,10 @@ public class bossclickscript : MonoBehaviour
 
 
     private const int MAX_HP_1 = 2;//1000
-    private const int MAX_HP_2 = 4;//1500
-    private const int MAX_HP_3 = 5;//3000
-    private const int MAX_HP_4 = 6;//6000
-    private const int MAX_HP_5 = 8;//15000
+    private const int MAX_HP_2 = 30;//1500
+    private const int MAX_HP_3 = 50;
+    private const int MAX_HP_4 = 80;
+    private const int MAX_HP_5 = 150;
 
     private const string INSTRUCTION_1 = "It is a lonely bison, he is just standing there. \n\n <color=red> TAME HIM!</color> ";
     private const string INSTRUCTION_2 = "He is tougher than we thought! \n \n Bison gains: \n\n <color=red> extra HP </color>";
@@ -79,6 +79,25 @@ public class bossclickscript : MonoBehaviour
         soundArray.Add(clip3);
         soundArray.Add(clip4);
         soundArray.Add(clip5);
+        StartCoroutine(DOPICE());
+    }
+
+    private IEnumerator DOPICE()
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < 3f)
+        {
+            elapsedTime += Time.deltaTime;
+            float alphaValue = Mathf.Clamp01(1 - (elapsedTime / 3f));
+            Color tempColor = obscure1.color;
+            tempColor.a = alphaValue;
+            obscure1.color = tempColor;
+
+            yield return null;
+        }
+        Color finalColor2 = obscure1.color;
+        finalColor2.a = 0f;
+        obscure1.color = finalColor2;
     }
 
     private UnityEngine.Color GiveColorFromHex(string colour)
@@ -182,7 +201,7 @@ public class bossclickscript : MonoBehaviour
                 StartCoroutine(FillSlider(MAX_HP_3, GiveColorFromHex("#634C05")));
                 instructions.text = INSTRUCTION_3;
                 cowRenderer.sprite = sprite2;
-                slowlyHealAmount = 1; //TODO:  dat tady 3
+                slowlyHealAmount = 3; 
                 StartCoroutine(SlowlyHeal());
                 break;
             case MAX_HP_3:
@@ -190,13 +209,13 @@ public class bossclickscript : MonoBehaviour
                 instructions.text = INSTRUCTION_4;
                 cowRenderer.sprite = sprite3;
                 streakHealing = true;
-                streakHealingAmountDivider = 10;
+                streakHealingAmountDivider = 5;
                 break;
             case MAX_HP_4:
                 StartCoroutine(FillSlider(MAX_HP_5, GiveColorFromHex("#712723")));
                 instructions.text = INSTRUCTION_5;
                 cowRenderer.sprite = sprite4;
-                slowlyHealAmount = 0; //TODO:  dat tady 5?
+                slowlyHealAmount = 7;
                 streakHealingAmountDivider = 1;
                 break;
             case MAX_HP_5:
@@ -245,7 +264,7 @@ public class bossclickscript : MonoBehaviour
 
             yield return null;
         }
-        Color finalColor2 = image.color;
+        Color finalColor2 = obscure2.color;
         finalColor2.a = 0f;
         obscure2.color = finalColor2;
     }

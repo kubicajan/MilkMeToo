@@ -19,8 +19,8 @@ namespace Managers
     public class MoneyManagerSingleton : MonoBehaviour
     {
         [SerializeField] private AudioSource audioHorn;
-        [SerializeField] private AudioClip hornSound;     
-        
+        [SerializeField] private AudioClip hornSound;
+
         [SerializeField] public TextMeshProUGUI moneyScore;
         [SerializeField] public TextMeshProUGUI MULTI;
         [SerializeField] public TextMeshProUGUI multiplier;
@@ -105,7 +105,6 @@ namespace Managers
                         .Any(ach => ach.completed);
                 });
 
-
             money = SaveManager.instance.GetCurrentMoney();
             totalMoney = SaveManager.instance.GetTotalMoney();
             ChangeDisplayedMoney();
@@ -185,6 +184,7 @@ namespace Managers
 
         public void ResetMoney()
         {
+            SaveManager.instance.UpdateCurrentMoney(-money);
             money = 0;
             ChangeDisplayedMoney();
         }

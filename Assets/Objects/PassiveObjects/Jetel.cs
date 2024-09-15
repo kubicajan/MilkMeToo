@@ -37,19 +37,12 @@ namespace Objects.PassiveObjects
 
         protected override void ResetHandler()
         {
-            if (SaveManager.instance.GetTimesProud() >= 1)
-            {
-                this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
-            }
-            else
-            {
                 base.ResetHandler();
                 kokButtonStatus = ButtonStatus.LOCKED;
                 anotherJetel.gameObject.SetActive(false);
                 yetAnotherJetel.gameObject.SetActive(false);
                 yetAnotherAnotherJetel.gameObject.SetActive(false);
                 KokTreeButtonStart();
-            }
         }
 
         protected override void ActivateAllOfThem()

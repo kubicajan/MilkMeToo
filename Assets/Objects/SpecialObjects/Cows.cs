@@ -28,7 +28,7 @@ namespace Objects.SpecialObjects
             kokButtonDescription = "You can get more of them? \n \n <b> Gives extra production to your clicks </b>";
             shopButtonBuyPrice = 10000;
             kokButtonUnlockPrice = 800000;
-            productionPower = 100000000;
+            productionPower = 1;
         }
 
         protected override void ActivateThings(int value)
@@ -107,7 +107,7 @@ namespace Objects.SpecialObjects
             this.allTimeMilked = gggg;
             if (SaveManager.instance.GetTimesProud() != 0)
             {
-                productionPower = 100000000;
+                productionPower = 10;
             }
         }
 
@@ -126,7 +126,6 @@ namespace Objects.SpecialObjects
             anotherAnotherCow.gameObject.SetActive(false);
             base.Start();
             vemenButtonTransform = GameObject.Find("vemenButton").transform;
-
             PlayGamesPlatform.Instance
                 .LoadAchievements(achievements =>
                 {

@@ -39,16 +39,9 @@ namespace Objects.PassiveObjects
 
         protected override void ResetHandler()
         {
-            if (SaveManager.instance.GetTimesProud() >= 1)
-            {
-                this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
-            }
-            else
-            {
                 base.ResetHandler();
                 anotherSlave.gameObject.SetActive(false);
                 yetAnotherSlave.gameObject.SetActive(false);
-            }
         }
 
         public override void BuyUpgrade()

@@ -45,7 +45,6 @@ namespace PopUps
             questionText = holdingImageTransform
                 .Find("QuestionBackground")
                 .Find("Question").GetComponent<TextMeshProUGUI>();
-
             PlayGamesPlatform.Instance
                 .LoadAchievements(achievements =>
                 {

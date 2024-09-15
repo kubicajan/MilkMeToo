@@ -34,25 +34,18 @@ namespace Objects.Abstract.ActiveObjectClasses
 
         protected override void ResetHandler()
         {
-            if (SaveManager.instance.GetTimesProud() >= 1)
+            base.ResetHandler();
+            ShopButtonStart();
+            ObjectCount = 0;
+            shopButtonBuyPrice = originalPrice;
+            // CalculatePrice();
+            shopButton.transform.Find("Image").GetComponent<Image>().sprite = questionMarkBasicShop;
+            if (SaveManager.instance.GetTimesProud() != 0)
             {
-                this.gameObject.transform.position = new UnityEngine.Vector3(5000, 5000, 0);
+                shopButtonBuyPrice *= Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
             }
-            else
-            {
-                base.ResetHandler();
-                ShopButtonStart();
-                ObjectCount = 0;
-                shopButtonBuyPrice = originalPrice;
-                // CalculatePrice();
-                shopButton.transform.Find("Image").GetComponent<Image>().sprite = questionMarkBasicShop;
-                if (SaveManager.instance.GetTimesProud() != 0)
-                {
-                    shopButtonBuyPrice *= Mommy.magicResetValue * SaveManager.instance.GetTimesProud();
-                }
 
-                SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
-            }
+            SaveManager.instance.UpdateShopBuyPriceWrapper(this.GetType().ToString(), shopButtonBuyPrice);
         }
 
         protected virtual void ActivateFreeThings(int value)
